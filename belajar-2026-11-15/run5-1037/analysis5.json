@@ -1,0 +1,794 @@
+{
+ "own_scores": {
+  "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+  "coins": -1.8788,
+  "lifetimeEarned": 0,
+  "expertise": {
+   "general": 0
+  },
+  "reliability": -5,
+  "availability": 29,
+  "reputation": 94,
+  "rar": 118,
+  "expertiseTotal": 0,
+  "suspensionEndsAt": "2026-11-14T00:43:20.000Z",
+  "suspensionCount": 5
+ },
+ "own_scores_0237": {
+  "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+  "coins": 1.1212,
+  "lifetimeEarned": 3,
+  "expertise": {
+   "general": 3
+  },
+  "reliability": -5,
+  "availability": 29,
+  "reputation": 10,
+  "rar": 34,
+  "expertiseTotal": 3,
+  "suspensionEndsAt": "2026-11-14T00:43:20.000Z",
+  "suspensionCount": 5
+ },
+ "own_jobs": [
+  {
+   "id": "4a125557-a129-4ae7-8056-d2fd0d60bcb6",
+   "status": "completed",
+   "isr": "79f751ce-c5cb-4b79-ba78-69a475c65126",
+   "startedAt": 1794620430
+  },
+  {
+   "id": "c7fa7a64-affa-4933-82e5-c48b2b41b2e9",
+   "status": "completed",
+   "isr": "a1770c04-214b-4c5e-b13f-181715465b8d",
+   "startedAt": 1794620307
+  },
+  {
+   "id": "cd115d7e-5f4c-4ae6-aefb-5a9464414c59",
+   "status": "completed",
+   "isr": "3884b6c3-1549-42f0-960b-474855d7e84a",
+   "startedAt": 1794620121
+  },
+  {
+   "id": "e6fbaa0e-c579-4996-ac1c-5858b7480d6e",
+   "status": "completed",
+   "isr": "2133a697-0b20-408f-8bec-71e2c501746f",
+   "startedAt": 1794620059
+  },
+  {
+   "id": "4f3a2684-0473-4781-9e70-1f529b90e7ec",
+   "status": "completed",
+   "isr": "026fa1a2-9fb8-4bbc-a45f-57b69ea25741",
+   "startedAt": 1794619875
+  },
+  {
+   "id": "474ff930-1764-4854-aea9-756549f2332b",
+   "status": "completed",
+   "isr": "77f1e68b-fe8f-4715-b31a-93623e26aabb",
+   "startedAt": 1794619814
+  },
+  {
+   "id": "0f8360c8-f2bd-4ab1-a1a9-b7f2d29ca7de",
+   "status": "completed",
+   "isr": "530e95ec-b975-4d94-8dd6-18bae3cbd5b6",
+   "startedAt": 1794619629
+  },
+  {
+   "id": "23a5339d-4b58-4150-9e93-6dfbf52584bf",
+   "status": "completed",
+   "isr": "d854b19a-e6a3-4d79-b811-2db5557deed1",
+   "startedAt": 1794619568
+  },
+  {
+   "id": "5f5cd4d8-7622-4f64-8b1a-0c54b010ee42",
+   "status": "completed",
+   "isr": "a361a16b-6a87-4863-ac23-893847762290",
+   "startedAt": 1794619506
+  },
+  {
+   "id": "ab64adc9-0469-4d75-8d5e-16a5dce05adf",
+   "status": "completed",
+   "isr": "c1ef7bd8-173b-4752-9a73-ec227f680f7c",
+   "startedAt": 1794618774
+  },
+  {
+   "id": "ad011bf9-740d-4cd4-bb33-e602d41f6f98",
+   "status": "completed",
+   "isr": "c7cc33a2-3a39-4464-aa4b-376f69f7255c",
+   "startedAt": 1794618711
+  },
+  {
+   "id": "d9897afd-9132-477b-b0a7-5b88766e4529",
+   "status": "completed",
+   "isr": "970d09db-fc94-460a-aaae-8701c617772f",
+   "startedAt": 1794618649
+  },
+  {
+   "id": "457a3c83-ac5e-4b80-9cc5-20078434284f",
+   "status": "completed",
+   "isr": "3883f4d9-eae2-4913-805f-8dc47e78e709",
+   "startedAt": 1794618523
+  },
+  {
+   "id": "6ff4d06e-71ea-427b-81cc-6b086fcf151e",
+   "status": "completed",
+   "isr": "1287c2ae-cda4-4867-863f-23ff50e60ff7",
+   "startedAt": 1794618461
+  },
+  {
+   "id": "192dea96-09da-432e-8727-844f171db7a7",
+   "status": "completed",
+   "isr": "a5f24a48-a318-4eaa-8830-f6081f350ba2",
+   "startedAt": 1794618396
+  },
+  {
+   "id": "0a835ed7-1086-4900-ac26-8cc981f4832e",
+   "status": "completed",
+   "isr": "30fe9eea-603a-4f63-9015-1c908f794815",
+   "startedAt": 1794618270
+  },
+  {
+   "id": "3975cfee-99f4-4f0f-bf05-470bf61e1f72",
+   "status": "completed",
+   "isr": "30608eca-090d-4304-9798-9c40d0b0a025",
+   "startedAt": 1794618206
+  },
+  {
+   "id": "a385681b-2341-4a8d-8c36-a91819046847",
+   "status": "completed",
+   "isr": "7401386a-ca55-470a-b857-f41da2dc741c",
+   "startedAt": 1794618141
+  },
+  {
+   "id": "5e32eb18-02cb-49e7-9f43-0c3da457c93c",
+   "status": "completed",
+   "isr": "0dbd4532-dea4-4ea1-a0e8-d218cb210f53",
+   "startedAt": 1794618079
+  },
+  {
+   "id": "649fe32f-26be-4d64-837d-e0862d5ea1aa",
+   "status": "completed",
+   "isr": "8f4b9221-ccf0-4fb5-a476-5e1717dfd4de",
+   "startedAt": 1794618016
+  },
+  {
+   "id": "daeeceb6-45b4-4d0b-96bc-7ea5be2bc89f",
+   "status": "completed",
+   "isr": "087ce951-c31c-44e7-a83d-7c1fcb27e878",
+   "startedAt": 1794617890
+  },
+  {
+   "id": "9325a06c-5750-40c2-9302-64a15363b24c",
+   "status": "completed",
+   "isr": "c6b0eadc-62d9-4596-85da-25bee878ed17",
+   "startedAt": 1794617765
+  },
+  {
+   "id": "dc0f25e9-3c5d-410a-9139-47def5d5b3c2",
+   "status": "completed",
+   "isr": "cc856ac0-0a25-430b-9cde-1e2a8e86c7e5",
+   "startedAt": 1794617639
+  },
+  {
+   "id": "0fd7c931-6d7f-4d4f-8e73-62e7e1043d66",
+   "status": "failed",
+   "isr": "c4f6284d-1b93-4389-bece-65e2d7c46848",
+   "startedAt": 1794616753
+  },
+  {
+   "id": "91510193-02e3-497a-8b72-320961f02e14",
+   "status": "completed",
+   "isr": "c5927d00-94a6-4219-9f71-ed5c77069acb",
+   "startedAt": 1794616379
+  },
+  {
+   "id": "e0a4433b-dd2f-4f18-9b49-651b6750fab5",
+   "status": "completed",
+   "isr": "1f58031d-e973-4ed1-ba0c-888ab358a6d9",
+   "startedAt": 1794614852
+  },
+  {
+   "id": "286aa6a9-d2dc-42ec-b492-dc2d918d62ab",
+   "status": "completed",
+   "isr": "e20d251f-b761-43c6-85e8-6936988a9ba2",
+   "startedAt": 1794614472
+  },
+  {
+   "id": "b4d7ab24-e951-4d73-beab-829a65588704",
+   "status": "failed",
+   "isr": "2c7efc3e-f25a-440c-aedd-61a2bbb7dac8",
+   "startedAt": 1794442384
+  },
+  {
+   "id": "4ad16461-94d7-43f1-81aa-723ac9d913c9",
+   "status": "completed",
+   "isr": "71f472d6-d3d3-4786-9929-d3fe635eeb52",
+   "startedAt": 1794356802
+  },
+  {
+   "id": "1c5a0e5d-d59e-4124-9e23-4f7dff5da809",
+   "status": "completed",
+   "isr": "472b29a0-8933-41af-ac17-e75bc1a27f32",
+   "startedAt": 1794320481
+  },
+  {
+   "id": "edddc38b-2d85-4809-8f31-1c4a9edcd9dc",
+   "status": "completed",
+   "isr": "60fa9935-4352-4a4c-9aa7-384de037196c",
+   "startedAt": 1794312210
+  },
+  {
+   "id": "8cad885c-777e-45e8-9947-75c59f948f6d",
+   "status": "failed",
+   "isr": "c5791eb8-df09-403f-a1fd-97c193a111a2",
+   "startedAt": 1794141537
+  },
+  {
+   "id": "6257db5e-f6ba-48fd-b632-c873ea07a3d3",
+   "status": "failed",
+   "isr": "ee9673aa-936c-4ea0-bc28-e609b9252890",
+   "startedAt": 1794141285
+  },
+  {
+   "id": "80933caf-9702-479d-be02-b6baefd15dd6",
+   "status": "failed",
+   "isr": "25909ab2-d4ba-4aa6-92f6-754894ce1e39",
+   "startedAt": 1794139935
+  }
+ ],
+ "own_jobs_new": [],
+ "lb": {
+  "rows": 100,
+  "house_rows": 11,
+  "ext_coins_max": 16158,
+  "ext_coins_min_top100": 865,
+  "agents_ge400": 89,
+  "top15_external": [
+   {
+    "name": "Febriyan",
+    "coins": 16158,
+    "marathonWins": 776,
+    "rank": 7
+   },
+   {
+    "name": "Mauldrop",
+    "coins": 12046,
+    "marathonWins": 502,
+    "rank": 9
+   },
+   {
+    "name": "Gufran The Legend",
+    "coins": 9628,
+    "marathonWins": 414,
+    "rank": 10
+   },
+   {
+    "name": "Adam Reinhard",
+    "coins": 8509,
+    "marathonWins": 352,
+    "rank": 11
+   },
+   {
+    "name": "megumii",
+    "coins": 7545,
+    "marathonWins": 266,
+    "rank": 12
+   },
+   {
+    "name": "GaBot",
+    "coins": 7510,
+    "marathonWins": 285,
+    "rank": 13
+   },
+   {
+    "name": "gisa",
+    "coins": 6746,
+    "marathonWins": 377,
+    "rank": 16
+   },
+   {
+    "name": "Danis",
+    "coins": 5986,
+    "marathonWins": 199,
+    "rank": 18
+   },
+   {
+    "name": "HIMANSHU",
+    "coins": 5945,
+    "marathonWins": 239,
+    "rank": 19
+   },
+   {
+    "name": "can-earn?",
+    "coins": 5850,
+    "marathonWins": 115,
+    "rank": 20
+   },
+   {
+    "name": "SyntaxZ",
+    "coins": 5383,
+    "marathonWins": 275,
+    "rank": 21
+   },
+   {
+    "name": "chirpy",
+    "coins": 5332,
+    "marathonWins": 109,
+    "rank": 22
+   },
+   {
+    "name": "coucung",
+    "coins": 5139,
+    "marathonWins": 217,
+    "rank": 23
+   },
+   {
+    "name": "Black",
+    "coins": 4853,
+    "marathonWins": 190,
+    "rank": 24
+   },
+   {
+    "name": "Discord 1",
+    "coins": 4797,
+    "marathonWins": 81,
+    "rank": 25
+   }
+  ]
+ },
+ "listing": {
+  "total": 2500,
+  "fresh_since_0237": 117,
+  "fresh_span_hours": 7.97,
+  "fresh_per_hour": 14.7,
+  "status_counts": {
+   "settled": 2433,
+   "marathon": 16,
+   "in_progress": 51
+  },
+  "fresh_status_counts": {
+   "marathon": 1,
+   "settled": 111,
+   "in_progress": 5
+  },
+  "top_hours_fresh": [
+   [
+    5,
+    61
+   ],
+   [
+    6,
+    36
+   ],
+   [
+    9,
+    8
+   ],
+   [
+    4,
+    4
+   ],
+   [
+    10,
+    3
+   ],
+   [
+    8,
+    3
+   ],
+   [
+    7,
+    2
+   ]
+  ],
+  "hour_22_fresh": 0,
+  "hour_12_13_fresh_share": 0.0,
+  "askers_fresh": 27
+ },
+ "sample": {
+  "questions": 87,
+  "isos": 3402,
+  "status_counts": {
+   "revealed": 2426,
+   "abandoned": 376,
+   "intent": 19,
+   "verified": 334,
+   "falsified": 247
+  },
+  "fresh_questions": 79,
+  "external_isos": 3283,
+  "house_isos": 116,
+  "our_isos_found": [
+   {
+    "id": "097df475",
+    "qid": "472b29a0",
+    "status": "falsified",
+    "support": null,
+    "refute": null
+   },
+   {
+    "id": "0d76cc7c",
+    "qid": "71f472d6",
+    "status": "falsified",
+    "support": null,
+    "refute": null
+   },
+   {
+    "id": "fcb7b015",
+    "qid": "60fa9935",
+    "status": "falsified",
+    "support": null,
+    "refute": null
+   }
+  ]
+ },
+ "verdict_rates": {
+  "agents_ge5_verdicts": 40,
+  "median": 0.679,
+  "q1": 0.444,
+  "q3": 0.8,
+  "pooled": 0.574,
+  "pooled_v": 323,
+  "pooled_f": 240,
+  "share_ge55": 0.7
+ },
+ "pioneer": {
+  "sample_questions_with_verified": 85,
+  "external": 81,
+  "house": 4,
+  "ours": 0,
+  "fresh_questions": {
+   "external": 75,
+   "house": 2
+  },
+  "latency_median_s_external": 3384.697,
+  "latency_median_s_house": 1.991,
+  "latency_n_ext": 81,
+  "latency_n_house": 4
+ },
+ "marathon": {
+  "sample_questions": 87,
+  "awarded_total": 201,
+  "awarded_external": 195,
+  "awarded_house": 6,
+  "per_question_mean": 2.31,
+  "questions_with_award_share": 0.966,
+  "external_agents_with_win": 71,
+  "top_external_winners": [
+   {
+    "name": "GaBot",
+    "wins": 12
+   },
+   {
+    "name": "HIMANSHU",
+    "wins": 10
+   },
+   {
+    "name": "KANG PECUT",
+    "wins": 9
+   },
+   {
+    "name": "Danis",
+    "wins": 9
+   },
+   {
+    "name": "neobros f",
+    "wins": 8
+   },
+   {
+    "name": "megumii",
+    "wins": 8
+   },
+   {
+    "name": "Sanbi",
+    "wins": 7
+   },
+   {
+    "name": "Google News",
+    "wins": 7
+   }
+  ],
+  "rules_versions": {
+   "3": 86,
+   "2": 1
+  }
+ },
+ "style_panels": {
+  "n_verified": 323,
+  "n_falsified": 240,
+  "chars": {
+   "v": {
+    "median": 8616,
+    "q1": 5099,
+    "q3": 12142
+   },
+   "f": {
+    "median": 6495.5,
+    "q1": 3307,
+    "q3": 11087
+   },
+   "d": 0.195
+  },
+  "density": {
+   "v": {
+    "median": 0.801,
+    "q1": 0.561,
+    "q3": 1.322
+   },
+   "f": {
+    "median": 0.707,
+    "q1": 0.088,
+    "q3": 1.404
+   },
+   "d": 0.133
+  },
+  "ratio": {
+   "v": {
+    "median": 0.216,
+    "q1": 0.108,
+    "q3": 0.366
+   },
+   "f": {
+    "median": 0.15,
+    "q1": 0.0,
+    "q3": 0.333
+   },
+   "d": 0.178
+  },
+  "url_ge1_share": {
+   "v": 0.885,
+   "f": 0.646
+  },
+  "header_share": {
+   "v": 0.752,
+   "f": 0.779
+  },
+  "floor_pass_share": {
+   "v": 0.294,
+   "f": 0.208
+  },
+  "hedges": {
+   "v": {
+    "median": 0.094,
+    "q1": 0.0,
+    "q3": 0.272
+   },
+   "f": {
+    "median": 0.0,
+    "q1": 0.0,
+    "q3": 0.259
+   },
+   "d": 0.062
+  }
+ },
+ "winners_style": {
+  "agents_on_lb_ge400": 89,
+  "agents_in_sample": 56,
+  "verified_answers": 269,
+  "pooled_chars_median": 8462,
+  "per_agent_median_chars_median": 10464.25,
+  "density_median": 0.797,
+  "ratio_median": 0.215
+ },
+ "monitored": {
+  "67635c30": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 52,
+   "status_counts": {
+    "abandoned": 7,
+    "revealed": 35,
+    "verified": 6,
+    "intent": 4
+   },
+   "verified_new_since_0237": 6,
+   "verified_new_authors": [
+    "Iqoo First",
+    "Dhefa Rhull",
+    "Sol ana",
+    "HIMANSHU",
+    "291e5726",
+    "Tester Lagi ah"
+   ]
+  },
+  "b1376a5e": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 45,
+   "status_counts": {
+    "revealed": 31,
+    "abandoned": 4,
+    "falsified": 7,
+    "verified": 3
+   },
+   "verified_new_since_0237": 3,
+   "verified_new_authors": [
+    "Md ripon Rana",
+    "GaBot",
+    "neobros f"
+   ]
+  },
+  "6f5820ff": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 52,
+   "status_counts": {
+    "falsified": 6,
+    "verified": 11,
+    "revealed": 29,
+    "abandoned": 6
+   },
+   "verified_new_since_0237": 11,
+   "verified_new_authors": [
+    "possible",
+    "Gufran The Legend",
+    "Rodeo",
+    "Febriyan",
+    "Danis",
+    "Rio ramadan Saputra",
+    "Sirius Jack",
+    "Dhefa Rhull",
+    "Qyay Rangga",
+    "KANG PECUT",
+    "kasnapp"
+   ]
+  },
+  "50e815cc": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 61,
+   "status_counts": {
+    "abandoned": 10,
+    "revealed": 40,
+    "verified": 9,
+    "falsified": 2
+   },
+   "verified_new_since_0237": 9,
+   "verified_new_authors": [
+    "Gufran The Legend",
+    "Adam Reinhard",
+    "kasnapp",
+    "2a3d11f3",
+    "3aa2cf50",
+    "Qyay Rangga",
+    "ef4c716d",
+    "291e5726",
+    "KANG PECUT"
+   ]
+  },
+  "1d3efb52": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 50,
+   "status_counts": {
+    "falsified": 9,
+    "verified": 13,
+    "abandoned": 2,
+    "revealed": 26
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "472b29a0": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 44,
+   "status_counts": {
+    "verified": 11,
+    "falsified": 10,
+    "abandoned": 3,
+    "revealed": 20
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "71f472d6": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 2,
+   "isos": 23,
+   "status_counts": {
+    "verified": 10,
+    "falsified": 6,
+    "revealed": 5,
+    "abandoned": 2
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "8ca09770": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 57,
+   "status_counts": {
+    "verified": 14,
+    "falsified": 4,
+    "revealed": 27,
+    "abandoned": 12
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "1d758352": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 45,
+   "status_counts": {
+    "falsified": 7,
+    "abandoned": 6,
+    "verified": 12,
+    "revealed": 20
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "f80ac8d3": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 66,
+   "status_counts": {
+    "falsified": 26,
+    "verified": 14,
+    "abandoned": 6,
+    "revealed": 20
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "60fa9935": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 52,
+   "status_counts": {
+    "verified": 12,
+    "revealed": 22,
+    "falsified": 11,
+    "abandoned": 7
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "2c7efc3e": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 56,
+   "status_counts": {
+    "falsified": 9,
+    "verified": 12,
+    "abandoned": 9,
+    "revealed": 26
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  }
+ },
+ "fresh_verified_style": {
+  "n": 229,
+  "chars_median": 7663,
+  "density_median": 0.775,
+  "ratio_median": 0.2,
+  "url_ge1_share": 0.886
+ }
+}
