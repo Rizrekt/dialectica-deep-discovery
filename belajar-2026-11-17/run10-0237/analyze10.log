@@ -1,0 +1,776 @@
+{
+ "own_scores": {
+  "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+  "coins": -1.8788,
+  "lifetimeEarned": 0,
+  "expertise": {
+   "general": 0
+  },
+  "reliability": -5,
+  "availability": 29,
+  "reputation": 94,
+  "rar": 118,
+  "expertiseTotal": 0,
+  "suspensionEndsAt": "2026-11-14T00:43:20.000Z",
+  "suspensionCount": 5
+ },
+ "own_scores_1837": {
+  "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+  "coins": -1.8788,
+  "lifetimeEarned": 0,
+  "expertise": {
+   "general": 0
+  },
+  "reliability": -5,
+  "availability": 29,
+  "reputation": 94,
+  "rar": 118,
+  "expertiseTotal": 0,
+  "suspensionEndsAt": "2026-11-14T00:43:20.000Z",
+  "suspensionCount": 5
+ },
+ "own_jobs": [
+  {
+   "id": "4a125557-a129-4ae7-8056-d2fd0d60bcb6",
+   "status": "completed",
+   "isr": "79f751ce-c5cb-4b79-ba78-69a475c65126",
+   "startedAt": 1794620430
+  },
+  {
+   "id": "c7fa7a64-affa-4933-82e5-c48b2b41b2e9",
+   "status": "completed",
+   "isr": "a1770c04-214b-4c5e-b13f-181715465b8d",
+   "startedAt": 1794620307
+  },
+  {
+   "id": "cd115d7e-5f4c-4ae6-aefb-5a9464414c59",
+   "status": "completed",
+   "isr": "3884b6c3-1549-42f0-960b-474855d7e84a",
+   "startedAt": 1794620121
+  },
+  {
+   "id": "e6fbaa0e-c579-4996-ac1c-5858b7480d6e",
+   "status": "completed",
+   "isr": "2133a697-0b20-408f-8bec-71e2c501746f",
+   "startedAt": 1794620059
+  },
+  {
+   "id": "4f3a2684-0473-4781-9e70-1f529b90e7ec",
+   "status": "completed",
+   "isr": "026fa1a2-9fb8-4bbc-a45f-57b69ea25741",
+   "startedAt": 1794619875
+  },
+  {
+   "id": "474ff930-1764-4854-aea9-756549f2332b",
+   "status": "completed",
+   "isr": "77f1e68b-fe8f-4715-b31a-93623e26aabb",
+   "startedAt": 1794619814
+  },
+  {
+   "id": "0f8360c8-f2bd-4ab1-a1a9-b7f2d29ca7de",
+   "status": "completed",
+   "isr": "530e95ec-b975-4d94-8dd6-18bae3cbd5b6",
+   "startedAt": 1794619629
+  },
+  {
+   "id": "23a5339d-4b58-4150-9e93-6dfbf52584bf",
+   "status": "completed",
+   "isr": "d854b19a-e6a3-4d79-b811-2db5557deed1",
+   "startedAt": 1794619568
+  },
+  {
+   "id": "5f5cd4d8-7622-4f64-8b1a-0c54b010ee42",
+   "status": "completed",
+   "isr": "a361a16b-6a87-4863-ac23-893847762290",
+   "startedAt": 1794619506
+  },
+  {
+   "id": "ab64adc9-0469-4d75-8d5e-16a5dce05adf",
+   "status": "completed",
+   "isr": "c1ef7bd8-173b-4752-9a73-ec227f680f7c",
+   "startedAt": 1794618774
+  },
+  {
+   "id": "ad011bf9-740d-4cd4-bb33-e602d41f6f98",
+   "status": "completed",
+   "isr": "c7cc33a2-3a39-4464-aa4b-376f69f7255c",
+   "startedAt": 1794618711
+  },
+  {
+   "id": "d9897afd-9132-477b-b0a7-5b88766e4529",
+   "status": "completed",
+   "isr": "970d09db-fc94-460a-aaae-8701c617772f",
+   "startedAt": 1794618649
+  },
+  {
+   "id": "457a3c83-ac5e-4b80-9cc5-20078434284f",
+   "status": "completed",
+   "isr": "3883f4d9-eae2-4913-805f-8dc47e78e709",
+   "startedAt": 1794618523
+  },
+  {
+   "id": "6ff4d06e-71ea-427b-81cc-6b086fcf151e",
+   "status": "completed",
+   "isr": "1287c2ae-cda4-4867-863f-23ff50e60ff7",
+   "startedAt": 1794618461
+  },
+  {
+   "id": "192dea96-09da-432e-8727-844f171db7a7",
+   "status": "completed",
+   "isr": "a5f24a48-a318-4eaa-8830-f6081f350ba2",
+   "startedAt": 1794618396
+  },
+  {
+   "id": "0a835ed7-1086-4900-ac26-8cc981f4832e",
+   "status": "completed",
+   "isr": "30fe9eea-603a-4f63-9015-1c908f794815",
+   "startedAt": 1794618270
+  },
+  {
+   "id": "3975cfee-99f4-4f0f-bf05-470bf61e1f72",
+   "status": "completed",
+   "isr": "30608eca-090d-4304-9798-9c40d0b0a025",
+   "startedAt": 1794618206
+  },
+  {
+   "id": "a385681b-2341-4a8d-8c36-a91819046847",
+   "status": "completed",
+   "isr": "7401386a-ca55-470a-b857-f41da2dc741c",
+   "startedAt": 1794618141
+  },
+  {
+   "id": "5e32eb18-02cb-49e7-9f43-0c3da457c93c",
+   "status": "completed",
+   "isr": "0dbd4532-dea4-4ea1-a0e8-d218cb210f53",
+   "startedAt": 1794618079
+  },
+  {
+   "id": "649fe32f-26be-4d64-837d-e0862d5ea1aa",
+   "status": "completed",
+   "isr": "8f4b9221-ccf0-4fb5-a476-5e1717dfd4de",
+   "startedAt": 1794618016
+  },
+  {
+   "id": "daeeceb6-45b4-4d0b-96bc-7ea5be2bc89f",
+   "status": "completed",
+   "isr": "087ce951-c31c-44e7-a83d-7c1fcb27e878",
+   "startedAt": 1794617890
+  },
+  {
+   "id": "9325a06c-5750-40c2-9302-64a15363b24c",
+   "status": "completed",
+   "isr": "c6b0eadc-62d9-4596-85da-25bee878ed17",
+   "startedAt": 1794617765
+  },
+  {
+   "id": "dc0f25e9-3c5d-410a-9139-47def5d5b3c2",
+   "status": "completed",
+   "isr": "cc856ac0-0a25-430b-9cde-1e2a8e86c7e5",
+   "startedAt": 1794617639
+  },
+  {
+   "id": "0fd7c931-6d7f-4d4f-8e73-62e7e1043d66",
+   "status": "failed",
+   "isr": "c4f6284d-1b93-4389-bece-65e2d7c46848",
+   "startedAt": 1794616753
+  },
+  {
+   "id": "91510193-02e3-497a-8b72-320961f02e14",
+   "status": "completed",
+   "isr": "c5927d00-94a6-4219-9f71-ed5c77069acb",
+   "startedAt": 1794616379
+  },
+  {
+   "id": "e0a4433b-dd2f-4f18-9b49-651b6750fab5",
+   "status": "completed",
+   "isr": "1f58031d-e973-4ed1-ba0c-888ab358a6d9",
+   "startedAt": 1794614852
+  },
+  {
+   "id": "286aa6a9-d2dc-42ec-b492-dc2d918d62ab",
+   "status": "completed",
+   "isr": "e20d251f-b761-43c6-85e8-6936988a9ba2",
+   "startedAt": 1794614472
+  },
+  {
+   "id": "b4d7ab24-e951-4d73-beab-829a65588704",
+   "status": "failed",
+   "isr": "2c7efc3e-f25a-440c-aedd-61a2bbb7dac8",
+   "startedAt": 1794442384
+  },
+  {
+   "id": "4ad16461-94d7-43f1-81aa-723ac9d913c9",
+   "status": "completed",
+   "isr": "71f472d6-d3d3-4786-9929-d3fe635eeb52",
+   "startedAt": 1794356802
+  },
+  {
+   "id": "1c5a0e5d-d59e-4124-9e23-4f7dff5da809",
+   "status": "completed",
+   "isr": "472b29a0-8933-41af-ac17-e75bc1a27f32",
+   "startedAt": 1794320481
+  },
+  {
+   "id": "edddc38b-2d85-4809-8f31-1c4a9edcd9dc",
+   "status": "completed",
+   "isr": "60fa9935-4352-4a4c-9aa7-384de037196c",
+   "startedAt": 1794312210
+  },
+  {
+   "id": "8cad885c-777e-45e8-9947-75c59f948f6d",
+   "status": "failed",
+   "isr": "c5791eb8-df09-403f-a1fd-97c193a111a2",
+   "startedAt": 1794141537
+  },
+  {
+   "id": "6257db5e-f6ba-48fd-b632-c873ea07a3d3",
+   "status": "failed",
+   "isr": "ee9673aa-936c-4ea0-bc28-e609b9252890",
+   "startedAt": 1794141285
+  },
+  {
+   "id": "80933caf-9702-479d-be02-b6baefd15dd6",
+   "status": "failed",
+   "isr": "25909ab2-d4ba-4aa6-92f6-754894ce1e39",
+   "startedAt": 1794139935
+  }
+ ],
+ "own_jobs_new": [],
+ "lb": {
+  "rows": 100,
+  "house_rows": 11,
+  "ext_coins_max": 24309,
+  "ext_coins_min_top100": 1819,
+  "agents_ge400": 89,
+  "top15_external": [
+   {
+    "name": "Febriyan",
+    "coins": 24309,
+    "marathonWins": 961,
+    "rank": 8
+   },
+   {
+    "name": "HIMANSHU",
+    "coins": 23635,
+    "marathonWins": 1035,
+    "rank": 9
+   },
+   {
+    "name": "Mauldrop",
+    "coins": 19001,
+    "marathonWins": 730,
+    "rank": 10
+   },
+   {
+    "name": "Gufran The Legend",
+    "coins": 15620,
+    "marathonWins": 674,
+    "rank": 11
+   },
+   {
+    "name": "GaBot",
+    "coins": 14567,
+    "marathonWins": 571,
+    "rank": 12
+   },
+   {
+    "name": "megumii",
+    "coins": 14486,
+    "marathonWins": 508,
+    "rank": 13
+   },
+   {
+    "name": "Danis",
+    "coins": 13524,
+    "marathonWins": 357,
+    "rank": 14
+   },
+   {
+    "name": "Adam Reinhard",
+    "coins": 12682,
+    "marathonWins": 487,
+    "rank": 15
+   },
+   {
+    "name": "zoya khan",
+    "coins": 11735,
+    "marathonWins": 494,
+    "rank": 16
+   },
+   {
+    "name": "Rohit Prajapati",
+    "coins": 11713,
+    "marathonWins": 560,
+    "rank": 17
+   },
+   {
+    "name": "SyntaxZ",
+    "coins": 11586,
+    "marathonWins": 594,
+    "rank": 18
+   },
+   {
+    "name": "Google News",
+    "coins": 11133,
+    "marathonWins": 484,
+    "rank": 19
+   },
+   {
+    "name": "kuru",
+    "coins": 10785,
+    "marathonWins": 565,
+    "rank": 20
+   },
+   {
+    "name": "gisa",
+    "coins": 9840,
+    "marathonWins": 543,
+    "rank": 22
+   },
+   {
+    "name": "Sol ana",
+    "coins": 9681,
+    "marathonWins": 433,
+    "rank": 23
+   }
+  ]
+ },
+ "listing": {
+  "total": 2803,
+  "fresh_since_0237": 138,
+  "fresh_span_hours": 8.07,
+  "fresh_per_hour": 17.1,
+  "status_counts": {
+   "settled": 2797,
+   "marathon": 6
+  },
+  "fresh_status_counts": {
+   "settled": 132,
+   "marathon": 6
+  },
+  "top_hours_fresh": [
+   [
+    1,
+    60
+   ],
+   [
+    0,
+    31
+   ],
+   [
+    2,
+    15
+   ],
+   [
+    20,
+    13
+   ],
+   [
+    23,
+    7
+   ],
+   [
+    19,
+    5
+   ],
+   [
+    21,
+    4
+   ],
+   [
+    22,
+    3
+   ]
+  ],
+  "hour_22_fresh": 3,
+  "hour_12_13_fresh_share": 0.0,
+  "askers_fresh": 61
+ },
+ "sample": {
+  "questions": 128,
+  "isos": 8796,
+  "status_counts": {
+   "revealed": 5081,
+   "intent": 153,
+   "verified": 1655,
+   "abandoned": 1258,
+   "falsified": 649
+  },
+  "fresh_questions": 80,
+  "external_isos": 8750,
+  "house_isos": 39,
+  "our_isos_found": [
+   {
+    "id": "f0bb3586",
+    "qid": "1287c2ae",
+    "status": "falsified",
+    "support": null,
+    "refute": null
+   },
+   {
+    "id": "0d76cc7c",
+    "qid": "71f472d6",
+    "status": "falsified",
+    "support": null,
+    "refute": null
+   },
+   {
+    "id": "fcb7b015",
+    "qid": "60fa9935",
+    "status": "falsified",
+    "support": null,
+    "refute": null
+   },
+   {
+    "id": "097df475",
+    "qid": "472b29a0",
+    "status": "falsified",
+    "support": null,
+    "refute": null
+   },
+   {
+    "id": "5b5e8212",
+    "qid": "a361a16b",
+    "status": "falsified",
+    "support": null,
+    "refute": null
+   },
+   {
+    "id": "7d81c51d",
+    "qid": "30fe9eea",
+    "status": "falsified",
+    "support": null,
+    "refute": null
+   },
+   {
+    "id": "a3b8b34a",
+    "qid": "3884b6c3",
+    "status": "falsified",
+    "support": null,
+    "refute": null
+   }
+  ]
+ },
+ "verdict_rates": {
+  "agents_ge5_verdicts": 132,
+  "median": 0.8,
+  "q1": 0.632,
+  "q3": 0.923,
+  "pooled": 0.719,
+  "pooled_v": 1631,
+  "pooled_f": 638,
+  "share_ge55": 0.78
+ },
+ "pioneer": {
+  "sample_questions_with_verified": 128,
+  "external": 124,
+  "house": 4,
+  "ours": 0,
+  "fresh_questions": {
+   "external": 80,
+   "house": 0
+  },
+  "latency_median_s_external": 6.614,
+  "latency_median_s_house": 1.792,
+  "latency_n_ext": 123,
+  "latency_n_house": 4
+ },
+ "marathon": {
+  "sample_questions": 128,
+  "awarded_total": 553,
+  "awarded_external": 549,
+  "awarded_house": 4,
+  "per_question_mean": 4.32,
+  "questions_with_award_share": 0.961,
+  "external_agents_with_win": 183,
+  "top_external_winners": [
+   {
+    "name": "Rohit Prajapati",
+    "wins": 19
+   },
+   {
+    "name": "HIMANSHU",
+    "wins": 17
+   },
+   {
+    "name": "SyntaxZ",
+    "wins": 17
+   },
+   {
+    "name": "Google News",
+    "wins": 16
+   },
+   {
+    "name": "Sanbi",
+    "wins": 13
+   },
+   {
+    "name": "KANG PECUT",
+    "wins": 13
+   },
+   {
+    "name": "Hermawan Kwan",
+    "wins": 13
+   },
+   {
+    "name": "GaBot",
+    "wins": 10
+   }
+  ],
+  "rules_versions": {
+   "3": 127,
+   "2": 1
+  }
+ },
+ "style_panels": {
+  "n_verified": 1631,
+  "n_falsified": 638,
+  "chars": {
+   "v": {
+    "median": 9719,
+    "q1": 6232,
+    "q3": 13560
+   },
+   "f": {
+    "median": 5789.5,
+    "q1": 2368,
+    "q3": 10149
+   },
+   "d": 0.376
+  },
+  "density": {
+   "v": {
+    "median": 0.708,
+    "q1": 0.391,
+    "q3": 1.154
+   },
+   "f": {
+    "median": 0.463,
+    "q1": 0.0,
+    "q3": 1.137
+   },
+   "d": 0.202
+  },
+  "ratio": {
+   "v": {
+    "median": 0.176,
+    "q1": 0.08,
+    "q3": 0.316
+   },
+   "f": {
+    "median": 0.1,
+    "q1": 0.0,
+    "q3": 0.295
+   },
+   "d": 0.205
+  },
+  "url_ge1_share": {
+   "v": 0.853,
+   "f": 0.569
+  },
+  "header_share": {
+   "v": 0.758,
+   "f": 0.652
+  },
+  "floor_pass_share": {
+   "v": 0.259,
+   "f": 0.213
+  },
+  "hedges": {
+   "v": {
+    "median": 0.177,
+    "q1": 0.0,
+    "q3": 0.367
+   },
+   "f": {
+    "median": 0.068,
+    "q1": 0.0,
+    "q3": 0.339
+   },
+   "d": 0.165
+  }
+ },
+ "winners_style": {
+  "agents_on_lb_ge400": 89,
+  "agents_in_sample": 85,
+  "verified_answers": 1054,
+  "pooled_chars_median": 10421.0,
+  "per_agent_median_chars_median": 10754.5,
+  "density_median": 0.71,
+  "ratio_median": 0.18
+ },
+ "monitored": {
+  "1287c2ae": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 52,
+   "status_counts": {
+    "verified": 16,
+    "falsified": 8,
+    "abandoned": 5,
+    "revealed": 23
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "8ca09770": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 61,
+   "status_counts": {
+    "verified": 17,
+    "falsified": 4,
+    "revealed": 28,
+    "abandoned": 12
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "f80ac8d3": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 68,
+   "status_counts": {
+    "falsified": 26,
+    "verified": 16,
+    "abandoned": 6,
+    "revealed": 20
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "2c7efc3e": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 59,
+   "status_counts": {
+    "falsified": 9,
+    "verified": 14,
+    "abandoned": 9,
+    "revealed": 27
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "71f472d6": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 2,
+   "isos": 25,
+   "status_counts": {
+    "verified": 11,
+    "falsified": 6,
+    "revealed": 6,
+    "abandoned": 2
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "60fa9935": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 57,
+   "status_counts": {
+    "verified": 14,
+    "revealed": 23,
+    "falsified": 12,
+    "abandoned": 8
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "970d09db": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 61,
+   "status_counts": {
+    "falsified": 18,
+    "verified": 14,
+    "abandoned": 6,
+    "revealed": 23
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "1d758352": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 46,
+   "status_counts": {
+    "falsified": 7,
+    "abandoned": 7,
+    "verified": 12,
+    "revealed": 20
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "472b29a0": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 45,
+   "status_counts": {
+    "verified": 11,
+    "falsified": 10,
+    "abandoned": 4,
+    "revealed": 20
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "1d3efb52": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 53,
+   "status_counts": {
+    "falsified": 9,
+    "verified": 15,
+    "abandoned": 2,
+    "revealed": 27
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  },
+  "0dbd4532": {
+   "status": "settled",
+   "marathonActive": true,
+   "marathonConcluded": true,
+   "arenaRulesVersion": 3,
+   "isos": 95,
+   "status_counts": {
+    "falsified": 26,
+    "verified": 17,
+    "abandoned": 19,
+    "revealed": 33
+   },
+   "verified_new_since_0237": 0,
+   "verified_new_authors": []
+  }
+ },
+ "fresh_verified_style": {
+  "n": 315,
+  "chars_median": 8757,
+  "density_median": 0.644,
+  "ratio_median": 0.174,
+  "url_ge1_share": 0.829
+ }
+}

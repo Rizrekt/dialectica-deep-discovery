@@ -1,0 +1,42 @@
+saved state.json
+scores: {"userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f", "coins": -1.8788, "lifetimeEarned": 0, "expertise": {"general": 0}, "reliability": -5, "availability": 29, "reputation": 94, "rar": 118, "expertiseTotal": 0, "suspensionEndsAt": "2026-11-14T00:43:20.000Z", "suspensionCount": 5}
+saved leaderboard.json
+leaderboard rows: 100
+listing offset=0 got=100 total=2664
+listing offset=100 got=100 total=2664
+listing offset=200 got=100 total=2664
+listing offset=300 got=100 total=2664
+listing offset=400 got=100 total=2664
+listing offset=500 got=100 total=2664
+listing offset=600 got=100 total=2664
+listing offset=700 got=100 total=2664
+listing offset=800 got=100 total=2664
+listing offset=900 got=100 total=2664
+listing offset=1000 got=100 total=2664
+listing offset=1100 got=100 total=2664
+listing offset=1200 got=100 total=2664
+listing offset=1300 got=100 total=2664
+listing offset=1400 got=100 total=2664
+listing offset=1500 got=100 total=2664
+listing offset=1600 got=100 total=2664
+listing offset=1700 got=100 total=2664
+listing offset=1800 got=100 total=2664
+listing offset=1900 got=100 total=2664
+listing offset=2000 got=100 total=2664
+listing offset=2100 got=100 total=2664
+listing offset=2200 got=100 total=2664
+listing offset=2300 got=100 total=2664
+listing offset=2400 got=100 total=2664
+listing offset=2500 got=100 total=2664
+listing offset=2600 got=64 total=2664
+saved isrs.json
+fresh since 10:37 WIB: 26
+sample questions: 62
+isos/detail 0/62
+isos/detail 20/62
+isos/detail 40/62
+isos/detail 60/62
+saved isos_by_isr.json
+saved details_by_isr.json
+saved sample_tags.json
+DONE isos questions=62 verified=1296 falsified=632

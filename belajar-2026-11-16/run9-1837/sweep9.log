@@ -1,0 +1,313 @@
+isr ids: 29
+sweep 0/29
+sweep 10/29
+sweep 20/29
+OUR ISOS:
+{
+ "f0bb3586": {
+  "isr": "1287c2ae",
+  "prev_sweep8": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 2,
+   "updatedAt": "2026-11-14T21:55:24.688Z"
+  },
+  "prev_1700": {
+   "isr": "1287c2ae-cda4-4867-863f-23ff50e60ff7",
+   "iso": "f0bb3586-9ce4-4562-bb14-3f15763524f2",
+   "status": "falsified",
+   "support": 0,
+   "refute": 2,
+   "verifier": 2,
+   "updatedAt": "2026-11-14T21:55:24.688Z",
+   "marathonEligible": false
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 2,
+   "updatedAt": "2026-11-14T21:55:24.688Z"
+  },
+  "status_changed_vs_sweep8": false,
+  "verifier_changed_vs_sweep8": false,
+  "updatedAt_changed_vs_sweep8": false,
+  "support_refute_vs_2300": {
+   "prev": [
+    0,
+    2
+   ],
+   "note": "live payload reports support/refute as null; compare status/verifier/updatedAt only"
+  }
+ },
+ "7d81c51d": {
+  "isr": "30fe9eea",
+  "prev_sweep8": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 5,
+   "updatedAt": "2026-11-14T21:49:18.379Z"
+  },
+  "prev_1700": {
+   "isr": "30fe9eea-603a-4f63-9015-1c908f794815",
+   "iso": "7d81c51d-6389-4c64-bcca-69dad46900ba",
+   "status": "falsified",
+   "support": 0,
+   "refute": 4,
+   "verifier": 5,
+   "updatedAt": "2026-11-14T21:49:18.379Z",
+   "marathonEligible": false
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 5,
+   "updatedAt": "2026-11-14T21:49:18.379Z"
+  },
+  "status_changed_vs_sweep8": false,
+  "verifier_changed_vs_sweep8": false,
+  "updatedAt_changed_vs_sweep8": false,
+  "support_refute_vs_2300": {
+   "prev": [
+    0,
+    4
+   ],
+   "note": "live payload reports support/refute as null; compare status/verifier/updatedAt only"
+  }
+ },
+ "a3b8b34a": {
+  "isr": "3884b6c3",
+  "prev_sweep8": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 6,
+   "updatedAt": "2026-11-14T23:43:02.700Z"
+  },
+  "prev_1700": {
+   "isr": "3884b6c3-1549-42f0-960b-474855d7e84a",
+   "iso": "a3b8b34a-a0ba-4060-9bbd-b84e33cd2682",
+   "status": "falsified",
+   "support": 0,
+   "refute": 6,
+   "verifier": 6,
+   "updatedAt": "2026-11-14T23:43:02.700Z",
+   "marathonEligible": false
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 6,
+   "updatedAt": "2026-11-14T23:43:02.700Z"
+  },
+  "status_changed_vs_sweep8": false,
+  "verifier_changed_vs_sweep8": false,
+  "updatedAt_changed_vs_sweep8": false,
+  "support_refute_vs_2300": {
+   "prev": [
+    0,
+    6
+   ],
+   "note": "live payload reports support/refute as null; compare status/verifier/updatedAt only"
+  }
+ },
+ "097df475": {
+  "isr": "472b29a0",
+  "prev_sweep8": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 4,
+   "updatedAt": "2026-11-10T14:24:29.582Z"
+  },
+  "prev_1700": {
+   "isr": "472b29a0-8933-41af-ac17-e75bc1a27f32",
+   "iso": "097df475-9add-440e-affe-50207649f22e",
+   "status": "falsified",
+   "support": 0,
+   "refute": 4,
+   "verifier": 4,
+   "updatedAt": "2026-11-10T14:24:29.582Z",
+   "marathonEligible": false
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 4,
+   "updatedAt": "2026-11-10T14:24:29.582Z"
+  },
+  "status_changed_vs_sweep8": false,
+  "verifier_changed_vs_sweep8": false,
+  "updatedAt_changed_vs_sweep8": false,
+  "support_refute_vs_2300": {
+   "prev": [
+    0,
+    4
+   ],
+   "note": "live payload reports support/refute as null; compare status/verifier/updatedAt only"
+  }
+ },
+ "fcb7b015": {
+  "isr": "60fa9935",
+  "prev_sweep8": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 4,
+   "updatedAt": "2026-11-10T12:07:55.378Z"
+  },
+  "prev_1700": {
+   "isr": "60fa9935-4352-4a4c-9aa7-384de037196c",
+   "iso": "fcb7b015-115d-4dc9-a54b-440f82ae5aac",
+   "status": "falsified",
+   "support": 2,
+   "refute": 2,
+   "verifier": 4,
+   "updatedAt": "2026-11-10T12:07:55.378Z",
+   "marathonEligible": false
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 4,
+   "updatedAt": "2026-11-10T12:07:55.378Z"
+  },
+  "status_changed_vs_sweep8": false,
+  "verifier_changed_vs_sweep8": false,
+  "updatedAt_changed_vs_sweep8": false,
+  "support_refute_vs_2300": {
+   "prev": [
+    2,
+    2
+   ],
+   "note": "live payload reports support/refute as null; compare status/verifier/updatedAt only"
+  }
+ },
+ "0d76cc7c": {
+  "isr": "71f472d6",
+  "prev_sweep8": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 2,
+   "updatedAt": "2026-11-11T00:29:57.319Z"
+  },
+  "prev_1700": {
+   "isr": "71f472d6-d3d3-4786-9929-d3fe635eeb52",
+   "iso": "0d76cc7c-dfbf-4efb-97ac-84203a87db03",
+   "status": "falsified",
+   "support": 0,
+   "refute": 2,
+   "verifier": 2,
+   "updatedAt": "2026-11-11T00:29:57.319Z",
+   "marathonEligible": false
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 2,
+   "updatedAt": "2026-11-11T00:29:57.319Z"
+  },
+  "status_changed_vs_sweep8": false,
+  "verifier_changed_vs_sweep8": false,
+  "updatedAt_changed_vs_sweep8": false,
+  "support_refute_vs_2300": {
+   "prev": [
+    0,
+    2
+   ],
+   "note": "live payload reports support/refute as null; compare status/verifier/updatedAt only"
+  }
+ },
+ "5b5e8212": {
+  "isr": "a361a16b",
+  "prev_sweep8": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 6,
+   "updatedAt": "2026-11-14T23:03:56.525Z"
+  },
+  "prev_1700": {
+   "isr": "a361a16b-6a87-4863-ac23-893847762290",
+   "iso": "5b5e8212-3376-41c3-bffc-3b6acbc950fa",
+   "status": "falsified",
+   "support": 0,
+   "refute": 4,
+   "verifier": 6,
+   "updatedAt": "2026-11-14T23:03:56.525Z",
+   "marathonEligible": false
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 6,
+   "updatedAt": "2026-11-14T23:03:56.525Z"
+  },
+  "status_changed_vs_sweep8": false,
+  "verifier_changed_vs_sweep8": false,
+  "updatedAt_changed_vs_sweep8": false,
+  "support_refute_vs_2300": {
+   "prev": [
+    0,
+    4
+   ],
+   "note": "live payload reports support/refute as null; compare status/verifier/updatedAt only"
+  }
+ }
+}
+2d968d7e: {
+ "short": "2d968d7e",
+ "status": "settled",
+ "viso": 37,
+ "awarded": 13,
+ "isos_status_counts": {
+  "abandoned": 10,
+  "falsified": 11,
+  "verified": 37,
+  "revealed": 9
+ },
+ "n_isos_now": 67,
+ "n_isos_1700": 67,
+ "status_changes_vs_1700": [],
+ "new_isos_vs_1700": [],
+ "verdicts_updated_since_cut": [
+  {
+   "id": "95435cdf",
+   "status": "verified",
+   "updatedAt_wib": "2026-11-16 11:31 WIB"
+  },
+  {
+   "id": "26edd857",
+   "status": "verified",
+   "updatedAt_wib": "2026-11-16 12:51 WIB"
+  }
+ ]
+}
+df9cb696: {
+ "short": "df9cb696",
+ "status": "settled",
+ "viso": 34,
+ "awarded": 10,
+ "isos_status_counts": {
+  "falsified": 13,
+  "verified": 34,
+  "abandoned": 9,
+  "revealed": 20
+ },
+ "n_isos_now": 76,
+ "n_isos_1700": 76,
+ "status_changes_vs_1700": [],
+ "new_isos_vs_1700": [],
+ "verdicts_updated_since_cut": []
+}
+36492578 now: [('verified', None, None, 2, '2026-11-15T16:35:47.683Z')]
+DONE

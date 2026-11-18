@@ -1,0 +1,47 @@
+{
+ "2d968d7e": {
+  "short": "2d968d7e",
+  "status": "settled",
+  "viso": 37,
+  "awarded": 13,
+  "isos_status_counts": {
+   "abandoned": 10,
+   "falsified": 11,
+   "verified": 37,
+   "revealed": 9
+  },
+  "n_isos_now": 67,
+  "n_isos_1700": 67,
+  "status_changes_vs_1700": [],
+  "new_isos_vs_1700": [],
+  "verdicts_updated_since_cut": [
+   {
+    "id": "95435cdf",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 11:31 WIB"
+   },
+   {
+    "id": "26edd857",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 12:51 WIB"
+   }
+  ]
+ },
+ "df9cb696": {
+  "short": "df9cb696",
+  "status": "settled",
+  "viso": 34,
+  "awarded": 10,
+  "isos_status_counts": {
+   "falsified": 13,
+   "verified": 34,
+   "abandoned": 9,
+   "revealed": 20
+  },
+  "n_isos_now": 76,
+  "n_isos_1700": 76,
+  "status_changes_vs_1700": [],
+  "new_isos_vs_1700": [],
+  "verdicts_updated_since_cut": []
+ }
+}

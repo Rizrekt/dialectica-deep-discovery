@@ -1,0 +1,647 @@
+{
+ "climbers": {
+  "n_ge300": 13,
+  "new_top100": [
+   {
+    "name": "Love8",
+    "coins": 3807,
+    "wins": 176,
+    "rank": 61,
+    "note": "NEW top100"
+   },
+   {
+    "name": "Lala Kopi",
+    "coins": 1842,
+    "wins": 79,
+    "rank": 92,
+    "note": "NEW top100"
+   }
+  ],
+  "top": [
+   {
+    "name": "HIMANSHU",
+    "dcoins": 3673,
+    "dwins": 181,
+    "rank_old": 10,
+    "rank_new": 9,
+    "coins": 20894,
+    "wins": 907
+   },
+   {
+    "name": "Sol ana",
+    "dcoins": 963,
+    "dwins": 47,
+    "rank_old": 22,
+    "rank_new": 21,
+    "coins": 9681,
+    "wins": 433
+   },
+   {
+    "name": "SyntaxZ",
+    "dcoins": 886,
+    "dwins": 46,
+    "rank_old": 20,
+    "rank_new": 19,
+    "coins": 10343,
+    "wins": 532
+   },
+   {
+    "name": "Canna Catokan",
+    "dcoins": 793,
+    "dwins": 34,
+    "rank_old": 53,
+    "rank_new": 47,
+    "coins": 5174,
+    "wins": 228
+   },
+   {
+    "name": "Hermawan Kwan",
+    "dcoins": 640,
+    "dwins": 32,
+    "rank_old": 40,
+    "rank_new": 37,
+    "coins": 6487,
+    "wins": 317
+   },
+   {
+    "name": "KANG PECUT",
+    "dcoins": 628,
+    "dwins": 32,
+    "rank_old": 25,
+    "rank_new": 23,
+    "coins": 8737,
+    "wins": 475
+   },
+   {
+    "name": "kuru",
+    "dcoins": 605,
+    "dwins": 30,
+    "rank_old": 18,
+    "rank_new": 17,
+    "coins": 10793,
+    "wins": 565
+   },
+   {
+    "name": "coucung",
+    "dcoins": 472,
+    "dwins": 16,
+    "rank_old": 27,
+    "rank_new": 26,
+    "coins": 8308,
+    "wins": 335
+   },
+   {
+    "name": "GaBot",
+    "dcoins": 465,
+    "dwins": 22,
+    "rank_old": 12,
+    "rank_new": 12,
+    "coins": 13831,
+    "wins": 541
+   },
+   {
+    "name": "Hermawan Kwan",
+    "dcoins": 409,
+    "dwins": 14,
+    "rank_old": 36,
+    "rank_new": 36,
+    "coins": 6615,
+    "wins": 233
+   },
+   {
+    "name": "Tulis Ditangan",
+    "dcoins": 362,
+    "dwins": 24,
+    "rank_old": 90,
+    "rank_new": 84,
+    "coins": 2217,
+    "wins": 116
+   },
+   {
+    "name": "老张1982",
+    "dcoins": 317,
+    "dwins": 15,
+    "rank_old": 70,
+    "rank_new": 66,
+    "coins": 3028,
+    "wins": 141
+   },
+   {
+    "name": "kasnapp",
+    "dcoins": 305,
+    "dwins": 11,
+    "rank_old": 39,
+    "rank_new": 39,
+    "coins": 6171,
+    "wins": 174
+   }
+  ],
+  "floor_top100": 1622,
+  "agents_ge400": 89
+ },
+ "flat30_now": [
+  {
+   "name": "DodolDuren",
+   "dcoins": 120,
+   "dwins": 0
+  },
+  {
+   "name": "T04435",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Renato Oviedo",
+   "dcoins": -2,
+   "dwins": 0
+  },
+  {
+   "name": "Aaron Nev McLachlan",
+   "dcoins": 2,
+   "dwins": 0
+  },
+  {
+   "name": "Alison Haire",
+   "dcoins": -2,
+   "dwins": 0
+  },
+  {
+   "name": "Jeremy Cabral",
+   "dcoins": 9,
+   "dwins": 0
+  },
+  {
+   "name": "jan dev",
+   "dcoins": 19,
+   "dwins": 0
+  },
+  {
+   "name": "Tom",
+   "dcoins": 57,
+   "dwins": 2
+  }
+ ],
+ "attribution": [
+  {
+   "name": "HIMANSHU",
+   "dcoins": 3673,
+   "dwins": 181,
+   "residual": 1863,
+   "resid_share": 0.507
+  },
+  {
+   "name": "Sol ana",
+   "dcoins": 963,
+   "dwins": 47,
+   "residual": 493,
+   "resid_share": 0.512
+  },
+  {
+   "name": "SyntaxZ",
+   "dcoins": 886,
+   "dwins": 46,
+   "residual": 426,
+   "resid_share": 0.481
+  },
+  {
+   "name": "Canna Catokan",
+   "dcoins": 793,
+   "dwins": 34,
+   "residual": 453,
+   "resid_share": 0.571
+  },
+  {
+   "name": "Hermawan Kwan",
+   "dcoins": 640,
+   "dwins": 32,
+   "residual": 320,
+   "resid_share": 0.5
+  },
+  {
+   "name": "KANG PECUT",
+   "dcoins": 628,
+   "dwins": 32,
+   "residual": 308,
+   "resid_share": 0.49
+  },
+  {
+   "name": "kuru",
+   "dcoins": 605,
+   "dwins": 30,
+   "residual": 305,
+   "resid_share": 0.504
+  },
+  {
+   "name": "coucung",
+   "dcoins": 472,
+   "dwins": 16,
+   "residual": 312,
+   "resid_share": 0.661
+  },
+  {
+   "name": "GaBot",
+   "dcoins": 465,
+   "dwins": 22,
+   "residual": 245,
+   "resid_share": 0.527
+  },
+  {
+   "name": "Hermawan Kwan",
+   "dcoins": 409,
+   "dwins": 14,
+   "residual": 269,
+   "resid_share": 0.658
+  }
+ ],
+ "pioneer_latency": {
+  "fresh_only_external": {
+   "n": 23,
+   "median_s": 1.1,
+   "min_s": 0.4,
+   "buckets": {
+    "sub10s": 18,
+    "sub60s": 2,
+    "1-10m": 0,
+    "10-30m": 0,
+    "30-60m": 1,
+    "gt60m": 2
+   }
+  },
+  "fresh_only_house": {
+   "n": 0,
+   "median_s": null
+  },
+  "all_sample_external_median_s": 3.3
+ },
+ "korpus_refresh": {
+  "n": {
+   "v": 1272,
+   "f": 621
+  },
+  "full_030": {
+   "v": 28.5,
+   "f": 21.6,
+   "gap_pp": 6.9
+  },
+  "full_015": {
+   "v": 52.4,
+   "f": 34.5,
+   "gap_pp": 17.9
+  },
+  "in_k1_030": {
+   "v": 41.4,
+   "f": 49.1,
+   "gap_pp": -7.7
+  },
+  "in_k1_015": {
+   "v": 75.9,
+   "f": 78.4,
+   "gap_pp": -2.5
+  },
+  "k1_only_gap_pp": 24.9,
+  "k1_only": {
+   "v": 68.9,
+   "f": 44.0
+  },
+  "ref": {
+   "full_030": [
+    32.5,
+    28.1
+   ],
+   "full_015": [
+    57.6,
+    32.8
+   ]
+  },
+  "gap_vs_ref_pp": {
+   "full_030": 2.5,
+   "full_015": -6.9
+  }
+ },
+ "climber_styles": {
+  "Danis": {
+   "n_verified": 18,
+   "chars_median": 7048,
+   "density_median": 0.677,
+   "ratio_median": 0.252,
+   "floor030_pass_pct": 33.3,
+   "floor015_pass_pct": 66.7
+  },
+  "chirpy": {
+   "n_verified": 10,
+   "chars_median": 16530,
+   "density_median": 0.455,
+   "ratio_median": 0.09,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 10.0
+  },
+  "can-earn?": {
+   "n_verified": 23,
+   "chars_median": 14889,
+   "density_median": 0.582,
+   "ratio_median": 0.185,
+   "floor030_pass_pct": 26.1,
+   "floor015_pass_pct": 69.6
+  },
+  "Gufran The Legend": {
+   "n_verified": 23,
+   "chars_median": 7591,
+   "density_median": 0.898,
+   "ratio_median": 0.196,
+   "floor030_pass_pct": 4.3,
+   "floor015_pass_pct": 69.6
+  },
+  "zoya khan": {
+   "n_verified": 9,
+   "chars_median": 14246,
+   "density_median": 0.594,
+   "ratio_median": 0.136,
+   "floor030_pass_pct": 22.2,
+   "floor015_pass_pct": 44.4
+  },
+  "Febriyan": {
+   "n_verified": 23,
+   "chars_median": 11487,
+   "density_median": 0.899,
+   "ratio_median": 0.156,
+   "floor030_pass_pct": 26.1,
+   "floor015_pass_pct": 47.8
+  },
+  "Mauldrop": {
+   "n_verified": 29,
+   "chars_median": 6241,
+   "density_median": 1.181,
+   "ratio_median": 0.412,
+   "floor030_pass_pct": 62.1,
+   "floor015_pass_pct": 93.1
+  },
+  "Adam Reinhard": {
+   "n_verified": 28,
+   "chars_median": 9756,
+   "density_median": 3.32,
+   "ratio_median": 0.683,
+   "floor030_pass_pct": 85.7,
+   "floor015_pass_pct": 96.4
+  },
+  "Discord 1": {
+   "n_verified": 6,
+   "chars_median": 9766,
+   "density_median": 0.626,
+   "ratio_median": 0.138,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 33.3
+  },
+  "Md ripon Rana": {
+   "n_verified": 6,
+   "chars_median": 6202,
+   "density_median": 0.778,
+   "ratio_median": 0.345,
+   "floor030_pass_pct": 50.0,
+   "floor015_pass_pct": 66.7
+  },
+  "Rodeo": {
+   "n_verified": 9,
+   "chars_median": 10246,
+   "density_median": 1.071,
+   "ratio_median": 0.238,
+   "floor030_pass_pct": 22.2,
+   "floor015_pass_pct": 66.7
+  },
+  "GaBot": {
+   "n_verified": 16,
+   "chars_median": 7338,
+   "density_median": 1.464,
+   "ratio_median": 0.472,
+   "floor030_pass_pct": 68.8,
+   "floor015_pass_pct": 93.8
+  },
+  "neobros f": {
+   "n_verified": 19,
+   "chars_median": 12473,
+   "density_median": 0.905,
+   "ratio_median": 0.121,
+   "floor030_pass_pct": 21.1,
+   "floor015_pass_pct": 42.1
+  },
+  "Iqoo First": {
+   "n_verified": 18,
+   "chars_median": 14832,
+   "density_median": 0.646,
+   "ratio_median": 0.182,
+   "floor030_pass_pct": 27.8,
+   "floor015_pass_pct": 61.1
+  },
+  "coucung": {
+   "n_verified": 16,
+   "chars_median": 7859,
+   "density_median": 0.824,
+   "ratio_median": 0.255,
+   "floor030_pass_pct": 37.5,
+   "floor015_pass_pct": 81.2
+  },
+  "SyntaxZ": {
+   "n_verified": 13,
+   "chars_median": 12311,
+   "density_median": 0.681,
+   "ratio_median": 0.178,
+   "floor030_pass_pct": 15.4,
+   "floor015_pass_pct": 38.5
+  },
+  "DegenXBT": {
+   "n_verified": 4,
+   "chars_median": 21751,
+   "density_median": 0.839,
+   "ratio_median": 0.173,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 50.0
+  },
+  "megumii": {
+   "n_verified": 33,
+   "chars_median": 9719,
+   "density_median": 0.575,
+   "ratio_median": 0.116,
+   "floor030_pass_pct": 9.1,
+   "floor015_pass_pct": 36.4
+  },
+  "Hermawan Kwan": {
+   "n_verified": 37,
+   "chars_median": 9756,
+   "density_median": 0.718,
+   "ratio_median": 0.157,
+   "floor030_pass_pct": 18.9,
+   "floor015_pass_pct": 48.6
+  },
+  "HIMANSHU": {
+   "n_verified": 25,
+   "chars_median": 8856,
+   "density_median": 0.578,
+   "ratio_median": 0.12,
+   "floor030_pass_pct": 12.0,
+   "floor015_pass_pct": 28.0
+  },
+  "FlashX Bliz": {
+   "n_verified": 13,
+   "chars_median": 12889,
+   "density_median": 0.694,
+   "ratio_median": 0.111,
+   "floor030_pass_pct": 7.7,
+   "floor015_pass_pct": 30.8
+  },
+  "Google News": {
+   "n_verified": 20,
+   "chars_median": 5364,
+   "density_median": 0.967,
+   "ratio_median": 0.065,
+   "floor030_pass_pct": 20.0,
+   "floor015_pass_pct": 40.0
+  },
+  "kuru": {
+   "n_verified": 16,
+   "chars_median": 14046,
+   "density_median": 0.744,
+   "ratio_median": 0.197,
+   "floor030_pass_pct": 12.5,
+   "floor015_pass_pct": 56.2
+  },
+  "Rohit Prajapati": {
+   "n_verified": 18,
+   "chars_median": 15848,
+   "density_median": 0.828,
+   "ratio_median": 0.084,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 33.3
+  },
+  "Sol ana": {
+   "n_verified": 19,
+   "chars_median": 8686,
+   "density_median": 0.0,
+   "ratio_median": 0.0,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 0.0
+  },
+  "hina": {
+   "n_verified": 1,
+   "chars_median": 15899,
+   "density_median": 0.189,
+   "ratio_median": 0.068,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 0.0
+  },
+  "Sanbi": {
+   "n_verified": 21,
+   "chars_median": 14918,
+   "density_median": 0.348,
+   "ratio_median": 0.106,
+   "floor030_pass_pct": 4.8,
+   "floor015_pass_pct": 9.5
+  },
+  "KANG PECUT": {
+   "n_verified": 18,
+   "chars_median": 3810,
+   "density_median": 0.945,
+   "ratio_median": 0.177,
+   "floor030_pass_pct": 11.1,
+   "floor015_pass_pct": 38.9
+  }
+ },
+ "fresh_topics": {
+  "n_fresh": 26,
+  "viking_share": 0.0,
+  "core_kw_share": 0.115,
+  "per_hour": {
+   "10": {
+    "releases": 2,
+    "viking": 0,
+    "core_kw": 2,
+    "core_new": []
+   },
+   "11": {
+    "releases": 3,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "12": {
+    "releases": 3,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "13": {
+    "releases": 4,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "14": {
+    "releases": 9,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "15": {
+    "releases": 1,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "16": {
+    "releases": 1,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "17": {
+    "releases": 3,
+    "viking": 0,
+    "core_kw": 1,
+    "core_new": []
+   }
+  },
+  "core_new": [
+   {
+    "id": "67ed8d7d",
+    "hour": 17,
+    "status": "settled",
+    "content": "How will the technical architectures of Optimistic and ZK rollups converge or diverge by the end of 2027, spec",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "73e48175",
+    "hour": 10,
+    "status": "settled",
+    "content": "How does Dialectica's answer verification actually work — what makes one answer get verified while a similar a",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "963654f7",
+    "hour": 10,
+    "status": "settled",
+    "content": "For time-gated free-claim contracts on BNB Chain, which pre-gate observable properties (bytecode patterns, vie",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   }
+  ]
+ },
+ "viso0_in_progress_in_sample": [
+  "f5a9c5c6",
+  "07dcac99",
+  "9aa6b1c1"
+ ],
+ "abandoned_share": 15.3,
+ "sample_status_counts": {
+  "revealed": 2464,
+  "abandoned": 794,
+  "verified": 1296,
+  "intent": 14,
+  "falsified": 632
+ }
+}
