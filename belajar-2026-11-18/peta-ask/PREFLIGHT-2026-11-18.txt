@@ -1,0 +1,28 @@
+PREFLIGHT — dijalankan 2026-11-18 03:06 UTC (read-only, nol create)
+=== PREFLIGHT JALUR BERTANYA (read-only) ===
+Saldo Wallet (coins)      : -1.8788 $TRUED
+Lifetime Earned           : 0 $TRUED
+n terpakai (feeIndex maks): 7  (6 notifikasi fee, total fee terbayar 1.8788)
+Self-audit fee vs rumus   : COCOK
+Pertanyaan berikutnya     : n=8, fee 1.3504, net tanpa NIU -0.3504
+Gerbang affordable        : GAGAL (fee 1.3504 vs saldo -1.8788)
+Kekurangan saldo          : 3.2292 $TRUED harus masuk dulu
+VONIS                     : TIDAK
+Alasan: saldo di bawah fee pertanyaan berikutnya — create akan ditolak server (VALIDATION_FAILED) sebelum apa pun ditulis, dan curiosityToken tidak akan diterbitkan di fase ready.
+Catatan ekonomi: TANPA bonus NIU (terbukti $0 di akun ini), tembakan ini bernilai net negatif walau saldo cukup.
+exit=1
+--- JSON ---
+{
+ "coins": "-1.8788",
+ "lifetimeEarned": "0",
+ "n_used": 7,
+ "fee_notifications": 6,
+ "total_fees_paid": "1.8788",
+ "fee_audit_ok": true,
+ "next_n": 8,
+ "next_fee": "1.3504",
+ "next_net_without_niu": "-0.3504",
+ "affordable": false,
+ "shortfall": "3.2292",
+ "verdict": "TIDAK"
+}

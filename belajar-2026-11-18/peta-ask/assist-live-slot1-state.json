@@ -1,0 +1,16 @@
+{
+ "conversationId": "1fb147d4-1fbe-4a29-8927-f6c98eb6f016",
+ "settledArena": "general",
+ "draft": "Why is the maximum profit of a sandwich attack against a constant-product AMM bounded by the victim's slippage tolerance rather than scaling with the size of the victim's trade, and why does the attacker's own price impact on the closing trade consume most of that bound when the pool is shallow?",
+ "phase": "ready",
+ "askFee": {
+  "feeTrued": "1.3504",
+  "affordable": false,
+  "notice": "Posting this Question carries a Fee of 1.3504 $TRUED, and your Wallet doesn't have that much available to spend right now. Nothing has been charged. Add to your Wallet \u2014 or wait for a pending withdrawal to settle \u2014 and you can post it.",
+  "feeIndex": 8,
+  "profile": "standard",
+  "spendableTrued": "0.0000"
+ },
+ "token": null,
+ "resolutionSpec": null
+}

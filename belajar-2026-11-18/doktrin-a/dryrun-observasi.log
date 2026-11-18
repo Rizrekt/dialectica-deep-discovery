@@ -1,0 +1,24 @@
+rate_trigger: observasi 900 dtk, poll 60 dtk, maxAge 1800000 ms — read-only
+  poll 1: 72ecb43d mode=TELAT first2min=56 lag=109.9 dtk
+  poll 1: a4c9422a mode=TELAT first2min=57 lag=300.9 dtk
+  poll 1: a0d3e671 mode=TELAT first2min=52 lag=414.8 dtk
+  poll 1: 36dc52dc mode=TELAT first2min=28 lag=419.2 dtk
+  poll 1: 7dfbcae4 mode=TELAT first2min=33 lag=438.2 dtk
+  poll 1: f8494cf3 mode=TELAT first2min=30 lag=456.3 dtk
+  poll 1: 112fc120 mode=TELAT first2min=57 lag=772.2 dtk
+  poll 1: b9a0e868 mode=TELAT first2min=34 lag=798.0 dtk
+  poll 2: 072da7d7 mode=TELAT first2min=45 lag=947.7 dtk
+  poll 2: d7e725ed mode=TELAT first2min=59 lag=1044.1 dtk
+  poll 2: 188db7b4 mode=TELAT first2min=50 lag=1108.2 dtk
+  poll 2: 24615f76 mode=TELAT first2min=41 lag=1193.3 dtk
+  poll 2: fd19309b mode=TELAT first2min=44 lag=1300.7 dtk
+  poll 2: 8e4ee8f1 mode=TELAT first2min=35 lag=1323.9 dtk
+  poll 2: 928c9ee9 mode=TELAT first2min=35 lag=1342.7 dtk
+  poll 2: 9b2309d9 mode=TELAT first2min=38 lag=1376.5 dtk
+  poll 3: 0f2d3351 mode=TELAT first2min=55 lag=1586.1 dtk
+  poll 3: 6137e18e mode=TELAT first2min=50 lag=1681.4 dtk
+  poll 3: 7610e09d mode=TELAT first2min=32 lag=1684.1 dtk
+  poll 3: b8fdea26 mode=TELAT first2min=46 lag=1739.9 dtk
+  poll 13: 5b9cb4dc mode=TELAT first2min=18 lag=17.5 dtk
+  poll 13: 11cb980e mode=TELAT first2min=19 lag=38.8 dtk
+  poll 14: 1f6ceca8 mode=TELAT first2min=34 lag=58.5 dtk

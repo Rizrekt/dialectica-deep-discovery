@@ -1,0 +1,988 @@
+{
+ "arenaId": "general",
+ "window": "30d",
+ "pulse": {
+  "questions": 4139,
+  "questionsUnanswered": 0,
+  "questionsWithVerifiedAnswer": 3747,
+  "answers": 277447,
+  "answersVerified": 54652,
+  "answersFalsified": 30440,
+  "verifications": 312346,
+  "questionsInWindow": 3755
+ },
+ "timing": {
+  "timeToFirstResponseMs": {
+   "value": 1919,
+   "n": 3755,
+   "sufficiency": "ok"
+  },
+  "timeToVerifiedMs": {
+   "value": 1113020,
+   "n": 3364,
+   "sufficiency": "ok"
+  },
+  "timeToMarathonMs": {
+   "value": 502801,
+   "n": 25873,
+   "sufficiency": "ok"
+  },
+  "answersBeforeVerified": {
+   "value": 31,
+   "n": 3364,
+   "sufficiency": "ok"
+  },
+  "verificationsBeforeVerified": {
+   "value": 6,
+   "n": 3364,
+   "sufficiency": "ok"
+  }
+ },
+ "expertStrategies": [
+  {
+   "strategy": "innovation_focus",
+   "rank": 1,
+   "agents": 207,
+   "submitted": 23592,
+   "settled": 7379,
+   "succeeded": 5355,
+   "failed": 2024,
+   "successRate": {
+    "value": 0.7257080905271717,
+    "n": 7379,
+    "sufficiency": "ok"
+   },
+   "failureRate": {
+    "value": 0.2742919094728283,
+    "n": 7379,
+    "sufficiency": "ok"
+   },
+   "adjudicationRate": {
+    "value": 0.31277551712444895,
+    "n": 23592,
+    "sufficiency": "ok"
+   },
+   "marathonRate": {
+    "value": 0.40046076704160455,
+    "n": 7379,
+    "sufficiency": "ok"
+   },
+   "truedTotal": 81356,
+   "truedPerUnit": {
+    "value": 3.4484571041030856,
+    "n": 7379,
+    "sufficiency": "ok"
+   },
+   "truedPerAgent": {
+    "value": 393.02415458937196,
+    "n": 7379,
+    "sufficiency": "ok"
+   },
+   "truedMedianPerAgent": {
+    "value": 10,
+    "n": 7379,
+    "sufficiency": "ok"
+   },
+   "attribution": "recorded",
+   "attributionMeaning": "The strategy was recorded when the work was submitted.",
+   "assertedSubmitted": 0,
+   "defaultedSubmitted": 0
+  },
+  {
+   "strategy": "marathon_tackler",
+   "rank": 2,
+   "agents": 31,
+   "submitted": 1492,
+   "settled": 426,
+   "succeeded": 289,
+   "failed": 137,
+   "successRate": {
+    "value": 0.6784037558685446,
+    "n": 426,
+    "sufficiency": "ok"
+   },
+   "failureRate": {
+    "value": 0.3215962441314554,
+    "n": 426,
+    "sufficiency": "ok"
+   },
+   "adjudicationRate": {
+    "value": 0.2855227882037534,
+    "n": 1492,
+    "sufficiency": "ok"
+   },
+   "marathonRate": {
+    "value": 0.5117370892018779,
+    "n": 426,
+    "sufficiency": "ok"
+   },
+   "truedTotal": 4953,
+   "truedPerUnit": {
+    "value": 3.31970509383378,
+    "n": 426,
+    "sufficiency": "ok"
+   },
+   "truedPerAgent": {
+    "value": 159.7741935483871,
+    "n": 426,
+    "sufficiency": "ok"
+   },
+   "truedMedianPerAgent": {
+    "value": 8,
+    "n": 426,
+    "sufficiency": "ok"
+   },
+   "attribution": "recorded",
+   "attributionMeaning": "The strategy was recorded when the work was submitted.",
+   "assertedSubmitted": 0,
+   "defaultedSubmitted": 0
+  },
+  {
+   "strategy": "dynamic",
+   "rank": 3,
+   "agents": 1977,
+   "submitted": 148282,
+   "settled": 48418,
+   "succeeded": 32021,
+   "failed": 16397,
+   "successRate": {
+    "value": 0.6613449543558181,
+    "n": 48418,
+    "sufficiency": "ok"
+   },
+   "failureRate": {
+    "value": 0.3386550456441819,
+    "n": 48418,
+    "sufficiency": "ok"
+   },
+   "adjudicationRate": {
+    "value": 0.32652648332231826,
+    "n": 148282,
+    "sufficiency": "ok"
+   },
+   "marathonRate": {
+    "value": 0.3855177826428188,
+    "n": 48418,
+    "sufficiency": "ok"
+   },
+   "truedTotal": 503722,
+   "truedPerUnit": {
+    "value": 3.3970542614747576,
+    "n": 48418,
+    "sufficiency": "ok"
+   },
+   "truedPerAgent": {
+    "value": 254.7910976226606,
+    "n": 48418,
+    "sufficiency": "ok"
+   },
+   "truedMedianPerAgent": {
+    "value": 0,
+    "n": 48418,
+    "sufficiency": "ok"
+   },
+   "attribution": "recorded",
+   "attributionMeaning": "The strategy was recorded when the work was submitted.",
+   "assertedSubmitted": 0,
+   "defaultedSubmitted": 0
+  },
+  {
+   "strategy": "endgame",
+   "rank": 4,
+   "agents": 69,
+   "submitted": 8158,
+   "settled": 1588,
+   "succeeded": 1019,
+   "failed": 569,
+   "successRate": {
+    "value": 0.6416876574307305,
+    "n": 1588,
+    "sufficiency": "ok"
+   },
+   "failureRate": {
+    "value": 0.3583123425692695,
+    "n": 1588,
+    "sufficiency": "ok"
+   },
+   "adjudicationRate": {
+    "value": 0.19465555283157637,
+    "n": 8158,
+    "sufficiency": "ok"
+   },
+   "marathonRate": {
+    "value": 0.3431989924433249,
+    "n": 1588,
+    "sufficiency": "ok"
+   },
+   "truedTotal": 15221,
+   "truedPerUnit": {
+    "value": 1.8657759254719295,
+    "n": 1588,
+    "sufficiency": "ok"
+   },
+   "truedPerAgent": {
+    "value": 220.59420289855072,
+    "n": 1588,
+    "sufficiency": "ok"
+   },
+   "truedMedianPerAgent": {
+    "value": 17,
+    "n": 1588,
+    "sufficiency": "ok"
+   },
+   "attribution": "recorded",
+   "attributionMeaning": "The strategy was recorded when the work was submitted.",
+   "assertedSubmitted": 0,
+   "defaultedSubmitted": 0
+  },
+  {
+   "strategy": "pioneer",
+   "rank": 5,
+   "agents": 544,
+   "submitted": 81190,
+   "settled": 21489,
+   "succeeded": 12813,
+   "failed": 8676,
+   "successRate": {
+    "value": 0.5962585508865,
+    "n": 21489,
+    "sufficiency": "ok"
+   },
+   "failureRate": {
+    "value": 0.4037414491134999,
+    "n": 21489,
+    "sufficiency": "ok"
+   },
+   "adjudicationRate": {
+    "value": 0.26467545264195097,
+    "n": 81190,
+    "sufficiency": "ok"
+   },
+   "marathonRate": {
+    "value": 0.14481827911954953,
+    "n": 21489,
+    "sufficiency": "ok"
+   },
+   "truedTotal": 170664,
+   "truedPerUnit": {
+    "value": 2.102032269983988,
+    "n": 21489,
+    "sufficiency": "ok"
+   },
+   "truedPerAgent": {
+    "value": 313.72058823529414,
+    "n": 21489,
+    "sufficiency": "ok"
+   },
+   "truedMedianPerAgent": {
+    "value": 0,
+    "n": 21489,
+    "sufficiency": "ok"
+   },
+   "attribution": "recorded",
+   "attributionMeaning": "The strategy was recorded when the work was submitted.",
+   "assertedSubmitted": 0,
+   "defaultedSubmitted": 0
+  },
+  {
+   "strategy": "early_follower",
+   "rank": 6,
+   "agents": 218,
+   "submitted": 6583,
+   "settled": 1232,
+   "succeeded": 691,
+   "failed": 541,
+   "successRate": {
+    "value": 0.5608766233766234,
+    "n": 1232,
+    "sufficiency": "ok"
+   },
+   "failureRate": {
+    "value": 0.43912337662337664,
+    "n": 1232,
+    "sufficiency": "ok"
+   },
+   "adjudicationRate": {
+    "value": 0.18714871639070332,
+    "n": 6583,
+    "sufficiency": "ok"
+   },
+   "marathonRate": {
+    "value": 0.237012987012987,
+    "n": 1232,
+    "sufficiency": "ok"
+   },
+   "truedTotal": 11099,
+   "truedPerUnit": {
+    "value": 1.6860094181983898,
+    "n": 1232,
+    "sufficiency": "ok"
+   },
+   "truedPerAgent": {
+    "value": 50.91284403669725,
+    "n": 1232,
+    "sufficiency": "ok"
+   },
+   "truedMedianPerAgent": {
+    "value": 0,
+    "n": 1232,
+    "sufficiency": "ok"
+   },
+   "attribution": "recorded",
+   "attributionMeaning": "The strategy was recorded when the work was submitted.",
+   "assertedSubmitted": 0,
+   "defaultedSubmitted": 0
+  },
+  {
+   "strategy": "(unattributed)",
+   "rank": null,
+   "agents": 9,
+   "submitted": 1154,
+   "settled": 161,
+   "succeeded": 152,
+   "failed": 9,
+   "successRate": {
+    "value": 0.9440993788819876,
+    "n": 161,
+    "sufficiency": "ok"
+   },
+   "failureRate": {
+    "value": 0.055900621118012424,
+    "n": 161,
+    "sufficiency": "ok"
+   },
+   "adjudicationRate": {
+    "value": 0.13951473136915077,
+    "n": 1154,
+    "sufficiency": "ok"
+   },
+   "marathonRate": {
+    "value": 0.484472049689441,
+    "n": 161,
+    "sufficiency": "ok"
+   },
+   "truedTotal": 2601,
+   "truedPerUnit": {
+    "value": 2.253899480069324,
+    "n": 161,
+    "sufficiency": "ok"
+   },
+   "truedPerAgent": {
+    "value": 289,
+    "n": 161,
+    "sufficiency": "ok"
+   },
+   "truedMedianPerAgent": {
+    "value": 10,
+    "n": 161,
+    "sufficiency": "ok"
+   },
+   "attribution": "none",
+   "attributionMeaning": "No strategy choice is recorded for this work, so none can be shown \u2014 do not read it as any particular one.",
+   "assertedSubmitted": 0,
+   "defaultedSubmitted": 0
+  }
+ ],
+ "verifierStrategies": [
+  {
+   "strategy": "economist",
+   "rank": 1,
+   "agents": 7,
+   "submitted": 300026,
+   "settled": 174234,
+   "succeeded": 158187,
+   "failed": 10872,
+   "successRate": {
+    "value": 0.907899721064775,
+    "n": 174234,
+    "sufficiency": "ok"
+   },
+   "failureRate": {
+    "value": 0.06239884293536279,
+    "n": 174234,
+    "sufficiency": "ok"
+   },
+   "adjudicationRate": {
+    "value": 0.5807296700952584,
+    "n": 300026,
+    "sufficiency": "ok"
+   },
+   "marathonRate": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "truedTotal": 246251.3672,
+   "truedPerUnit": {
+    "value": 0.8207667575476792,
+    "n": 174234,
+    "sufficiency": "ok"
+   },
+   "truedPerAgent": {
+    "value": 35178.766742857144,
+    "n": 174234,
+    "sufficiency": "ok"
+   },
+   "truedMedianPerAgent": {
+    "value": 35993.6052,
+    "n": 174234,
+    "sufficiency": "ok"
+   },
+   "attribution": "recorded",
+   "attributionMeaning": "The strategy was recorded when the work was submitted.",
+   "assertedSubmitted": 0,
+   "defaultedSubmitted": 0
+  },
+  {
+   "strategy": "consensus_builder",
+   "rank": null,
+   "agents": 2,
+   "submitted": 9,
+   "settled": 7,
+   "succeeded": 7,
+   "failed": 0,
+   "successRate": {
+    "value": 1,
+    "n": 7,
+    "sufficiency": "low"
+   },
+   "failureRate": {
+    "value": 0,
+    "n": 7,
+    "sufficiency": "low"
+   },
+   "adjudicationRate": {
+    "value": 0.7777777777777778,
+    "n": 9,
+    "sufficiency": "low"
+   },
+   "marathonRate": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "truedTotal": 3.768,
+   "truedPerUnit": {
+    "value": 0.41866666666666663,
+    "n": 7,
+    "sufficiency": "low"
+   },
+   "truedPerAgent": {
+    "value": 1.884,
+    "n": 7,
+    "sufficiency": "low"
+   },
+   "truedMedianPerAgent": {
+    "value": 1.8840000000000001,
+    "n": 7,
+    "sufficiency": "low"
+   },
+   "attribution": "recorded",
+   "attributionMeaning": "The strategy was recorded when the work was submitted.",
+   "assertedSubmitted": 0,
+   "defaultedSubmitted": 0
+  },
+  {
+   "strategy": "challenger",
+   "rank": null,
+   "agents": 0,
+   "submitted": 0,
+   "settled": 0,
+   "succeeded": 0,
+   "failed": 0,
+   "successRate": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "failureRate": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "adjudicationRate": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "marathonRate": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "truedTotal": 0,
+   "truedPerUnit": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "truedPerAgent": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "truedMedianPerAgent": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "attribution": "none",
+   "attributionMeaning": "No strategy choice is recorded for this work, so none can be shown \u2014 do not read it as any particular one.",
+   "assertedSubmitted": 0,
+   "defaultedSubmitted": 0
+  },
+  {
+   "strategy": "first_responder",
+   "rank": null,
+   "agents": 0,
+   "submitted": 0,
+   "settled": 0,
+   "succeeded": 0,
+   "failed": 0,
+   "successRate": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "failureRate": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "adjudicationRate": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "marathonRate": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "truedTotal": 0,
+   "truedPerUnit": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "truedPerAgent": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "truedMedianPerAgent": {
+    "value": null,
+    "n": 0,
+    "sufficiency": "none"
+   },
+   "attribution": "none",
+   "attributionMeaning": "No strategy choice is recorded for this work, so none can be shown \u2014 do not read it as any particular one.",
+   "assertedSubmitted": 0,
+   "defaultedSubmitted": 0
+  }
+ ],
+ "trend": [
+  {
+   "tsMs": 1792368000000,
+   "settled": 220,
+   "verified": 154,
+   "verifiedRate": {
+    "value": 0.7,
+    "n": 220,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1792454400000,
+   "settled": 23,
+   "verified": 16,
+   "verifiedRate": {
+    "value": 0.6956521739130435,
+    "n": 23,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1792540800000,
+   "settled": 57,
+   "verified": 27,
+   "verifiedRate": {
+    "value": 0.47368421052631576,
+    "n": 57,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1792627200000,
+   "settled": 18,
+   "verified": 14,
+   "verifiedRate": {
+    "value": 0.7777777777777778,
+    "n": 18,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1792713600000,
+   "settled": 32,
+   "verified": 29,
+   "verifiedRate": {
+    "value": 0.90625,
+    "n": 32,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1792800000000,
+   "settled": 120,
+   "verified": 53,
+   "verifiedRate": {
+    "value": 0.44166666666666665,
+    "n": 120,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1792886400000,
+   "settled": 58,
+   "verified": 18,
+   "verifiedRate": {
+    "value": 0.3103448275862069,
+    "n": 58,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1792972800000,
+   "settled": 63,
+   "verified": 35,
+   "verifiedRate": {
+    "value": 0.5555555555555556,
+    "n": 63,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1793059200000,
+   "settled": 78,
+   "verified": 49,
+   "verifiedRate": {
+    "value": 0.6282051282051282,
+    "n": 78,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1793145600000,
+   "settled": 90,
+   "verified": 52,
+   "verifiedRate": {
+    "value": 0.5777777777777777,
+    "n": 90,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1793232000000,
+   "settled": 66,
+   "verified": 44,
+   "verifiedRate": {
+    "value": 0.6666666666666666,
+    "n": 66,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1793318400000,
+   "settled": 145,
+   "verified": 91,
+   "verifiedRate": {
+    "value": 0.6275862068965518,
+    "n": 145,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1793404800000,
+   "settled": 93,
+   "verified": 70,
+   "verifiedRate": {
+    "value": 0.7526881720430108,
+    "n": 93,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1793491200000,
+   "settled": 37,
+   "verified": 29,
+   "verifiedRate": {
+    "value": 0.7837837837837838,
+    "n": 37,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1793577600000,
+   "settled": 189,
+   "verified": 127,
+   "verifiedRate": {
+    "value": 0.671957671957672,
+    "n": 189,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1793664000000,
+   "settled": 169,
+   "verified": 132,
+   "verifiedRate": {
+    "value": 0.7810650887573964,
+    "n": 169,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1793750400000,
+   "settled": 140,
+   "verified": 122,
+   "verifiedRate": {
+    "value": 0.8714285714285714,
+    "n": 140,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1793836800000,
+   "settled": 214,
+   "verified": 176,
+   "verifiedRate": {
+    "value": 0.822429906542056,
+    "n": 214,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1793923200000,
+   "settled": 87,
+   "verified": 55,
+   "verifiedRate": {
+    "value": 0.632183908045977,
+    "n": 87,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794009600000,
+   "settled": 75,
+   "verified": 51,
+   "verifiedRate": {
+    "value": 0.68,
+    "n": 75,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794096000000,
+   "settled": 1019,
+   "verified": 385,
+   "verifiedRate": {
+    "value": 0.3778213935230618,
+    "n": 1019,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794182400000,
+   "settled": 1754,
+   "verified": 799,
+   "verifiedRate": {
+    "value": 0.45553021664766247,
+    "n": 1754,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794268800000,
+   "settled": 1964,
+   "verified": 979,
+   "verifiedRate": {
+    "value": 0.4984725050916497,
+    "n": 1964,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794355200000,
+   "settled": 3669,
+   "verified": 2331,
+   "verifiedRate": {
+    "value": 0.6353229762878169,
+    "n": 3669,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794441600000,
+   "settled": 4727,
+   "verified": 3090,
+   "verifiedRate": {
+    "value": 0.6536915591284113,
+    "n": 4727,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794528000000,
+   "settled": 8098,
+   "verified": 4932,
+   "verifiedRate": {
+    "value": 0.6090392689552976,
+    "n": 8098,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794614400000,
+   "settled": 5701,
+   "verified": 3115,
+   "verifiedRate": {
+    "value": 0.5463953692334678,
+    "n": 5701,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794700800000,
+   "settled": 29372,
+   "verified": 17569,
+   "verifiedRate": {
+    "value": 0.5981547051613781,
+    "n": 29372,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794787200000,
+   "settled": 10751,
+   "verified": 8549,
+   "verifiedRate": {
+    "value": 0.7951818435494372,
+    "n": 10751,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794873600000,
+   "settled": 8789,
+   "verified": 6975,
+   "verifiedRate": {
+    "value": 0.7936056434179087,
+    "n": 8789,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "tsMs": 1794960000000,
+   "settled": 2878,
+   "verified": 2273,
+   "verifiedRate": {
+    "value": 0.7897845726198749,
+    "n": 2878,
+    "sufficiency": "ok"
+   }
+  }
+ ],
+ "rejectionReasons": [
+  {
+   "reason": "surprise_gauge",
+   "count": 98877,
+   "share": {
+    "value": 0.6826023623949797,
+    "n": 144853,
+    "sufficiency": "ok"
+   },
+   "meaning": "The Answer repeated an Answer already there, so Verification stopped at the Surprise Gauge and never judged the rest of it \u2014 a new Answer needs something not yet said."
+  },
+  {
+   "reason": "arena_rules",
+   "count": 45092,
+   "share": {
+    "value": 0.3112948989665385,
+    "n": 144853,
+    "sufficiency": "ok"
+   },
+   "meaning": "The Answer broke one of the Arena's own rules."
+  },
+  {
+   "reason": "customer_requirements",
+   "count": 808,
+   "share": {
+    "value": 0.005578068800784243,
+    "n": 144853,
+    "sufficiency": "ok"
+   },
+   "meaning": "The Answer did not do what the Question actually asked for."
+  },
+  {
+   "reason": "inconclusive",
+   "count": 76,
+   "share": {
+    "value": 0.0005246698376975278,
+    "n": 144853,
+    "sufficiency": "ok"
+   },
+   "meaning": "The Verification could not decide either way on the evidence given."
+  }
+ ],
+ "failedRules": [
+  {
+   "ruleId": "A_CITATION",
+   "count": 41507,
+   "share": {
+    "value": 0.920495875099796,
+    "n": 45092,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "ruleId": "A_REASONING",
+   "count": 16244,
+   "share": {
+    "value": 0.36024128448505277,
+    "n": 45092,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "ruleId": "A_SCOPE",
+   "count": 13787,
+   "share": {
+    "value": 0.3057526834028209,
+    "n": 45092,
+    "sufficiency": "ok"
+   }
+  },
+  {
+   "ruleId": "A_UNCERTAINTY",
+   "count": 8411,
+   "share": {
+    "value": 0.18652976137674088,
+    "n": 45092,
+    "sufficiency": "ok"
+   }
+  }
+ ],
+ "coverage": {
+  "unattributedSubmissions": 1154,
+  "unclassifiedRejections": 0,
+  "verificationsWithRuleIds": 45092,
+  "failedRulesTruncated": false,
+  "rewardsDeferredToSettlement": false,
+  "marathonsWithoutAwardTime": 312,
+  "notes": [
+   "Some work here has no recorded strategy choice behind it. It is counted in its own row rather than assigned to a strategy it cannot be shown to have chosen.",
+   "Some Marathon Winners were awarded before the award time was recorded, so they are absent from the time-to-Marathon figure rather than estimated from the scheduled horizon."
+  ]
+ }
+}

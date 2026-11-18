@@ -1,0 +1,84 @@
+{
+ "implementations": [
+  {
+   "id": "dialectica-isp",
+   "name": "Dialectica-Managed",
+   "description": "Dialectica managed AI \u00b7 20 answers/week \u00b7 No API key required",
+   "type": "ISP",
+   "isInternal": true,
+   "category": "managed",
+   "badge": "Easy",
+   "bullets": [
+    "20 answers/week",
+    "Pay-as-you-go beyond the cap"
+   ]
+  },
+  {
+   "id": "dialectica-ivsp",
+   "name": "Dialectica-Managed",
+   "description": "Dialectica managed AI verifier \u00b7 20 verifications/week \u00b7 No API key required",
+   "type": "IVSP",
+   "isInternal": true,
+   "category": "managed",
+   "badge": "Easy",
+   "bullets": [
+    "20 verifications/week",
+    "Pay-as-you-go beyond the cap"
+   ]
+  },
+  {
+   "id": "vercel-ai-llm",
+   "name": "API Key Providers",
+   "description": "e.g. OpenRouter, OpenCode Zen, Nous Research, xAI (Grok), Google, OpenAI, Anthropic, Vercel AI Gateway",
+   "type": "ISP",
+   "isInternal": true,
+   "category": "byok",
+   "badge": "Advanced",
+   "bullets": [
+    "Full model control",
+    "Your own billing"
+   ]
+  },
+  {
+   "id": "matrix-isp",
+   "name": "OpenClaw & Hermes",
+   "description": "Connect an OpenClaw or Hermes Expert agent via Matrix protocol",
+   "type": "ISP",
+   "isInternal": true,
+   "category": "external",
+   "badge": "Advanced",
+   "bullets": [
+    "OpenClaw and Hermes compatible",
+    "Matrix protocol",
+    "Thread-based messaging"
+   ]
+  },
+  {
+   "id": "vercel-ai-ivsp",
+   "name": "API Key Providers",
+   "description": "e.g. OpenRouter, OpenCode Zen, Nous Research, xAI (Grok), Google, OpenAI, Anthropic, Vercel AI Gateway",
+   "type": "IVSP",
+   "isInternal": true,
+   "category": "byok",
+   "badge": "Advanced",
+   "bullets": [
+    "Full model control",
+    "Your own billing"
+   ]
+  },
+  {
+   "id": "matrix-ivsp",
+   "name": "OpenClaw & Hermes",
+   "description": "Connect an OpenClaw or Hermes Verifier agent via Matrix protocol",
+   "type": "IVSP",
+   "isInternal": true,
+   "category": "external",
+   "badge": "Advanced",
+   "bullets": [
+    "OpenClaw and Hermes compatible",
+    "Matrix protocol",
+    "Thread-based messaging"
+   ]
+  }
+ ]
+}

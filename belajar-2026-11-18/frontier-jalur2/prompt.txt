@@ -1,0 +1,27 @@
+You are a strategy advisor for a small operator on Dialectica, a verified-knowledge marketplace. Answer the five decision questions at the end directly and specifically, citing the numbers given. For each: pick one direction, give the strongest reason, and name one piece of evidence that would overturn your verdict. Disagree where the plan is wrong. No generic advice.
+
+CONTEXT (public platform mechanics + public arena analytics, read live 2026-11-18):
+
+Dialectica: Customers post Questions; Experts answer; independent Verifiers judge each Answer against the arena's checklist (in the General arena: 4 checks — citation, reasoning, uncertainty, scope; a verdict is "compliant" only if all four pass). An Answer becomes Verified when the panel reaches >=2 support and 0 refutations (a clean sheet — one refutation kills it), and falsified otherwise. A Verifier is paid per verification that AGREES with the Answer's final outcome; the platform's published essay formula decays with arrival order (earliest verifiers earn the most per unit, maximum 1.0 $TRUED).
+
+Public statistics, General arena (platform analytics, 2026-11-18):
+- Verifier strategy "economist" (minimum-reward threshold; official parameter minReward 0.1-1.0, default 0.6): 11 active agents, 313k verifications submitted, 90.9% agreement rate, average 0.82 $TRUED/unit, median lifetime earnings per agent 6,373, total 257k $TRUED.
+- "consensus_builder" (fills verification gaps; stops after N supports): 3 agents, 42 submitted, 94.9% agreement, 0.64/unit, median lifetime 2.9.
+- "first_responder" (fastest to judge) and "challenger" (challenges already-verified Answers): 0 active agents, zero volume.
+- Forecasting arena: economist 0.84/unit, 88.6% agreement, BUT rewards are held until the question settles against real-world events (horizons of months). A third arena (benchmark) is closed to the public.
+- Platform volume exploded in the last ~7 days (most lifetime questions and verifications were born in that window) — a flood regime, not a quiet one.
+- On the Expert (answering) side, the most common strategies have median lifetime earnings per agent of 0 — money concentrates in a few top agents. On the verifier side, two house-scale agents appear to process thousands of verdicts per day.
+
+The design being built (public-safe summary): a verifier runner for one small account that today only acts as an Expert:
+1. Built dry-run first: drafts verdicts on real public Answers without submitting anything; registering the verifier role is a separate step locked behind the account owner's explicit decision.
+2. Draft verdicts are composed multi-lane (one local mechanical drafter + two different model lanes) and their agreement compared before any single lane is trusted.
+3. Owner-level conflict-of-interest gate: never judge own Answers, Answers on own Questions, or competitor Answers on Questions the account itself answered — stricter than the platform's minimum ban, as a policy choice.
+4. Submit mode is locked separately from draft mode; arming it is its own act after registration, not a default.
+5. Reputation (the account's reliability score) is per-owner and shared by the Expert and Verifier roles — damage in one role spreads to the same account.
+
+QUESTIONS:
+Q1 — Entry strategy. Given the public statistics, the most sensible entry strategy for a small operator: economist (play the reward threshold), consensus_builder (fill the gaps — tiny sample but the highest agreement rate), or first_responder (a completely empty pool — nobody plays speed)? Strongest reason for the choice, and what statistic would prove the choice wrong within 2 weeks?
+Q2 — Verdict posture. Verifier pay requires the verdict to AGREE with the panel's final outcome, not to be independently "right"; and panel aggregation is a clean sheet (1 refutation kills). For a small account with shared reputation at risk, which posture is better: strict on the checklist (fail when doubtful on any one check) or follow the most likely consensus flow? How to weigh per-unit earnings against the risk of being the lone dissenting voice?
+Q3 — First arena. General (pays at verdict, 0.82/unit, flood regime) vs Forecasting (0.84/unit but months of escrow, far smaller volume)? For an account whose goal is proving this lane is alive as fast as possible at the smallest risk, which arena first — and is the 0.02/unit difference ever worth the escrow?
+Q4 — Sequencing vs the Expert lane. The same account runs an answering (Expert) operation with its own queue doctrine. Verifier shares: the same model-relay budget, the same operator attention, and the same account reputation. Run in parallel from day one, or sequentially (verifier only after the answering doctrine has proven it gets paid)? What fact should change that answer?
+Q5 — Minimum viable scale. Lane earnings are concentrated: median economist agent lifetime 6,373, but two house-scale agents process thousands of verdicts/day and likely hold most volume. With a small operator's realistic capacity (tens to a few hundred verdicts/day using model lanes), is this lane worth operating — at what daily volume does operational break-even (model costs + operator time) close at 0.82/unit and ~91% agreement? If it is not viable at small scale, what condition would make it viable?

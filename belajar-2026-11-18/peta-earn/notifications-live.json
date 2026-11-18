@@ -1,0 +1,994 @@
+{
+ "notifications": [
+  {
+   "id": "84504a49-f8a7-4b83-9cb4-b0bdc87e0f18",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+    "title": "Why does extending the window of a time-weighted average price (TWAP) oracle force an attacker to\u2026"
+   },
+   "referenceId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+   "read": true,
+   "createdAt": "2026-11-16T15:38:06.750Z"
+  },
+  {
+   "id": "d11e0282-8cca-41fe-a8c4-a1111a94e718",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-16T15:33:31.556Z"
+  },
+  {
+   "id": "f0919bd7-293b-4683-a4ee-861c00346d9a",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+    "title": "For a liquidity provider in a constant-product (x*y = k) automated market maker, how does divergence\u2026"
+   },
+   "referenceId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+   "read": true,
+   "createdAt": "2026-11-16T15:28:00.979Z"
+  },
+  {
+   "id": "560f3e34-6465-42b2-9b0b-de857a91c1f1",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+    "title": "What exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026"
+   },
+   "referenceId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+   "read": true,
+   "createdAt": "2026-11-16T15:24:53.883Z"
+  },
+  {
+   "id": "d87d2fd9-b951-4dbe-b2b5-73764ce18f21",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-15T18:22:26.822Z"
+  },
+  {
+   "id": "06979686-50ef-4e59-924f-e937070ee6d5",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+    "title": "What exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026"
+   },
+   "referenceId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+   "read": true,
+   "createdAt": "2026-11-15T15:04:39.361Z"
+  },
+  {
+   "id": "4c645279-9834-4afa-be21-ea1d203b1eb4",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+    "title": "Why can Ethereum's base fee stay elevated for many consecutive blocks after a spike in demand has\u2026"
+   },
+   "referenceId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+   "read": true,
+   "createdAt": "2026-11-15T14:56:36.465Z"
+  },
+  {
+   "id": "cd5af55d-82ce-4e5b-b3b0-f48acbb3bd0e",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+    "title": "Why does extending the window of a time-weighted average price (TWAP) oracle force an attacker to\u2026"
+   },
+   "referenceId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+   "read": true,
+   "createdAt": "2026-11-15T14:56:21.493Z"
+  },
+  {
+   "id": "748d2561-750f-4ff9-90f6-0bee187a51b1",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026"
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-14T10:44:52.803Z"
+  },
+  {
+   "id": "6b532ef3-2968-46ce-aa72-443d1eb1a857",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "user_suspended",
+   "content": {
+    "reason": "Slash from rule REL-005 (suspension #5)",
+    "source": "REL-005",
+    "suspensionEndsAt": "2026-11-14T00:43:20.000Z"
+   },
+   "referenceId": null,
+   "read": true,
+   "createdAt": "2026-11-14T00:43:17.130Z"
+  },
+  {
+   "id": "a12533d3-4285-4daf-a7f5-4af7adefd268",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+    "title": "How can the producer of a BNB Smart Chain block bias the outcome of an NFT mint whose trait\u2026"
+   },
+   "referenceId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+   "read": true,
+   "createdAt": "2026-11-13T12:30:45.274Z"
+  },
+  {
+   "id": "e7aa2ee9-fdf6-408c-ba46-ed56757ff7bb",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+    "title": "For a liquidity provider in a constant-product (x*y = k) automated market maker, how does divergence\u2026"
+   },
+   "referenceId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+   "read": true,
+   "createdAt": "2026-11-13T12:02:47.669Z"
+  },
+  {
+   "id": "2b653740-2859-4588-9582-4017792bd91d",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+    "title": "Why does extending the window of a time-weighted average price (TWAP) oracle force an attacker to\u2026"
+   },
+   "referenceId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+   "read": true,
+   "createdAt": "2026-11-13T11:56:50.524Z"
+  },
+  {
+   "id": "c63548cb-61f2-4b79-9294-426ac1ae1672",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-13T11:49:15.337Z"
+  },
+  {
+   "id": "17b97954-2a8d-49fb-941b-97283f572938",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+    "title": "What exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026"
+   },
+   "referenceId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+   "read": true,
+   "createdAt": "2026-11-13T11:39:54.562Z"
+  },
+  {
+   "id": "bdcb01e7-9986-49a4-8a7a-217336fdd005",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026"
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-13T11:35:25.016Z"
+  },
+  {
+   "id": "d24e2bce-2396-449f-87b8-aebba177e0f6",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+    "title": "Why does extending the window of a time-weighted average price (TWAP) oracle force an attacker to\u2026"
+   },
+   "referenceId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+   "read": true,
+   "createdAt": "2026-11-13T10:52:20.456Z"
+  },
+  {
+   "id": "d307af54-6365-4465-88c7-e742db2f75ac",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+    "title": "Why can Ethereum's base fee stay elevated for many consecutive blocks after a spike in demand has\u2026"
+   },
+   "referenceId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+   "read": true,
+   "createdAt": "2026-11-13T10:49:03.335Z"
+  },
+  {
+   "id": "69a901c9-295c-4de2-a599-9634454fae4f",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+    "title": "For a liquidity provider in a constant-product (x*y = k) automated market maker, how does divergence\u2026"
+   },
+   "referenceId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+   "read": true,
+   "createdAt": "2026-11-13T03:25:10.505Z"
+  },
+  {
+   "id": "720d7544-b819-417d-973b-acc1bdd2008f",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+    "title": "Why can Ethereum's base fee stay elevated for many consecutive blocks after a spike in demand has\u2026"
+   },
+   "referenceId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+   "read": true,
+   "createdAt": "2026-11-13T02:19:32.804Z"
+  },
+  {
+   "id": "885354f2-fce7-4d3f-9b03-7521fe003793",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+    "title": "For a liquidity provider in a constant-product (x*y = k) automated market maker, how does divergence\u2026"
+   },
+   "referenceId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+   "read": true,
+   "createdAt": "2026-11-13T02:16:40.016Z"
+  },
+  {
+   "id": "f645c42c-45cc-4343-a231-f428e63e4627",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026"
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-12T22:26:15.682Z"
+  },
+  {
+   "id": "939a735e-112b-4103-a27a-6192e891830f",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+    "title": "How can the producer of a BNB Smart Chain block bias the outcome of an NFT mint whose trait\u2026"
+   },
+   "referenceId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+   "read": true,
+   "createdAt": "2026-11-12T01:24:56.344Z"
+  },
+  {
+   "id": "23baf472-03d2-4c05-ade0-8cf684d788bb",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "user_suspended",
+   "content": {
+    "reason": "Slash from rule REL-005 (suspension #4)",
+    "source": "REL-005",
+    "suspensionEndsAt": "2026-11-12T00:19:40.000Z"
+   },
+   "referenceId": null,
+   "read": true,
+   "createdAt": "2026-11-12T00:19:37.713Z"
+  },
+  {
+   "id": "0b7f8604-c61d-4579-895c-85694f8d84b9",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-11T16:56:28.743Z"
+  },
+  {
+   "id": "f69fc4a1-26fd-40d6-9c11-8ecf621ed817",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+    "title": "How can the producer of a BNB Smart Chain block bias the outcome of an NFT mint whose trait\u2026"
+   },
+   "referenceId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+   "read": true,
+   "createdAt": "2026-11-11T11:42:26.405Z"
+  },
+  {
+   "id": "ee30e8af-da8e-496b-a54c-e98ec53e3e36",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+    "title": "Why can Ethereum's base fee stay elevated for many consecutive blocks after a spike in demand has\u2026"
+   },
+   "referenceId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+   "read": true,
+   "createdAt": "2026-11-11T11:22:59.783Z"
+  },
+  {
+   "id": "125cfb56-1680-4dfb-a65d-54e5098049bf",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+    "title": "Why does extending the window of a time-weighted average price (TWAP) oracle force an attacker to\u2026"
+   },
+   "referenceId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+   "read": true,
+   "createdAt": "2026-11-11T11:18:23.057Z"
+  },
+  {
+   "id": "9a253f29-4fea-4822-8a54-f082148a4fa0",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-11T11:02:03.609Z"
+  },
+  {
+   "id": "b650544d-291d-4b67-bd73-708c3b4f972f",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+    "title": "What exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026"
+   },
+   "referenceId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+   "read": true,
+   "createdAt": "2026-11-11T10:58:21.482Z"
+  },
+  {
+   "id": "dfbfd706-aed9-4f8a-9471-5b35f58a02d7",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026"
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-11T10:41:45.884Z"
+  },
+  {
+   "id": "32ee19e8-0cd4-4a30-99a2-32269c947d5a",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+    "title": "For a liquidity provider in a constant-product (x*y = k) automated market maker, how does divergence\u2026"
+   },
+   "referenceId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+   "read": true,
+   "createdAt": "2026-11-11T09:54:24.977Z"
+  },
+  {
+   "id": "613cbf67-189e-4091-90d6-889ee15b7787",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+    "title": "For a liquidity provider in a constant-product (x*y = k) automated market maker, how does divergence\u2026"
+   },
+   "referenceId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+   "read": true,
+   "createdAt": "2026-11-11T07:44:49.649Z"
+  },
+  {
+   "id": "dc5d8f36-d5e6-4754-909e-1ae02a8f2920",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026"
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-11T04:47:02.244Z"
+  },
+  {
+   "id": "2a89a532-1bfb-4321-8d71-31d4e88597a6",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+    "title": "Why can Ethereum's base fee stay elevated for many consecutive blocks after a spike in demand has\u2026"
+   },
+   "referenceId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+   "read": true,
+   "createdAt": "2026-11-11T04:42:21.057Z"
+  },
+  {
+   "id": "e326904f-6a21-4a93-8fe7-4b831fb0c927",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+    "title": "What exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026"
+   },
+   "referenceId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+   "read": true,
+   "createdAt": "2026-11-11T04:11:08.227Z"
+  },
+  {
+   "id": "d03bb530-8961-4e61-9801-5ce756e1c817",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+    "title": "How can the producer of a BNB Smart Chain block bias the outcome of an NFT mint whose trait\u2026"
+   },
+   "referenceId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+   "read": true,
+   "createdAt": "2026-11-11T03:55:07.312Z"
+  },
+  {
+   "id": "cb9cf38f-f4e1-44e9-b4b3-e592f85634af",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+    "title": "Why does extending the window of a time-weighted average price (TWAP) oracle force an attacker to\u2026"
+   },
+   "referenceId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+   "read": true,
+   "createdAt": "2026-11-11T03:51:30.717Z"
+  },
+  {
+   "id": "10a16632-63a4-43e8-9041-70a6338f8d76",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-11T03:16:41.104Z"
+  },
+  {
+   "id": "b8d9a057-0545-4c63-a127-e675ea46e510",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+    "title": "How can the producer of a BNB Smart Chain block bias the outcome of an NFT mint whose trait\u2026"
+   },
+   "referenceId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+   "read": true,
+   "createdAt": "2026-11-10T16:50:52.075Z"
+  },
+  {
+   "id": "e57ed96a-c13c-4bd6-90ff-e12803e63e51",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026"
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-10T03:59:00.562Z"
+  },
+  {
+   "id": "0f5a9c33-d371-43c6-8439-595d7c370a59",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+    "title": "How can the producer of a BNB Smart Chain block bias the outcome of an NFT mint whose trait\u2026"
+   },
+   "referenceId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+   "read": true,
+   "createdAt": "2026-11-09T16:10:25.165Z"
+  },
+  {
+   "id": "69dd8162-b36f-4ec4-add9-89f57de3edf2",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-09T16:03:49.678Z"
+  },
+  {
+   "id": "38192728-951d-4205-9523-cf17a42f0e23",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+    "title": "Why can Ethereum's base fee stay elevated for many consecutive blocks after a spike in demand has\u2026"
+   },
+   "referenceId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+   "read": true,
+   "createdAt": "2026-11-09T16:01:33.263Z"
+  },
+  {
+   "id": "a5b1bc57-d8e2-404b-9dab-e6ed7118e174",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+    "title": "What exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026"
+   },
+   "referenceId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+   "read": true,
+   "createdAt": "2026-11-09T16:00:43.413Z"
+  },
+  {
+   "id": "1fc218e4-8e0c-40d1-8c7a-dc37ee9acab3",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026"
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-09T15:56:27.871Z"
+  },
+  {
+   "id": "89720845-fefb-4c4e-bcbd-f0c32612a44e",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-09T15:49:36.398Z"
+  },
+  {
+   "id": "1a69f0e8-d90b-4ffa-b261-2ef814e911ba",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026"
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-09T15:46:11.108Z"
+  },
+  {
+   "id": "852a62b2-2b06-400a-802a-150b52d6a02d",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+    "title": "What exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026"
+   },
+   "referenceId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+   "read": true,
+   "createdAt": "2026-11-09T15:46:10.794Z"
+  },
+  {
+   "id": "01dd4f15-f1db-49f9-a577-f44c9b4a780b",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+    "title": "Why can Ethereum's base fee stay elevated for many consecutive blocks after a spike in demand has\u2026"
+   },
+   "referenceId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+   "read": true,
+   "createdAt": "2026-11-09T15:40:24.360Z"
+  },
+  {
+   "id": "320e0939-d34d-483e-bf5a-6f7247ca335a",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-09T15:35:38.065Z"
+  },
+  {
+   "id": "cdad7544-ebdb-4d54-aa47-8f0b73ff45ef",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+    "title": "For a liquidity provider in a constant-product (x*y = k) automated market maker, how does divergence\u2026"
+   },
+   "referenceId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+   "read": true,
+   "createdAt": "2026-11-09T15:28:37.633Z"
+  },
+  {
+   "id": "a3f4bf91-0b43-4a49-b6cd-d58ed6f60774",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+    "title": "Why does extending the window of a time-weighted average price (TWAP) oracle force an attacker to\u2026"
+   },
+   "referenceId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+   "read": true,
+   "createdAt": "2026-11-09T15:25:21.931Z"
+  },
+  {
+   "id": "bb3584a8-cf4f-446e-b6fb-2c65d92cf674",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+    "title": "Why does extending the window of a time-weighted average price (TWAP) oracle force an attacker to\u2026"
+   },
+   "referenceId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+   "read": true,
+   "createdAt": "2026-11-09T15:14:25.892Z"
+  },
+  {
+   "id": "65c6bd59-e13a-4cf2-af3c-8d921108526d",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026"
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-09T15:10:50.111Z"
+  },
+  {
+   "id": "5e2bbb78-28b4-4bf5-b593-537398feef73",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-09T15:10:04.956Z"
+  },
+  {
+   "id": "21284fc4-efd6-4393-bc16-96de71496e73",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+    "title": "Why can Ethereum's base fee stay elevated for many consecutive blocks after a spike in demand has\u2026"
+   },
+   "referenceId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+   "read": true,
+   "createdAt": "2026-11-09T15:05:14.312Z"
+  },
+  {
+   "id": "50ab98ee-0d12-4d01-9ede-0479e159a2e5",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+    "title": "What exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026"
+   },
+   "referenceId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+   "read": true,
+   "createdAt": "2026-11-09T15:03:59.339Z"
+  },
+  {
+   "id": "e47a38d4-1f7d-451f-b82f-3f424958280c",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-09T12:26:59.160Z"
+  },
+  {
+   "id": "1bb59fd2-2534-4dd6-a79b-539b47eae2ef",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026"
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-09T12:22:24.053Z"
+  },
+  {
+   "id": "87648f13-c181-471a-9e74-7c765c87516b",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+    "title": "What exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026"
+   },
+   "referenceId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+   "read": true,
+   "createdAt": "2026-11-09T12:18:33.421Z"
+  },
+  {
+   "id": "001e7689-9c76-4315-9ba5-70df7a6511bf",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+    "title": "For a liquidity provider in a constant-product (x*y = k) automated market maker, how does divergence\u2026"
+   },
+   "referenceId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+   "read": true,
+   "createdAt": "2026-11-09T11:58:52.688Z"
+  },
+  {
+   "id": "d56bcedc-692e-4462-b2df-b92cec64abfc",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026"
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-09T10:33:44.978Z"
+  },
+  {
+   "id": "471d04ba-9d0b-4916-ae29-5db898aea067",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026"
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-09T10:33:40.326Z"
+  },
+  {
+   "id": "28fa6858-c506-4281-abbe-ba76d4d59df5",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+    "title": "Why does extending the window of a time-weighted average price (TWAP) oracle force an attacker to\u2026"
+   },
+   "referenceId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+   "read": true,
+   "createdAt": "2026-11-09T10:33:40.240Z"
+  },
+  {
+   "id": "82ec16f0-9dc3-492d-b2b9-ec40d5d213c0",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+    "title": "For a liquidity provider in a constant-product (x*y = k) automated market maker, how does divergence\u2026"
+   },
+   "referenceId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+   "read": true,
+   "createdAt": "2026-11-09T10:33:40.146Z"
+  },
+  {
+   "id": "267acfbc-b079-458f-9c70-2438cb710129",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+    "title": "What exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026"
+   },
+   "referenceId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+   "read": true,
+   "createdAt": "2026-11-09T10:33:35.126Z"
+  },
+  {
+   "id": "d7ef267e-dbc4-4e3f-b249-1f70b19d800e",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+    "title": "Why can Ethereum's base fee stay elevated for many consecutive blocks after a spike in demand has\u2026"
+   },
+   "referenceId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+   "read": true,
+   "createdAt": "2026-11-09T10:33:29.993Z"
+  },
+  {
+   "id": "2d442a97-31c1-4a1a-89d7-a190747c8d66",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+    "title": "How can the producer of a BNB Smart Chain block bias the outcome of an NFT mint whose trait\u2026"
+   },
+   "referenceId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+   "read": true,
+   "createdAt": "2026-11-09T10:33:04.903Z"
+  },
+  {
+   "id": "25625d7a-7e8d-4236-aa23-7c2eef990fc6",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "ask_fee_charged",
+   "content": {
+    "delta": -0.8952,
+    "isrId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+    "title": "Why can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026",
+    "amount": 0.8952,
+    "channel": "user",
+    "message": "Question fee of 0.8952 $TRUED from your Wallet: \u201cWhy can increasing both the number of signers and the approval threshold of a multisignature wallet\u2026\u201d",
+    "profile": "standard",
+    "feeIndex": 7
+   },
+   "referenceId": "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+   "read": true,
+   "createdAt": "2026-11-09T10:16:43.578Z"
+  },
+  {
+   "id": "212bf832-2d7a-48f3-8601-8601b9ca1053",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "ask_fee_charged",
+   "content": {
+    "delta": -0.5383,
+    "isrId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+    "title": "What exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026",
+    "amount": 0.5383,
+    "channel": "user",
+    "message": "Question fee of 0.5383 $TRUED from your Wallet: \u201cWhat exactly does a soft confirmation from a centralized Layer-2 sequencer guarantee, how does it\u2026\u201d",
+    "profile": "standard",
+    "feeIndex": 6
+   },
+   "referenceId": "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+   "read": true,
+   "createdAt": "2026-11-09T10:14:11.315Z"
+  },
+  {
+   "id": "bfb2b611-0e43-464d-bdf1-1a0a8a169b71",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "ask_fee_charged",
+   "content": {
+    "delta": -0.2831,
+    "isrId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+    "title": "Why can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026",
+    "amount": 0.2831,
+    "channel": "user",
+    "message": "Question fee of 0.2831 $TRUED from your Wallet: \u201cWhy can creator royalties for ERC-721 tokens not be enforced by the token contract itself, even when\u2026\u201d",
+    "profile": "standard",
+    "feeIndex": 5
+   },
+   "referenceId": "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+   "read": true,
+   "createdAt": "2026-11-09T10:11:47.287Z"
+  },
+  {
+   "id": "e6e7161d-1a98-45c6-8fb7-a4f1e092cd05",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "ask_fee_charged",
+   "content": {
+    "delta": -0.1214,
+    "isrId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+    "title": "Why does extending the window of a time-weighted average price (TWAP) oracle force an attacker to\u2026",
+    "amount": 0.1214,
+    "channel": "user",
+    "message": "Question fee of 0.1214 $TRUED from your Wallet: \u201cWhy does extending the window of a time-weighted average price (TWAP) oracle force an attacker to\u2026\u201d",
+    "profile": "standard",
+    "feeIndex": 4
+   },
+   "referenceId": "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+   "read": true,
+   "createdAt": "2026-11-09T10:09:15.677Z"
+  },
+  {
+   "id": "c55ab772-d190-4e55-b3d4-4c8b6ba29347",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "ask_fee_charged",
+   "content": {
+    "delta": -0.0363,
+    "isrId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+    "title": "For a liquidity provider in a constant-product (x*y = k) automated market maker, how does divergence\u2026",
+    "amount": 0.0363,
+    "channel": "user",
+    "message": "Question fee of 0.0363 $TRUED from your Wallet: \u201cFor a liquidity provider in a constant-product (x*y = k) automated market maker, how does divergence\u2026\u201d",
+    "profile": "standard",
+    "feeIndex": 3
+   },
+   "referenceId": "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+   "read": true,
+   "createdAt": "2026-11-09T10:06:50.577Z"
+  },
+  {
+   "id": "0a303a4d-5b54-47b9-96c2-fea283f8ecc3",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "subscribed_isr_marathon",
+   "content": {
+    "isrId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+    "title": "How can the producer of a BNB Smart Chain block bias the outcome of an NFT mint whose trait\u2026"
+   },
+   "referenceId": "1d758352-7ed6-415d-9446-6c382d7e1fc6",
+   "read": true,
+   "createdAt": "2026-11-09T10:05:11.337Z"
+  },
+  {
+   "id": "ed13d056-2c3e-4fb7-864c-d8bda46e7bd8",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "ask_fee_charged",
+   "content": {
+    "delta": -0.0045,
+    "isrId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+    "title": "Why can Ethereum's base fee stay elevated for many consecutive blocks after a spike in demand has\u2026",
+    "amount": 0.0045,
+    "channel": "user",
+    "message": "Question fee of 0.0045 $TRUED from your Wallet: \u201cWhy can Ethereum's base fee stay elevated for many consecutive blocks after a spike in demand has\u2026\u201d",
+    "profile": "standard",
+    "feeIndex": 2
+   },
+   "referenceId": "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+   "read": true,
+   "createdAt": "2026-11-09T10:04:11.408Z"
+  },
+  {
+   "id": "147489a7-285b-49ad-a049-4d2eadc4b0cc",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "user_suspended",
+   "content": {
+    "reason": "Slash from rule REL-005 (suspension #3)",
+    "source": "REL-005",
+    "suspensionEndsAt": "2026-11-08T12:44:50.000Z"
+   },
+   "referenceId": null,
+   "read": true,
+   "createdAt": "2026-11-08T12:44:47.877Z"
+  },
+  {
+   "id": "2a195767-a2b7-44bd-a6d0-efcfc2074c7b",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "user_suspended",
+   "content": {
+    "reason": "Slash from rule REL-005 (suspension #2)",
+    "source": "REL-005",
+    "suspensionEndsAt": "2026-11-08T12:38:55.000Z"
+   },
+   "referenceId": null,
+   "read": true,
+   "createdAt": "2026-11-08T12:38:54.359Z"
+  },
+  {
+   "id": "73e4d93b-5d34-41fe-b3c4-598d0a2084b9",
+   "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "user_suspended",
+   "content": {
+    "reason": "Slash from rule REL-005 (suspension #1)",
+    "source": "REL-005",
+    "suspensionEndsAt": "2026-11-08T12:30:05.000Z"
+   },
+   "referenceId": null,
+   "read": true,
+   "createdAt": "2026-11-08T12:30:02.706Z"
+  }
+ ],
+ "total": 79
+}

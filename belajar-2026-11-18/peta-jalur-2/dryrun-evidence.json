@@ -1,0 +1,34 @@
+{
+ "summary": {
+  "candidates": 3,
+  "gate_refused": 0,
+  "drafted": 3,
+  "verdicts": {
+   "non-compliant": 2,
+   "uncertain": 1
+  },
+  "lane_drafts": 3
+ },
+ "gate_demo_own_answer": {
+  "allowed": false,
+  "reasons": [
+   "server flag isOwnAgent=true (our own agent's Answer)",
+   "Answer author is our own user id",
+   "Answer id is in our local ISO denylist",
+   "Question id is in our local ISR denylist",
+   "Answer ownerName matches our account name (rizrekt)"
+  ]
+ },
+ "gate_demo_our_question": {
+  "allowed": false,
+  "reasons": [
+   "Question author is our own user id",
+   "Question id is in our local ISR denylist"
+  ]
+ },
+ "chosen": [
+  "91765e79-bc1e-4cd7-83d8-6ba8a47aef05",
+  "a467904f-c1d9-4692-970f-3afc89d4bfae",
+  "54d58e01-9a20-411a-a467-0b3c2a01b59b"
+ ]
+}

@@ -1,0 +1,114 @@
+listing row keys: ['arenaId', 'arenaName', 'arenaRulesVersion', 'author', 'committedCount', 'content', 'domainTags', 'evaluatingCount', 'fisoCount', 'generatedTitle', 'id', 'isoCount', 'lastActivityAt', 'latestAnswerAuthorId', 'latestAnswerAuthorImage', 'latestAnswerAuthorName', 'latestAnswerIsVerified', 'latestAnswerPreview', 'participantCount', 'profileImageUrl', 'publishedIsoCount', 'status', 'timestamp', 'truedIssued', 'turn', 'userName', 'vfpCount', 'visoCount', 'watcherCount']
+listing offset=100/4088
+listing offset=200/4088
+listing offset=300/4088
+listing offset=400/4088
+listing offset=500/4088
+listing offset=600/4088
+listing offset=700/4088
+listing offset=800/4088
+listing offset=900/4088
+listing offset=1000/4088
+listing offset=1100/4088
+listing offset=1200/4088
+listing offset=1300/4088
+listing offset=1400/4088
+listing offset=1500/4088
+listing offset=1600/4088
+listing offset=1700/4088
+listing offset=1800/4089
+listing offset=1900/4089
+listing offset=2000/4089
+listing offset=2100/4089
+listing offset=2200/4089
+listing offset=2300/4089
+listing offset=2400/4089
+listing offset=2500/4089
+listing offset=2600/4089
+listing offset=2700/4089
+listing offset=2800/4089
+listing offset=2900/4089
+listing offset=3000/4089
+listing offset=3100/4089
+listing offset=3200/4089
+listing offset=3300/4089
+listing offset=3400/4089
+listing offset=3500/4089
+listing offset=3600/4089
+listing offset=3700/4089
+listing offset=3800/4089
+listing offset=3900/4089
+listing offset=4000/4089
+listing offset=4090/4090
+bucket small: avail=0 picked=0
+bucket mid: avail=737 picked=5
+bucket large: avail=1718 picked=5
+bucket giant: avail=153 picked=5
+sample size: 66
+[1/66] 00d071da tag=run11settled isos=38
+[2/66] 013d601d tag=run11other isos=49
+[3/66] 026fa1a2 tag=run11settled isos=87
+[4/66] 028d8293 tag=run11other isos=164
+[5/66] 02c343f7 tag=run11settled isos=61
+[6/66] 08184cab tag=run11other isos=129
+[7/66] 087ce951 tag=run11settled isos=65
+[8/66] 090e293f tag=run11other isos=77
+[9/66] 0dbd4532 tag=run11settled isos=99
+[10/66] 0e6a777c tag=run11other isos=79
+[11/66] 0e9a9ee3 tag=run11other isos=149
+[12/66] 0ff16916 tag=settled-mid isos=33
+[13/66] 0ff90827 tag=run11other isos=39
+[14/66] 10843f92 tag=run11other isos=162
+[15/66] 1129b34a tag=fresh isos=65
+[16/66] 1287c2ae tag=oldserve+run11settled isos=53
+[17/66] 134bcd06 tag=run11other isos=159
+[18/66] 16d1bef1 tag=run11settled isos=144
+[19/66] 18906416 tag=settled-mid isos=26
+[20/66] 18e278b9 tag=run11settled isos=102
+[21/66] 19179518 tag=settled-large isos=52
+[22/66] 1a57ea85 tag=run11other isos=175
+[23/66] 1be5415c tag=run11other isos=194
+[24/66] 1cf80473 tag=run11other isos=53
+[25/66] 1d2ea78d tag=run11settled isos=101
+[26/66] 1d3efb52 tag=run11settled isos=54
+[27/66] 1d758352 tag=run11settled isos=46
+[28/66] 1eb1a11e tag=run11settled isos=29
+[29/66] 26393a17 tag=fresh isos=76
+[30/66] 2777178d tag=pilot isos=105
+[31/66] 30fe9eea tag=oldserve isos=74
+[32/66] 370d9516 tag=fresh isos=128
+[33/66] 374f0f88 tag=settled-mid isos=28
+[34/66] 3884b6c3 tag=oldserve isos=72
+[35/66] 472b29a0 tag=oldserve isos=46
+[36/66] 47618a48 tag=inprog isos=230
+[37/66] 4e205f11 tag=settled-mid isos=27
+[38/66] 5490e6be tag=settled-large isos=41
+[39/66] 57753573 tag=settled-giant isos=92
+[40/66] 5b737818 tag=settled-mid isos=37
+[41/66] 5e905bef tag=pilot isos=76
+[42/66] 60c4689e tag=inprog isos=184
+[43/66] 60fa9935 tag=oldserve isos=59
+[44/66] 635a010d tag=pilot isos=83
+[45/66] 6360e4a8 tag=settled-giant isos=92
+[46/66] 71f472d6 tag=oldserve isos=25
+[47/66] 7285eed5 tag=fresh isos=115
+[48/66] 84b3adc6 tag=fresh isos=82
+[49/66] 8b2bbeeb tag=inprog isos=159
+[50/66] 90f417cf tag=inprog isos=177
+[51/66] 93fd2e00 tag=settled-large isos=74
+[52/66] 9e988367 tag=inprog isos=187
+[53/66] 9edc467b tag=inprog isos=174
+[54/66] a01b5a86 tag=fresh isos=58
+[55/66] a361a16b tag=oldserve isos=54
+[56/66] b1cea5a4 tag=inprog isos=184
+[57/66] b6efbf72 tag=settled-giant isos=91
+[58/66] b8bfff2b tag=settled-giant isos=85
+[59/66] cacf519c tag=fresh isos=74
+[60/66] cf6598cd tag=settled-large isos=44
+[61/66] d21135d5 tag=pilot isos=103
+[62/66] d91166bb tag=settled-giant isos=90
+[63/66] d94d7e34 tag=pilot isos=178
+[64/66] dddc7c23 tag=inprog isos=164
+[65/66] f161ec4e tag=fresh isos=63
+[66/66] f27f27c3 tag=settled-large isos=73
+DONE isrs=66 isos=6188 errors=0

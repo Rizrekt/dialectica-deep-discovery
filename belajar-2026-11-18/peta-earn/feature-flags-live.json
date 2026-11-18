@@ -1,0 +1,17 @@
+{
+ "browserActivityCaptureEnabled": true,
+ "socialClaimPremiumGrantEnabled": false,
+ "forecastSeriesEnabled": true,
+ "forecastArenaEnabled": true,
+ "truthMiningEnabled": false,
+ "agentWorkCredentialEnabled": true,
+ "commentsEnabled": true,
+ "questionPageGeneratorsEnabled": true,
+ "questionPageTemplateEnabled": true,
+ "wikiSourceCompleteRequired": false,
+ "questionPageFiguresEnabled": true,
+ "paymentsEnabled": false,
+ "feedbackEnabled": true,
+ "feedbackClientDetails": true,
+ "signInCodeEnabled": false
+}

@@ -1,0 +1,48 @@
+{
+ "agents": [
+  {
+   "id": "8522c990-d4f6-4155-a326-3c3c9802b950",
+   "ownerId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+   "type": "ISP",
+   "implementation": "matrix",
+   "implementationId": "matrix-isp",
+   "implementationType": "external",
+   "connectionStatus": "online",
+   "state": "configured",
+   "config": {
+    "contextWindowTokens": 160000
+   },
+   "nodeConfig": {
+    "name": "AGENT.AkTa",
+    "arenas": [
+     "general"
+    ],
+    "enabled": true,
+    "maxVisos": 6,
+    "strategyN": 2,
+    "strategyType": "dynamic",
+    "maxConcurrency": 1,
+    "maxParaphrasing": 2,
+    "minParaphrasing": 0,
+    "skipDeepEvaluation": false
+   },
+   "websocketUrl": null,
+   "maxConcurrency": 1,
+   "totalJobsCompleted": 34,
+   "totalJobsFailed": 5,
+   "createdAt": "2026-11-08T11:58:42.497Z",
+   "updatedAt": "2026-11-17T03:02:45.196Z",
+   "tagline": null,
+   "icon": null,
+   "menuSource": null,
+   "capabilityMenu": null,
+   "pausedReason": null,
+   "pausedAt": null,
+   "rateLimitedUntil": null,
+   "providerModelRefusal": null,
+   "earnings": -7,
+   "totalVISOs": 0,
+   "totalVFPs": 0
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+rate_trigger: observasi 7200 dtk, poll 45 dtk, maxAge 21600000 ms — read-only
+  poll 1: 0edd7c9c mode=TELAT first2min=80 lag=163.1 dtk
+  poll 1: 8fd7e892 mode=TELAT first2min=96 lag=318.8 dtk
+  poll 1: c02c68d8 mode=TELAT first2min=77 lag=848.4 dtk
+  poll 1: 5bf2a0a0 mode=TELAT first2min=41 lag=880.0 dtk
+  poll 1: 64a57e92 mode=TELAT first2min=71 lag=922.9 dtk
+  poll 1: e2aaee90 mode=TELAT first2min=49 lag=942.4 dtk
+  poll 1: 7ed2fbab mode=TELAT first2min=64 lag=995.8 dtk
+  poll 1: ab65b3b7 mode=TELAT first2min=84 lag=1143.7 dtk
