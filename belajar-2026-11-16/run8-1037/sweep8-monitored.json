@@ -1,0 +1,58 @@
+{
+ "2d968d7e": {
+  "short": "2d968d7e",
+  "status": "settled",
+  "viso": 35,
+  "awarded": 11,
+  "isos_status_counts": {
+   "abandoned": 9,
+   "falsified": 11,
+   "verified": 35,
+   "revealed": 9
+  },
+  "n_isos_now": 64,
+  "n_isos_0900": 63,
+  "status_changes_vs_0900": [],
+  "new_isos_vs_0900": [
+   {
+    "id": "221a0eb0",
+    "status": "falsified",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794796872963,
+    "updatedAt_wib": "2026-11-16 10:09 WIB"
+   }
+  ],
+  "verdicts_updated_since_cut": [
+   {
+    "id": "221a0eb0",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-16 10:09 WIB"
+   }
+  ]
+ },
+ "df9cb696": {
+  "short": "df9cb696",
+  "status": "settled",
+  "viso": 34,
+  "awarded": 10,
+  "isos_status_counts": {
+   "falsified": 13,
+   "verified": 34,
+   "abandoned": 9,
+   "revealed": 19
+  },
+  "n_isos_now": 75,
+  "n_isos_0900": 75,
+  "status_changes_vs_0900": [],
+  "new_isos_vs_0900": [],
+  "verdicts_updated_since_cut": [
+   {
+    "id": "59bed01d",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 06:49 WIB"
+   }
+  ]
+ }
+}

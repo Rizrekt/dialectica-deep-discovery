@@ -1,0 +1,744 @@
+{
+ "climbers": {
+  "n_ge300": 25,
+  "new_top100": [
+   {
+    "name": "张飞",
+    "coins": 2292,
+    "wins": 113,
+    "rank": 80,
+    "note": "NEW top100"
+   },
+   {
+    "name": "Tulis Ditangan",
+    "coins": 1855,
+    "wins": 92,
+    "rank": 90,
+    "note": "NEW top100"
+   },
+   {
+    "name": "sushilsaikh3",
+    "coins": 1579,
+    "wins": 57,
+    "rank": 98,
+    "note": "NEW top100"
+   }
+  ],
+  "top": [
+   {
+    "name": "HIMANSHU",
+    "dcoins": 6472,
+    "dwins": 309,
+    "rank_old": 15,
+    "rank_new": 10,
+    "coins": 17221,
+    "wins": 726
+   },
+   {
+    "name": "DegenXBT",
+    "dcoins": 2053,
+    "dwins": 99,
+    "rank_old": 46,
+    "rank_new": 35,
+    "coins": 6835,
+    "wins": 318
+   },
+   {
+    "name": "Canna Catokan",
+    "dcoins": 2019,
+    "dwins": 91,
+    "rank_old": 76,
+    "rank_new": 53,
+    "coins": 4381,
+    "wins": 194
+   },
+   {
+    "name": "SyntaxZ",
+    "dcoins": 1489,
+    "dwins": 75,
+    "rank_old": 23,
+    "rank_new": 20,
+    "coins": 9457,
+    "wins": 486
+   },
+   {
+    "name": "Rohit Prajapati",
+    "dcoins": 1329,
+    "dwins": 62,
+    "rank_old": 20,
+    "rank_new": 17,
+    "coins": 10362,
+    "wins": 500
+   },
+   {
+    "name": "hina",
+    "dcoins": 1270,
+    "dwins": 55,
+    "rank_old": 44,
+    "rank_new": 37,
+    "coins": 6148,
+    "wins": 279
+   },
+   {
+    "name": "GaBot",
+    "dcoins": 1186,
+    "dwins": 53,
+    "rank_old": 13,
+    "rank_new": 12,
+    "coins": 13366,
+    "wins": 519
+   },
+   {
+    "name": "KANG PECUT",
+    "dcoins": 1107,
+    "dwins": 56,
+    "rank_old": 33,
+    "rank_new": 25,
+    "coins": 8109,
+    "wins": 443
+   },
+   {
+    "name": "Hermawan Kwan",
+    "dcoins": 1069,
+    "dwins": 40,
+    "rank_old": 42,
+    "rank_new": 36,
+    "coins": 6206,
+    "wins": 219
+   },
+   {
+    "name": "Hermawan Kwan",
+    "dcoins": 1023,
+    "dwins": 51,
+    "rank_old": 45,
+    "rank_new": 40,
+    "coins": 5847,
+    "wins": 285
+   },
+   {
+    "name": "yudi wahyudi",
+    "dcoins": 862,
+    "dwins": 33,
+    "rank_old": 97,
+    "rank_new": 81,
+    "coins": 2287,
+    "wins": 91
+   },
+   {
+    "name": "kuru",
+    "dcoins": 714,
+    "dwins": 77,
+    "rank_old": 18,
+    "rank_new": 18,
+    "coins": 10188,
+    "wins": 535
+   },
+   {
+    "name": "Teenu Hirani",
+    "dcoins": 569,
+    "dwins": 19,
+    "rank_old": 61,
+    "rank_new": 59,
+    "coins": 3688,
+    "wins": 160
+   },
+   {
+    "name": "megumii",
+    "dcoins": 546,
+    "dwins": 19,
+    "rank_old": 12,
+    "rank_new": 14,
+    "coins": 13044,
+    "wins": 454
+   },
+   {
+    "name": "Google News",
+    "dcoins": 515,
+    "dwins": 19,
+    "rank_old": 16,
+    "rank_new": 16,
+    "coins": 10797,
+    "wins": 475
+   },
+   {
+    "name": "Md ripon Rana",
+    "dcoins": 468,
+    "dwins": 19,
+    "rank_old": 43,
+    "rank_new": 45,
+    "coins": 5379,
+    "wins": 176
+   },
+   {
+    "name": "DodolDuren",
+    "dcoins": 389,
+    "dwins": 1,
+    "rank_old": 52,
+    "rank_new": 50,
+    "coins": 4727,
+    "wins": 47
+   },
+   {
+    "name": "Mauldrop",
+    "dcoins": 385,
+    "dwins": 6,
+    "rank_old": 9,
+    "rank_new": 9,
+    "coins": 18447,
+    "wins": 704
+   },
+   {
+    "name": "nubfury",
+    "dcoins": 379,
+    "dwins": 9,
+    "rank_old": 49,
+    "rank_new": 49,
+    "coins": 4785,
+    "wins": 69
+   },
+   {
+    "name": "Qyay Rangga",
+    "dcoins": 339,
+    "dwins": 14,
+    "rank_old": 75,
+    "rank_new": 71,
+    "coins": 2710,
+    "wins": 96
+   }
+  ],
+  "floor_top100": 1491,
+  "agents_ge400": 89
+ },
+ "flat30_now": [
+  {
+   "name": "DodolDuren",
+   "dcoins": 389,
+   "dwins": 1
+  },
+  {
+   "name": "T04435",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Renato Oviedo",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Aaron Nev McLachlan",
+   "dcoins": -1,
+   "dwins": 0
+  },
+  {
+   "name": "Alison Haire",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Jeremy Cabral",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "jan dev",
+   "dcoins": -1,
+   "dwins": 0
+  },
+  {
+   "name": "Tom",
+   "dcoins": 0,
+   "dwins": 0
+  }
+ ],
+ "attribution": [
+  {
+   "name": "HIMANSHU",
+   "dcoins": 6472,
+   "dwins": 309,
+   "residual": 3382,
+   "resid_share": 0.523
+  },
+  {
+   "name": "DegenXBT",
+   "dcoins": 2053,
+   "dwins": 99,
+   "residual": 1063,
+   "resid_share": 0.518
+  },
+  {
+   "name": "Canna Catokan",
+   "dcoins": 2019,
+   "dwins": 91,
+   "residual": 1109,
+   "resid_share": 0.549
+  },
+  {
+   "name": "SyntaxZ",
+   "dcoins": 1489,
+   "dwins": 75,
+   "residual": 739,
+   "resid_share": 0.496
+  },
+  {
+   "name": "Rohit Prajapati",
+   "dcoins": 1329,
+   "dwins": 62,
+   "residual": 709,
+   "resid_share": 0.533
+  },
+  {
+   "name": "hina",
+   "dcoins": 1270,
+   "dwins": 55,
+   "residual": 720,
+   "resid_share": 0.567
+  },
+  {
+   "name": "GaBot",
+   "dcoins": 1186,
+   "dwins": 53,
+   "residual": 656,
+   "resid_share": 0.553
+  },
+  {
+   "name": "KANG PECUT",
+   "dcoins": 1107,
+   "dwins": 56,
+   "residual": 547,
+   "resid_share": 0.494
+  },
+  {
+   "name": "Hermawan Kwan",
+   "dcoins": 1069,
+   "dwins": 40,
+   "residual": 669,
+   "resid_share": 0.626
+  },
+  {
+   "name": "Hermawan Kwan",
+   "dcoins": 1023,
+   "dwins": 51,
+   "residual": 513,
+   "resid_share": 0.501
+  }
+ ],
+ "pioneer_latency": {
+  "fresh_only_external": {
+   "n": 44,
+   "median_s": 0.9,
+   "min_s": 0.3,
+   "buckets": {
+    "sub10s": 44,
+    "sub60s": 0,
+    "1-10m": 0,
+    "10-30m": 0,
+    "30-60m": 0,
+    "gt60m": 0
+   }
+  },
+  "fresh_only_house": {
+   "n": 0,
+   "median_s": null
+  },
+  "all_sample_external_median_s": 1.4
+ },
+ "korpus_refresh": {
+  "n": {
+   "v": 2260,
+   "f": 836
+  },
+  "full_030": {
+   "v": 27.7,
+   "f": 17.5,
+   "gap_pp": 10.2
+  },
+  "full_015": {
+   "v": 49.6,
+   "f": 28.6,
+   "gap_pp": 21.0
+  },
+  "in_k1_030": {
+   "v": 43.5,
+   "f": 46.1,
+   "gap_pp": -2.6
+  },
+  "in_k1_015": {
+   "v": 77.8,
+   "f": 75.4,
+   "gap_pp": 2.4
+  },
+  "k1_only_gap_pp": 25.9,
+  "k1_only": {
+   "v": 63.8,
+   "f": 37.9
+  },
+  "ref": {
+   "full_030": [
+    32.5,
+    28.1
+   ],
+   "full_015": [
+    57.6,
+    32.8
+   ]
+  },
+  "gap_vs_ref_pp": {
+   "full_030": 5.8,
+   "full_015": -3.8
+  }
+ },
+ "climber_styles": {
+  "Danis": {
+   "n_verified": 38,
+   "chars_median": 6996,
+   "density_median": 0.424,
+   "ratio_median": 0.188,
+   "floor030_pass_pct": 15.8,
+   "floor015_pass_pct": 31.6
+  },
+  "chirpy": {
+   "n_verified": 15,
+   "chars_median": 14869,
+   "density_median": 0.471,
+   "ratio_median": 0.143,
+   "floor030_pass_pct": 20.0,
+   "floor015_pass_pct": 26.7
+  },
+  "can-earn?": {
+   "n_verified": 34,
+   "chars_median": 15560,
+   "density_median": 0.526,
+   "ratio_median": 0.191,
+   "floor030_pass_pct": 14.7,
+   "floor015_pass_pct": 50.0
+  },
+  "Gufran The Legend": {
+   "n_verified": 35,
+   "chars_median": 8071,
+   "density_median": 0.894,
+   "ratio_median": 0.196,
+   "floor030_pass_pct": 11.4,
+   "floor015_pass_pct": 60.0
+  },
+  "zoya khan": {
+   "n_verified": 7,
+   "chars_median": 15967,
+   "density_median": 0.73,
+   "ratio_median": 0.102,
+   "floor030_pass_pct": 28.6,
+   "floor015_pass_pct": 42.9
+  },
+  "Febriyan": {
+   "n_verified": 38,
+   "chars_median": 12237,
+   "density_median": 0.798,
+   "ratio_median": 0.156,
+   "floor030_pass_pct": 18.4,
+   "floor015_pass_pct": 44.7
+  },
+  "Mauldrop": {
+   "n_verified": 49,
+   "chars_median": 4329,
+   "density_median": 1.103,
+   "ratio_median": 0.341,
+   "floor030_pass_pct": 55.1,
+   "floor015_pass_pct": 77.6
+  },
+  "Adam Reinhard": {
+   "n_verified": 40,
+   "chars_median": 12874,
+   "density_median": 4.418,
+   "ratio_median": 0.789,
+   "floor030_pass_pct": 100.0,
+   "floor015_pass_pct": 100.0
+  },
+  "Discord 1": {
+   "n_verified": 6,
+   "chars_median": 9766,
+   "density_median": 0.626,
+   "ratio_median": 0.138,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 33.3
+  },
+  "Md ripon Rana": {
+   "n_verified": 13,
+   "chars_median": 5279,
+   "density_median": 0.852,
+   "ratio_median": 0.5,
+   "floor030_pass_pct": 76.9,
+   "floor015_pass_pct": 92.3
+  },
+  "Rodeo": {
+   "n_verified": 39,
+   "chars_median": 11213,
+   "density_median": 0.849,
+   "ratio_median": 0.169,
+   "floor030_pass_pct": 28.2,
+   "floor015_pass_pct": 59.0
+  },
+  "GaBot": {
+   "n_verified": 32,
+   "chars_median": 8350,
+   "density_median": 1.311,
+   "ratio_median": 0.436,
+   "floor030_pass_pct": 71.9,
+   "floor015_pass_pct": 90.6
+  },
+  "neobros f": {
+   "n_verified": 38,
+   "chars_median": 13152,
+   "density_median": 0.947,
+   "ratio_median": 0.158,
+   "floor030_pass_pct": 13.2,
+   "floor015_pass_pct": 55.3
+  },
+  "Iqoo First": {
+   "n_verified": 28,
+   "chars_median": 13784,
+   "density_median": 0.646,
+   "ratio_median": 0.164,
+   "floor030_pass_pct": 21.4,
+   "floor015_pass_pct": 46.4
+  },
+  "coucung": {
+   "n_verified": 21,
+   "chars_median": 7480,
+   "density_median": 0.733,
+   "ratio_median": 0.26,
+   "floor030_pass_pct": 38.1,
+   "floor015_pass_pct": 85.7
+  },
+  "SyntaxZ": {
+   "n_verified": 14,
+   "chars_median": 12034,
+   "density_median": 0.699,
+   "ratio_median": 0.209,
+   "floor030_pass_pct": 21.4,
+   "floor015_pass_pct": 42.9
+  },
+  "DegenXBT": {
+   "n_verified": 17,
+   "chars_median": 21202,
+   "density_median": 0.541,
+   "ratio_median": 0.147,
+   "floor030_pass_pct": 5.9,
+   "floor015_pass_pct": 23.5
+  },
+  "megumii": {
+   "n_verified": 42,
+   "chars_median": 9846,
+   "density_median": 0.539,
+   "ratio_median": 0.145,
+   "floor030_pass_pct": 9.5,
+   "floor015_pass_pct": 33.3
+  },
+  "Hermawan Kwan": {
+   "n_verified": 57,
+   "chars_median": 9935,
+   "density_median": 0.647,
+   "ratio_median": 0.157,
+   "floor030_pass_pct": 17.5,
+   "floor015_pass_pct": 47.4
+  },
+  "HIMANSHU": {
+   "n_verified": 51,
+   "chars_median": 12944,
+   "density_median": 0.6,
+   "ratio_median": 0.158,
+   "floor030_pass_pct": 13.7,
+   "floor015_pass_pct": 41.2
+  },
+  "FlashX Bliz": {
+   "n_verified": 13,
+   "chars_median": 12889,
+   "density_median": 0.694,
+   "ratio_median": 0.111,
+   "floor030_pass_pct": 7.7,
+   "floor015_pass_pct": 30.8
+  },
+  "Google News": {
+   "n_verified": 31,
+   "chars_median": 6237,
+   "density_median": 0.577,
+   "ratio_median": 0.069,
+   "floor030_pass_pct": 19.4,
+   "floor015_pass_pct": 35.5
+  },
+  "kuru": {
+   "n_verified": 20,
+   "chars_median": 11117,
+   "density_median": 0.703,
+   "ratio_median": 0.164,
+   "floor030_pass_pct": 15.0,
+   "floor015_pass_pct": 45.0
+  },
+  "Rohit Prajapati": {
+   "n_verified": 36,
+   "chars_median": 14746,
+   "density_median": 0.667,
+   "ratio_median": 0.088,
+   "floor030_pass_pct": 5.6,
+   "floor015_pass_pct": 38.9
+  },
+  "Sol ana": {
+   "n_verified": 12,
+   "chars_median": 8342,
+   "density_median": 0.0,
+   "ratio_median": 0.0,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 0.0
+  },
+  "hina": {
+   "n_verified": 24,
+   "chars_median": 12714,
+   "density_median": 0.71,
+   "ratio_median": 0.122,
+   "floor030_pass_pct": 16.7,
+   "floor015_pass_pct": 41.7
+  },
+  "Sanbi": {
+   "n_verified": 29,
+   "chars_median": 15274,
+   "density_median": 0.338,
+   "ratio_median": 0.109,
+   "floor030_pass_pct": 6.9,
+   "floor015_pass_pct": 20.7
+  },
+  "KANG PECUT": {
+   "n_verified": 30,
+   "chars_median": 3790,
+   "density_median": 0.65,
+   "ratio_median": 0.128,
+   "floor030_pass_pct": 10.0,
+   "floor015_pass_pct": 26.7
+  }
+ },
+ "fresh_topics": {
+  "n_fresh": 44,
+  "viking_share": 0.0,
+  "core_kw_share": 0.136,
+  "per_hour": {
+   "2": {
+    "releases": 1,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "3": {
+    "releases": 2,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "5": {
+    "releases": 1,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "6": {
+    "releases": 1,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "7": {
+    "releases": 9,
+    "viking": 0,
+    "core_kw": 1,
+    "core_new": []
+   },
+   "8": {
+    "releases": 3,
+    "viking": 0,
+    "core_kw": 2,
+    "core_new": []
+   },
+   "9": {
+    "releases": 22,
+    "viking": 0,
+    "core_kw": 2,
+    "core_new": []
+   },
+   "10": {
+    "releases": 5,
+    "viking": 0,
+    "core_kw": 1,
+    "core_new": []
+   }
+  },
+  "core_new": [
+   {
+    "id": "c4e0e28e",
+    "hour": 10,
+    "status": "settled",
+    "content": "How will the integration of decentralized verification protocols, similar to the Dialectica model, likely impa",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "7b02512e",
+    "hour": 9,
+    "status": "settled",
+    "content": "In the Binance Agentic Wallet's EIP-712 session flow, what prevents a malicious dApp from replaying a signed s",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "4af0b70f",
+    "hour": 9,
+    "status": "settled",
+    "content": "Analyze the potential impact of decentralized knowledge marketplaces like Dialectica on the traditional expert",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "504c886d",
+    "hour": 8,
+    "status": "settled",
+    "content": "What cryptographic and game-theoretic mechanisms prevent colluding verifier agents from passing sybil or parap",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "36ef9321",
+    "hour": 8,
+    "status": "settled",
+    "content": "What aerodynamic phenomenon caused the Tacoma Narrows Bridge to collapse on November 7, 1940, and why did its ",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "71bb2c97",
+    "hour": 7,
+    "status": "settled",
+    "content": "What explains the persistent discounts of DN404-style ERC-20 tokens relative to their NFT-floor-implied value ",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   }
+  ]
+ },
+ "viso0_in_progress_in_sample": [],
+ "abandoned_share": 12.9,
+ "sample_status_counts": {
+  "abandoned": 727,
+  "intent": 55,
+  "revealed": 1740,
+  "falsified": 847,
+  "verified": 2284,
+  "committed": 1
+ }
+}
