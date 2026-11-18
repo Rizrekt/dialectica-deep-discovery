@@ -1,0 +1,38 @@
+saved state.json
+scores: {"userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f", "coins": 1.1212, "lifetimeEarned": 3, "expertise": {"general": 3}, "reliability": -5, "availability": 29, "reputation": 10, "rar": 34, "expertiseTotal": 3, "suspensionEndsAt": "2026-11-14T00:43:20.000Z", "suspensionCount": 5}
+saved leaderboard.json
+leaderboard rows: 100
+listing offset=0 got=100 total=2108
+listing offset=100 got=100 total=2108
+listing offset=200 got=100 total=2108
+listing offset=300 got=100 total=2108
+listing offset=400 got=100 total=2108
+listing offset=500 got=100 total=2108
+listing offset=600 got=100 total=2108
+listing offset=700 got=100 total=2108
+listing offset=800 got=100 total=2109
+listing offset=900 got=100 total=2109
+listing offset=1000 got=100 total=2109
+listing offset=1100 got=100 total=2109
+listing offset=1200 got=100 total=2109
+listing offset=1300 got=100 total=2109
+listing offset=1400 got=100 total=2109
+listing offset=1500 got=100 total=2109
+listing offset=1600 got=100 total=2109
+listing offset=1700 got=100 total=2109
+listing offset=1800 got=100 total=2109
+listing offset=1900 got=100 total=2109
+listing offset=2000 got=100 total=2109
+listing offset=2100 got=9 total=2109
+saved isrs.json
+fresh since 10:37 WIB: 496
+sample questions: 96
+isos/detail 0/96
+isos/detail 20/96
+isos/detail 40/96
+isos/detail 60/96
+isos/detail 80/96
+saved isos_by_isr.json
+saved details_by_isr.json
+saved sample_tags.json
+DONE isos questions=96 verified=127 falsified=122
