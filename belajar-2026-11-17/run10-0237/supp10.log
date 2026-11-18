@@ -1,0 +1,1132 @@
+{
+ "climbers": {
+  "n_ge300": 24,
+  "new_top100": [
+   {
+    "name": "Lin Jason",
+    "coins": 5049,
+    "wins": 236,
+    "rank": 54,
+    "note": "NEW top100"
+   },
+   {
+    "name": "fuck2ai",
+    "coins": 2639,
+    "wins": 113,
+    "rank": 77,
+    "note": "NEW top100"
+   },
+   {
+    "name": "web3.0 # 35007.bnb (💙,🧡)\"❤️ Memecoin\"",
+    "coins": 2130,
+    "wins": 104,
+    "rank": 88,
+    "note": "NEW top100"
+   },
+   {
+    "name": "Gufran Saifi",
+    "coins": 2047,
+    "wins": 98,
+    "rank": 93,
+    "note": "NEW top100"
+   },
+   {
+    "name": "夜雨西楼",
+    "coins": 1819,
+    "wins": 87,
+    "rank": 100,
+    "note": "NEW top100"
+   }
+  ],
+  "top": [
+   {
+    "name": "Love8",
+    "dcoins": 4335,
+    "dwins": 207,
+    "rank_old": 61,
+    "rank_new": 29,
+    "coins": 8142,
+    "wins": 383
+   },
+   {
+    "name": "HIMANSHU",
+    "dcoins": 2741,
+    "dwins": 128,
+    "rank_old": 9,
+    "rank_new": 9,
+    "coins": 23635,
+    "wins": 1035
+   },
+   {
+    "name": "zoya khan",
+    "dcoins": 2037,
+    "dwins": 89,
+    "rank_old": 20,
+    "rank_new": 16,
+    "coins": 11735,
+    "wins": 494
+   },
+   {
+    "name": "Ricki Ajirasman",
+    "dcoins": 1759,
+    "dwins": 113,
+    "rank_old": 85,
+    "rank_new": 65,
+    "coins": 3853,
+    "wins": 238
+   },
+   {
+    "name": "Canna Catokan",
+    "dcoins": 1445,
+    "dwins": 65,
+    "rank_old": 47,
+    "rank_new": 42,
+    "coins": 6619,
+    "wins": 293
+   },
+   {
+    "name": "老张1982",
+    "dcoins": 1368,
+    "dwins": 65,
+    "rank_old": 66,
+    "rank_new": 62,
+    "coins": 4396,
+    "wins": 206
+   },
+   {
+    "name": "SyntaxZ",
+    "dcoins": 1243,
+    "dwins": 62,
+    "rank_old": 19,
+    "rank_new": 18,
+    "coins": 11586,
+    "wins": 594
+   },
+   {
+    "name": "Teenu Hirani",
+    "dcoins": 1240,
+    "dwins": 50,
+    "rank_old": 59,
+    "rank_new": 52,
+    "coins": 5206,
+    "wins": 224
+   },
+   {
+    "name": "megumii",
+    "dcoins": 1189,
+    "dwins": 47,
+    "rank_old": 13,
+    "rank_new": 13,
+    "coins": 14486,
+    "wins": 508
+   },
+   {
+    "name": "hina",
+    "dcoins": 1169,
+    "dwins": 50,
+    "rank_old": 38,
+    "rank_new": 33,
+    "coins": 7506,
+    "wins": 336
+   },
+   {
+    "name": "Rohit Prajapati",
+    "dcoins": 1164,
+    "dwins": 51,
+    "rank_old": 18,
+    "rank_new": 17,
+    "coins": 11713,
+    "wins": 560
+   },
+   {
+    "name": "GaBot",
+    "dcoins": 736,
+    "dwins": 30,
+    "rank_old": 12,
+    "rank_new": 12,
+    "coins": 14567,
+    "wins": 571
+   },
+   {
+    "name": "Hermawan Kwan",
+    "dcoins": 668,
+    "dwins": 30,
+    "rank_old": 37,
+    "rank_new": 37,
+    "coins": 7155,
+    "wins": 347
+   },
+   {
+    "name": "Dhefa Rhull",
+    "dcoins": 576,
+    "dwins": 25,
+    "rank_old": 58,
+    "rank_new": 58,
+    "coins": 4602,
+    "wins": 146
+   },
+   {
+    "name": "Febriyan",
+    "dcoins": 573,
+    "dwins": 8,
+    "rank_old": 8,
+    "rank_new": 8,
+    "coins": 24309,
+    "wins": 961
+   },
+   {
+    "name": "kasnapp",
+    "dcoins": 567,
+    "dwins": 18,
+    "rank_old": 39,
+    "rank_new": 41,
+    "coins": 6738,
+    "wins": 192
+   },
+   {
+    "name": "Hermawan Kwan",
+    "dcoins": 545,
+    "dwins": 25,
+    "rank_old": 36,
+    "rank_new": 36,
+    "coins": 7160,
+    "wins": 258
+   },
+   {
+    "name": "Sanbi",
+    "dcoins": 539,
+    "dwins": 17,
+    "rank_old": 29,
+    "rank_new": 30,
+    "coins": 8110,
+    "wins": 242
+   },
+   {
+    "name": "gisa",
+    "dcoins": 483,
+    "dwins": 16,
+    "rank_old": 22,
+    "rank_new": 22,
+    "coins": 9840,
+    "wins": 543
+   },
+   {
+    "name": "coucung",
+    "dcoins": 445,
+    "dwins": 17,
+    "rank_old": 26,
+    "rank_new": 25,
+    "coins": 8753,
+    "wins": 352
+   }
+  ],
+  "floor_top100": 1819,
+  "agents_ge400": 89
+ },
+ "flat30_now": [
+  {
+   "name": "DodolDuren",
+   "dcoins": 257,
+   "dwins": 0
+  },
+  {
+   "name": "T04435",
+   "dcoins": 17,
+   "dwins": 0
+  },
+  {
+   "name": "Renato Oviedo",
+   "dcoins": 61,
+   "dwins": 0
+  },
+  {
+   "name": "Aaron Nev McLachlan",
+   "dcoins": 32,
+   "dwins": 0
+  },
+  {
+   "name": "Alison Haire",
+   "dcoins": 33,
+   "dwins": 0
+  }
+ ],
+ "attribution": [
+  {
+   "name": "Love8",
+   "dcoins": 4335,
+   "dwins": 207,
+   "residual": 2265,
+   "resid_share": 0.522
+  },
+  {
+   "name": "HIMANSHU",
+   "dcoins": 2741,
+   "dwins": 128,
+   "residual": 1461,
+   "resid_share": 0.533
+  },
+  {
+   "name": "zoya khan",
+   "dcoins": 2037,
+   "dwins": 89,
+   "residual": 1147,
+   "resid_share": 0.563
+  },
+  {
+   "name": "Ricki Ajirasman",
+   "dcoins": 1759,
+   "dwins": 113,
+   "residual": 629,
+   "resid_share": 0.358
+  },
+  {
+   "name": "Canna Catokan",
+   "dcoins": 1445,
+   "dwins": 65,
+   "residual": 795,
+   "resid_share": 0.55
+  },
+  {
+   "name": "老张1982",
+   "dcoins": 1368,
+   "dwins": 65,
+   "residual": 718,
+   "resid_share": 0.525
+  },
+  {
+   "name": "SyntaxZ",
+   "dcoins": 1243,
+   "dwins": 62,
+   "residual": 623,
+   "resid_share": 0.501
+  },
+  {
+   "name": "Teenu Hirani",
+   "dcoins": 1240,
+   "dwins": 50,
+   "residual": 740,
+   "resid_share": 0.597
+  },
+  {
+   "name": "megumii",
+   "dcoins": 1189,
+   "dwins": 47,
+   "residual": 719,
+   "resid_share": 0.605
+  },
+  {
+   "name": "hina",
+   "dcoins": 1169,
+   "dwins": 50,
+   "residual": 669,
+   "resid_share": 0.572
+  }
+ ],
+ "pioneer_latency": {
+  "fresh_only_external": {
+   "n": 80,
+   "median_s": 14.3,
+   "min_s": 0.7,
+   "buckets": {
+    "sub10s": 35,
+    "sub60s": 25,
+    "1-10m": 13,
+    "10-30m": 6,
+    "30-60m": 1,
+    "gt60m": 0
+   }
+  },
+  "fresh_only_house": {
+   "n": 0,
+   "median_s": null
+  },
+  "all_sample_external_median_s": 6.6
+ },
+ "korpus_refresh": {
+  "n": {
+   "v": 1631,
+   "f": 638
+  },
+  "full_030": {
+   "v": 25.9,
+   "f": 21.3,
+   "gap_pp": 4.6
+  },
+  "full_015": {
+   "v": 49.3,
+   "f": 33.9,
+   "gap_pp": 15.4
+  },
+  "in_k1_030": {
+   "v": 39.4,
+   "f": 47.6,
+   "gap_pp": -8.2
+  },
+  "in_k1_015": {
+   "v": 75.0,
+   "f": 75.5,
+   "gap_pp": -0.5
+  },
+  "k1_only_gap_pp": 20.9,
+  "k1_only": {
+   "v": 65.7,
+   "f": 44.8
+  },
+  "ref": {
+   "full_030": [
+    32.5,
+    28.1
+   ],
+   "full_015": [
+    57.6,
+    32.8
+   ]
+  },
+  "gap_vs_ref_pp": {
+   "full_030": 0.2,
+   "full_015": -9.4
+  }
+ },
+ "climber_styles": {
+  "Danis": {
+   "n_verified": 18,
+   "chars_median": 5696,
+   "density_median": 0.599,
+   "ratio_median": 0.188,
+   "floor030_pass_pct": 16.7,
+   "floor015_pass_pct": 55.6
+  },
+  "chirpy": {
+   "n_verified": 10,
+   "chars_median": 16530,
+   "density_median": 0.455,
+   "ratio_median": 0.09,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 10.0
+  },
+  "can-earn?": {
+   "n_verified": 21,
+   "chars_median": 14880,
+   "density_median": 0.596,
+   "ratio_median": 0.212,
+   "floor030_pass_pct": 33.3,
+   "floor015_pass_pct": 66.7
+  },
+  "Gufran The Legend": {
+   "n_verified": 24,
+   "chars_median": 6430,
+   "density_median": 0.867,
+   "ratio_median": 0.198,
+   "floor030_pass_pct": 8.3,
+   "floor015_pass_pct": 66.7
+  },
+  "zoya khan": {
+   "n_verified": 18,
+   "chars_median": 13958,
+   "density_median": 0.512,
+   "ratio_median": 0.172,
+   "floor030_pass_pct": 16.7,
+   "floor015_pass_pct": 27.8
+  },
+  "Febriyan": {
+   "n_verified": 30,
+   "chars_median": 12234,
+   "density_median": 0.825,
+   "ratio_median": 0.142,
+   "floor030_pass_pct": 20.0,
+   "floor015_pass_pct": 43.3
+  },
+  "Mauldrop": {
+   "n_verified": 27,
+   "chars_median": 5892,
+   "density_median": 1.173,
+   "ratio_median": 0.393,
+   "floor030_pass_pct": 66.7,
+   "floor015_pass_pct": 92.6
+  },
+  "Adam Reinhard": {
+   "n_verified": 26,
+   "chars_median": 10880,
+   "density_median": 3.778,
+   "ratio_median": 0.662,
+   "floor030_pass_pct": 96.2,
+   "floor015_pass_pct": 100.0
+  },
+  "Discord 1": {
+   "n_verified": 6,
+   "chars_median": 9766,
+   "density_median": 0.626,
+   "ratio_median": 0.138,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 33.3
+  },
+  "Md ripon Rana": {
+   "n_verified": 11,
+   "chars_median": 5502,
+   "density_median": 0.851,
+   "ratio_median": 0.5,
+   "floor030_pass_pct": 72.7,
+   "floor015_pass_pct": 81.8
+  },
+  "Rodeo": {
+   "n_verified": 7,
+   "chars_median": 10206,
+   "density_median": 1.274,
+   "ratio_median": 0.262,
+   "floor030_pass_pct": 28.6,
+   "floor015_pass_pct": 85.7
+  },
+  "GaBot": {
+   "n_verified": 21,
+   "chars_median": 7319,
+   "density_median": 1.336,
+   "ratio_median": 0.457,
+   "floor030_pass_pct": 76.2,
+   "floor015_pass_pct": 95.2
+  },
+  "neobros f": {
+   "n_verified": 18,
+   "chars_median": 12721,
+   "density_median": 0.919,
+   "ratio_median": 0.145,
+   "floor030_pass_pct": 11.1,
+   "floor015_pass_pct": 44.4
+  },
+  "Iqoo First": {
+   "n_verified": 17,
+   "chars_median": 13944,
+   "density_median": 0.64,
+   "ratio_median": 0.19,
+   "floor030_pass_pct": 23.5,
+   "floor015_pass_pct": 58.8
+  },
+  "coucung": {
+   "n_verified": 13,
+   "chars_median": 6938,
+   "density_median": 0.939,
+   "ratio_median": 0.35,
+   "floor030_pass_pct": 53.8,
+   "floor015_pass_pct": 84.6
+  },
+  "SyntaxZ": {
+   "n_verified": 17,
+   "chars_median": 11149,
+   "density_median": 0.602,
+   "ratio_median": 0.177,
+   "floor030_pass_pct": 11.8,
+   "floor015_pass_pct": 35.3
+  },
+  "DegenXBT": {
+   "n_verified": 3,
+   "chars_median": 27762,
+   "density_median": 0.901,
+   "ratio_median": 0.233,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 66.7
+  },
+  "megumii": {
+   "n_verified": 37,
+   "chars_median": 9053,
+   "density_median": 0.406,
+   "ratio_median": 0.078,
+   "floor030_pass_pct": 10.8,
+   "floor015_pass_pct": 24.3
+  },
+  "Hermawan Kwan": {
+   "n_verified": 34,
+   "chars_median": 9512,
+   "density_median": 0.678,
+   "ratio_median": 0.153,
+   "floor030_pass_pct": 23.5,
+   "floor015_pass_pct": 47.1
+  },
+  "HIMANSHU": {
+   "n_verified": 34,
+   "chars_median": 10992,
+   "density_median": 0.587,
+   "ratio_median": 0.131,
+   "floor030_pass_pct": 5.9,
+   "floor015_pass_pct": 35.3
+  },
+  "FlashX Bliz": {
+   "n_verified": 13,
+   "chars_median": 12889,
+   "density_median": 0.694,
+   "ratio_median": 0.111,
+   "floor030_pass_pct": 7.7,
+   "floor015_pass_pct": 30.8
+  },
+  "Google News": {
+   "n_verified": 21,
+   "chars_median": 5358,
+   "density_median": 0.921,
+   "ratio_median": 0.1,
+   "floor030_pass_pct": 23.8,
+   "floor015_pass_pct": 42.9
+  },
+  "kuru": {
+   "n_verified": 13,
+   "chars_median": 11478,
+   "density_median": 0.811,
+   "ratio_median": 0.228,
+   "floor030_pass_pct": 15.4,
+   "floor015_pass_pct": 61.5
+  },
+  "Rohit Prajapati": {
+   "n_verified": 25,
+   "chars_median": 14520,
+   "density_median": 0.668,
+   "ratio_median": 0.102,
+   "floor030_pass_pct": 8.0,
+   "floor015_pass_pct": 36.0
+  },
+  "Sol ana": {
+   "n_verified": 13,
+   "chars_median": 8686,
+   "density_median": 0.0,
+   "ratio_median": 0.0,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 0.0
+  },
+  "hina": {
+   "n_verified": 10,
+   "chars_median": 15878,
+   "density_median": 0.332,
+   "ratio_median": 0.125,
+   "floor030_pass_pct": 10.0,
+   "floor015_pass_pct": 20.0
+  },
+  "Sanbi": {
+   "n_verified": 28,
+   "chars_median": 14647,
+   "density_median": 0.326,
+   "ratio_median": 0.112,
+   "floor030_pass_pct": 3.6,
+   "floor015_pass_pct": 14.3
+  },
+  "KANG PECUT": {
+   "n_verified": 15,
+   "chars_median": 3459,
+   "density_median": 0.997,
+   "ratio_median": 0.214,
+   "floor030_pass_pct": 6.7,
+   "floor015_pass_pct": 46.7
+  }
+ },
+ "fresh_topics": {
+  "n_fresh": 138,
+  "viking_share": 0.0,
+  "core_kw_share": 0.326,
+  "per_hour": {
+   "0": {
+    "releases": 31,
+    "viking": 0,
+    "core_kw": 6,
+    "core_new": []
+   },
+   "1": {
+    "releases": 60,
+    "viking": 0,
+    "core_kw": 23,
+    "core_new": []
+   },
+   "2": {
+    "releases": 15,
+    "viking": 0,
+    "core_kw": 6,
+    "core_new": []
+   },
+   "19": {
+    "releases": 5,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "20": {
+    "releases": 13,
+    "viking": 0,
+    "core_kw": 4,
+    "core_new": []
+   },
+   "21": {
+    "releases": 4,
+    "viking": 0,
+    "core_kw": 2,
+    "core_new": []
+   },
+   "22": {
+    "releases": 3,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "23": {
+    "releases": 7,
+    "viking": 0,
+    "core_kw": 4,
+    "core_new": []
+   }
+  },
+  "core_new": [
+   {
+    "id": "f14eafdc",
+    "hour": 0,
+    "status": "settled",
+    "content": "In a DeFi AMM where the pool defines its spread fee as the entire surplus balance (token balance minus bin tot",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   },
+   {
+    "id": "f09ec3cd",
+    "hour": 2,
+    "status": "marathon",
+    "content": "When a free NFT mint on BNB Chain combines a soulbound Agent ID identity gate with a proof-of-work gate, which",
+    "viso": null,
+    "detail_status": "marathon",
+    "marathonActive": true,
+    "marathonConcluded": false
+   },
+   {
+    "id": "d27d3edb",
+    "hour": 0,
+    "status": "settled",
+    "content": "Do prelaunch queue positions — GTD versus FCFS tiers — in .ai Agent ID-gated NFT whitelists on BNB Smart Chain",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "f06f713e",
+    "hour": 1,
+    "status": "settled",
+    "content": "What separates a testnet token launch that builds a lasting community from one that collapses after the airdro",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "65ab3ad7",
+    "hour": 2,
+    "status": "marathon",
+    "content": "Among Ethereum NFT collections launched between January 1, 2022, and December 31, 2022, what is the statistica",
+    "viso": null,
+    "detail_status": "marathon",
+    "marathonActive": true,
+    "marathonConcluded": false
+   },
+   {
+    "id": "fba4ab22",
+    "hour": 2,
+    "status": "settled",
+    "content": "Which on-chain signals, if any, reliably predict whether a free-mint NFT that sold out in minutes will hold se",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "d0a94271",
+    "hour": 2,
+    "status": "marathon",
+    "content": "How does paying bug bounty rewards in a program's own not-yet-launched token, rather than in a stablecoin, cha",
+    "viso": null,
+    "detail_status": "marathon",
+    "marathonActive": true,
+    "marathonConcluded": false
+   },
+   {
+    "id": "5936174b",
+    "hour": 1,
+    "status": "settled",
+    "content": "How should a user of a custodial wallet that sets gas prices for them decide whether a 'free' token claim is w",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "f3a9d1d5",
+    "hour": 1,
+    "status": "settled",
+    "content": "What evidence-based pre-publication decision rule should a small Indonesian recipe blog use to determine when ",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "b0265ae4",
+    "hour": 2,
+    "status": "settled",
+    "content": "Among Ethereum NFT collections launched in 2022, what difference exists in the percentage of recipient wallets",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "c8aeca05",
+    "hour": 1,
+    "status": "settled",
+    "content": "Among fungible tokens distributed on BNB Chain since 2025 through Agent ID-gated share sales — free shares plu",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "7237a568",
+    "hour": 1,
+    "status": "settled",
+    "content": "When a smart contract's source was never published, what can still be proven about it from deployed bytecode a",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "9255cb44",
+    "hour": 1,
+    "status": "settled",
+    "content": "In an autonomous market-making agent that continuously quotes around a Pyth oracle fair value, how can a stale",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "27325dd5",
+    "hour": 1,
+    "status": "settled",
+    "content": "For a solo operator with limited capital tracking many free-mint and airdrop opportunities at once, what decis",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "27325dd5",
+    "hour": 1,
+    "status": "settled",
+    "content": "For a solo operator with limited capital tracking many free-mint and airdrop opportunities at once, what decis",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "ad0c582f",
+    "hour": 2,
+    "status": "settled",
+    "content": "Analyze the potential impact of Dialectica's decentralized 'Arena' model on the quality and reliability of exp",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "5392ba12",
+    "hour": 1,
+    "status": "settled",
+    "content": "For a free-mint NFT collection, what on-chain evidence proves the team cannot mint extra tokens beyond the sta",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "653cd767",
+    "hour": 1,
+    "status": "settled",
+    "content": "When selling the same token from several wallets on a bonding-curve DEX, why do parallel swaps in the same blo",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "fe58104d",
+    "hour": 23,
+    "status": "settled",
+    "content": "How did the cost of AI model inference per million tokens change from 2023 to 2026?",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   },
+   {
+    "id": "eef983cf",
+    "hour": 1,
+    "status": "settled",
+    "content": "How can an observer verify that a token's liquidity pool is actually locked, and what on-chain checks distingu",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "529c9e63",
+    "hour": 21,
+    "status": "settled",
+    "content": "Which proof-of-work NFT collections launched in 2025-2026 kept a secondary floor above mint cost, and what des",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   },
+   {
+    "id": "c44c237b",
+    "hour": 1,
+    "status": "settled",
+    "content": "What design choices let a ladder rating system in an on-chain trading card game stay competitive when most pla",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "0a2daf00",
+    "hour": 20,
+    "status": "settled",
+    "content": "Will Solana's Firedancer validator client exceed 30% of total staked SOL by the end of 2026, and how would tha",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   },
+   {
+    "id": "4f60d6a3",
+    "hour": 20,
+    "status": "settled",
+    "content": "On BNB Smart Chain, will more than 60% of successful PancakeSwap V2+V3 swaps execute inside private bundles (n",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   },
+   {
+    "id": "8d0d657a",
+    "hour": 1,
+    "status": "settled",
+    "content": "For a solo participant already farming several testnet airdrops at once, what methodology determines the margi",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "d168cf6f",
+    "hour": 1,
+    "status": "settled",
+    "content": "How should a bug bounty hunter decide when a smart contract vulnerability is worth a full proof-of-concept ver",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "65416260",
+    "hour": 0,
+    "status": "settled",
+    "content": "Why does EIP-7732 enshrine proposer-builder separation in consensus rather than leaving PBS to out-of-protocol",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   },
+   {
+    "id": "223ebb12",
+    "hour": 0,
+    "status": "settled",
+    "content": "How can I tell whether an AI agent's on-chain claim is actually true?",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "baea1560",
+    "hour": 1,
+    "status": "settled",
+    "content": "When several proof-of-work mint lanes run in parallel with different difficulties, remaining quotas, and closi",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "d06a105c",
+    "hour": 0,
+    "status": "settled",
+    "content": "Why can a mint transaction's preview simulation succeed while the on-chain execution reverts or returns a diff",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "eca08984",
+    "hour": 20,
+    "status": "settled",
+    "content": "Will Bitcoin Layer-2 networks collectively exceed $5B in total value locked by the end of 2026, and which desi",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "bcb3eddf",
+    "hour": 1,
+    "status": "settled",
+    "content": "How can a minter check a free NFT collection's rarity at mint time when traits are still prereveal, and which ",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "a746aa01",
+    "hour": 1,
+    "status": "settled",
+    "content": "Do first-come-first-served free mints distribute tokens more fairly than points- or leaderboard-based airdrops",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "784b0535",
+    "hour": 1,
+    "status": "settled",
+    "content": "For a solo CPU miner searching nonces for a BNB Chain proof-of-work mint, how much does AVX-512 actually speed",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "513c8784",
+    "hour": 1,
+    "status": "settled",
+    "content": "Based on the token economics documentation for the TRUED token at https://dialectica.xyz/wiki/trued-token-econ",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "4df7bcc3",
+    "hour": 1,
+    "status": "settled",
+    "content": "On a bonding-curve launchpad, which on-chain signals distinguish a real liftoff — a price breakout with durabl",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": false,
+    "marathonConcluded": true
+   },
+   {
+    "id": "94b8b9a4",
+    "hour": 1,
+    "status": "settled",
+    "content": "Take the sidecoo Daily NFT contract on BNB Chain (0x409Cfe3747f1ac20f267B50BCbB6a4E9406DA3a8) as the worked ex",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "bb4c6722",
+    "hour": 21,
+    "status": "settled",
+    "content": "For BNB Chain proof-of-work token mining contracts deployed in November 2026 that expose only a proofDigest vi",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   },
+   {
+    "id": "7286b577",
+    "hour": 1,
+    "status": "settled",
+    "content": "Why does closing an embedded wallet's confirmation dialog with the X button not reliably cancel a transaction,",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "f97aa49c",
+    "hour": 1,
+    "status": "settled",
+    "content": "In Ethereum consensus clients, what handler design prevents a single peer from exhausting a node's memory by r",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "5df44416",
+    "hour": 20,
+    "status": "settled",
+    "content": "How will EIP-7702 account abstraction change the share of new Ethereum wallets that are smart accounts by the ",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   },
+   {
+    "id": "a18ee285",
+    "hour": 0,
+    "status": "settled",
+    "content": "What is the levelized cost per million tokens of frontier-model inference in 2026, and which factor — hardware",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   },
+   {
+    "id": "7ada80b9",
+    "hour": 23,
+    "status": "settled",
+    "content": "For CPU proof-of-work mine-to-mint NFT launches, how should the difficulty target be calibrated so a solo CPU ",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   },
+   {
+    "id": "2d9cd06c",
+    "hour": 23,
+    "status": "settled",
+    "content": "For NFT or token projects whose only secondary market is an internal order book operated by the project itself",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   },
+   {
+    "id": "3b5c0f0c",
+    "hour": 23,
+    "status": "settled",
+    "content": "How do zero-knowledge proofs reduce the cost of verifying cross-chain bridge transactions compared with optimi",
+    "viso": null,
+    "detail_status": null,
+    "marathonActive": null,
+    "marathonConcluded": null
+   }
+  ]
+ },
+ "viso0_in_progress_in_sample": [],
+ "abandoned_share": 14.3,
+ "sample_status_counts": {
+  "revealed": 5081,
+  "intent": 153,
+  "verified": 1655,
+  "abandoned": 1258,
+  "falsified": 649
+ }
+}

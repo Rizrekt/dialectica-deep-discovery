@@ -1,0 +1,136 @@
+{
+ "2d968d7e": {
+  "short": "2d968d7e",
+  "status": "settled",
+  "viso": 37,
+  "awarded": 13,
+  "isos_status_counts": {
+   "abandoned": 10,
+   "falsified": 12,
+   "verified": 37,
+   "revealed": 10
+  },
+  "n_isos_now": 69,
+  "n_isos_2100": 67,
+  "status_changes_vs_2100": [],
+  "new_isos_vs_2100": [
+   {
+    "id": "60d48e09",
+    "status": "revealed",
+    "support": null,
+    "refute": null,
+    "verifierCount": 1,
+    "timestamp_wib": 1794838678067,
+    "updatedAt_wib": "2026-11-17 01:41 WIB"
+   },
+   {
+    "id": "598adf92",
+    "status": "falsified",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794840540682,
+    "updatedAt_wib": "2026-11-17 02:21 WIB"
+   }
+  ],
+  "verdicts_updated_since_cut": [
+   {
+    "id": "598adf92",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-17 02:21 WIB"
+   }
+  ]
+ },
+ "df9cb696": {
+  "short": "df9cb696",
+  "status": "settled",
+  "viso": 38,
+  "awarded": 14,
+  "isos_status_counts": {
+   "falsified": 13,
+   "verified": 38,
+   "abandoned": 9,
+   "revealed": 20
+  },
+  "n_isos_now": 80,
+  "n_isos_2100": 78,
+  "status_changes_vs_2100": [
+   {
+    "id": "7317a883",
+    "old": [
+     "revealed",
+     null,
+     null,
+     0,
+     "2026-11-16T12:34:46.047Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-16T16:35:26.368Z"
+    ]
+   },
+   {
+    "id": "a60dc266",
+    "old": [
+     "revealed",
+     null,
+     null,
+     0,
+     "2026-11-16T12:48:26.057Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-16T16:49:09.765Z"
+    ]
+   }
+  ],
+  "new_isos_vs_2100": [
+   {
+    "id": "e05c2ea9",
+    "status": "verified",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794838482709,
+    "updatedAt_wib": "2026-11-16 21:24 WIB"
+   },
+   {
+    "id": "b5e7eac2",
+    "status": "revealed",
+    "support": null,
+    "refute": null,
+    "verifierCount": 0,
+    "timestamp_wib": 1794843761309,
+    "updatedAt_wib": "2026-11-16 22:42 WIB"
+   }
+  ],
+  "verdicts_updated_since_cut": [
+   {
+    "id": "24f3a79b",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 21:12 WIB"
+   },
+   {
+    "id": "7317a883",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 23:35 WIB"
+   },
+   {
+    "id": "a60dc266",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 23:49 WIB"
+   },
+   {
+    "id": "e05c2ea9",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 21:24 WIB"
+   }
+  ]
+ }
+}

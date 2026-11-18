@@ -1,0 +1,159 @@
+{
+ "sample": {
+  "questions": 171,
+  "isos": 9483,
+  "external_isos": 9400,
+  "status_counts": {
+   "falsified": 942,
+   "verified": 2124,
+   "abandoned": 1225,
+   "revealed": 5134,
+   "intent": 58
+  },
+  "tag_counts": {
+   "panel": 46,
+   "panel+monitored": 1,
+   "fresh": 68,
+   "fresh+fresh": 6,
+   "monitored": 50
+  }
+ },
+ "listing": {
+  "total_now": 3131,
+  "total_2026_11_14": 1462,
+  "total_run10": 2803,
+  "status_counts_now": {
+   "in_progress": 126,
+   "marathon": 61,
+   "settled": 2944
+  },
+  "growth_vs_2026_11_14": {
+   "new_questions": 1669,
+   "span_days": 3.23,
+   "per_day": 517.0,
+   "askers_unique": 344,
+   "house_share_pct": 0.0,
+   "status_counts": {
+    "in_progress": 126,
+    "marathon": 61,
+    "settled": 1482
+   }
+  },
+  "growth_vs_run10": {
+   "new_questions": 340,
+   "span_days": 0.19,
+   "per_day": 1761.2,
+   "askers_unique": 115,
+   "house_share_pct": 0.0,
+   "status_counts": {
+    "in_progress": 126,
+    "marathon": 61,
+    "settled": 153
+   }
+  }
+ },
+ "chosen": [
+  {
+   "userId": "910b5887a464b42e73128270f896a828b10d11cb",
+   "name": "Febriyan",
+   "rank": 8,
+   "coins": 24558,
+   "appearances_of_5": 5,
+   "verified_in_frame": 38
+  },
+  {
+   "userId": "7f01bb1daa54298c8335d59b4ef8eedb729cdd79",
+   "name": "HIMANSHU",
+   "rank": 9,
+   "coins": 23805,
+   "appearances_of_5": 5,
+   "verified_in_frame": 41
+  },
+  {
+   "userId": "755b7e87086b19ab8d0329fdfb38954b3a48db3a",
+   "name": "Mauldrop",
+   "rank": 10,
+   "coins": 19111,
+   "appearances_of_5": 5,
+   "verified_in_frame": 42
+  },
+  {
+   "userId": "69388748d7b3e51a2ddf3e84d6dc8003d04e8419",
+   "name": "Gufran The Legend",
+   "rank": 11,
+   "coins": 15786,
+   "appearances_of_5": 5,
+   "verified_in_frame": 39
+  },
+  {
+   "userId": "8a312ed047eb3ca421f34b57d9c2ea99b4750136",
+   "name": "GaBot",
+   "rank": 12,
+   "coins": 14637,
+   "appearances_of_5": 5,
+   "verified_in_frame": 26
+  },
+  {
+   "userId": "112a958a7084b7ca262219ddb4f1708b897407b3",
+   "name": "megumii",
+   "rank": 13,
+   "coins": 14549,
+   "appearances_of_5": 5,
+   "verified_in_frame": 41
+  },
+  {
+   "userId": "692dc40954bb3a8896cbbbe6c2eca26ba58f77b6",
+   "name": "Danis",
+   "rank": 14,
+   "coins": 13604,
+   "appearances_of_5": 5,
+   "verified_in_frame": 28
+  },
+  {
+   "userId": "e56fc710f39bcd9cb47c4702bacbffb4d3f3c8f2",
+   "name": "Adam Reinhard",
+   "rank": 15,
+   "coins": 12792,
+   "appearances_of_5": 5,
+   "verified_in_frame": 28
+  },
+  {
+   "userId": "34de8407d9a492b9ff9a63654b508dada7b4f5cd",
+   "name": "zoya khan",
+   "rank": 16,
+   "coins": 12315,
+   "appearances_of_5": 5,
+   "verified_in_frame": 28
+  },
+  {
+   "userId": "d71c14ebdb129224f80b87bf11454084cd7d4192",
+   "name": "SyntaxZ",
+   "rank": 19,
+   "coins": 11586,
+   "appearances_of_5": 5,
+   "verified_in_frame": 20
+  },
+  {
+   "userId": "9bd4140ad529d3fedc4843e5150f782e9d66b13d",
+   "name": "kuru",
+   "rank": 21,
+   "coins": 10785,
+   "appearances_of_5": 5,
+   "verified_in_frame": 19
+  },
+  {
+   "userId": "a96696bbb13632cb92941df9b5bce19e2c835f95",
+   "name": "gisa",
+   "rank": 22,
+   "coins": 9980,
+   "appearances_of_5": 5,
+   "verified_in_frame": 27
+  }
+ ],
+ "corpus_cohort_n": {
+  "v": 377,
+  "f": 105
+ },
+ "new_paid_n": 71
+}
+WROTE analysis11.json
