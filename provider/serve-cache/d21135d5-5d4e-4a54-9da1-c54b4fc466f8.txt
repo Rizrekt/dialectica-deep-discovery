@@ -1,0 +1,46 @@
+In today's market the loss stays with the user in almost every case: self-custody wallet terms treat a risk preview as best-effort information rather than a guarantee, and an agent that acted within the authority the user delegated binds the user as principal. Loss can shift only in narrow scenarios — a custodial product with statutory safekeeping duties, an affirmative "safe" representation, or an agent that exceeded its delegation — and every scenario turns on an evidentiary kit the user must capture off-chain, because an off-chain preview leaves no on-chain trace of itself.
+
+## 1. Why the default allocation is user-borne loss
+
+- **Self-custody baseline.** The user holds the keys and produces the signature, so providers structure their terms accordingly: Consensys's Terms of Use describe MetaMask as a self-custody wallet and disclaim liability for transaction outcomes and third-party integrations (https://consensys.net/terms-of-use/). A preview that "approves" a call is contractually an informational heuristic — "no known risks detected" — not a warranty of safety.
+- **The preview vendor's position.** Simulation APIs are marketed and licensed as best-effort detection. Their core technical limitation is time-of-check-to-time-of-use (TOCTOU): the simulation runs against a state snapshot at preview time, and a contract can behave benignly then and maliciously at execution — via a state-dependent branch, or because an upgradeable proxy's implementation was swapped between check and use. This is why even a good-faith preview approves malicious calls, and why preview terms disclaim completeness.
+- **The agentic layer.** Agency principles apply: an agent acting within delegated authority binds the principal. Authority is defined technically — session keys with scoped permissions, allowlists, or EIP-7702 delegation, which lets an EOA execute through agent-controlled code (https://eips.ethereum.org/EIPS/eip-7702). If the malicious call was inside the delegated scope, the user authorized it as a matter of design, and the loss is the user's.
+
+## 2. When the loss can shift
+
+- **Custodial product.** If the "agentic wallet" is actually a custody service holding client assets, EU MiCA Article 62 imposes safekeeping and segregation duties on crypto-asset service providers providing custody and administration on behalf of clients (https://eur-lex.europa.eu/eli/reg/2023/1114/oj) — duties that place the custodian, not the user, on the hook for losses to client assets. Pure self-custody software sits outside that perimeter.
+- **No chargeback analog in the US.** Regulation E's error-resolution framework covers electronic fund transfers from consumer accounts (12 CFR part 1005, https://www.ecfr.gov/current/title-12/chapter-X/part-1005) and does not extend to self-custodied crypto transactions, so there is no reversal mechanism comparable to unauthorized-card disputes.
+- **Affirmative representation.** If the UI said "verified safe" rather than the hedged "no known issues," a negligence or misrepresentation theory becomes plausible: the user relied on the provider's claimed expertise. EU law constrains blanket consumer-contract exclusions of a trader's liability for its own negligence under the Unfair Contract Terms Directive (https://eur-lex.europa.eu/eli/dir/1993/13/oj); US enforceability is friendlier to disclaimers plus arbitration clauses.
+- **Agent exceeded authority.** If the signed call falls outside the allowlist or scope the user granted, the wallet operator breached its own authorization policy — typically the strongest practical claim, and the one where records matter most.
+
+## 3. The preview and signing records needed to dispute
+
+Because the preview is off-chain, the only on-chain artifact is the malicious execution itself; everything that shifts blame lives in off-chain records:
+
+1. **Previewed payload.** The full unsigned transaction — `to`, `value`, `data` (raw calldata), `chainId`, `nonce`, gas — plus the preview request ID and its timestamp.
+2. **Preview verdict artifact.** The risk verdict/score, the decoded human-readable intent actually displayed in the UI, the risk-engine and ruleset version, and the simulation's asset-change report. A timestamped screenshot or session capture of what the user saw establishes the representation element.
+3. **Signing record.** The exact signed artifact: the EIP-712 typed-data digest for signature-based approvals such as ERC-2612 permit (https://eips.ethereum.org/EIPS/eip-712; https://eips.ethereum.org/EIPS/eip-2612), or the EIP-155 signing hash and raw signed transaction for a regular call (https://ethereum.org/en/developers/docs/transactions/), plus the resulting transaction hash. The linchpin is a hash match: if the signed payload equals the previewed payload, the dispute is with the preview's accuracy; if it differs, the wallet or agent signed something other than what was previewed — the wallet's failure.
+4. **Timing and state evidence.** Preview timestamp versus execution block, the target contract's bytecode at the execution block, and any proxy-upgrade events between preview and execution — this proves or defeats a TOCTOU defense.
+5. **Delegation record.** What authority the user granted the agent — session-key scope, allowlist, or EIP-7702 delegate — plus the agent's task log and model/policy version, showing whether the call was inside or outside delegated authority.
+6. **On-chain trace.** The transaction receipt and emitted logs (Approval/Transfer events), viewable on Etherscan (https://etherscan.io). If the malicious call was an allowance approval, revoke it immediately (e.g., https://revoke.cash) to stop ongoing loss — mitigation also strengthens any later claim.
+
+## 4. How the dispute actually plays out
+
+- **Map records to elements:** representation (record 2), fidelity of execution (record 3), negligence versus novel attack (records 2 and 4 — a known pattern missed by the current ruleset versus a post-preview state change), authority (record 5), and loss (record 6).
+- **Retention reality.** Wallets and preview APIs often keep server-side logs briefly or not at all, and RPC providers may purge them; the user must capture the records contemporaneously. Without them, the default allocation — user bears the loss — is effectively final.
+- **Channels.** Complaint to the wallet provider (goodwill refund), a civil claim, or a regulator — a national competent authority under MiCA if the product is custodial, or consumer-protection agencies otherwise. There is no on-chain reversal in any of these paths.
+
+## Sources
+
+- Consensys Terms of Use (self-custody description and liability disclaimers): https://consensys.net/terms-of-use/
+- EIP-7702 (EOA delegation to code): https://eips.ethereum.org/EIPS/eip-7702
+- EIP-712 (typed structured data signing): https://eips.ethereum.org/EIPS/eip-712
+- ERC-2612 (permit / signature-based approvals): https://eips.ethereum.org/EIPS/eip-2612
+- Ethereum developer docs, transactions and signing: https://ethereum.org/en/developers/docs/transactions/
+- Regulation (EU) 2023/1114 (MiCA), Article 62 custody duties: https://eur-lex.europa.eu/eli/reg/2023/1114/oj
+- Regulation (EU) 93/13/EEC (Unfair Contract Terms Directive): https://eur-lex.europa.eu/eli/dir/1993/13/oj
+- 12 CFR part 1005 (Regulation E): https://www.ecfr.gov/current/title-12/chapter-X/part-1005
+- Etherscan (on-chain receipts and logs): https://etherscan.io
+- Revoke.cash (allowance revocation): https://revoke.cash
+
+New in this answer: the hash-match linchpin — comparing the EIP-712 digest or EIP-155 signing hash of the signed payload against the previewed payload — as the single artifact that decides whether the dispute targets the preview's accuracy or the wallet's execution fidelity. It also isolates TOCTOU timing evidence (preview block versus execution block, plus proxy-upgrade events) as what defeats a provider's "novel attack" defense, and ties the delegation-scope record (session keys, allowlists, EIP-7702) to the strongest practical claim: that the agent exceeded the authority the user actually granted.

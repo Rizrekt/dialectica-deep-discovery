@@ -1,0 +1,102 @@
+{
+ "calls": {
+  "vyce_check": 2,
+  "openrouter_check": 0,
+  "nemotron_write": 2,
+  "deepseek_write": 0
+ },
+ "cap_before": 0,
+ "usage_lines_before": 134,
+ "rows_collected": 96,
+ "evaluated": [
+  {
+   "isr": "8a4e9623",
+   "viso": 0,
+   "topic_hits": [
+    "token"
+   ],
+   "liveness_ok": true,
+   "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)"
+  }
+ ],
+ "target": {
+  "isr": "8a4e9623-772d-446b-9cdd-4d72e93371bb",
+  "viso": 0,
+  "topic_hits": [
+   "token"
+  ],
+  "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)",
+  "title": "",
+  "content_head": "When an NFT contract blocks all transfers, how can a dedicated marketplace still enable trading of those tokens, and what trust assumptions around custody, operator honesty, or upgrade keys does that trading introduce for buyers and sellers?"
+ },
+ "draft1_gen_s": 43.4,
+ "draft1": {
+  "generated": true,
+  "raw_chars": 8390,
+  "sendable": false,
+  "status": "OK",
+  "chars_final": 8390,
+  "score_g": [
+   "LOLOS",
+   "format prosa terstruktur sesuai tuntutan prompt (bukan skema JSON)"
+  ],
+  "audit_findings": 1,
+  "thinking_trace": true,
+  "evasive_source_closing": false,
+  "reasons": [
+   "THINKING-TRACE: DRAF DITAHAN UTUH — teks adalah jejak penalaran mentah model (spesies f0bb3586, §82), bukan jawaban: penutup berupa rencana, bukan jawaban ('New in this answer: a three-pattern taxonomy — privileged-op'…)"
+  ],
+  "semantic": {
+   "performed": true,
+   "checker": "vyce-nemotron",
+   "verdict": "clean",
+   "findings": [],
+   "dropped": 0,
+   "error": null
+  }
+ },
+ "draft2_gen_s": 25.7,
+ "draft2": {
+  "generated": true,
+  "writer": "nemotron-3.5-super-vl (Vyce)",
+  "raw_chars": 531,
+  "sendable": false,
+  "status": "GAGAL-LANJUT",
+  "chars_final": 1380,
+  "score_g": [
+   "LOLOS",
+   "format prosa terstruktur sesuai tuntutan prompt (bukan skema JSON)"
+  ],
+  "audit_findings": 1,
+  "thinking_trace": false,
+  "evasive_source_closing": false,
+  "reasons": [
+   "status wrapper GAGAL-LANJUT (panjang di bawah lantai sesudah regenerasi)",
+   "FLOOR: LANTAI K-2 rasio angka terikat sitasi: aktual 0.000 < 0.3 (0 dari 1 token angka dalam ±150 karakter dari sebuah sitasi) — DRAF DITAHAN UTUH (pintu mati mekanik §45; tidak ada patch untuk lantai — perbaiki drafnya, bukan angkanya)"
+  ],
+  "semantic": {
+   "performed": true,
+   "checker": "vyce-nemotron",
+   "verdict": "fatal",
+   "findings": [
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "pasar yang berdedikasi biasanya mencoba tiga mekanisme",
+     "claim": "Dedicated marketplaces usually try exactly three mechanisms.",
+     "why": "The specific count 'tiga' (three) is stated as an established fact about marketplace behavior with no named source attached in the draft itself, and it is not a hypothetical or illustrative worked example."
+    }
+   ],
+   "dropped": 0,
+   "error": null
+  }
+ },
+ "cap_after": 1,
+ "usage_new_records": [
+  {
+   "model": "glm-5.3-flash",
+   "lane": "vyce-serve",
+   "answer_chars": 8390
+  }
+ ]
+}

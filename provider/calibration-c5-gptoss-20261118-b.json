@@ -1,0 +1,545 @@
+{
+ "results": [
+  {
+   "label": "#7",
+   "id": "5b5e8212",
+   "kind": "poison",
+   "expected": [
+    "S-1",
+    "S-4"
+   ],
+   "verdict": "fatal",
+   "checker": "cloudflare-gptoss",
+   "codes": [
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION"
+   ],
+   "subs": [
+    "S-4",
+    "S-4",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-4",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-4",
+    "S-1",
+    "S-1",
+    "S-1"
+   ],
+   "findings": [
+    {
+     "code": "A_CITATION",
+     "sub": "S-4",
+     "quote": "registryVersion 77, 21 collections (11 seadrop, 10 external), Pixel Elys still absent, zero external admissions in 34 hours.",
+     "claim": "The draft asserts specific registry metrics and the absence of Pixel Elys based on prior answer data.",
+     "why": "The factual claim relies solely on another answer (Answer 41) as its source, which is not an independent, verifiable citation; this constitutes Answer-as-Evidence violation."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-4",
+     "quote": "0.5% of that is ~0.34 HYPE/day across all collections. That's tiny.",
+     "claim": "The draft calculates the marketplace fee revenue based on the previously cited volume figure.",
+     "why": "The calculation derives from the same uncited prior answer data, constituting another Answer-as-Evidence citation without an independent source."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "if 13 Nov was 68.6 HYPE/24h, what is 14 Nov?",
+     "claim": "Registry-wide volume is 68.6 HYPE per 24 h on 13 Nov.",
+     "why": "A specific statistic is presented without any identifiable external source; it relies solely on the draft’s own statement."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "Compute the marketplace's marginal incentive: 0.5% fee on registry volume.",
+     "claim": "The marketplace charges a 0.5 % fee on registry volume.",
+     "why": "The fee percentage is asserted as fact without citing an external, verifiable source."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "Kalos's total marketplace fee revenue is ~0.34 HYPE/day",
+     "claim": "Kalos earns approximately 0.34 HYPE per day from marketplace fees.",
+     "why": "The revenue figure is derived from the un‑sourced 68.6 HYPE volume and 0.5 % fee, but no external source validates either component."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-4",
+     "quote": "registryVersion 76→77, block heights 4,834,606→5,684,444, consistent block time",
+     "claim": "The registry moved from version 76 to 77, with block heights increasing from 4,834,606 to 5,684,444.",
+     "why": "These numbers are taken from earlier internal answers (Answer 36, Answer 41) rather than an independent external source; using another answer as the sole citation is prohibited."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "13 Nov: 385 sales, 68.605 HYPE",
+     "claim": "Specific registry-wide sales and volume figures are presented as fact.",
+     "why": "The numbers are given without any identifiable external source; they rely solely on prior answers, violating the citation rule."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "zero-event window extends from 11 Nov 16:20 to 14 Nov ~01:30 = 57.2 hours = 2.38 days.",
+     "claim": "The duration of the zero‑event window is calculated and stated as fact.",
+     "why": "No source (e.g., fetched API URL) is cited for the timestamps or the derived duration, making this an unbound number."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "mean rate 1/T = 0.42/day",
+     "claim": "A Poisson‑rate estimate is presented as a precise figure.",
+     "why": "The rate is derived from internal data but no external or self‑cited source (URL) is provided, constituting an unbound statistic."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "0.34 HYPE/day",
+     "claim": "Operator marginal fee revenue is given as a specific daily amount.",
+     "why": "The figure is stated without any identifiable source; it is an unbound number violating citation requirements."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "Catto being \"2,222 unique pixel cats\"",
+     "claim": "The count of unique pixel cats in the Catto collection is asserted as fact.",
+     "why": "The number is taken from a prior answer’s snapshot description and lacks an independent, verifiable citation."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-4",
+     "quote": "Registry‑wide trailing‑24h volume at 13 Nov 02:28: 68.605 HYPE (Answer 41, from the snapshot)",
+     "claim": "The 24‑hour volume of 68.605 HYPE on the given date",
+     "why": "Cited only to another answer; no external, identifiable source is provided."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "Delta = 849,838 blocks in 122,898 s → 6.914 blk/s → 144.6 ms/blk",
+     "claim": "Block delta and derived block‑time statistics",
+     "why": "Specific numeric result presented without any named source; the calculation is derived from prior answers but lacks an independent citation."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "average over 11–13 Nov is ~145 ms/block (~597k blocks/day), not the 100 ms (864k/day) figure",
+     "claim": "Average block time and blocks‑per‑day estimate for the period",
+     "why": "Numeric claim without an identifiable external source; relies on internal calculation only."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "0.5% marketplace fee claim",
+     "claim": "Kalos marketplace charges a 0.5 % fee",
+     "why": "The fee percentage is asserted without an identifiable source; the draft mentions a GitHub PR but does not actually cite it."
+    }
+   ],
+   "dropped_findings": 8,
+   "segments": 4,
+   "segments_ok": 4,
+   "budget_truncated": false,
+   "error": null,
+   "chars": 37098,
+   "calls": [
+    {
+     "ok": true,
+     "neurons": 191.25379943847656,
+     "reasoning_chars": 2750,
+     "content_chars": 1195,
+     "latency_s": 10.32,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 3958,
+      "completion_tokens": 958,
+      "total_tokens": 4916,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 191.25379943847656
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 243.28558349609375,
+     "reasoning_chars": 4293,
+     "content_chars": 1980,
+     "latency_s": 36.84,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 4029,
+      "completion_tokens": 1688,
+      "total_tokens": 5717,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 243.28558349609375
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 235.07647705078125,
+     "reasoning_chars": 4181,
+     "content_chars": 1742,
+     "latency_s": 30.72,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 4131,
+      "completion_tokens": 1520,
+      "total_tokens": 5651,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 235.07647705078125
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 379.0173645019531,
+     "reasoning_chars": 10324,
+     "content_chars": 3526,
+     "latency_s": 66.07,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 4022,
+      "completion_tokens": 3682,
+      "total_tokens": 7704,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 379.0173645019531
+     }
+    }
+   ],
+   "neurons": 1048.6332244873047
+  },
+  {
+   "label": "#8",
+   "id": "a3b8b34a",
+   "kind": "poison",
+   "expected": [
+    "S-1",
+    "S-4"
+   ],
+   "verdict": "fatal",
+   "checker": "cloudflare-gptoss",
+   "codes": [
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION"
+   ],
+   "subs": [
+    "S-1",
+    "S-1",
+    "S-4",
+    "S-1",
+    "S-1"
+   ],
+   "findings": [
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "Cost: ATA creation per recipient (~0.002 SOL each) — for 10k holders that's ~20 SOL; can reduce by only canarying a sample (e.g., 500 wallets) — sampling design: stratified sample, and the sweep graph",
+     "claim": "Specific cost figures (0.002 SOL per ATA, ~20 SOL total for 10k holders) and sample size (500 wallets) are presented as factual without any source citation.",
+     "why": "These unbound numbers are presented as established facts but lack an identifiable, verifiable source, violating A_CITATION (S-1)."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "sample (e.g., 500 wallets) — sampling design: stratified sample, and the sweep graph observed in the sample gives a direct estimate of the controlled fraction with binomial uncertainty.",
+     "claim": "A concrete sample size of 500 wallets is recommended as a factual recommendation without citation.",
+     "why": "The specific numeric recommendation is given without any supporting source, constituting an unbound number violation (A_CITATION S-1)."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-4",
+     "quote": "earlier verified Answer 21 already established that compressed accounts \"live in a different state model and require a compression-aware indexer\" (cited to ScorpLabs)",
+     "claim": "The statement relies on another answer as the source for the factual claim about compressed accounts.",
+     "why": "Using another answer as evidence violates A_CITATION (S-4); external, independently verifiable sources are required."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "Stake accounts: the Authorized struct with staker/withdrawer is core Solana.",
+     "claim": "The draft asserts a specific technical detail about Solana stake accounts without providing an identifiable source.",
+     "why": "A specific fact is presented without a citation, matching the UNBOUND NUMBER pattern (S-1) for uncited world claims."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "ATA rent per canary recipient ~0.00204 SOL (established in-thread) — for m=500, ~1.02 SOL + fees.",
+     "claim": "Specific cost figure for ATA rent is presented as fact.",
+     "why": "The number is given without an independent, verifiable source; citing the thread itself is not an acceptable external source."
+    }
+   ],
+   "dropped_findings": 3,
+   "segments": 5,
+   "segments_ok": 5,
+   "budget_truncated": false,
+   "error": null,
+   "chars": 43623,
+   "calls": [
+    {
+     "ok": true,
+     "neurons": 176.72201538085938,
+     "reasoning_chars": 3175,
+     "content_chars": 378,
+     "latency_s": 18.73,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 3827,
+      "completion_tokens": 806,
+      "total_tokens": 4633,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 176.72201538085938
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 176.91746520996094,
+     "reasoning_chars": 3238,
+     "content_chars": 396,
+     "latency_s": 16.59,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 3846,
+      "completion_tokens": 800,
+      "total_tokens": 4646,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 176.91746520996094
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 242.50833129882812,
+     "reasoning_chars": 6314,
+     "content_chars": 1165,
+     "latency_s": 25.42,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 3936,
+      "completion_tokens": 1720,
+      "total_tokens": 5656,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 242.50833129882812
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 353.0901794433594,
+     "reasoning_chars": 15647,
+     "content_chars": 854,
+     "latency_s": 51.34,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 3670,
+      "completion_tokens": 3466,
+      "total_tokens": 7136,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 353.0901794433594
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 157.0404052734375,
+     "reasoning_chars": 3637,
+     "content_chars": 715,
+     "latency_s": 20.27,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 2692,
+      "completion_tokens": 1047,
+      "total_tokens": 3739,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 157.0404052734375
+     }
+    }
+   ],
+   "neurons": 1106.2783966064453
+  }
+ ],
+ "calls": [
+  {
+   "ok": true,
+   "neurons": 191.25379943847656,
+   "reasoning_chars": 2750,
+   "content_chars": 1195,
+   "latency_s": 10.32,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 3958,
+    "completion_tokens": 958,
+    "total_tokens": 4916,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 191.25379943847656
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 243.28558349609375,
+   "reasoning_chars": 4293,
+   "content_chars": 1980,
+   "latency_s": 36.84,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 4029,
+    "completion_tokens": 1688,
+    "total_tokens": 5717,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 243.28558349609375
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 235.07647705078125,
+   "reasoning_chars": 4181,
+   "content_chars": 1742,
+   "latency_s": 30.72,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 4131,
+    "completion_tokens": 1520,
+    "total_tokens": 5651,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 235.07647705078125
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 379.0173645019531,
+   "reasoning_chars": 10324,
+   "content_chars": 3526,
+   "latency_s": 66.07,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 4022,
+    "completion_tokens": 3682,
+    "total_tokens": 7704,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 379.0173645019531
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 176.72201538085938,
+   "reasoning_chars": 3175,
+   "content_chars": 378,
+   "latency_s": 18.73,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 3827,
+    "completion_tokens": 806,
+    "total_tokens": 4633,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 176.72201538085938
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 176.91746520996094,
+   "reasoning_chars": 3238,
+   "content_chars": 396,
+   "latency_s": 16.59,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 3846,
+    "completion_tokens": 800,
+    "total_tokens": 4646,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 176.91746520996094
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 242.50833129882812,
+   "reasoning_chars": 6314,
+   "content_chars": 1165,
+   "latency_s": 25.42,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 3936,
+    "completion_tokens": 1720,
+    "total_tokens": 5656,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 242.50833129882812
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 353.0901794433594,
+   "reasoning_chars": 15647,
+   "content_chars": 854,
+   "latency_s": 51.34,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 3670,
+    "completion_tokens": 3466,
+    "total_tokens": 7136,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 353.0901794433594
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 157.0404052734375,
+   "reasoning_chars": 3637,
+   "content_chars": 715,
+   "latency_s": 20.27,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 2692,
+    "completion_tokens": 1047,
+    "total_tokens": 3739,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 157.0404052734375
+   }
+  }
+ ],
+ "cum_neurons": 2154.91162109375
+}

@@ -1,0 +1,217 @@
+[
+ {
+  "label": "C1",
+  "id": "9dfd25b8",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "Most block explorers (e.g., Etherscan) can detect EIP-1167 clones and automatically link them to the verified source code of the implementation contract",
+    "claim": "Block explorers like Etherscan automatically detect and link EIP-1167 clones to verified implementation source code.",
+    "why": "This is a reportage claim about external world behavior (block explorer features). It is cited to source [2], which is a grounding API redirect URL, not an unequivocally identifiable source. The claim therefore lacks a valid citation."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "EIP-1167 is a standard for 'cloning' contract functionality where multiple instances share the same logic contract while maintaining independent state",
+    "claim": "EIP-1167 defines a cloning standard with shared logic and independent state per instance.",
+    "why": "This presents an established fact about the EIP-1167 specification. It is cited to sources [1][2], both of which are grounding API redirect URLs, not identifiable primary sources (e.g., the EIP text itself or a direct technical article). The citation does not meet the identifiability requirement."
+   }
+  ],
+  "dropped_findings": 1,
+  "error": null,
+  "chars": 5521
+ },
+ {
+  "label": "C2",
+  "id": "a8421f55",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "clean",
+  "checker": "openrouter-nemotron",
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped_findings": 0,
+  "error": null,
+  "chars": 24041
+ },
+ {
+  "label": "C3",
+  "id": "556b03c6",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "clean",
+  "checker": "openrouter-nemotron",
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped_findings": 0,
+  "error": null,
+  "chars": 13410
+ },
+ {
+  "label": "C4",
+  "id": "92523d6e",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Because unstaking can take weeks under load",
+    "claim": "Time estimate of weeks for unstaking under load.",
+    "why": "The draft presents a concrete timeframe (weeks) as a factual claim about Ethereum's exit queue duration under stress, but provides no citation or source for this figure."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "its exit from the Beacon Chain is metered deterministically over months",
+    "claim": "Claim that a full LRT protocol exit would take months due to churn limits.",
+    "why": "The draft states a specific duration (months) for validator set exit without any supporting source. This is a time-critical quantitative claim requiring a time-relevant citation."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "LRTs promise relative liquidity on L2s and money markets, but underlying unstaking requires two queues",
+    "claim": "Structural description of LRT unstaking mechanics involving two distinct queues.",
+    "why": "The draft asserts a specific technical mechanism (two queues: AVS unbonding + Beacon Chain exit) as a factual characteristic of LRTs. No source is provided for this architectural claim."
+   }
+  ],
+  "dropped_findings": 4,
+  "error": null,
+  "chars": 4581
+ },
+ {
+  "label": "C5",
+  "id": "6040432a",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_UNCERTAINTY"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "(BscScan, 2026; Sourcify, 2026)",
+    "claim": "All on-chain registry claims are supported by citations dated 2026.",
+    "why": "Time-critical claims about current contract addresses and mechanisms rely exclusively on future-dated sources (2026), which are not time-relevant for a question asked in 2025."
+   },
+   {
+    "code": "A_UNCERTAINTY",
+    "sub": null,
+    "quote": "exhaust allocations within seconds, leaving manual human participants completely excluded",
+    "claim": "Bot draining speed forecast stated as a precise timeframe ('seconds') with no uncertainty framing.",
+    "why": "High-uncertainty claim about future bot behavior is presented flatly with a specific time bound and no quantification of uncertainty (e.g., 'often', 'typically', confidence interval)."
+   }
+  ],
+  "dropped_findings": 3,
+  "error": null,
+  "chars": 8836
+ },
+ {
+  "label": "C6",
+  "id": "4eb7c21f",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "A user obtains a signed attestation (e.g., EIP-712 typed data) from a centralized or decentralized identity provider (e.g., a DID registry or a service verifying uniqueness via KYC, email, social logi",
+    "claim": "Describes the standard mechanism for obtaining identity attestations in Agent ID-gated mints, including specific standards (EIP-712) and provider types (DID registry, KYC, email, social login).",
+    "why": "Reportage claim about how identity-gated mint mechanisms work in practice, stated as fact with no supporting citation. The draft contains zero citations for any of its technical descriptions."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "On BNB Chain, gas fees are low, so bots can afford repeated attempts.",
+    "claim": "States BNB Chain gas fees are low enough to enable bot flooding.",
+    "why": "Factual claim about current network economics with no citation, data point, or time reference. Gas fees vary; this needs a source or explicit framing as a generalization."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "Flashbots-style relayers can frontrun legitimate minters, even with identity checks, by monitoring pending transactions.",
+    "claim": "Claims Flashbots-style MEV relayers exist on BNB Chain and can frontrun identity-gated mints.",
+    "why": "Flashbots is Ethereum-specific; BNB Chain has different MEV infrastructure. This claim about BNB Chain's MEV landscape is presented as fact with no source."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "Replay attacks across different mint contracts are possible if the signed message does not include a unique contract scoping (e.g., missing chain ID or contract address).",
+    "claim": "Describes a specific vulnerability (replay attacks) and its root cause in signature design.",
+    "why": "Technical security claim stated as established fact. While plausible, it is reportage about a known attack vector and should be sourced (e.g., to a security audit, EIP, or post-mortem)."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "If the random selection is based on block hash or other on-chain randomness, it can be predicted or manipulated by miners/validators (MEV).",
+    "claim": "Asserts that block-hash-based randomness is vulnerable to miner/validator manipulation on BNB Chain.",
+    "why": "Claim about consensus-layer security properties of BNB Chain. Needs a citation to research, an exploit example, or protocol documentation."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "The user generates a ZKP (e.g., Groth16 proof) that they hold a unique credential (e.g., a government ID hash signed by a trusted authority) without revealing the credential.",
+    "claim": "Describes a specific ZKP-based identity mechanism using Groth16 and government ID hashes.",
+    "why": "Detailed technical claim about a deployment pattern. No citation to a project, paper, or implementation that uses this exact construction on BNB Chain."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "A centralized server validates uniqueness (e.g., reCAPTCHA, liveness check) and signs a mint authorization.",
+    "claim": "Describes a centralized off-chain agent architecture using reCAPTCHA or biometric liveness checks.",
+    "why": "Reportage about a real-world mechanism pattern. Should cite an example project, audit, or article documenting this approach."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "The mint contract stores a mapping from attestation hash or user address to a boolean, and reverts if already used or if the signature is invalid.",
+    "claim": "Specifies the on-chain data structure and validation logic for signature-based mint gates.",
+    "why": "Implementation-level claim about contract design. Presented as the standard pattern without referencing any canonical implementation, ERC, or audit."
+   }
+  ],
+  "dropped_findings": 2,
+  "error": null,
+  "chars": 4766
+ }
+]

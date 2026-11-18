@@ -1,0 +1,362 @@
+{
+ "pilot": [
+  {
+   "isr_id": "2777178d-2294-4303-9b94-e877fdac95d0",
+   "ts": 1794888474.365596,
+   "class": "PIONEER",
+   "mode": "block",
+   "status": "stale",
+   "withhold": true,
+   "reasons": [
+    "PIONEER: kerumunan 31 jawaban hidup (>= garis 10) — ruang kebaruan yang dipilih saat viso 0 sudah tertutup"
+   ],
+   "pick": {
+    "isr_id": "2777178d-2294-4303-9b94-e877fdac95d0",
+    "picked_at": 1794883020.0,
+    "target_class": "PIONEER",
+    "viso_at_pick": 0,
+    "verified_at_pick": 0,
+    "answers_at_pick": 0,
+    "source": "VERDICT-WATCH-2026-11-17 (pilot, viso 0)"
+   },
+   "live": {
+    "verified_now": 0,
+    "verified_list": 0,
+    "verified_detail": 0,
+    "crowd_now": 31,
+    "iso_list_len": 37,
+    "iso_total_detail": 37,
+    "status_counts": {
+     "revealed": 31,
+     "abandoned": 4,
+     "intent": 2
+    },
+    "question_status": "in_progress",
+    "liveness_ok": true,
+    "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)"
+   },
+   "fetch": {
+    "detail": "ok",
+    "isos": "ok"
+   }
+  },
+  {
+   "isr_id": "d94d7e34-01e1-44ef-9666-b0616980bc93",
+   "ts": 1794888477.4915376,
+   "class": "PIONEER",
+   "mode": "block",
+   "status": "stale",
+   "withhold": true,
+   "reasons": [
+    "PIONEER: kerumunan 59 jawaban hidup (>= garis 10) — ruang kebaruan yang dipilih saat viso 0 sudah tertutup"
+   ],
+   "pick": {
+    "isr_id": "d94d7e34-01e1-44ef-9666-b0616980bc93",
+    "picked_at": 1794883260.0,
+    "target_class": "PIONEER",
+    "viso_at_pick": 0,
+    "verified_at_pick": 0,
+    "answers_at_pick": 0,
+    "source": "VERDICT-WATCH-2026-11-17 (pilot, viso 0)"
+   },
+   "live": {
+    "verified_now": 0,
+    "verified_list": 0,
+    "verified_detail": 0,
+    "crowd_now": 59,
+    "iso_list_len": 70,
+    "iso_total_detail": 70,
+    "status_counts": {
+     "revealed": 59,
+     "abandoned": 11
+    },
+    "question_status": "in_progress",
+    "liveness_ok": true,
+    "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)"
+   },
+   "fetch": {
+    "detail": "ok",
+    "isos": "ok"
+   }
+  },
+  {
+   "isr_id": "635a010d-fa76-42a3-8ddf-c592e5189637",
+   "ts": 1794888480.9986522,
+   "class": "PIONEER",
+   "mode": "block",
+   "status": "stale",
+   "withhold": true,
+   "reasons": [
+    "PIONEER: kerumunan 35 jawaban hidup (>= garis 10) — ruang kebaruan yang dipilih saat viso 0 sudah tertutup"
+   ],
+   "pick": {
+    "isr_id": "635a010d-fa76-42a3-8ddf-c592e5189637",
+    "picked_at": 1794883620.0,
+    "target_class": "PIONEER",
+    "viso_at_pick": 0,
+    "verified_at_pick": 0,
+    "answers_at_pick": 0,
+    "source": "VERDICT-WATCH-2026-11-17 (pilot, viso 0)"
+   },
+   "live": {
+    "verified_now": 0,
+    "verified_list": 0,
+    "verified_detail": 0,
+    "crowd_now": 35,
+    "iso_list_len": 37,
+    "iso_total_detail": 37,
+    "status_counts": {
+     "revealed": 35,
+     "abandoned": 2
+    },
+    "question_status": "in_progress",
+    "liveness_ok": true,
+    "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)"
+   },
+   "fetch": {
+    "detail": "ok",
+    "isos": "ok"
+   }
+  },
+  {
+   "isr_id": "d21135d5-5d4e-4a54-9da1-c54b4fc466f8",
+   "ts": 1794888483.5691617,
+   "class": "PIONEER",
+   "mode": "block",
+   "status": "stale",
+   "withhold": true,
+   "reasons": [
+    "PIONEER: kerumunan 23 jawaban hidup (>= garis 10) — ruang kebaruan yang dipilih saat viso 0 sudah tertutup"
+   ],
+   "pick": {
+    "isr_id": "d21135d5-5d4e-4a54-9da1-c54b4fc466f8",
+    "picked_at": 1794884280.0,
+    "target_class": "PIONEER",
+    "viso_at_pick": 0,
+    "verified_at_pick": 0,
+    "answers_at_pick": 0,
+    "source": "VERDICT-WATCH-2026-11-17 (pilot, viso 0)"
+   },
+   "live": {
+    "verified_now": 0,
+    "verified_list": 0,
+    "verified_detail": 0,
+    "crowd_now": 23,
+    "iso_list_len": 23,
+    "iso_total_detail": 23,
+    "status_counts": {
+     "revealed": 23
+    },
+    "question_status": "in_progress",
+    "liveness_ok": true,
+    "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)"
+   },
+   "fetch": {
+    "detail": "ok",
+    "isos": "ok"
+   }
+  },
+  {
+   "isr_id": "5e905bef-7e0a-4b31-839c-d59a6688c70d",
+   "ts": 1794888486.4889357,
+   "class": "PIONEER",
+   "mode": "block",
+   "status": "stale",
+   "withhold": true,
+   "reasons": [
+    "PIONEER: kerumunan 46 jawaban hidup (>= garis 10) — ruang kebaruan yang dipilih saat viso 0 sudah tertutup"
+   ],
+   "pick": {
+    "isr_id": "5e905bef-7e0a-4b31-839c-d59a6688c70d",
+    "picked_at": 1794884520.0,
+    "target_class": "PIONEER",
+    "viso_at_pick": 0,
+    "verified_at_pick": 0,
+    "answers_at_pick": 0,
+    "source": "VERDICT-WATCH-2026-11-17 (pilot, viso 0)"
+   },
+   "live": {
+    "verified_now": 0,
+    "verified_list": 0,
+    "verified_detail": 0,
+    "crowd_now": 46,
+    "iso_list_len": 51,
+    "iso_total_detail": 51,
+    "status_counts": {
+     "revealed": 46,
+     "abandoned": 4,
+     "intent": 1
+    },
+    "question_status": "in_progress",
+    "liveness_ok": true,
+    "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)"
+   },
+   "fetch": {
+    "detail": "ok",
+    "isos": "ok"
+   }
+  }
+ ],
+ "fresh_trials": [
+  {
+   "isr_id": "eaa812f3-cdf6-4e2b-bcb9-cc6fadc698f8",
+   "ts": 1794888489.2021277,
+   "class": "PIONEER",
+   "mode": "block",
+   "status": "stale",
+   "withhold": true,
+   "reasons": [
+    "PIONEER: kerumunan 37 jawaban hidup (>= garis 10) — ruang kebaruan yang dipilih saat viso 0 sudah tertutup"
+   ],
+   "pick": {
+    "isr_id": "eaa812f3-cdf6-4e2b-bcb9-cc6fadc698f8",
+    "picked_at": null,
+    "target_class": "PIONEER",
+    "viso_at_pick": 0,
+    "verified_at_pick": 0,
+    "answers_at_pick": 0,
+    "source": "SAPUAN-ULANG-PEMILIH-2026-11-17 (viso 0)"
+   },
+   "live": {
+    "verified_now": 0,
+    "verified_list": 0,
+    "verified_detail": 0,
+    "crowd_now": 37,
+    "iso_list_len": 46,
+    "iso_total_detail": 46,
+    "status_counts": {
+     "revealed": 37,
+     "abandoned": 6,
+     "intent": 2,
+     "falsified": 1
+    },
+    "question_status": "in_progress",
+    "liveness_ok": true,
+    "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)"
+   },
+   "fetch": {
+    "detail": "ok",
+    "isos": "ok"
+   }
+  },
+  {
+   "isr_id": "00a25466-c44c-4811-8798-62e7ba95b482",
+   "ts": 1794888491.7395933,
+   "class": "PIONEER",
+   "mode": "block",
+   "status": "stale",
+   "withhold": true,
+   "reasons": [
+    "PIONEER: kerumunan 42 jawaban hidup (>= garis 10) — ruang kebaruan yang dipilih saat viso 0 sudah tertutup"
+   ],
+   "pick": {
+    "isr_id": "00a25466-c44c-4811-8798-62e7ba95b482",
+    "picked_at": null,
+    "target_class": "PIONEER",
+    "viso_at_pick": 0,
+    "verified_at_pick": 0,
+    "answers_at_pick": 0,
+    "source": "SAPUAN-ULANG-PEMILIH-2026-11-17 (viso 0)"
+   },
+   "live": {
+    "verified_now": 0,
+    "verified_list": 0,
+    "verified_detail": 0,
+    "crowd_now": 42,
+    "iso_list_len": 47,
+    "iso_total_detail": 47,
+    "status_counts": {
+     "revealed": 42,
+     "abandoned": 4,
+     "falsified": 1
+    },
+    "question_status": "in_progress",
+    "liveness_ok": true,
+    "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)"
+   },
+   "fetch": {
+    "detail": "ok",
+    "isos": "ok"
+   }
+  },
+  {
+   "isr_id": "0157919b-5ce6-49bb-9416-c1aca01e0795",
+   "ts": 1794888494.4352665,
+   "class": "PIONEER",
+   "mode": "block",
+   "status": "stale",
+   "withhold": true,
+   "reasons": [
+    "PIONEER: kerumunan 71 jawaban hidup (>= garis 10) — ruang kebaruan yang dipilih saat viso 0 sudah tertutup"
+   ],
+   "pick": {
+    "isr_id": "0157919b-5ce6-49bb-9416-c1aca01e0795",
+    "picked_at": null,
+    "target_class": "PIONEER",
+    "viso_at_pick": 0,
+    "verified_at_pick": 0,
+    "answers_at_pick": 0,
+    "source": "SAPUAN-ULANG-PEMILIH-2026-11-17 (viso 0)"
+   },
+   "live": {
+    "verified_now": 0,
+    "verified_list": 0,
+    "verified_detail": 0,
+    "crowd_now": 71,
+    "iso_list_len": 83,
+    "iso_total_detail": 83,
+    "status_counts": {
+     "revealed": 71,
+     "abandoned": 12
+    },
+    "question_status": "in_progress",
+    "liveness_ok": true,
+    "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)"
+   },
+   "fetch": {
+    "detail": "ok",
+    "isos": "ok"
+   }
+  },
+  {
+   "isr_id": "1bdf1032-d718-48ae-bd4f-25b91bb082bd",
+   "ts": 1794888497.8418252,
+   "class": "PIONEER",
+   "mode": "block",
+   "status": "stale",
+   "withhold": true,
+   "reasons": [
+    "PIONEER: kerumunan 33 jawaban hidup (>= garis 10) — ruang kebaruan yang dipilih saat viso 0 sudah tertutup"
+   ],
+   "pick": {
+    "isr_id": "1bdf1032-d718-48ae-bd4f-25b91bb082bd",
+    "picked_at": null,
+    "target_class": "PIONEER",
+    "viso_at_pick": 0,
+    "verified_at_pick": 0,
+    "answers_at_pick": 0,
+    "source": "SAPUAN-ULANG-PEMILIH-2026-11-17 (viso 0)"
+   },
+   "live": {
+    "verified_now": 0,
+    "verified_list": 0,
+    "verified_detail": 0,
+    "crowd_now": 33,
+    "iso_list_len": 38,
+    "iso_total_detail": 38,
+    "status_counts": {
+     "revealed": 33,
+     "abandoned": 3,
+     "falsified": 2
+    },
+    "question_status": "in_progress",
+    "liveness_ok": true,
+    "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)"
+   },
+   "fetch": {
+    "detail": "ok",
+    "isos": "ok"
+   }
+  }
+ ]
+}

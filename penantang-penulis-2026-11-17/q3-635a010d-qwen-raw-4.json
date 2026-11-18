@@ -1,0 +1,40 @@
+{
+ "status": 200,
+ "latency_s": 5.6,
+ "headers": {
+  "Date": "Tue, 17 Nov 2026 14:22:01 GMT",
+  "Content-Type": "application/json; charset=utf-8",
+  "CF-RAY": "a5bf6279893767a2-SJC",
+  "Server": "cloudflare",
+  "access-control-allow-headers": "Content-Type, Authorization, x-api-key, x-admin-token, anthropic-version",
+  "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "access-control-allow-origin": "*",
+  "alt-svc": "h3=\":443\"; ma=86400",
+  "Content-Encoding": "gzip",
+  "etag": "W/\"14ea-gqYxW8s/KNB//tCA/3DaDwzzEGg\"",
+  "referrer-policy": "no-referrer",
+  "vary": "Accept-Encoding",
+  "x-content-type-options": "nosniff",
+  "x-crowllm-version": "main-20261117-262defd",
+  "x-frame-options": "DENY",
+  "x-gateway-build": "emptyfix-2026-10-04-3",
+  "x-gateway-code-mtime": "2026-11-08T06:04:18.898Z",
+  "x-gateway-request-id": "b1b2daa9-1b54-49d7-9e9d-810aff694fab",
+  "x-powered-by": "Express",
+  "x-request-id": "202611171421561850976858268d9d6E59dpKqt",
+  "x-xss-protection": "1; mode=block",
+  "cf-cache-status": "DYNAMIC",
+  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=LFuWO4lepHCv0PLJJEEr4T5qudhT%2BUitoO9fKKZy6mIKCxaQD%2FBcomp0o4V1bkxMlZyksZx1FTGZmK68JnssBeRGTWbkr1rBPbUquYHe1eRDZXn8QDOsYTE2OcaZxqzxxGW8HbFDFE7KCg%3D%3D\"}]}",
+  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+  "Content-Length": "2600"
+ },
+ "model_returned": "qwen-3.8-max",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 255,
+  "completion_tokens": 1309,
+  "total_tokens": 1564
+ },
+ "chars": 4971,
+ "text": "The fundamental challenge of maintaining persistent access to a Multi-Party Computation (MPC) wallet for an AI agent—especially when the private key is non-exportable and ephemeral pairing codes are the sole authentication vector—lies in transitioning from a \"user-based\" manual authentication flow to a \"service-based\" secure enclave persistence model. To achieve this, one must move the agent’s signing authority into a persistent environment that mimics the physical security properties required by the MPC provider while establishing an automated \"session renewal\" pipeline that bypasses the need for manual interaction.\n\n### The Architectural Conflict\nMPC wallets derive their security from distributed secret shares: one share typically resides on the user’s device, another with the wallet provider, and sometimes a third in a cloud backup (like iCloud or Google Drive). When a pairing code is required, the system is performing a \"device binding\" ceremony. If an agent is running on a cloud VM or container that wipes state upon restart, the \"device-bound\" share is lost. Because the key is non-exportable, you cannot simply save it to a database.\n\n### Strategy 1: Persistent Virtual Environments (The \"Gold Standard\")\nThe most robust solution is to eliminate the concept of \"restarting the machine\" in a way that clears state. Instead of building an agent that expects a fresh environment, the agent must be deployed within a **Persistent Virtual Machine (VM) or a stateful container orchestration** (such as Kubernetes with persistent volume claims).\n\nBy utilizing a persistent disk that survives restarts, the agent retains the local file system where the MPC provider’s client-side SDK stores its local secret share. For high-security environments, this should be combined with a Hardware Security Module (HSM) or a Trusted Execution Environment (TEE) like Intel SGX, if the provider’s SDK supports it.\n\n### Strategy 2: Automated Session Refresh and \"Headless\" Pairing\nIf the provider requires an active user session, you must engineer a \"Headless Bridge.\" This involves creating an authorized secondary device that acts as a relay.\n\n1.  **The Secondary Controller:** Deploy a secondary, lightweight service (an \"Authenticator Node\") that runs 24/7 on a static, high-availability infrastructure.\n2.  **API Mimicry:** If the provider’s SDK lacks a headless login, you must perform a \"Browser Automation\" integration using tools like Playwright or Puppeteer to interact with the wallet provider’s web interface. \n3.  **Credential Vaulting:** Store your primary identity credentials (the credentials used to *generate* the pairing code) in a secure, encrypted secrets manager (e.g., HashiCorp Vault or AWS Secrets Manager). Upon agent restart, a pre-run script pulls these credentials, initiates a headless browser session, generates the pairing code programmatically, and injects it into the agent's startup sequence.\n\n### Strategy 3: Delegation and Multi-Sig Policy\nA more elegant, architectural solution is to stop trying to force the AI agent to hold the full primary key. Instead, configure the MPC wallet as a **Multi-Sig or Threshold wallet** where the AI agent is designated as a secondary \"Authorized Signer.\"\n\n*   **The Workflow:** The agent holds an API key or a limited-scope session token that allows it to request signatures, but not to unilaterally spend. \n*   **The Benefit:** If the agent’s environment is wiped, you do not need to re-pair the master key. You simply issue a new \"Agent Signer\" key via your administrative account. This aligns with the Principle of Least Privilege: the AI agent only has the power you explicitly delegate to it, and re-provisioning that delegation does not put the master wallet at risk.\n\n### Implementation Checklist\nTo ensure the agent survives a restart, implement the following:\n1.  **Encrypted Volume Mapping:** Ensure the SDK’s `datadir` or configuration folder is mapped to a persistent, encrypted EBS volume (or equivalent).\n2.  **Heartbeat Monitoring:** Use an orchestration layer (e.g., systemd or K8s Liveness Probes) to detect if the MPC connection has been severed.\n3.  **Secret Injection:** Never hardcode credentials. Use a secure sidecar container to fetch the identity token needed to re-authenticate with the MPC provider's cloud-side share during the boot sequence.\n\n### Synthesis: The Decisive Shift\nThe key realization is that an AI agent cannot \"log in\" like a human. You must shift from **User-Centric Authentication** (where a human inputs a code) to **Infrastructure-Centric Authentication** (where the machine identity is pre-authorized by your organization). By either persisting the local machine state via virtualized disks or shifting the wallet architecture to treat the AI as a delegated signer, you bypass the ephemeral pairing-code bottleneck. The most decisive change is moving the \"pairing\" process from a human-in-the-loop task to a policy-defined infrastructure requirement."
+}

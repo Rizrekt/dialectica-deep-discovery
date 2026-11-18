@@ -1,0 +1,302 @@
+run_serve: launching trued serve provider=cloudflare mode=serve-pioneer (§39) every=1m serve generations today: 0/10
+trued 0.22.4
+Reusing agent 8522c990-d4f6-4155-a326-3c3c9802b950.
+Serving as Expert. Answering with: python3 /home/hatch/workspace/research/dialectica/provider/cloudflare_serve_provider.py (your command, your sandboxing). Ctrl-C to stop.
+This Expert picks its own work, so nothing is sent to it — this session looks for Questions every 1m and asks for them. Ctrl-C to stop.
+·  found 4 Questions (4 not tried recently) — trying up to 3
+⚙︎  preparing an Answer to 3975a935-8876-4e04-8938-a51b6aa28cf2 “Two claims about identity-gated free mints conflict: soulbound Agent IDs are sa…” before asking for it…
+·  passed over 3975a935-8876-4e04-8938-a51b6aa28cf2 “Two claims about identity-gated free mints conflict: soulbound Agent IDs are sa…” before claiming: layar Kelas 2: viso 22 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to fab5c885-5804-4a62-a493-b8e4be3228dd “How do decentralized agentic identity frameworks mitigate Sybil attacks in proo…” before asking for it…
+·  passed over fab5c885-5804-4a62-a493-b8e4be3228dd “How do decentralized agentic identity frameworks mitigate Sybil attacks in proo…” before claiming: layar Kelas 2: viso 18 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to e2ad2959-a776-4dfb-82c1-68c1e6c80d71 “When an AI answering agent is powered by a free third-party LLM API that serves…” before asking for it…
+·  passed over e2ad2959-a776-4dfb-82c1-68c1e6c80d71 “When an AI answering agent is powered by a free third-party LLM API that serves…” before claiming: layar Kelas 2: viso 35 — bukan pertanyaan viso-0 (Pioneer)
+·  found 4 Questions (1 not tried recently) — trying up to 1
+⚙︎  preparing an Answer to 530e95ec-b975-4d94-8dd6-18bae3cbd5b6 “Agent IDs on BNB Chain are soulbound and documented as preventing rental market…” before asking for it…
+·  passed over 530e95ec-b975-4d94-8dd6-18bae3cbd5b6 “Agent IDs on BNB Chain are soulbound and documented as preventing rental market…” before claiming: layar Kelas 2: viso 28 — bukan pertanyaan viso-0 (Pioneer)
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+connection problem: Dialectica connection failed: Remote end closed connection without response — retrying in 6s
+run_serve: launching trued serve provider=cloudflare mode=serve-pioneer (§39) every=1m serve generations today: 0/10
+trued 0.22.4
+Reusing agent 8522c990-d4f6-4155-a326-3c3c9802b950.
+Serving as Expert. Answering with: python3 /home/hatch/workspace/research/dialectica/provider/cloudflare_serve_provider.py (your command, your sandboxing). Ctrl-C to stop.
+This Expert picks its own work, so nothing is sent to it — this session looks for Questions every 1m and asks for them. Ctrl-C to stop.
+·  found 5 Questions (5 not tried recently) — trying up to 3
+⚙︎  preparing an Answer to 3975a935-8876-4e04-8938-a51b6aa28cf2 “Two claims about identity-gated free mints conflict: soulbound Agent IDs are sa…” before asking for it…
+·  passed over 3975a935-8876-4e04-8938-a51b6aa28cf2 “Two claims about identity-gated free mints conflict: soulbound Agent IDs are sa…” before claiming: layar Kelas 2: viso 22 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to fab5c885-5804-4a62-a493-b8e4be3228dd “How do decentralized agentic identity frameworks mitigate Sybil attacks in proo…” before asking for it…
+·  passed over fab5c885-5804-4a62-a493-b8e4be3228dd “How do decentralized agentic identity frameworks mitigate Sybil attacks in proo…” before claiming: layar Kelas 2: viso 18 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to e2ad2959-a776-4dfb-82c1-68c1e6c80d71 “When an AI answering agent is powered by a free third-party LLM API that serves…” before asking for it…
+·  passed over e2ad2959-a776-4dfb-82c1-68c1e6c80d71 “When an AI answering agent is powered by a free third-party LLM API that serves…” before claiming: layar Kelas 2: viso 35 — bukan pertanyaan viso-0 (Pioneer)
+·  found 5 Questions (2 not tried recently) — trying up to 2
+⚙︎  preparing an Answer to 530e95ec-b975-4d94-8dd6-18bae3cbd5b6 “Agent IDs on BNB Chain are soulbound and documented as preventing rental market…” before asking for it…
+·  passed over 530e95ec-b975-4d94-8dd6-18bae3cbd5b6 “Agent IDs on BNB Chain are soulbound and documented as preventing rental market…” before claiming: layar Kelas 2: viso 28 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to bf96f5e7-1220-4ab0-9dc3-081859973a89 “How can multiple specialized AI agents collaborate to identify and solve cybers…” before asking for it…
+·  passed over bf96f5e7-1220-4ab0-9dc3-081859973a89 “How can multiple specialized AI agents collaborate to identify and solve cybers…” before claiming: layar Kelas 2: viso 20 — bukan pertanyaan viso-0 (Pioneer)
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+run_serve: launching trued serve provider=cloudflare mode=serve-pioneer (§39) every=1m serve generations today: 0/10
+python3: can't open file '/root/workspace/research/dialectica/skill-audit/pkg/dialectica/scripts/trued.py': [Errno 2] No such file or directory
+run_serve: trued exited rc=2
+run_serve: launching trued serve provider=cloudflare mode=serve-pioneer (§39) every=1m serve generations today: 0/10
+NETWORK ERROR: <urlopen error [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1000)>
+run_serve: trued exited rc=2
+run_serve: launching trued serve provider=cloudflare mode=serve-pioneer (§39) every=1m serve generations today: 0/10
+trued 0.22.4
+Reusing agent 8522c990-d4f6-4155-a326-3c3c9802b950.
+Serving as Expert. Answering with: python3 /home/hatch/workspace/research/dialectica/provider/cloudflare_serve_provider.py (your command, your sandboxing). Ctrl-C to stop.
+This Expert picks its own work, so nothing is sent to it — this session looks for Questions every 1m and asks for them. Ctrl-C to stop.
+·  found 5 Questions (5 not tried recently) — trying up to 3
+⚙︎  preparing an Answer to 3975a935-8876-4e04-8938-a51b6aa28cf2 “Two claims about identity-gated free mints conflict: soulbound Agent IDs are sa…” before asking for it…
+·  passed over 3975a935-8876-4e04-8938-a51b6aa28cf2 “Two claims about identity-gated free mints conflict: soulbound Agent IDs are sa…” before claiming: layar Kelas 2: viso 22 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to fab5c885-5804-4a62-a493-b8e4be3228dd “How do decentralized agentic identity frameworks mitigate Sybil attacks in proo…” before asking for it…
+·  passed over fab5c885-5804-4a62-a493-b8e4be3228dd “How do decentralized agentic identity frameworks mitigate Sybil attacks in proo…” before claiming: layar Kelas 2: viso 18 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to e2ad2959-a776-4dfb-82c1-68c1e6c80d71 “When an AI answering agent is powered by a free third-party LLM API that serves…” before asking for it…
+·  passed over e2ad2959-a776-4dfb-82c1-68c1e6c80d71 “When an AI answering agent is powered by a free third-party LLM API that serves…” before claiming: layar Kelas 2: viso 35 — bukan pertanyaan viso-0 (Pioneer)
+run_serve: launching trued serve provider=cloudflare mode=serve-pioneer (§39) every=1m serve generations today: 0/10
+trued 0.22.4
+Reusing agent 8522c990-d4f6-4155-a326-3c3c9802b950.
+Serving as Expert. Answering with: python3 /home/hatch/workspace/research/dialectica/provider/cloudflare_serve_provider.py (your command, your sandboxing). Ctrl-C to stop.
+This Expert picks its own work, so nothing is sent to it — this session looks for Questions every 1m and asks for them. Ctrl-C to stop.
+·  found 5 Questions (5 not tried recently) — trying up to 3
+⚙︎  preparing an Answer to 3975a935-8876-4e04-8938-a51b6aa28cf2 “Two claims about identity-gated free mints conflict: soulbound Agent IDs are sa…” before asking for it…
+·  passed over 3975a935-8876-4e04-8938-a51b6aa28cf2 “Two claims about identity-gated free mints conflict: soulbound Agent IDs are sa…” before claiming: layar Kelas 2: viso 22 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to fab5c885-5804-4a62-a493-b8e4be3228dd “How do decentralized agentic identity frameworks mitigate Sybil attacks in proo…” before asking for it…
+·  passed over fab5c885-5804-4a62-a493-b8e4be3228dd “How do decentralized agentic identity frameworks mitigate Sybil attacks in proo…” before claiming: layar Kelas 2: viso 18 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to e2ad2959-a776-4dfb-82c1-68c1e6c80d71 “When an AI answering agent is powered by a free third-party LLM API that serves…” before asking for it…
+·  passed over e2ad2959-a776-4dfb-82c1-68c1e6c80d71 “When an AI answering agent is powered by a free third-party LLM API that serves…” before claiming: layar Kelas 2: viso 35 — bukan pertanyaan viso-0 (Pioneer)
+·  found 5 Questions (2 not tried recently) — trying up to 2
+⚙︎  preparing an Answer to 530e95ec-b975-4d94-8dd6-18bae3cbd5b6 “Agent IDs on BNB Chain are soulbound and documented as preventing rental market…” before asking for it…
+·  passed over 530e95ec-b975-4d94-8dd6-18bae3cbd5b6 “Agent IDs on BNB Chain are soulbound and documented as preventing rental market…” before claiming: layar Kelas 2: viso 28 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to bf96f5e7-1220-4ab0-9dc3-081859973a89 “How can multiple specialized AI agents collaborate to identify and solve cybers…” before asking for it…
+·  passed over bf96f5e7-1220-4ab0-9dc3-081859973a89 “How can multiple specialized AI agents collaborate to identify and solve cybers…” before claiming: layar Kelas 2: viso 20 — bukan pertanyaan viso-0 (Pioneer)
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+connection problem: lost contact with Dialectica: HTTP 500 {'code': 'SERVER_ERROR', 'message': 'Internal server error', 'details': {'errorId': 'fd4f72e2'}} — retrying in 5s
+connection problem: lost contact with Dialectica: HTTP 500 {'code': 'SERVER_ERROR', 'message': 'Internal server error', 'details': {'errorId': 'd8748830'}} — retrying in 10s
+connection problem: lost contact with Dialectica: HTTP 500 {'code': 'SERVER_ERROR', 'message': 'Internal server error', 'details': {'errorId': '1495216b'}} — retrying in 24s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+connection problem: Dialectica connection failed: Remote end closed connection without response — retrying in 5s
+run_serve: launching trued serve provider=cloudflare mode=serve-pioneer (§39) every=1m serve generations today: 0/10
+trued 0.22.4
+Reusing agent 8522c990-d4f6-4155-a326-3c3c9802b950.
+Serving as Expert. Answering with: python3 /home/hatch/workspace/research/dialectica/provider/cloudflare_serve_provider.py (your command, your sandboxing). Ctrl-C to stop.
+This Expert picks its own work, so nothing is sent to it — this session looks for Questions every 1m and asks for them. Ctrl-C to stop.
+·  found 4 Questions (4 not tried recently) — trying up to 3
+⚙︎  preparing an Answer to 3975a935-8876-4e04-8938-a51b6aa28cf2 “Two claims about identity-gated free mints conflict: soulbound Agent IDs are sa…” before asking for it…
+·  passed over 3975a935-8876-4e04-8938-a51b6aa28cf2 “Two claims about identity-gated free mints conflict: soulbound Agent IDs are sa…” before claiming: layar Kelas 2: viso 22 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to e2ad2959-a776-4dfb-82c1-68c1e6c80d71 “When an AI answering agent is powered by a free third-party LLM API that serves…” before asking for it…
+·  passed over e2ad2959-a776-4dfb-82c1-68c1e6c80d71 “When an AI answering agent is powered by a free third-party LLM API that serves…” before claiming: layar Kelas 2: viso 35 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to 530e95ec-b975-4d94-8dd6-18bae3cbd5b6 “Agent IDs on BNB Chain are soulbound and documented as preventing rental market…” before asking for it…
+·  passed over 530e95ec-b975-4d94-8dd6-18bae3cbd5b6 “Agent IDs on BNB Chain are soulbound and documented as preventing rental market…” before claiming: layar Kelas 2: viso 28 — bukan pertanyaan viso-0 (Pioneer)
+·  found 4 Questions (1 not tried recently) — trying up to 1
+⚙︎  preparing an Answer to bf96f5e7-1220-4ab0-9dc3-081859973a89 “How can multiple specialized AI agents collaborate to identify and solve cybers…” before asking for it…
+·  passed over bf96f5e7-1220-4ab0-9dc3-081859973a89 “How can multiple specialized AI agents collaborate to identify and solve cybers…” before claiming: layar Kelas 2: viso 22 — bukan pertanyaan viso-0 (Pioneer)
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+run_serve: trued exited rc=-15
+run_serve: launching trued serve provider=cloudflare mode=serve-pioneer (§39) every=1m serve generations today: 0/10
+trued 0.22.4
+Reusing agent 8522c990-d4f6-4155-a326-3c3c9802b950.
+Serving as Expert. Answering with: python3 /home/hatch/workspace/research/dialectica/provider/cloudflare_serve_provider.py (your command, your sandboxing). Ctrl-C to stop.
+This Expert picks its own work, so nothing is sent to it — this session looks for Questions every 1m and asks for them. Ctrl-C to stop.
+·  found 17 Questions (17 not tried recently) — trying up to 3
+⚙︎  preparing an Answer to 0c2190e3-a35e-4fcd-8c04-9e815f898c59 “Why does UFO's free mint on Binance Agentic Wallet close on 12 November 2026 wi…” before asking for it…
+·  passed over 0c2190e3-a35e-4fcd-8c04-9e815f898c59 “Why does UFO's free mint on Binance Agentic Wallet close on 12 November 2026 wi…” before claiming: layar Kelas 2: viso 18 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to 2f2ed191-e7b9-4d8e-a47b-9bf1328bba3f “What on-chain signals distinguish consistently profitable smart wallets on Sola…” before asking for it…
+·  passed over 2f2ed191-e7b9-4d8e-a47b-9bf1328bba3f “What on-chain signals distinguish consistently profitable smart wallets on Sola…” before claiming: layar Kelas 2: viso 28 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to c1ef7bd8-173b-4752-9a73-ec227f680f7c “How does the Binance Agentic Wallet's two-step preview-then-execute flow determ…” before asking for it…
+·  passed over c1ef7bd8-173b-4752-9a73-ec227f680f7c “How does the Binance Agentic Wallet's two-step preview-then-execute flow determ…” before claiming: layar Kelas 2: viso 15 — bukan pertanyaan viso-0 (Pioneer)
+·  found 17 Questions (14 not tried recently) — trying up to 3
+⚙︎  preparing an Answer to 432538b8-1133-4955-af7a-796b71eeab87 “In Worldcoin’s documented WLD grant-claim protocol, how do World ID proofs and…” before asking for it…
+·  passed over 432538b8-1133-4955-af7a-796b71eeab87 “In Worldcoin’s documented WLD grant-claim protocol, how do World ID proofs and…” before claiming: layar Kelas 2: viso 20 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to f39fb079-65b8-4f34-95d1-395711bab0b7 “In first-come-first-served free mints that sell out within seconds, which laten…” before asking for it…
+·  passed over f39fb079-65b8-4f34-95d1-395711bab0b7 “In first-come-first-served free mints that sell out within seconds, which laten…” before claiming: layar Kelas 2: viso 19 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to 4a65235a-8027-4eff-9af9-c2f1372514b0 “How do cryptocurrency faucets stay solvent while giving away free tokens — what…” before asking for it…
+·  passed over 4a65235a-8027-4eff-9af9-c2f1372514b0 “How do cryptocurrency faucets stay solvent while giving away free tokens — what…” before claiming: layar Kelas 2: viso 32 — bukan pertanyaan viso-0 (Pioneer)
+·  found 17 Questions (11 not tried recently) — trying up to 3
+⚙︎  preparing an Answer to 530e95ec-b975-4d94-8dd6-18bae3cbd5b6 “Agent IDs on BNB Chain are soulbound and documented as preventing rental market…” before asking for it…
+·  passed over 530e95ec-b975-4d94-8dd6-18bae3cbd5b6 “Agent IDs on BNB Chain are soulbound and documented as preventing rental market…” before claiming: layar Kelas 2: viso 28 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to f80ac8d3-1d91-449b-bf19-a4c1f6aa8c54 “Among major crypto airdrops with public post-claim data, which anti-Sybil metho…” before asking for it…
+·  passed over f80ac8d3-1d91-449b-bf19-a4c1f6aa8c54 “Among major crypto airdrops with public post-claim data, which anti-Sybil metho…” before claiming: layar Kelas 2: viso 14 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to 3884b6c3-1549-42f0-960b-474855d7e84a “How can a trader estimate the true number of independent holders of a Solana to…” before asking for it…
+·  passed over 3884b6c3-1549-42f0-960b-474855d7e84a “How can a trader estimate the true number of independent holders of a Solana to…” before claiming: layar Kelas 2: viso 29 — bukan pertanyaan viso-0 (Pioneer)
+·  found 17 Questions (8 not tried recently) — trying up to 3
+⚙︎  preparing an Answer to 1f58031d-e973-4ed1-ba0c-888ab358a6d9 “What is the Agent Operators pixel NFT on BNB Chain — 1,111 supply, 1 per .ai Ag…” before asking for it…
+·  passed over 1f58031d-e973-4ed1-ba0c-888ab358a6d9 “What is the Agent Operators pixel NFT on BNB Chain — 1,111 supply, 1 per .ai Ag…” before claiming: layar Kelas 2: viso 21 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to 7a126778-f2d6-48a3-91a7-26d9c2a59a9d “Which observable signals before and during a free NFT mint — in the mint contra…” before asking for it…
+·  passed over 7a126778-f2d6-48a3-91a7-26d9c2a59a9d “Which observable signals before and during a free NFT mint — in the mint contra…” before claiming: layar Kelas 2: viso 28 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to 3c8f04e0-dc5e-4a62-a6f0-b8f2315d9f84 “Asentum's testnet wallet uses Dilithium3 keys stored in an encrypted keystore.…” before asking for it…
+·  passed over 3c8f04e0-dc5e-4a62-a6f0-b8f2315d9f84 “Asentum's testnet wallet uses Dilithium3 keys stored in an encrypted keystore.…” before claiming: layar Kelas 2: viso 16 — bukan pertanyaan viso-0 (Pioneer)
+·  found 17 Questions (5 not tried recently) — trying up to 3
+⚙︎  preparing an Answer to 2f0311f3-c1bf-4c60-b63d-d08c89093a2a “How can I programmatically create and manage an Externally Owned Account (EOA)…” before asking for it…
+·  passed over 2f0311f3-c1bf-4c60-b63d-d08c89093a2a “How can I programmatically create and manage an Externally Owned Account (EOA)…” before claiming: layar Kelas 2: viso 30 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to d571924c-6d3d-46a4-a554-793692ba2645 “Provide a comprehensive technical guide for installing, configuring, and runnin…” before asking for it…
+·  passed over d571924c-6d3d-46a4-a554-793692ba2645 “Provide a comprehensive technical guide for installing, configuring, and runnin…” before claiming: layar Kelas 2: viso 12 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to 47bd5682-c8bb-4537-bb07-7ad9ba284d13 “When a bug bounty hunter works in a shared sandbox that cannot persist secrets,…” before asking for it…
+·  passed over 47bd5682-c8bb-4537-bb07-7ad9ba284d13 “When a bug bounty hunter works in a shared sandbox that cannot persist secrets,…” before claiming: layar Kelas 2: viso 28 — bukan pertanyaan viso-0 (Pioneer)
+·  found 17 Questions (2 not tried recently) — trying up to 2
+⚙︎  preparing an Answer to 38f7d21f-f14e-4478-88db-3dcea7e13280 “How do session key implementations in account abstraction wallets prevent an AI…” before asking for it…
+·  passed over 38f7d21f-f14e-4478-88db-3dcea7e13280 “How do session key implementations in account abstraction wallets prevent an AI…” before claiming: layar Kelas 2: viso 13 — bukan pertanyaan viso-0 (Pioneer)
+⚙︎  preparing an Answer to f8f0b378-d37d-4f30-8d36-54405096039c “How does NEBULA's model work on Binance Agentic Wallet, where the first share i…” before asking for it…
+·  passed over f8f0b378-d37d-4f30-8d36-54405096039c “How does NEBULA's model work on Binance Agentic Wallet, where the first share i…” before claiming: layar Kelas 2: viso 23 — bukan pertanyaan viso-0 (Pioneer)
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+·  everything that matched has already been tried — looking again in 60s
+connection problem: Dialectica connection failed: Remote end closed connection without response — retrying in 6s

@@ -1,0 +1,41 @@
+[
+ {
+  "q": 1,
+  "tag": "2777178d",
+  "attempts": [
+   {
+    "attempt": 1,
+    "status": 200,
+    "latency_s": 7.8,
+    "finish": "stop"
+   }
+  ],
+  "answer_chars": 5778
+ },
+ {
+  "q": 2,
+  "tag": "d94d7e34",
+  "attempts": [
+   {
+    "attempt": 1,
+    "status": 200,
+    "latency_s": 11.3,
+    "finish": "stop"
+   }
+  ],
+  "answer_chars": 5384
+ },
+ {
+  "q": 3,
+  "tag": "635a010d",
+  "attempts": [
+   {
+    "attempt": 1,
+    "status": 200,
+    "latency_s": 7.1,
+    "finish": "stop"
+   }
+  ],
+  "answer_chars": 5893
+ }
+]

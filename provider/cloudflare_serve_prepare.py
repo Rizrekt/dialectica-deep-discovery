@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+"""DIALECTICA_PREPARE_CMD for the temporary Cloudflare serve lane
+(MEKANISME §39).
+
+trued runs this BEFORE claiming, with the search row as JSON on
+stdin; no job exists yet. Exit 0 = we hold a prepared, wrapper-
+sendable answer for this Question (cached on disk for the provider)
+and trued may claim it. Exit nonzero = pass the Question over: trued
+prints the last stdout line as the reason and nobody is left waiting
+on anything — a pass-over costs nothing, by the client's design.
+
+Order of gates (all BEFORE any generation or claim):
+1. Class-2 screen (cloudflare_serve_common.screen_row): viso-0,
+   not marathon-active, no runtime demand the row can show, core
+   topic, question text present.
+2. LIVENESS (serve_gate.liveness_gate_for_row, added 2026-11-15):
+   the three-field filter over the fetched ISR detail
+   (marathonActive + marathonConcluded + eligible endsAt). The
+   screen above already refuses marathon-ACTIVE rows, but the
+   stale-flag pattern of §82 — concluded round, flag never cleaned,
+   endsAt past — is only provable from the detail, and a target
+   proven dead is passed over here. The fetcher is armed by
+   run_serve (DIALECTICA_SERVE_GATE_FETCH=1); a failed fetch is
+   fail-closed (pass-over costs nothing). Unarmed, the row's own
+   fields decide.
+3. Serve generation cap: the day's remaining serve generations must
+   cover this pipeline. The final pipeline runs with the wrapper's
+   regeneration disabled when only one generation remains, so the
+   10/day cap can never be exceeded. This gate is the cap's hard
+   enforcement — it fires before acceptance, never as a provider
+   failure after a job exists.
+4. Generation through the serve pipeline (shared serve gate
+   mandatory: wrapper + thinking-trace layer). A withheld draft =
+   pass-over; the neuron budget abort inside the provider likewise
+   lands here, before any claim.
+"""
+import json
+import sys
+
+import cloudflare_provider as cp
+import cloudflare_serve_common as csc
+import serve_gate
+from openrouter_wrapper import format_withhold_breakdown
+
+
+def prepare_row(row, detail_fetcher=None):
+    """(exit_code, final_line). Split from main() for tests; the
+    fetcher defaults to the real, launcher-armed one."""
+    ok, reason = csc.screen_row(row)
+    if not ok:
+        return 1, f"layar Kelas 2: {reason}"
+    isr_id = csc.row_isr_id(row)
+    ok, reason = serve_gate.liveness_gate_for_row(
+        row, detail_fetcher=detail_fetcher, isr_id=isr_id)
+    if not ok:
+        return 1, f"gerbang liveness: {reason}"
+    used = csc.serve_generations_today()
+    remaining = csc.SERVE_CAP - used
+    if remaining <= 0:
+        return 1, (f"cap serve tercapai: {used}/{csc.SERVE_CAP} "
+                   f"generasi serve hari ini (UTC) — tidak menyiapkan "
+                   f"jawaban baru")
+    prompt = csc.prompt_from_row(row)
+    # Serve format contract (2026-11-16, audit S7): the SAME contract
+    # the Vyce serve lane appends (single source in serve_gate) — the
+    # two serve lanes no longer run different instruction standards.
+    prompt = (cp.apply_steering(prompt, isr_id) + cp.LENGTH_SUFFIX
+              + serve_gate.SERVE_FORMAT_CONTRACT)
+    try:
+        result = csc.serve_pipeline(
+            prompt, isr_id, allow_regen=remaining >= 2)
+    except (cp.NeuronBudgetAbort, cp.GenerationError) as ex:
+        return 1, f"provider berhenti sebelum generasi: {ex}"
+    except Exception as ex:  # noqa: BLE001 - a failed prepare is a pass
+        return 1, f"persiapan gagal ({type(ex).__name__}: {ex})"
+    if not result["sendable"]:
+        return 1, (f"draf ditahan wrapper (status={result['status']}, "
+                   f"temuan audit="
+                   f"{len(result['report']['audit']['findings'])}; "
+                   f"{format_withhold_breakdown(result['report'])}) — "
+                   f"pertanyaan dilewati, bukan diklaim")
+    csc.write_cache(isr_id, result["text"])
+    return 0, (f"jawaban siap untuk {isr_id} "
+               f"({result['report']['chars_final']} karakter, "
+               f"{len(result['generations'])} generasi serve)")
+
+
+def main():
+    raw = sys.stdin.read()
+    try:
+        row = json.loads(raw) if raw.strip() else {}
+    except ValueError:
+        print("payload prepare bukan JSON — pertanyaan dilewati")
+        return 1
+    rc, line = prepare_row(row)
+    print(line)
+    return rc
+
+
+if __name__ == "__main__":
+    sys.exit(main())

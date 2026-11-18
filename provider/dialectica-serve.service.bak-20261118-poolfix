@@ -1,0 +1,26 @@
+# REKONSILIASI 2026-11-17 (catatan utang audit F2 RUMAH Program Fondasi):
+# ExecStart DIPERBAIKI dari lane Cloudflare §39 (cadangan mati) ke lane pilot
+# Vyce tergating sesuai PAKET-RESTART-SERVE-2026-11-15 (vyce_serve_prepare/
+# ready/provider + serve_gate fail-closed, cap 10 generasi serve/hari-UTC).
+# File lama: dialectica-serve.service.bak-20261117-f2.
+# PEMASANGAN (nanti, sesudah gerbang serve-live membuka — JANGAN start sekarang):
+# jalur unit SISTEM (systemd --user MATI di VM ini): cp file ini ke
+# /etc/systemd/system/ + daemon-reload + enable TANPA --now.
+[Unit]
+Description=Dialectica serve — pilot Vyce tergating (PAKET-RESTART-SERVE-2026-11-15; cap 10 serve generations/UTC day)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/hatch/workspace/research/dialectica/provider
+Environment=SERVE_EVERY=1m
+Environment=HOME=/home/hatch
+EnvironmentFile=/etc/environment
+ExecStart=/bin/bash -c "exec /usr/bin/python3 /home/hatch/workspace/research/dialectica/provider/run_serve.py arenaIds=general questionMaxAgeMs=259200000 'q=wallet' >> /home/hatch/workspace/research/dialectica/provider/serve-$(date +%%F).log 2>&1"
+Restart=on-failure
+RestartSec=30
+RestartPreventExitStatus=6
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,39 @@
+# REKONSILIASI 2026-11-18 (PERBAIKAN-KOLAM-DOKTRIN): filter pencarian
+# serve DISELARASKAN ke kolam doktrin — ExecStart lama (q=wallet,
+# questionMaxAgeMs=259200000/3 hari) menyajikan kolam yang irisannya
+# dengan 117 klasifikasi pengamat = NOL pada mini-batch 3 (12 baris
+# tersaji, 0 terklasifikasi, 113 tiket parkir tak pernah ter-release,
+# 9 generasi terbakar). Filter baru = pita umur jendela lepas TELAT
+# (questionMinAgeMs=7200000/2 jam, questionMaxAgeMs=21600000/6 jam,
+# tanpa kata kunci): dry-run live 2026-11-18 03:33 UTC membuktikan
+# query ini mengembalikan 70/70 tiket DUE yang sedang parkir
+# (provider/dryrun_pool_intersection.py). File lama:
+# dialectica-serve.service.bak-20261118-poolfix. Pasangan wajibnya:
+# prepare fail-closed untuk baris tak-terklasifikasi saat doktrin
+# armed (vyce_serve_prepare.py, jahitan kolam yang sama).
+# REKONSILIASI 2026-11-17 (catatan utang audit F2 RUMAH Program Fondasi):
+# ExecStart DIPERBAIKI dari lane Cloudflare §39 (cadangan mati) ke lane pilot
+# Vyce tergating sesuai PAKET-RESTART-SERVE-2026-11-15 (vyce_serve_prepare/
+# ready/provider + serve_gate fail-closed, cap 10 generasi serve/hari-UTC).
+# File lama: dialectica-serve.service.bak-20261117-f2.
+# PEMASANGAN (nanti, sesudah gerbang serve-live membuka — JANGAN start sekarang):
+# jalur unit SISTEM (systemd --user MATI di VM ini): cp file ini ke
+# /etc/systemd/system/ + daemon-reload + enable TANPA --now.
+[Unit]
+Description=Dialectica serve — pilot Vyce tergating (PAKET-RESTART-SERVE-2026-11-15; cap 10 serve generations/UTC day)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/hatch/workspace/research/dialectica/provider
+Environment=SERVE_EVERY=1m
+Environment=HOME=/home/hatch
+EnvironmentFile=/etc/environment
+ExecStart=/bin/bash -c "exec /usr/bin/python3 /home/hatch/workspace/research/dialectica/provider/run_serve.py arenaIds=general questionMinAgeMs=7200000 questionMaxAgeMs=21600000 >> /home/hatch/workspace/research/dialectica/provider/serve-$(date +%%F).log 2>&1"
+Restart=on-failure
+RestartSec=30
+RestartPreventExitStatus=6
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target

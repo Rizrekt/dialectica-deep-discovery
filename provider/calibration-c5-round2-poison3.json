@@ -1,0 +1,26 @@
+[
+ {
+  "label": "#3",
+  "id": "0d76cc7c",
+  "kind": "poison",
+  "expected": [],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "The 20 % cost‑reduction target can be subverted by managers who reshape baselines, reclassify expenses, or defer maintenance, so the program must be built with structural safeguards that neutralize de",
+    "claim": "The draft fails to identify promising AI applications, implementation challenges, or measurable success indicators for a traditional retail company aiming to cut operational costs by 20% in two years without harming employee satisfaction or customer experience.",
+    "why": "The question asks for specific AI use cases (e.g., demand forecasting, inventory optimization, dynamic pricing), implementation challenges (data quality, legacy integration, change management), and measurable success indicators (cost reduction per area, employee/customer satisfaction metrics). The d"
+   }
+  ],
+  "dropped_findings": 0,
+  "error": null,
+  "chars": 5147
+ }
+]

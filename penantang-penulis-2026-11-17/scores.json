@@ -1,0 +1,163 @@
+{
+ "q1-glm": {
+  "side": "glm",
+  "chars": 6673,
+  "verdict": "findings",
+  "block": false,
+  "counts": {
+   "pointers": 19,
+   "verified": 14,
+   "findings": 3,
+   "pivotal_findings": 0,
+   "unverified": 2,
+   "pivotal_unverified": 0,
+   "fetches": 25
+  },
+  "findings_pivotal": [],
+  "findings_peripheral": [
+   {
+    "value": "proofofhumanity.site",
+    "kind": "domain",
+    "status": "dead",
+    "detail": "domain: tak ter-resolve (connect di apex maupun www)"
+   },
+   {
+    "value": "https://docs.passport.gitcoin.co",
+    "kind": "url",
+    "status": "dead",
+    "detail": "URL: tak ter-resolve (connect)"
+   },
+   {
+    "value": "https://www.proofofhumanity.site",
+    "kind": "url",
+    "status": "dead",
+    "detail": "URL: tak ter-resolve (connect)"
+   }
+  ],
+  "unverified_n": 2,
+  "error": null
+ },
+ "q2-glm": {
+  "side": "glm",
+  "chars": 7570,
+  "verdict": "fatal",
+  "block": true,
+  "counts": {
+   "pointers": 11,
+   "verified": 8,
+   "findings": 2,
+   "pivotal_findings": 1,
+   "unverified": 1,
+   "pivotal_unverified": 0,
+   "fetches": 12
+  },
+  "findings_pivotal": [
+   {
+    "value": "10.1145/2516651.2516734",
+    "kind": "doi",
+    "status": "dead",
+    "detail": "doi.org 404: DOI tidak terdaftar (Crossref juga 404)"
+   }
+  ],
+  "findings_peripheral": [
+   {
+    "value": "https://whitepaper.worldcoin/",
+    "kind": "url",
+    "status": "malformed",
+    "detail": "host 'whitepaper.worldcoin' tanpa TLD dikenal"
+   }
+  ],
+  "unverified_n": 1,
+  "error": null
+ },
+ "q3-glm": {
+  "side": "glm",
+  "chars": 6964,
+  "verdict": "fatal",
+  "block": true,
+  "counts": {
+   "pointers": 10,
+   "verified": 8,
+   "findings": 2,
+   "pivotal_findings": 1,
+   "unverified": 0,
+   "pivotal_unverified": 0,
+   "fetches": 12
+  },
+  "findings_pivotal": [
+   {
+    "value": "2020/940",
+    "kind": "eprint",
+    "status": "wrong_document",
+    "detail": "IACR ePrint: dokumen LAIN — klaim 'Secure Multiparty Computation (MPC)' vs aktual 'Directly revocable ciphertext-policy attribute-based encryption from lattices"
+   }
+  ],
+  "findings_peripheral": [
+   {
+    "value": "https://docs.web3auth.com/",
+    "kind": "url",
+    "status": "dead",
+    "detail": "URL: tak ter-resolve (connect)"
+   }
+  ],
+  "unverified_n": 0,
+  "error": null
+ },
+ "q1-qwen": {
+  "side": "qwen",
+  "chars": 5111,
+  "verdict": "clean",
+  "block": false,
+  "counts": {
+   "pointers": 0,
+   "verified": 0,
+   "findings": 0,
+   "pivotal_findings": 0,
+   "unverified": 0,
+   "pivotal_unverified": 0,
+   "fetches": 0
+  },
+  "findings_pivotal": [],
+  "findings_peripheral": [],
+  "unverified_n": 0,
+  "error": null
+ },
+ "q2-qwen": {
+  "side": "qwen",
+  "chars": 5167,
+  "verdict": "clean",
+  "block": false,
+  "counts": {
+   "pointers": 0,
+   "verified": 0,
+   "findings": 0,
+   "pivotal_findings": 0,
+   "unverified": 0,
+   "pivotal_unverified": 0,
+   "fetches": 0
+  },
+  "findings_pivotal": [],
+  "findings_peripheral": [],
+  "unverified_n": 0,
+  "error": null
+ },
+ "q3-qwen": {
+  "side": "qwen",
+  "chars": 4971,
+  "verdict": "clean",
+  "block": false,
+  "counts": {
+   "pointers": 0,
+   "verified": 0,
+   "findings": 0,
+   "pivotal_findings": 0,
+   "unverified": 0,
+   "pivotal_unverified": 0,
+   "fetches": 0
+  },
+  "findings_pivotal": [],
+  "findings_peripheral": [],
+  "unverified_n": 0,
+  "error": null
+ }
+}

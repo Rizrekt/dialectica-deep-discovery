@@ -1,0 +1,55 @@
+{
+ "id": "f131675d",
+ "isr": "c7cc33a2",
+ "chars": 41134,
+ "segment_chars": 5000,
+ "verdict": "fatal",
+ "checker": "vyce-nemotron",
+ "codes": [
+  "A_CITATION",
+  "A_CITATION",
+  "A_CITATION",
+  "A_CITATION"
+ ],
+ "subs": [
+  "S-1",
+  "S-4",
+  "S-1",
+  "S-4"
+ ],
+ "findings": [
+  {
+   "code": "A_CITATION",
+   "sub": "S-1",
+   "quote": "the 55 NIULAI and 4+ JINLI burns do not stand in the way",
+   "claim": "Specific burn counts (55 NIULAI, 4+ JINLI) are stated as fact.",
+   "why": "S-1 UNBOUND NUMBER: specific counts stated as fact with no named source attached in the draft; not a hypothetical worked example."
+  },
+  {
+   "code": "A_CITATION",
+   "sub": "S-4",
+   "quote": "still true at block ~133,184,406 on 12 Nov (Answer 37).",
+   "claim": "A specific historical block and date for observed contract state.",
+   "why": "S-4 ANSWER-AS-EVIDENCE: the world fact is supported only by another answer (Answer 37), not an independent cited source."
+  },
+  {
+   "code": "A_CITATION",
+   "sub": "S-1",
+   "quote": "limited history — 128 blocks for trie",
+   "claim": "BSC full-node trie history is limited to 128 blocks.",
+   "why": "S-1 UNBOUND NUMBER: a specific count/threshold stated as fact with no named source attached in the draft."
+  },
+  {
+   "code": "A_CITATION",
+   "sub": "S-4",
+   "quote": "Claim gas went to validators/BEP-95 burn, never into the contract (Answer 14).",
+   "claim": "Destination of claim transaction gas.",
+   "why": "S-4 ANSWER-AS-EVIDENCE: the world fact is supported only by another answer (Answer 14), not an independent cited source."
+  }
+ ],
+ "dropped": 0,
+ "segments": 9,
+ "segments_ok": 1,
+ "error": "segmen 1/9: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 31875 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 2/9: ValueError: balasan pemeriksa bukan objek JSON || segmen 3/9: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 27021 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2",
+ "secs": 150.5
+}

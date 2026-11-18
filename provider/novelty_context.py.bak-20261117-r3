@@ -1,0 +1,286 @@
+#!/usr/bin/env python3
+"""KONTEKS KEBARUAN untuk pemeriksa C5 — Surprise Gauge context
+(built 2026-11-17, KONTEKS-KEBARUAN-C5-2026-11-17.md).
+
+THE GAP THIS CLOSES (KALIBRASI-C5 §6 risk 4): the C5 checker judges
+a draft against the question context the serve pipeline hands it —
+the ISR text alone. The verified answers already on the question
+never ride along, so the checker has nothing to compare the draft
+against and SURPRISE_GAUGE — the field's #1 rejection (67%,
+DATA-LIVE-ARENA-2026-11-17) and the gate on the Innovator +10 cell
+(novelty >= 15%) — is practically silent in production: the checker
+prompt itself forbids flagging it without context evidence.
+
+This module builds that missing context from the client's OWN read
+path — the same endpoint `trued question` uses
+(GET /api/node/isos/{isr_id} -> {"isos": [...]}; a verified answer's
+text lives at reveal.data.structured_data.answer, forecasting
+answers at .reasoning). No field is invented: filtering, sorting
+and excerpting use only status / supportedCount / refutationCount /
+timestamp / id / isOwnAgent, exactly as cmd_question and
+calibrate_semantic_c5 read them.
+
+BLOCK SHAPE (rides at the end of the question string handed to
+serve_gate.semantic_check, inside its 12k question cap):
+  - a header naming the total verified count and how many are
+    excerpted;
+  - a COVERED list: each verified answer's own headings / bold
+    lead-ins / first sentence — the cheap, dense map of what has
+    already been said (collected from ALL verified answers, not
+    just the excerpted ones);
+  - EXCERPTS of the most-supported verified answers (per-answer
+    cap, count cap, total block cap), so the checker can compare
+    substance, not just titles.
+An ISR with no verified answers (viso 0, the Pioneer shape) yields
+an EMPTY block — a legitimate state, stated in the meta, never an
+error. Every failure (fetch down, malformed payload) is likewise
+data: context_for_isr returns ("", meta) and never raises, so a
+novelty outage can never break or block the semantic check itself.
+
+ARMING: serve_gate.armed_semantic_check attaches the block only
+when the C5 stage itself is armed (DIALECTICA_SEMANTIC_CHECK=1)
+AND this module's sub-flag allows it — DIALECTICA_SEMANTIC_NOVELTY:
+unset or any value but "0" = follow the parent flag; "0" = novelty
+context OFF while the rest of C5 keeps running. The isos fetch
+additionally rides the serve gate's own fetch arming
+(DIALECTICA_SERVE_GATE_FETCH=1, set by run_serve for the gated
+Vyce lane alongside the semantic flag): unarmed, no network is
+touched and the state is reported "disabled", exactly like
+serve_gate.fetch_isr_detail.
+"""
+import os
+import re
+import sys
+import urllib.parse
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+TRUED_DIR = os.path.expanduser(
+    "~/workspace/research/dialectica/skill-audit/pkg/dialectica/scripts")
+FETCH_ENV = "DIALECTICA_SERVE_GATE_FETCH"
+NOVELTY_ENV = "DIALECTICA_SEMANTIC_NOVELTY"
+
+# Size budget. The block rides inside semantic_check's question
+# argument, which build_semantic_prompt caps at 12_000 chars; the
+# question text itself gets first claim on that budget, so the
+# block stays well under half of it.
+BLOCK_CAP = 6000            # total block chars (header + lists)
+ANSWER_EXCERPT_CAP = 1100   # per excerpted answer
+MAX_EXCERPTS = 5            # most-supported answers excerpted
+MAX_COVER_POINTS = 24       # covered-list entries across all answers
+COVER_POINT_CAP = 110       # per covered-list entry
+
+BLOCK_HEADER = "EXISTING VERIFIED ANSWERS — SURPRISE GAUGE CONTEXT"
+
+
+def novelty_enabled():
+    """Sub-flag: default follows the parent C5 arming; only an
+    explicit "0" switches the novelty context off on its own."""
+    return os.environ.get(NOVELTY_ENV, "").strip() != "0"
+
+
+# ------------------------------------------------------------ fetching
+
+def fetch_isos(isr_id, caller=None):
+    """(isos_or_None, state) — state "ok" / "failed" / "disabled".
+    Read-only GET over the client's own call(); only touches the
+    network when the serve gate's fetch is armed (FETCH_ENV=1),
+    mirroring serve_gate.fetch_isr_detail. `caller` is the test
+    seam: a callable isr_id -> the endpoint's decoded payload."""
+    if caller is None and os.environ.get(FETCH_ENV) != "1":
+        return None, "disabled"
+    if not isr_id:
+        return None, "failed"
+    try:
+        if caller is not None:
+            data = caller(isr_id)
+        else:
+            if TRUED_DIR not in sys.path:
+                sys.path.insert(0, TRUED_DIR)
+            import trued
+            data = trued.call(
+                f"/api/node/isos/"
+                f"{urllib.parse.quote(str(isr_id), safe='')}",
+                timeout=30)
+    except BaseException:  # noqa: BLE001 - includes SystemExit
+        return None, "failed"
+    if isinstance(data, dict):
+        data = data.get("isos")
+    if not isinstance(data, list):
+        return None, "failed"
+    return data, "ok"
+
+
+# ------------------------------------------------------- pure assembly
+
+def iso_answer_text(iso):
+    """A verified answer's text, from the exact path the client
+    prints: reveal.data.structured_data — `answer` for the classic
+    schema, `reasoning` for forecasting answers. "" when the ISO
+    carries no revealed text."""
+    sd = ((iso.get("reveal") or {}).get("data") or {}).get(
+        "structured_data") or {}
+    return str(sd.get("answer") or sd.get("reasoning") or "")
+
+
+def verified_answers(isos):
+    """The verified answers among `isos`, as flat records sorted
+    most-supported first (ties: newest first) — the most
+    established coverage leads the block. Answers whose text is
+    not revealed are counted in the total but cannot be excerpted;
+    they are returned with text "" so the caller can say so."""
+    out = []
+    for iso in isos or []:
+        if not isinstance(iso, dict) or iso.get("status") != "verified":
+            continue
+        try:
+            supported = int(iso.get("supportedCount") or 0)
+        except (TypeError, ValueError):
+            supported = 0
+        try:
+            refuted = int(iso.get("refutationCount") or 0)
+        except (TypeError, ValueError):
+            refuted = 0
+        out.append({
+            "id": str(iso.get("id") or ""),
+            "supported": supported,
+            "refuted": refuted,
+            "own": bool(iso.get("isOwnAgent")),
+            "timestamp": iso.get("timestamp") or 0,
+            "text": iso_answer_text(iso),
+        })
+    out.sort(key=lambda a: (-a["supported"], -_ts_key(a["timestamp"])))
+    return out
+
+
+def _ts_key(ts):
+    try:
+        return float(ts)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+_HEADING_RE = re.compile(r"^#{1,6}\s+(.+?)\s*$", re.M)
+_BOLD_LEAD_RE = re.compile(r"\*\*([^*]{8,110})\*\*")
+
+
+def coverage_points(text, limit=4):
+    """What an existing answer already covers, in its own words:
+    its markdown headings first, then bold lead-ins, then (when it
+    has neither) its first sentence. Mechanical extraction only —
+    nothing is paraphrased or summarised by us."""
+    text = text or ""
+    points = []
+    for m in _HEADING_RE.finditer(text):
+        p = m.group(1).strip().strip("*").strip()
+        if p and p not in points:
+            points.append(p[:COVER_POINT_CAP])
+        if len(points) >= limit:
+            return points
+    for m in _BOLD_LEAD_RE.finditer(text):
+        p = m.group(1).strip()
+        if p and p not in points:
+            points.append(p[:COVER_POINT_CAP])
+        if len(points) >= limit:
+            return points
+    if not points:
+        flat = " ".join(text.split())
+        first = re.split(r"(?<=[.!?])\s+", flat, maxsplit=1)[0]
+        if first:
+            points.append(first[:COVER_POINT_CAP])
+    return points
+
+
+def build_block(isos):
+    """(block, meta) from a raw isos list. Pure. An empty block is
+    the honest answer for viso 0 and for "verified exist but none
+    revealed" — meta says which, and how much was left out."""
+    answers = verified_answers(isos)
+    meta = {"verified_total": len(answers), "excerpted": 0,
+            "covered_points": 0, "block_chars": 0,
+            "unrevealed": sum(1 for a in answers if not a["text"])}
+    readable = [a for a in answers if a["text"]]
+    if not readable:
+        return "", meta
+    covered, seen = [], set()
+    for a in answers:
+        for p in coverage_points(a["text"]):
+            if p not in seen:
+                seen.add(p)
+                covered.append(p)
+            if len(covered) >= MAX_COVER_POINTS:
+                break
+        if len(covered) >= MAX_COVER_POINTS:
+            break
+    excerpted = readable[:MAX_EXCERPTS]
+    lines = [
+        BLOCK_HEADER,
+        f"This question already has {len(answers)} verified "
+        f"answer(s). The {len(excerpted)} most-supported are "
+        "excerpted below; the covered list spans all of them. "
+        "Content already present here is NOT new: a draft that "
+        "merely restates or paraphrases it — adding no new fact, "
+        "mechanism, figure or angle — stops at the Surprise "
+        "Gauge.",
+        "Already covered (the existing answers' own headings / "
+        "lead claims):",
+    ]
+    lines += [f"- {p}" for p in covered]
+    # The honesty notes ride BEFORE the excerpts: the excerpts are
+    # the bulk, so when the total cap truncates the block it eats
+    # excerpt tail, never the counts.
+    if len(readable) > len(excerpted):
+        lines.append(
+            f"(+{len(readable) - len(excerpted)} further verified "
+            "answers not excerpted — see the covered list above.)")
+    if meta["unrevealed"]:
+        lines.append(
+            f"({meta['unrevealed']} verified answer(s) carry no "
+            "revealed text and could not be excerpted.)")
+    for idx, a in enumerate(excerpted):
+        excerpt = a["text"][:ANSWER_EXCERPT_CAP]
+        lines.append(
+            f"--- Verified Answer {idx + 1} (id {a['id'][:8]} · "
+            f"supported {a['supported']} · refuted {a['refuted']}"
+            f"{' · own earlier answer' if a['own'] else ''}) ---")
+        lines.append(excerpt)
+    block = "\n".join(lines)
+    if len(block) > BLOCK_CAP:
+        block = block[:BLOCK_CAP] + "\n…[novelty context truncated]"
+    meta.update({"excerpted": len(excerpted),
+                 "covered_points": len(covered),
+                 "block_chars": len(block)})
+    return block, meta
+
+
+def context_for_isr(isr_id, isos_fetcher=None):
+    """(block, meta) for one ISR — fetch + build, never raises.
+    meta.state: "ok" (block built, possibly empty at viso 0),
+    "disabled" (fetch not armed), "failed" (fetch or payload
+    unusable). An empty block with state "ok" and verified_total
+    0 is the legitimate Pioneer shape."""
+    meta = {"state": "failed", "verified_total": 0, "excerpted": 0,
+            "covered_points": 0, "block_chars": 0, "unrevealed": 0}
+    try:
+        fetcher = isos_fetcher or fetch_isos
+        isos, state = fetcher(isr_id)
+        meta["state"] = state
+        if state != "ok":
+            return "", meta
+        block, built = build_block(isos)
+        meta.update(built)
+        meta["state"] = "ok"
+        return block, meta
+    except Exception as ex:  # noqa: BLE001 - context is advisory
+        meta["state"] = "failed"
+        meta["error"] = f"{type(ex).__name__}: {ex}"
+        return "", meta
+
+
+def attach(question, block):
+    """The question context with the novelty block appended, in
+    the shape semantic_check's question argument carries."""
+    if not block:
+        return question or ""
+    return ((question or "").rstrip() + "\n\n" + block).strip()

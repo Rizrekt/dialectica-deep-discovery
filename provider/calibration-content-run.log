@@ -1,0 +1,128 @@
+calibrate_content: checker-lane credential injected (value not shown)
+
+== hop-original-2777178d [must-catch]
+   tahap-1+2: verdict=fatal block=True stage2_calls=2 counts={'claims': 3, 'paired': 3, 'unbound': 0, 'pivotal': 2, 'stage1_findings': 1, 'stage2_unsupported': 1, 'unsupported': 1, 'unverifiable': 0, 'stage2_calls': 2}
+   tahap-1-saja: verdict=fatal block=True
+   CLAIM pivotal=True s1=finding s2=unsupported final=unsupported src=fetched [2022=OK, 50%=OK, 10%=ABSENT] :: The clearest public precedent is Hop Protocol's 2022 airdrop: Hop built a sybil list large
+      stage2 why: The excerpts are GitBook site metadata and JavaScript code with no mention of Hop's 2022 airdrop, sybil list, funding-graph analysis, self-reporting, 50% alloca
+   CLAIM pivotal=True s1=supported s2=unclear final=supported src=fetched [August 8, 2022=OK] :: Its weaknesses: farms disperse funding through DEX swaps, bridges, P2P purchases, and mixe
+      stage2 why: klaim 'supported' tanpa kutipan bukti yang terverifikasi di teks sumber — diturunkan
+
+== hop-synthetic-figures [must-catch]
+   tahap-1+2: verdict=fatal block=True stage2_calls=1 counts={'claims': 1, 'paired': 1, 'unbound': 0, 'pivotal': 1, 'stage1_findings': 1, 'stage2_unsupported': 1, 'unsupported': 1, 'unverifiable': 0, 'stage2_calls': 1}
+   tahap-1-saja: verdict=fatal block=True
+   CLAIM pivotal=True s1=finding s2=unsupported final=unsupported src=fetched [2022=OK, 75%=ABSENT, 30%=ABSENT] :: The clearest public precedent is Hop Protocol's 2022 airdrop: Hop let identified sybils se
+      stage2 why: The excerpts contain only site navigation and metadata from docs.hop.exchange, with no mention of a 2022 airdrop, sybil self-reporting, 75% allocation retention
+
+== treasury-swapped-date [must-catch]
+   tahap-1+2: verdict=fatal block=True stage2_calls=1 counts={'claims': 1, 'paired': 1, 'unbound': 0, 'pivotal': 1, 'stage1_findings': 1, 'stage2_unsupported': 1, 'unsupported': 1, 'unverifiable': 0, 'stage2_calls': 1}
+   tahap-1-saja: verdict=fatal block=True
+   CLAIM pivotal=True s1=finding s2=unsupported final=unsupported src=fetched [August 9, 2022=ABSENT] :: Its weaknesses: farms disperse funding through DEX swaps, bridges, P2P purchases, and mixe
+      stage2 why: The source states the sanction date as August 8, 2022, while the claim states August 9, 2022 â a specific factual discrepancy.
+
+== treasury-true [healthy]
+   tahap-1+2: verdict=clean block=False stage2_calls=1 counts={'claims': 1, 'paired': 1, 'unbound': 0, 'pivotal': 1, 'stage1_findings': 0, 'stage2_unsupported': 0, 'unsupported': 0, 'unverifiable': 0, 'stage2_calls': 1}
+   tahap-1-saja: verdict=clean block=False
+   CLAIM pivotal=True s1=supported s2=unclear final=supported src=fetched [August 8, 2022=OK] :: Its weaknesses: farms disperse funding through DEX swaps, bridges, P2P purchases, and mixe
+      stage2 why: klaim 'supported' tanpa kutipan bukti yang terverifikasi di teks sumber — diturunkan
+
+== bip32-year [healthy]
+   tahap-1+2: verdict=clean block=False stage2_calls=0 counts={'claims': 1, 'paired': 1, 'unbound': 0, 'pivotal': 0, 'stage1_findings': 0, 'stage2_unsupported': 0, 'unsupported': 0, 'unverifiable': 0, 'stage2_calls': 0}
+   tahap-1-saja: verdict=clean block=False
+
+== ctrl-66bff0ce-Danis [healthy]
+   tahap-1+2: verdict=findings block=False stage2_calls=0 counts={'claims': 36, 'paired': 0, 'unbound': 36, 'pivotal': 32, 'stage1_findings': 0, 'stage2_unsupported': 0, 'unsupported': 0, 'unverifiable': 0, 'stage2_calls': 0}
+   tahap-1-saja: verdict=findings block=False
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [2028=ABSENT, 2028=ABSENT, 16 April 2027=ABSENT, 3 March 2029=ABSENT] :: First, there is no northern summer solstice (Ls = 90 deg) in calendar year 2028: I recompu
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [2028=ABSENT, 270=ABSENT, 12 March 2028=ABSENT] :: The solstice that actually falls in 2028 is the southern summer solstice, Ls = 270 deg, on
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [1.2=ABSENT] :: Second, a solstice is not a pressure peak: at the northern summer solstice the Chryse pres
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [0.0934=ABSENT, 686.98=ABSENT, 251=ABSENT, 180=ABSENT, 17 October 2027=ABSENT] :: I solved Kepler's equation for Mars (eccentricity 0.0934, orbital period 686.98 days, peri
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [16 April 2027=ABSENT, 17 August 2028=ABSENT, 0.4=ABSENT] :: The solver reproduces the independently validated anchors Ls = 90 deg on 16 April 2027 and
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [16 April 2027=ABSENT] :: - Northern summer solstice, MY39 (Ls = 90 deg): 16 April 2027.
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [270=ABSENT, 12 March 2028=ABSENT, 269.98=ABSENT, 270=ABSENT] :: - Southern summer solstice, MY39 (Ls = 270 deg): 12 March 2028 (Ls = 269.98 deg at 00:00 U
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [17 August 2028=ABSENT] :: - Northern spring equinox, MY40 (Ls = 0 deg): 17 August 2028.
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [3 March 2029=ABSENT, 89.62=ABSENT] :: - Northern summer solstice, MY40 (Ls = 90 deg): 3 March 2029 (Ls = 89.62 deg at 00:00 UTC 
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [18 March 2028=ABSENT, 270=ABSENT, 273.75=ABSENT] :: This refutes an earlier answer's date of 18 March 2028 for the Ls = 270 deg solstice: on 1
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [3.75=ABSENT] :: 3.75 deg past the solstice.
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [95%=ABSENT] :: The atmosphere is ~95% CO2, and its total mass obeys dM/dt = sublimation from the summer c
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [251=ABSENT, 1.45=ABSENT] :: The south cap dominates the cycle because southern summer coincides with perihelion (Ls = 
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [253=ABSENT, 266=ABSENT] :: Hence the seasonal pressure maximum occurs in southern summer (Ls ~253–266 deg), not at ei
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [0.242=ABSENT, 0.472=ABSENT, 265=ABSENT, 275=ABSENT] :: It is larger when the atmosphere is dustier and warmer: measured daily pressure range aver
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [0.0244=ABSENT] :: At the northern summer solstice (Ls = 90 deg) the north cap is sublimating but the south c
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [270=ABSENT, 0.0047=ABSENT] :: At the southern summer solstice (Ls = 270 deg) the south cap's sublimation dominates and t
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [6.769=ABSENT, 6.804=ABSENT, 677=ABSENT, 680=ABSENT, 144=ABSENT, 152=ABSENT, 8.337=ABSENT, 8.366=ABSENT, 834=ABSENT, 837=ABSENT, 8.983=ABSENT, 9.055=ABSENT, 898=ABSENT, 906=ABSENT, 253=ABSENT, 266=ABSENT, 7.790=ABSENT, 7.925=ABSENT, 779=ABSENT, 793=ABSENT, 338=ABSENT, 359=ABSENT] :: Seasonal anchors (daily means): primary minimum 6.769–6.804 mbar (677–680 Pa) at Ls ~144–1
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [0.65=ABSENT] :: The south-driven maximum exceeds the north-driven maximum by ~0.65 mbar (65 Pa).
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [2027=ABSENT, 7.80=ABSENT, 0.07=ABSENT, 780=ABSENT, 7.91=ABSENT, 0.08=ABSENT, 791=ABSENT, 7.79=ABSENT, 8.04=ABSENT] :: Northern summer solstice, MY39 | 16 Apr 2027 | 90 deg | 7.80 +- 0.07 mbar (780 Pa) | 7.91 
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [2028=ABSENT, 270=ABSENT, 8.87=ABSENT, 0.08=ABSENT, 887=ABSENT, 9.08=ABSENT, 0.09=ABSENT, 908=ABSENT, 8.94=ABSENT, 9.30=ABSENT] :: Southern summer solstice, MY39 | 12 Mar 2028 | 270 deg | 8.87 +- 0.08 mbar (887 Pa) | 9.08
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [2029=ABSENT, 7.80=ABSENT, 0.07=ABSENT, 780=ABSENT, 7.91=ABSENT, 0.08=ABSENT, 791=ABSENT] :: Northern summer solstice, MY40 | 3 Mar 2029 | 90 deg | 7.80 +- 0.07 mbar (780 Pa) | 7.91 +
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [265=ABSENT, 275=ABSENT, 226=ABSENT] :: The Ls 265–275 deg window uses years 1–3 (n = 29 days; year 4 ends at Ls ~226 deg).
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [0.11=ABSENT, 0.20=ABSENT, 270=ABSENT] :: The tide contribution (peak minus mean) is +0.11 mbar (11 Pa) at Ls 90 deg and +0.20 mbar 
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [7.7=ABSENT, 7.8=ABSENT, 8.9=ABSENT, 9.0=ABSENT, 270=ABSENT] :: - Answer 12 (the verified answer) gives peaks of ~7.7–7.8 mbar at Ls 90 deg and ~8.9–9.0 m
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [7.80=ABSENT, 8.87=ABSENT, 7.91=ABSENT, 9.08=ABSENT, 0.11=ABSENT, 0.20=ABSENT] :: Those numbers match my computed DAILY MEANS (7.80 and 8.87 mbar), not the within-sol peaks
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [12 March 2028=ABSENT, 3.68=ABSENT, 1.5=ABSENT] :: - Answer 9 is wrong twice: the solstice is 12 March 2028, not 18 March, and the VL1 site e
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [10.0=ABSENT, 9.565=ABSENT, 957=ABSENT, 318=ABSENT, 277.5=ABSENT, 1977=ABSENT] :: - Answer 8's claim that pressures at Chryse range "up to over 10.0 hPa" is refuted by the 
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [1976=ABSENT, 1982=ABSENT, 2028=ABSENT] :: - The interannual stability that makes these 1976–1982 numbers predictive for 2028 is meas
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [2022=ABSENT, 0.08=ABSENT] :: (2022) compared VL1 and InSight pressures 40 years apart and found no change larger than +
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [0.05=ABSENT] :: Year-to-year window means in my table differ by at most 0.05 mbar.
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [2028=ABSENT] :: Storm caveat for March 2028
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [270=ABSENT, 2028=ABSENT, 1977=ABSENT, 0.07=ABSENT, 1977=ABSENT, 9.565=ABSENT, 957=ABSENT, 0.5=ABSENT] :: If a planet-encircling dust storm is active near Ls 270 deg in 2028 (MY39), the daily MEAN
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [2028=ABSENT, 9.08=ABSENT, 9.5=ABSENT] :: So the March 2028 peak forecast is 9.08 mbar in a normal year, with an upper bound near ~9
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [90%=ABSENT] :: High (85–90%) on the dates (Kepler solver checked against three anchors), the seasonal anc
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [80%=ABSENT, 2028=ABSENT, 0.08=ABSENT] :: Medium-high (75–80%) on the 2028 point predictions, the residual risk being interannual we
+
+== ctrl-3f3b1ffa-kasnapp [healthy]
+   tahap-1+2: verdict=findings block=False stage2_calls=0 counts={'claims': 41, 'paired': 0, 'unbound': 41, 'pivotal': 30, 'stage1_findings': 0, 'stage2_unsupported': 0, 'unsupported': 0, 'unverifiable': 0, 'stage2_calls': 0}
+   tahap-1-saja: verdict=findings block=False
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [2028=ABSENT] :: ## Answer: Viking 1 pressure at Chryse Planitia and the 2028 solstice
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [2028=ABSENT] :: "Martian summer solstice of 2028" is ambiguous, and one reading has no such date.
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [270=ABSENT] :: Solar longitude $L_s=90^\circ$ is the northern-hemisphere summer solstice, $L_s=270^\circ$
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [16 April 2027=ABSENT, 3 March 2029=ABSENT, 270=ABSENT, 12 March 2028=ABSENT, 2028=ABSENT] :: The tabulated Mars-year dates are: Mars Year 39 northern summer solstice 16 April 2027 and
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [2027=ABSENT, 2029=ABSENT] :: - **Case A — northern summer solstice, $L_s=90^\circ$** (nearest occurrences 16 Apr 2027 a
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [2028=ABSENT, 270=ABSENT, 2028=ABSENT] :: - **Case B — the solstice that actually falls in 2028, $L_s=270^\circ$ on 12 Mar 2028** (s
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [$22.48=ABSENT, $47.8=ABSENT, 20 July 1976=ABSENT, 1979=ABSENT] :: Viking 1 landed at $22.48^\circ$N, $47.8^\circ$W in Chryse Planitia on 20 July 1976, at $L
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [7.65=ABSENT, 0.1=ABSENT, 1976=ABSENT] :: Its first-sols record is the anchor for Case A: mean pressure 7.65 mbar with a diurnal var
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [97.2=ABSENT, 1.02=ABSENT, 7.71=ABSENT, 1990=ABSENT] :: The binned Viking 1 record confirms this directly: at $L_s=97.2^\circ$, sol 1.02, pressure
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [1998=ABSENT] :: - Daily-mean pressure at Viking 1 varies by about $\pm15\%$ around the annual mean over th
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [1979=ABSENT, 57%=ABSENT, 26%=ABSENT, 6.85=ABSENT] :: - Hess (1979) quantified the same cycle from the first 57% of a Martian year at both lande
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [25%=ABSENT, 95%=ABSENT, 2004=ABSENT] :: - Roughly 25% of the atmosphere, which is about 95% CO$_2$ by volume, is cycled into and o
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [1998=ABSENT] :: - The two minima are not equal: the pressure minimum in late northern winter is higher tha
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [$6.85=ABSENT, $ 0.26=ABSENT, $ 7.8=ABSENT, 7.9=ABSENT, $ 8.85=ABSENT, 8.95=ABSENT] :: If the minimum daily mean is $\approx$6.85 mbar and max$-$min $\approx$ 0.26 $\times$ mean
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [8.94=ABSENT, 9.03=ABSENT, 269=ABSENT, $270=ABSENT, 1990=ABSENT] :: This is corroborated by the raw binned record, which shows pressures of 8.94–9.03 mbar at 
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [270=ABSENT] :: Physical mechanism: why $L_s=90^\circ$ and $L_s=270^\circ$ differ
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [$143=ABSENT, 150=ABSENT] :: In polar night, surface temperatures fall below the CO$_2$ frost point ($\approx$143–150 K
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [2004=ABSENT] :: In polar spring/summer the seasonal ice sublimes, returning CO$_2$ to the atmosphere and r
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [$7.7=ABSENT, 1998=ABSENT] :: Because Mars is near aphelion at $L_s=71^\circ$ and the southern winter is longer and cold
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [270=ABSENT, 251=ABSENT, $8.9=ABSENT, 9.0=ABSENT] :: At $L_s=270^\circ$ (southern summer solstice) the reverse holds: the massive southern seas
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [1993=ABSENT, 25%=ABSENT] :: (1993) showed, in a GCM validated against Viking pressures, that orographic effects (hemis
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [$22.5=ABSENT] :: At Viking 1 ($22.5^\circ$N) the correction is smaller than at polar latitudes, but it is t
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [$10=ABSENT] :: The diurnal cycle is a small, separate term: daily maxima occur near midnight and $\approx
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [$0.1=ABSENT, 1976=ABSENT, $0.1=ABSENT] :: For Viking 1 the diurnal amplitude is $\approx$0.1 mbar (Hess et al., 1976), so the *peak 
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [0.10=ABSENT] :: $$p_{peak}(L_s) = p_d(L_s) + 0.10\ \mathrm{mbar}$$
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [7.85=ABSENT] :: - $\bar p \approx 7.85$ mbar (annual mean at Viking 1, from §1);
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [1.0=ABSENT, 130=ABSENT, $160=ABSENT, 1.05=ABSENT, 250=ABSENT, $270=ABSENT, 0.15=ABSENT, 7.7=ABSENT] :: - $\Delta p_{CO2}(L_s)$: the CO$_2$ mass term, semiannual, ranging from about $-1.0$ mbar 
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [0.2=ABSENT, 1993=ABSENT] :: - $\Delta p_{dyn}(L_s)$: local orographic/dynamical term, $|\Delta p_{dyn}| \lesssim 0.2$ 
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [1998=ABSENT, 0.1=ABSENT, $0.3=ABSENT] :: - $\epsilon_{weather}$: synoptic/front and dust variability, low in summer, higher in autu
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [2028=ABSENT] :: Predictions for 2028
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [7.6=ABSENT, 7.8=ABSENT, 7.7=ABSENT, 7.9=ABSENT] :: Daily mean $\approx$ **7.6–7.8 mbar**, peak daily reading $\approx$ **7.7–7.9 mbar**.
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [7.65=ABSENT, $0.01=ABSENT] :: This is essentially the Viking landing value (7.65 mbar mean, $L_s=97^\circ$), because the
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [$6.9=ABSENT, $40=ABSENT] :: The reading is on a declining branch: the seasonal minimum ($\approx$6.9 mbar daily mean) 
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [8.8=ABSENT, 9.0=ABSENT, 8.9=ABSENT, 9.1=ABSENT] :: Daily mean $\approx$ **8.8–9.0 mbar**, peak daily reading $\approx$ **8.9–9.1 mbar**.
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [$1.2=ABSENT] :: - **Confidence:** high for the sign and ordering (Case B > Case A by $\approx$1.2 mbar) an
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [0.3=ABSENT, 272=ABSENT, $100=ABSENT, 1998=ABSENT] :: Moderate ($\pm0.3$ mbar) for the exact Case B peak, because interannual variability is rea
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [8.2=ABSENT, 7.2=ABSENT, 270=ABSENT, 8.4=ABSENT] :: - **What would falsify this model:** a daily-mean pressure at $L_s=90^\circ$ above 8.2 mba
+   CLAIM pivotal=False s1=unbound s2=None final=recorded src=pending [2028=ABSENT] :: A global dust storm in 2028 would be a known confounder, not a refutation of the CO$_2$-cy
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [1976=ABSENT, 2028=ABSENT, 0.3=ABSENT, 2028=ABSENT] :: - **What this model does not do:** it does not extrapolate a secular trend (no evidence in
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [270=ABSENT, $9.0=ABSENT, $7.8=ABSENT] :: At Chryse Planitia, seasonal CO$_2$ sublimation does not raise pressure at every solstice:
+   CLAIM pivotal=True s1=unbound s2=None final=recorded src=pending [2028=ABSENT, 2028=ABSENT, $8.9=ABSENT, 9.1=ABSENT, 12 March 2028=ABSENT, $7.7=ABSENT, 7.9=ABSENT, 2027=ABSENT, 2029=ABSENT] :: If "summer solstice of 2028" means the solstice occurring in 2028, the expected peak daily
+
+== meiklejohn-boundary [boundary]
+   tahap-1+2: verdict=clean block=False stage2_calls=0 counts={'claims': 1, 'paired': 1, 'unbound': 0, 'pivotal': 0, 'stage1_findings': 0, 'stage2_unsupported': 0, 'unsupported': 0, 'unverifiable': 0, 'stage2_calls': 0}
+   tahap-1-saja: verdict=clean block=False
+
+== ACCEPTANCE GATE ==
+   must-catch tahap-1+2: 3/3
+   must-catch tahap-1-saja: 3/3
+   healthy false-fatal: 0/4 (wajib 0)
+   GATE: LOLOS
+
+wrote /home/hatch/workspace/research/dialectica/provider/calibration-content-results.json

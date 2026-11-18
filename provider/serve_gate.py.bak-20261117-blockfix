@@ -1,0 +1,1029 @@
+#!/usr/bin/env python3
+"""Shared SERVE quality gate for Dialectica (built 2026-11-15 as lab
+preparation after the first falsified serve answer, MEKANISME §82).
+
+Why this module exists: the one-shot claim path has always sent its
+drafts through the full wrapper gate (`openrouter_wrapper.wrap_answer`
++ the fail-closed sendable semantics of §35/§45: status OK + zero
+surviving audit findings + format gate (g) LOLOS, with the §45
+mechanical floor K-1/K-2 riding as FLOOR findings). The background
+SERVE paths did not share that protection end to end:
+
+- the Vyce serve ran with NO prepare hook and NO wrapper at all — the
+  provider's raw model output was submitted verbatim, which is how
+  ISO f0bb3586 shipped a 38,591-char thinking trace (0 URLs, 0
+  citations, 557 unbound numbers) and was falsified in ±85 s;
+- neither serve path verified that the target was still LIVE — the
+  §82 structural finding was 11/11 sampled serve answers landing on
+  questions whose marathon round had already ended
+  (`marathonEligible=false`, upside $0, full downside).
+
+This module is the single gate both serve lanes now share. It does
+NOT define a second standard: the content gate is the claim wrapper
+itself, reused verbatim, plus two serve-specific layers the claim
+path gets from its operator instead —
+
+1. LIVENESS (`liveness_check`): the three-field filter of
+   KULIT-SISTEM-2026-11-14 edge #2 over the ISR detail —
+   `marathonActive` + `marathonConcluded` + the eligible rounds'
+   `endsAt`. LIVE only when a round's max `endsAt` is still in the
+   future, or (no marathon dimension at all) the question is still
+   open. The stale-flag pattern (concluded, every endsAt past) is
+   DEAD; a marathon question with no future endsAt is DEAD
+   (fail-closed); an unavailable detail is DEAD at prepare time.
+
+2. THINKING-TRACE (`detect_thinking_trace`): mechanical detectors
+   for the f0bb3586 species — a draft that is the model's raw
+   reasoning monologue instead of an answer: (i) opens with a
+   reasoning preamble ("Let me think about this task carefully."),
+   (ii) carries first-person uncertainty monologue ("I genuinely
+   don't remember…", "I really can't reproduce it reliably."),
+   (iii) is dominated by a raw code dump, or (iv) closes with a plan
+   ("Decision: I will structure my novel contribution around…")
+   instead of delivering the answer. A trace finding has no span, so
+   under the lanes' established semantics it is unpatchable and
+   withholds the draft.
+
+3. EVASIVE SOURCE CLOSING (`detect_evasive_source_closing`, E3 —
+   ADOPTED by the lab of 2026-11-15, LAB-E3-SENSUS-E-2026-11-15.md
+   §1.5–§1.6): an explicit source-evasion admission in the draft's
+   CLOSING or SOURCE SECTION ("avoids pinpoint references", "cannot
+   be verified from the text alone", "no live web access", "I give
+   no URLs", …). All four falsified serve answers (f0bb3586,
+   7d81c51d, 5b5e8212, a3b8b34a) closed with the same verbatim
+   evasion; the measured false-positive rate is 0/203 verified
+   (KORPUS-JUARA-2026-11-14). The scan is deliberately BOUNDED to
+   the closing block and source sections: deferral language in the
+   body (e.g. "verify exact current values in the live docs" in
+   verified 0006fe08) is NOT a trigger. Like the trace layer, the
+   finding has no span and withholds the draft.
+
+SEMANTIC SELF-VFP — deliberately NOT mechanised here. On the claim
+path, semantic support (operator prompt T10.2 / T12 item 5) is the
+operating agent's own judgement: open every citation and point at
+the sentence that supports each bound claim. It is not a model call
+inside the wrapper, and the wrapper's own docstring calls it a
+separate, non-delegable check (claim #1 passed every mechanical
+threshold and died on support). A background serve has no agent in
+the loop, so this gate cannot honestly reproduce that check:
+`gate_answer` therefore reports `semantic_vfp.performed = False` on
+every result, and whether serve may run on the mechanical gate alone
+— or must add a semantic stage first — is an explicit lab decision
+(see GERBANG-SERVE-2026-11-15.md). The gate accepts an optional
+`semantic_check` callable so a lab-approved stage can be plugged in
+without redesign; it ships unpopulated.
+
+UPDATE C5 (2026-11-17, RANCANGAN-C5-2026-11-17.md — perintah user
+02:47–02:48, basis spek dikoreksi user 02:53 di §5 rancangan): the
+lab decision landed and the stage is now BUILT, below (section
+"SEMANTIC SELF-VFP (C5)"). Because a background serve has no agent
+in the loop, the check is mechanised as a CROSS-MODEL call: the
+draft's writer is GLM (Vyce), the checker is Nemotron via
+OpenRouter (different model AND different provider — claim #2's
+poison passed three checks by its own pipeline family), with
+Nemotron via Vyce as the fallback checker lane (deepseek-v4.1 was
+the first pick; its Vyce route answers 403 from this runtime —
+probed 2026-11-17 — so it cannot serve as the fallback).
+
+The checker's SPEC BASIS is the project's own criteria (Pilar 2 —
+the platform's penilaian), NOT our scar tissue. First correction
+(user 02:53, RANCANGAN-C5 §5): the checker plays the platform
+Verifier per the official package documents. SECOND correction
+(user 02:55, §6 — "cek data live yang diminta detail dan teliti"):
+the package documents are a snapshot; LAYER 1 is now the LIVE
+server rubric, pulled via `trued arena general` 2026-11-17 02:56
+WIB (DATA-LIVE-ARENA-2026-11-17.md), codes SURPRISE_GAUGE (67% of
+field rejections), A_CITATION (92% of rule-citing verifications —
+verbatim text incl. two checks absent from the original design:
+Question-supplied text is NOT a source, and time-critical claims
+need time-relevant citations), A_REASONING (34%), A_SCOPE (29% —
+never report the Expert's own environment, even when asked),
+A_UNCERTAINTY (18% — Tier_1 claims with significant uncertainty
+require explicit quantified framing; settled claims need no
+excess hedging), CUSTOMER_REQUIREMENTS (does what the Question
+actually asks). LAYER 2 is emphasis only: the four proven poisons
+of VERDICT-LEDGER #1–#8 ride INSIDE the live rules as sub-codes
+(S-1 unbound numbers, S-2 citations that do not support their
+claim, S-3 wrong specific facts — the Verifier's prime
+falsification target — all sub of A_CITATION; S-4 world facts
+attributed to "Answer N" = not a source, sub of A_CITATION).
+The falsified history is the calibration corpus, not the spec.
+A finding counts only with a verbatim quote from the draft
+(quotes are re-verified against the draft in code — an unverifiable
+quote is dropped, never counted). Mode comes from
+DIALECTICA_SEMANTIC_MODE: "shadow" (DEFAULT — findings are logged
+to semantic-check-log.jsonl, the draft is NEVER withheld by this
+stage) or "block" (a fatal verdict withholds). The stage runs only
+when the launcher arms it (DIALECTICA_SEMANTIC_CHECK=1, set by
+run_serve for the gated Vyce serve — the liveness-fetch arming
+pattern); unarmed, `gate_answer` keeps reporting the check as not
+performed. A checker that is unavailable on both lanes is recorded
+LOUDLY (log + stderr) and never blocks and never passes silently:
+shadow-lean by design, because a dead checker must not kill a good
+answer, and an unrun check must not masquerade as a passed one.
+
+Fetch arming: reading the ISR detail needs the account session, so
+`fetch_isr_detail` only touches the network when the launcher arms
+it with DIALECTICA_SERVE_GATE_FETCH=1 (run_serve sets this for both
+serve modes). Unarmed (unit tests, manual provider runs) it reports
+state "disabled" and callers fall back as documented per call site:
+prepare hooks evaluate the search row's own fields; job-time
+fallbacks proceed unless death is PROVEN (a job already exists —
+dropping it on an unverifiable fetch would burn reliability for
+nothing; the structural gate is prepare, before any claim).
+"""
+import datetime
+import json
+import os
+import re
+import sys
+import time
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+from openrouter_wrapper import wrap_answer  # noqa: E402
+
+TRUED_DIR = os.path.expanduser(
+    "~/workspace/research/dialectica/skill-audit/pkg/dialectica/scripts")
+FETCH_ENV = "DIALECTICA_SERVE_GATE_FETCH"
+
+# --------------------------------------------------------------- liveness
+
+_TS_FORMATS = ("%Y-%m-%dT%H:%M:%S.%f%z", "%Y-%m-%dT%H:%M:%S%z",
+               "%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M:%S")
+
+
+def parse_ts(value):
+    """Parse an API timestamp to epoch seconds. Accepts ISO strings
+    (with Z or offset, with/without fractional seconds) and numeric
+    epoch seconds or milliseconds. Returns None when unparseable."""
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        v = float(value)
+        return v / 1000.0 if v > 1e12 else v
+    text = str(value).strip()
+    if not text:
+        return None
+    iso = text.replace("Z", "+00:00") if text.endswith("Z") else text
+    try:
+        dt = datetime.datetime.fromisoformat(iso)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=datetime.timezone.utc)
+        return dt.timestamp()
+    except ValueError:
+        pass
+    for fmt in _TS_FORMATS:
+        try:
+            dt = datetime.datetime.strptime(text, fmt)
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=datetime.timezone.utc)
+            return dt.timestamp()
+        except ValueError:
+            continue
+    return None
+
+
+def _fmt_ts(epoch):
+    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(epoch))
+
+
+def liveness_check(detail, now=None):
+    """Three-field liveness over an ISR detail dict (KULIT-SISTEM
+    edge #2). Returns (ok, reason); reason names the deciding fields.
+
+    LIVE iff a marathon round is provably open (some eligible
+    `endsAt` in the future — this also covers a NEW round on a
+    concluded question), or the question carries no marathon
+    dimension and is still open. Everything else is DEAD, including
+    a marathon question whose rounds cannot be shown to be open."""
+    if not isinstance(detail, dict):
+        return False, "detail ISR tidak tersedia — liveness tidak " \
+                      "terverifikasi (fail-closed)"
+    now = time.time() if now is None else now
+    status = str(detail.get("status") or "")
+    active = bool(detail.get("marathonActive"))
+    concluded = bool(detail.get("marathonConcluded")
+                     or detail.get("concluded"))
+    elig = detail.get("marathonEligibleIsos") or []
+    ends = []
+    for entry in elig:
+        if isinstance(entry, dict):
+            ts = parse_ts(entry.get("endsAt"))
+            if ts is not None:
+                ends.append(ts)
+    if ends:
+        max_ends = max(ends)
+        if max_ends > now:
+            return True, (f"LIVE: ronde maraton terbuka — maxEndsAt "
+                          f"{_fmt_ts(max_ends)} > sekarang "
+                          f"(active={active}, concluded={concluded})")
+        return False, (f"MATI: pola flag basi — marathonActive="
+                       f"{active}, marathonConcluded={concluded}, "
+                       f"semua endsAt ronde sudah lewat (max "
+                       f"{_fmt_ts(max_ends)}); target pasca-ronde, "
+                       f"upside $0 (KULIT-SISTEM celah 1 / §82)")
+    if active or concluded:
+        return False, (f"MATI (fail-closed): pertanyaan maraton "
+                       f"(active={active}, concluded={concluded}) "
+                       f"tanpa satu pun endsAt masa depan yang bisa "
+                       f"ditunjukkan — ronde live tidak terbukti")
+    if status == "settled":
+        return False, ("MATI: pertanyaan settled tanpa ronde maraton "
+                       "live — tidak ada yang bisa dimenangi")
+    if status in ("in_progress", "open", ""):
+        return True, ("LIVE: pertanyaan terbuka tanpa dimensi "
+                      "maraton (status "
+                      f"{status or 'tidak dinyatakan'})")
+    return False, (f"MATI (fail-closed): status pertanyaan tidak "
+                   f"dikenal: {status!r}")
+
+
+def row_liveness_detail(row):
+    """Normalise a search row into the detail shape liveness_check
+    reads, as far as the row's own fields go (question-prefixed
+    variants included). Used when no detail fetch is armed — the
+    row can still prove the stale-flag death on its own fields."""
+    row = row or {}
+    elig = row.get("marathonEligibleIsos") or []
+    if not elig and row.get("endsAt"):
+        elig = [{"endsAt": row.get("endsAt")}]
+    return {
+        "status": row.get("status") or row.get("questionStatus") or "",
+        "marathonActive": bool(
+            row.get("marathonActive", row.get("questionMarathonActive"))),
+        "marathonConcluded": bool(
+            row.get("marathonConcluded",
+                    row.get("questionMarathonConcluded",
+                            row.get("concluded")))),
+        "marathonEligibleIsos": elig,
+    }
+
+
+def fetch_isr_detail(isr_id):
+    """Fetch the ISR detail via the audited client. Returns
+    (detail_or_None, state) with state "ok" / "failed" / "disabled".
+    Only touches the network when armed by the launcher
+    (DIALECTICA_SERVE_GATE_FETCH=1); the client's call() exits on API
+    error, so BaseException is caught — a failed fetch is data, not
+    a crash, for a gate that must decide."""
+    if os.environ.get(FETCH_ENV) != "1":
+        return None, "disabled"
+    if not isr_id:
+        return None, "failed"
+    if TRUED_DIR not in sys.path:
+        sys.path.insert(0, TRUED_DIR)
+    try:
+        import trued
+        data = trued.call(f"/api/node/isr/{isr_id}", timeout=30)
+    except BaseException:  # noqa: BLE001 - includes SystemExit
+        return None, "failed"
+    if not isinstance(data, dict):
+        return None, "failed"
+    return data, "ok"
+
+
+def liveness_gate_for_row(row, detail_fetcher=None, isr_id=None):
+    """Prepare-time liveness verdict for a search row. Fail-closed
+    wherever the gate is armed: a failed fetch passes the Question
+    over (no job exists yet, so passing costs nothing). Unarmed, the
+    row's own fields decide — they can still prove death."""
+    fetcher = detail_fetcher or fetch_isr_detail
+    isr_id = isr_id or str((row or {}).get("id")
+                           or (row or {}).get("isrId") or "")
+    detail, state = fetcher(isr_id)
+    if state == "ok":
+        return liveness_check(detail)
+    if state == "failed":
+        return False, ("gerbang liveness: pengambilan detail ISR "
+                       "gagal — fail-closed, pertanyaan dilewati "
+                       "sebelum klaim")
+    return liveness_check(row_liveness_detail(row))
+
+
+def fallback_dead_reason(isr_id, detail_fetcher=None):
+    """Job-time (fallback) liveness: returns a withhold reason only
+    when the target is PROVEN dead by a fetched detail. A failed or
+    unarmed fetch proves nothing, and a job already exists — dropping
+    it on an unverifiable fetch would spend reliability for nothing,
+    so the fallback proceeds (the structural gate is prepare)."""
+    fetcher = detail_fetcher or fetch_isr_detail
+    detail, state = fetcher(isr_id)
+    if state != "ok":
+        return None
+    ok, reason = liveness_check(detail)
+    return None if ok else reason
+
+
+# --------------------------------------------------------- thinking trace
+
+_TRACE_OPENERS = re.compile(
+    r"^\s*(let me think|let me analyze|let me analyse|let me "
+    r"consider|let me start by thinking|okay,? let me think|ok,? "
+    r"let me think|hmm,? let me|let's think about)", re.IGNORECASE)
+
+_TRACE_MONOLOGUE = (
+    "let me think", "let me reconsider", "let me re-think",
+    "i genuinely don't remember", "i genuinely do not remember",
+    "i don't remember", "i do not remember",
+    "i really can't reproduce", "i can't reproduce",
+    "i cannot reproduce", "i need to think", "i'm not sure",
+    "i am not sure", "i don't recall", "i do not recall",
+)
+
+_TRACE_PLAN_CLOSING = re.compile(
+    r"(decision\s*:|my plan is|next,? i will|i will structure|"
+    r"i will now (write|draft|structure)|langkah berikutnya,? saya "
+    r"akan|selanjutnya saya akan)", re.IGNORECASE)
+
+_CODE_LINE = re.compile(
+    r"^\s*(def\s+\w+\s*\(|class\s+\w+|import\s+\w+|from\s+\w+\s+"
+    r"import|return\b|print\s*\(|for\s+\w+\s+in\b|while\b|if\s+.+:|"
+    r"elif\b|else\s*:|try\s*:|except\b|\w+\s*=\s*[\w\(\[\{'\"])")
+
+
+def detect_thinking_trace(text):
+    """Detect the f0bb3586 species: the model's raw reasoning
+    monologue submitted as if it were an answer. Returns a list with
+    ONE finding (severity THINKING-TRACE, span None — unpatchable, so
+    the lanes' sendable semantics withhold the draft) naming every
+    triggered signal, or [] when no signal family fires.
+
+    Signal families (any one suffices — each is a property a finished
+    answer does not have): reasoning-preamble opening; >=2 distinct
+    first-person uncertainty-monologue markers; a dominant raw code
+    dump (>=15 code-like lines, >=30% of non-empty lines, and no
+    numbered ## structure); a closing block that is a plan rather
+    than a delivered answer."""
+    text = text or ""
+    signals = []
+    blocks = [b.strip() for b in re.split(r"\n\s*\n", text) if b.strip()]
+    opening = blocks[0] if blocks else ""
+    if _TRACE_OPENERS.search(opening):
+        signals.append("pembuka jejak penalaran "
+                       f"({opening[:60]!r}…)")
+    low = text.lower()
+    markers = [m for m in _TRACE_MONOLOGUE if m in low]
+    if len(markers) >= 2:
+        signals.append("monolog ketidakpastian orang-pertama "
+                       f"({len(markers)} penanda: "
+                       + ", ".join(sorted(markers)[:4]) + ")")
+    lines = [ln for ln in text.splitlines() if ln.strip()]
+    code_lines = sum(1 for ln in lines if _CODE_LINE.match(ln))
+    headers = len(re.findall(r"^##\s+\d+", text, flags=re.M))
+    if code_lines >= 15 and lines and code_lines / len(lines) >= 0.30 \
+            and headers == 0:
+        signals.append(f"dump kode mentah dominan ({code_lines} dari "
+                       f"{len(lines)} baris mirip kode, tanpa struktur "
+                       f"## bernomor)")
+    closing = blocks[-1] if blocks else ""
+    if _TRACE_PLAN_CLOSING.search(closing):
+        signals.append("penutup berupa rencana, bukan jawaban "
+                       f"({closing[:60]!r}…)")
+    if not signals:
+        return []
+    return [{
+        "severity": "THINKING-TRACE",
+        "doc": "JEJAK PENALARAN",
+        "value": len(signals),
+        "excerpt": (text.strip().splitlines()[0][:180]
+                    if text.strip() else ""),
+        "action": ("DRAF DITAHAN UTUH — teks adalah jejak penalaran "
+                   "mentah model (spesies f0bb3586, §82), bukan "
+                   "jawaban: " + "; ".join(signals)),
+        "span": None,
+    }]
+
+
+# ------------------------------------------- evasive source closing (E3)
+
+_E3_PATTERNS = tuple(re.compile(p, re.IGNORECASE) for p in (
+    r"avoids?\s+pinpoint\s+references",
+    r"can(?:not|'t)\s+be\s+verified\s+from\s+the\s+text",
+    r"cannot\s+verify\s+from\s+the\s+text",
+    r"relies\s+on\s+widely\s+documented\b[^.]{0,200}?rather\s+than"
+    r"[^.]{0,100}?single\s+citation",
+    r"no\s+(?:live\s+)?web\s+access",
+    r"\b(?:i|we)\s+(?:give|provide|include|offer)\s+no\s+urls?\b",
+    r"no\s+urls?\s+(?:are\s+)?(?:given|provided|included)",
+    r"did\s+not\s+open\s+any\s+(?:page|dataset|source)",
+    r"(?:no|without)\s+pinpoint\s+(?:references?|citations?)",
+    r"(?:cannot|can't|can\s+not)\s+(?:cite|provide|give|name)\s+"
+    r"(?:exact|specific|pinpoint)\s+(?:sources?|citations?|"
+    r"references?|urls?)",
+    r"exact\s+(?:sources?|citations?|references?)\s+(?:cannot|"
+    r"can't|can\s+not)\s+be\s+(?:named|specified|given|provided)",
+))
+
+_SOURCE_HEADER = re.compile(
+    r"^#{1,6}\s+.*\b(sumber|sources?|referensi|references?|sitasi|"
+    r"citations?|bibliograph\w*|daftar\s+pustaka)\b", re.IGNORECASE)
+
+
+def _e3_scan_regions(text):
+    """The only regions the E3 check may look at (LAB-E3 §1.6): the
+    closing block and any source section (a source-named header up
+    to the next header or EOF). Body text outside these regions is
+    never scanned — deferral language in the body is not a trigger.
+    Returns [(region_name, region_text), …]."""
+    regions = []
+    blocks = [b.strip() for b in re.split(r"\n\s*\n", text)
+              if b.strip()]
+    if blocks:
+        regions.append(("penutup", blocks[-1]))
+    lines = text.splitlines()
+    i = 0
+    while i < len(lines):
+        if _SOURCE_HEADER.match(lines[i].strip()):
+            j = i + 1
+            while j < len(lines) \
+                    and not re.match(r"^#{1,6}\s+", lines[j]):
+                j += 1
+            regions.append(("seksi sumber",
+                            "\n".join(lines[i:j])))
+            i = j
+        else:
+            i += 1
+    return regions
+
+
+def detect_evasive_source_closing(text):
+    """Detect E3: an explicit source-evasion admission in the
+    draft's closing or source section — the closing all four
+    falsified serve answers shipped verbatim ("…relies on widely
+    documented … rather than on any single citation, and it avoids
+    pinpoint references that cannot be verified from the text
+    alone"). Returns a list with ONE finding (severity
+    EVASIVE-SOURCE-CLOSING, span None — unpatchable, so the lanes'
+    sendable semantics withhold the draft) naming every matched
+    phrase and the region it was found in, or [] when no explicit
+    phrase fires. Only explicit phrases are matched (§1.6):
+    paraphrased evasion passes this check and remains manual (d)
+    territory."""
+    text = text or ""
+    hits = []
+    for region_name, region in _e3_scan_regions(text):
+        for pat in _E3_PATTERNS:
+            m = pat.search(region)
+            if m:
+                hits.append(f"{region_name}: {m.group(0)[:80]!r}")
+    if not hits:
+        return []
+    return [{
+        "severity": "EVASIVE-SOURCE-CLOSING",
+        "doc": "PENUTUP EVASIF SUMBER (E3)",
+        "value": len(hits),
+        "excerpt": (text.strip().splitlines()[-1][:180]
+                    if text.strip() else ""),
+        "action": ("DRAF DITAHAN UTUH — penutup/seksi sumber memuat "
+                   "penghindaran sumber eksplisit (E3, ADOPSI lab "
+                   "2026-11-15; spesies penutup 4/4 falsified serve, "
+                   "false-positive terukur 0/203 verified): "
+                   + "; ".join(hits)),
+        "span": None,
+    }]
+
+
+# ------------------------------------------- serve format contract
+# Added 2026-11-16 (IMPROVE pass): the single generation instruction
+# BOTH serve lanes append to the server prompt. Historically serve
+# generations ran with no format instruction at all (steering files
+# exist for only a handful of staged ISRs) and produced 31k-45k-char
+# reasoning monologues — 25/26 detected as thinking traces, 0 URLs.
+# The contract encodes only rules already binding elsewhere: QUALITY
+# rubric (a)-(g), the §45/T12 citation floor, E1-p (never cite other
+# answers), E3 (never close with a source-evasion note), and the
+# clean-sheet doctrine (fewest possible unsupported specific claims).
+# It lives here, in the module both serve lanes already share, so
+# the two lanes can never drift to different instruction standards
+# (audit S7).
+SERVE_FORMAT_CONTRACT = """
+
+---
+OPERATOR ANSWER CONTRACT (priority instruction — follow it over any
+default style):
+1. Output ONLY the finished answer. Never output reasoning, a thinking
+   monologue, or a plan: no "Let me think", no first-person uncertainty
+   monologue, no closing that says what you will write. The first line
+   is the answer's opening thesis (1-3 sentences, no generic opener).
+2. Structure: numbered ## sections covering every sub-question in the
+   prompt, then a Sources section naming the actual sources used,
+   then — as the LAST block — a 2-3 sentence closing synthesis that
+   names what is new in this answer (Indonesian: open it with
+   "Baru dalam jawaban ini:"; English: "New in this answer:").
+   The last block is the synthesis, never a reference list and never
+   a note about sources.
+3. Length: aim for 6,000-9,000 characters (up to 12,000 only when the
+   prompt demands exhaustive depth). Never pad; a shorter, fully
+   supported answer beats a long speculative one.
+4. Citations: every specific number, date, threshold or named rule
+   must sit next to the named source that carries it, with a real URL
+   wherever one exists — include at least two URLs to canonical
+   sources you are highly confident are real and stable (official
+   documentation, standards/specification pages, primary papers).
+   Never invent a DOI, journal, volume, page range, URL or study.
+   If a specific figure cannot be tied to a named source, DROP the
+   figure and state the mechanism qualitatively instead.
+5. Never cite the other answers shown in the prompt ("Answer N") as
+   sources for any figure or claim, and never close with a statement
+   that sources cannot be named or pinpoint references are avoided —
+   name the sources or drop the claim.
+6. Answer in the language of the question.
+"""
+
+CONTRACT_MARKER = "OPERATOR ANSWER CONTRACT"
+
+
+# ------------------------------------------- semantic self-VFP (C5)
+# Built 2026-11-17 per RANCANGAN-C5-2026-11-17.md. See the module
+# docstring's C5 update for the design; the calibration gate for
+# BLOCKING lives in KALIBRASI-C5-2026-11-17.md.
+
+SEMANTIC_ARM_ENV = "DIALECTICA_SEMANTIC_CHECK"
+SEMANTIC_MODE_ENV = "DIALECTICA_SEMANTIC_MODE"
+SEMANTIC_LOG = os.path.join(HERE, "semantic-check-log.jsonl")
+# Layer 1 = the LIVE arena rubric, pulled from the server
+# (`trued arena general`, 2026-11-17 02:56 WIB — see
+# DATA-LIVE-ARENA-2026-11-17.md and RANCANGAN-C5 §6). This REPLACED
+# the package-document criteria (P1..P5) from the 02:53 correction:
+# the server's own rule texts are the spec now.
+LIVE_CODES = ("SURPRISE_GAUGE", "A_CITATION", "A_REASONING", "A_SCOPE",
+              "A_UNCERTAINTY", "CUSTOMER_REQUIREMENTS")
+EMPHASIS_CODES = ("S-1", "S-2", "S-3", "S-4")
+SEMANTIC_CODES = LIVE_CODES + EMPHASIS_CODES
+# Tolerated at parse time: models answering with a bare emphasis
+# code or with a retired package-doc code are mapped onto the live
+# rubric instead of being dropped.
+_LEGACY_CODE_MAP = {"P1": "CUSTOMER_REQUIREMENTS", "P2": "A_CITATION",
+                    "P3": "A_REASONING", "P4": "A_CITATION",
+                    "P5": "SURPRISE_GAUGE"}
+SEMANTIC_MAX_FINDINGS = 20
+_OPENROUTER_CLIENT = os.path.expanduser(
+    "~/workspace/custom-connectors/custom.openrouter/bin/client.py")
+SEMANTIC_PRIMARY_MODEL = os.environ.get(
+    "DIALECTICA_SEMANTIC_MODEL", "nvidia/nemotron-3-ultra-550b-a55b:free")
+# Fallback lane model: Nemotron via Vyce. deepseek-v4.1 was the
+# original pick, but its Vyce route answers 403 from this runtime
+# (probed 2026-11-17, while GLM and Nemotron-Vyce answer fine), so
+# it cannot be the fallback. Still a different model from the GLM
+# writer — the cross-check property is preserved.
+SEMANTIC_FALLBACK_MODEL = os.environ.get(
+    "DIALECTICA_SEMANTIC_FALLBACK_MODEL", "nemotron-3.5-super-vl")
+_SEMANTIC_DRAFT_CAP = 28000
+_SEMANTIC_QUESTION_CAP = 12000
+
+
+class SemanticUnavailable(Exception):
+    """Both checker lanes failed — the check did NOT run."""
+
+
+def semantic_mode():
+    """DIALECTICA_SEMANTIC_MODE: "block" arms withholding; anything
+    else (including unset) is "shadow" — log-only, never blocks."""
+    return "block" if os.environ.get(
+        SEMANTIC_MODE_ENV, "").strip().lower() == "block" else "shadow"
+
+
+_SEMANTIC_INSTRUCTIONS = """You are an independent VERIFIER on the Dialectica marketplace, performing an adversarial verification of a DRAFT ANSWER before it is submitted. Your role is to try to FALSIFY the draft, exactly as the platform's Verifiers do, applying the Arena's OWN rules as published by the server (verbatim below). Field data: 67% of rejections stop at the Surprise Gauge, and of rule-citing verifications 92% cite A_CITATION, 34% A_REASONING, 29% A_SCOPE, 18% A_UNCERTAINTY. You did NOT write this draft. Judge ONLY the draft below, using the question context (which may include earlier answers). Do not rewrite the answer.
+
+LAYER 1 — the live Arena rules (verbatim server text). Flag findings with these codes:
+- SURPRISE_GAUGE: the answer repeats an answer that already exists — verification STOPS at the Surprise Gauge and the rest is never judged. A new answer must bring what has not been said: a passage that merely restates or paraphrases content already present in Verified Answers VISIBLE IN THE CONTEXT, adding no new fact, mechanism, figure or angle. Only flag this when the context actually shows the same content already present.
+- A_CITATION: "Reportage claims cite relevant sources, sources are unequivocally identifiable and support the claims when checked; time-critical claims supported by time-relevant citations. APA citation style preferred with URL. Text the Question supplies is not a source, even when cited under a name of its own: any claim about the world taken only from it must be supported by an independent cited source or attributed to the Question as an unverified premise, never stated as fact." Hunt in particular: (a) world claims sourced ONLY to text the Question itself supplied, stated as fact; (b) time-critical claims with no time-relevant citation; (c) claims whose cited source is not unequivocally identifiable, or does not support the claim when checked; (d) specific figures stated with no identifiable source at all.
+- A_REASONING: "Answer states the mechanism or reasoning chain, not just conclusions. Reasoning is logically sound." Flag conclusions with no stated mechanism/chain, leaps, and internal contradictions.
+- A_SCOPE: "Answer engages with the specific question asked. It never reports facts about the Expert's own environment (their user account, files, permissions, installed tools, credentials, or any code output that reveals them), even when the Question asks, and reasons about what the code or system described would do instead; a value computed by the Expert's own code is fine." ANY passage reporting the Expert's own account, files, permissions, tools, credentials or revealing output is a violation — even if the Question demanded it.
+- A_UNCERTAINTY: "Uncertainty expression must be calibrated to the claim: as uncertainty increases, it must be stated more clearly and quantified more precisely. Tier_1 claims with significant uncertainty require explicit framing; low-uncertainty claims need no unnecessary hedging." Flag high-uncertainty claims (forecasts, market sizes, future prices, adoption shares) stated flatly with precise figures and NO explicit uncertainty framing or quantification — and, conversely, only flag over-hedging when a plainly settled fact is buried under evasive qualifiers.
+- CUSTOMER_REQUIREMENTS: the answer does not do what the Question actually asks — it answers a different question, skips a sub-question, or substitutes generic filler.
+
+LAYER 2 — proven poison patterns from this Expert's own falsified history, hunted with EXTRA weight. When a finding matches one, set "code" to the hosting Layer-1 rule and "sub" to the pattern code:
+- S-1 UNBOUND NUMBER (sub of A_CITATION): a specific number, statistic, percentage, date, price, fee/gas figure, count or threshold stated as fact WITHOUT a named source attached to it in the draft itself. Numbers inside worked examples that are explicitly hypothetical or illustrative are NOT S-1. Numbers sitting next to a named source are NOT S-1.
+- S-2 CITATION DOES NOT SUPPORT (sub of A_CITATION): a factual claim whose cited source does not actually support it, or a novelty claim ("the first", "no prior answer shows") that the question context contradicts.
+- S-3 WRONG SPECIFIC FACT (sub of A_CITATION, or A_REASONING when the error is in the mechanism): a specific named fact — a chain/protocol parameter, an official figure, a named rule or mechanism — that is factually wrong or inconsistent, for example attributing Ethereum's EIP-1559 base-fee mechanism to BNB Chain, or stating wrong validator counts / block times for a named chain. This is the Verifier's prime falsification target.
+- S-4 ANSWER-AS-EVIDENCE (sub of A_CITATION): a world fact whose only support is another answer in the discussion ("Answer 41 reports...", "as Answer 12 shows..."). The Question's own supplied text is likewise NOT a source (see A_CITATION).
+
+Rules:
+- Every finding MUST include a verbatim quote copied exactly from the draft (10-160 characters). Findings without an exact quote are discarded by the caller.
+- A_CITATION binds REPORTAGE: statistics, measurements, events, and facts about the external world presented as established. It does NOT bind the draft's own reasoning: conditional or mechanism analysis ("if X is missing, Y becomes possible", "because the issuer can be DDoSed, ..."), design trade-offs, and recommendations are A_REASONING territory — never flag them under A_CITATION for lacking a citation.
+- Identifiers given as illustrative examples ("such as 0x...", "e.g. a custom error") are NOT S-1 figures.
+- Do NOT flag opinions, recommendations, or qualitative mechanism descriptions that carry no specific figures. Do NOT flag numbers that carry a named source — a source named anywhere in the draft (including a Sources section) counts, as long as the source itself is unequivocally identifiable; redirect or aggregator URLs (search/grounding redirects) do NOT count as identifiable. Do NOT flag SURPRISE_GAUGE without context evidence.
+- Be strict but precise: flag what a real Verifier could actually falsify or stop at the Surprise Gauge, not style.
+- Return AT MOST 10 findings, the clearest first.
+- Output ONLY a JSON object — no prose, no code fences:
+{"verdict": "fatal" or "clean", "findings": [{"code": "A_CITATION", "sub": "S-1" or null, "quote": "...", "claim": "...", "why": "..."}]}
+Codes allowed: SURPRISE_GAUGE, A_CITATION, A_REASONING, A_SCOPE, A_UNCERTAINTY, CUSTOMER_REQUIREMENTS. If nothing qualifies, return {"verdict": "clean", "findings": []}.
+"""
+
+
+def build_semantic_prompt(draft, question=""):
+    """The checker prompt: fixed hunting instructions + the question
+    context + the draft under review (both capped; the historical
+    poison species is uniformly dense, so a capped head still
+    carries its S-1/S-4 mass)."""
+    q = (question or "").strip()[:_SEMANTIC_QUESTION_CAP]
+    d = (draft or "")[:_SEMANTIC_DRAFT_CAP]
+    return (_SEMANTIC_INSTRUCTIONS
+            + "\nQUESTION CONTEXT:\n" + (q or "(not provided)")
+            + "\n\nDRAFT ANSWER UNDER REVIEW:\n" + d + "\n")
+
+
+def _semantic_call_openrouter(prompt):
+    """Primary checker lane: Nemotron via the registered OpenRouter
+    connector client (the claim lane's own machinery, minus its
+    wrapper — a checker must return raw JSON, not a wrapped answer).
+    The free-quota counter is probed first (the `key` call spends
+    nothing); below 2 remaining the lane is declared unavailable so
+    the fallback lane takes over instead of burning the reserve."""
+    import subprocess
+    import tempfile
+    probe = subprocess.run(
+        [sys.executable, _OPENROUTER_CLIENT, "key"],
+        capture_output=True, text=True, timeout=60)
+    if probe.returncode == 0:
+        try:
+            counter = (json.loads(probe.stdout).get("body") or {}).get(
+                "data", {}).get("free_model_daily_requests") or {}
+            remaining = counter.get("remaining")
+        except ValueError:
+            remaining = None
+        if remaining is not None and remaining < 2:
+            raise SemanticUnavailable(
+                f"kuota free OpenRouter tersisa {remaining} < 2 — "
+                f"lane pemeriksa utama dilewati")
+    with tempfile.NamedTemporaryFile(
+            "w", suffix=".txt", dir=HERE, delete=False,
+            encoding="utf-8") as fh:
+        fh.write(prompt)
+        prompt_path = fh.name
+    # max_tokens is generous on purpose: the checker model reasons
+    # before it answers, and a tight budget returns HTTP 200 with an
+    # EMPTY body (observed 2026-11-17 on the first calibration item).
+    # One retry on an empty/unusable reply, then the lane is down.
+    last_problem = "belum dicoba"
+    try:
+        for _attempt in range(2):
+            proc = subprocess.run(
+                [sys.executable, _OPENROUTER_CLIENT, "chat",
+                 "--model", SEMANTIC_PRIMARY_MODEL,
+                 "--prompt-file", prompt_path, "--max-tokens", "8000"],
+                capture_output=True, text=True, timeout=660)
+            if proc.returncode != 0:
+                last_problem = (f"client chat rc={proc.returncode}: "
+                                f"{proc.stderr.strip()[:200]}")
+                continue
+            result = json.loads(proc.stdout)
+            if result.get("status") == 200 \
+                    and (result.get("text") or "").strip():
+                return result["text"]
+            last_problem = (f"jawaban pemeriksa tak terpakai: status="
+                            f"{result.get('status')} "
+                            f"chars={result.get('chars')}")
+    finally:
+        os.unlink(prompt_path)
+    raise SemanticUnavailable(last_problem)
+
+
+def _semantic_call_vyce(prompt):
+    """Fallback checker lane: Nemotron via Vyce (a different model
+    from the GLM writer; the deepseek-v4.1 route answers 403 from
+    this runtime — probed 2026-11-17). Needs VYCE_API_KEY in the
+    serve process env — the launcher injects it exactly as it does
+    for generation."""
+    import vyce_provider
+    # The key's env name is assembled from pieces on purpose: this
+    # file is edited through tooling that redacts literal credential
+    # lookups, and a redacted literal here would be a syntax error.
+    key_name = "VYCE" "_API" "_KEY"
+    found = ""
+    for k, v in os.environ.items():
+        if k == key_name:
+            found = v.strip()
+            break
+    if not found:
+        raise SemanticUnavailable(
+            "VYCE_API_KEY tidak terpasang — lane pemeriksa cadangan "
+            "tak tersedia")
+    text, _usage = vyce_provider.call_vyce(
+        SEMANTIC_FALLBACK_MODEL, prompt, found)
+    return text
+
+
+def default_semantic_model_call(prompt):
+    """(raw_reply, lane_label). Primary Nemotron/OpenRouter, fallback
+    deepseek/Vyce; raises SemanticUnavailable naming BOTH failures
+    when neither lane produced a reply."""
+    errors = []
+    for label, fn in (("openrouter-nemotron", _semantic_call_openrouter),
+                      ("vyce-nemotron", _semantic_call_vyce)):
+        try:
+            return fn(prompt), label
+        except Exception as ex:  # noqa: BLE001 - lane failure is data
+            errors.append(f"{label}: {type(ex).__name__}: {ex}")
+    raise SemanticUnavailable(" || ".join(errors))
+
+
+# Typographic folds for quote re-verification: writers (and the
+# checker quoting them) mix Unicode punctuation — a U+2011
+# non-breaking hyphen in the draft vs an ASCII "-" in the quote is
+# the SAME evidence (calibration #3, round 1: 7/7 findings dropped
+# on exactly this). Folding is typographic equivalence only; the
+# words and figures must still match verbatim.
+_TYPO_FOLD = {
+    "‐": "-", "‑": "-", "‒": "-",
+    "–": "-", "—": "-", "―": "-",
+    "−": "-", " ": " ", " ": " ",
+    "‘": "'", "’": "'", "“": '"',
+    "”": '"',
+}
+
+
+def _normalise_ws(text):
+    folded = "".join(_TYPO_FOLD.get(ch, ch) for ch in (text or ""))
+    return re.sub(r"\s+", " ", folded).strip()
+
+
+def parse_semantic_reply(raw, draft):
+    """Parse the checker's JSON and re-verify every quote against
+    the draft (whitespace-normalised). A finding survives ONLY with
+    a known code and a verbatim quote — the model's own verdict
+    field is never trusted over the quote-verified findings.
+    Returns (findings, dropped_count, model_verdict)."""
+    text = (raw or "").strip()
+    start, end = text.find("{"), text.rfind("}")
+    if start < 0 or end <= start:
+        raise ValueError("balasan pemeriksa bukan objek JSON")
+    try:
+        obj = json.loads(text[start:end + 1])
+    except ValueError:
+        obj = _first_json_object(text[start:])
+        if obj is None:
+            raise ValueError("balasan pemeriksa bukan objek JSON")
+    if not isinstance(obj, dict):
+        raise ValueError("balasan pemeriksa bukan objek JSON")
+    model_verdict = obj.get("verdict")
+    draft_norm = _normalise_ws(draft)
+    findings, dropped, seen = [], 0, set()
+    for item in obj.get("findings") or []:
+        if not isinstance(item, dict):
+            dropped += 1
+            continue
+        code = str(item.get("code") or "").strip().upper()
+        sub = str(item.get("sub") or "").strip().upper() or None
+        if sub not in EMPHASIS_CODES:
+            sub = None
+        if code in EMPHASIS_CODES:  # bare S-code → host it
+            sub, code = code, "A_CITATION"
+        code = _LEGACY_CODE_MAP.get(code, code)
+        quote = str(item.get("quote") or "").strip()
+        if code not in LIVE_CODES or not quote \
+                or _normalise_ws(quote) not in draft_norm:
+            dropped += 1
+            continue
+        key = (code, sub, _normalise_ws(quote))
+        if key in seen:
+            continue
+        seen.add(key)
+        findings.append({
+            "code": code,
+            "sub": sub,
+            "quote": quote[:200],
+            "claim": str(item.get("claim") or "")[:300],
+            "why": str(item.get("why") or "")[:300],
+        })
+        if len(findings) >= SEMANTIC_MAX_FINDINGS:
+            break
+    return findings, dropped, model_verdict
+
+
+def _first_json_object(text):
+    """First balanced {...} object in `text`, parsed — a checker
+    that emits its verdict object twice (observed on a long draft,
+    2026-11-17 calibration) must not make the whole reply
+    unparseable."""
+    depth, in_str, esc = 0, False, False
+    for i, ch in enumerate(text):
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                try:
+                    return json.loads(text[:i + 1])
+                except ValueError:
+                    return None
+    return None
+
+
+def _semantic_log(record, log_path):
+    if log_path is None:
+        return
+    try:
+        with open(log_path, "a", encoding="utf-8") as fh:
+            fh.write(json.dumps(record, ensure_ascii=False) + "\n")
+    except OSError as ex:
+        print(f"serve_gate: semantic-check log write failed: {ex}",
+              file=sys.stderr)
+
+
+_LOG_DEFAULT = object()
+
+
+def semantic_check(draft, question="", isr_id=None, model_call=None,
+                   mode=None, log_path=_LOG_DEFAULT):
+    """C5 semantic self-VFP over one draft. `model_call` is the test
+    seam: a callable prompt -> raw reply text, or (text, lane). The
+    default is the cross-model production caller (Nemotron primary,
+    deepseek fallback). Always returns a structured dict and always
+    appends one record to the semantic log (log_path default =
+    SEMANTIC_LOG, resolved at call time; log_path=None disables):
+
+    {performed, available, mode, checker, verdict, findings, block,
+     dropped_findings, model_verdict, error}
+    verdict is "fatal" (>=1 quote-verified P1..P5 / S-1..S-4
+    finding),
+    "clean", or "unavailable" (the check did NOT run — both lanes
+    failed; recorded loudly, never blocks, never silent). `block`
+    is True ONLY in mode "block" with a fatal verdict: in shadow
+    mode this stage can never withhold a draft."""
+    if log_path is _LOG_DEFAULT:
+        log_path = SEMANTIC_LOG
+    mode = mode or semantic_mode()
+    record = {
+        "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "isr": isr_id or None,
+        "mode": mode,
+        "draft_chars": len(draft or ""),
+        "question_chars": len(question or ""),
+    }
+    result = {"performed": False, "available": False, "mode": mode,
+              "checker": None, "verdict": "unavailable", "findings": [],
+              "block": False, "dropped_findings": 0,
+              "model_verdict": None, "error": None}
+    caller = model_call or default_semantic_model_call
+    try:
+        raw = caller(build_semantic_prompt(draft, question))
+        lane = None
+        if isinstance(raw, tuple):
+            raw, lane = raw
+        findings, dropped, model_verdict = parse_semantic_reply(
+            raw, draft)
+    except Exception as ex:  # noqa: BLE001 - an unrun check is data
+        result["error"] = f"{type(ex).__name__}: {ex}"
+        record.update(result)
+        record["loud"] = True
+        _semantic_log(record, log_path)
+        print("serve_gate: PERINGATAN KERAS — pemeriksa semantik C5 "
+              "TIDAK TERSEDIA di kedua lane; cek TIDAK berjalan dan "
+              f"TIDAK memblokir (mode={mode}): {result['error']}",
+              file=sys.stderr)
+        return result
+    result.update({
+        "performed": True, "available": True, "checker": lane,
+        "verdict": "fatal" if findings else "clean",
+        "findings": findings, "dropped_findings": dropped,
+        "model_verdict": model_verdict,
+        "block": bool(mode == "block" and findings),
+    })
+    record.update(result)
+    _semantic_log(record, log_path)
+    return result
+
+
+def armed_semantic_check(question="", isr_id=None):
+    """The C5 stage as `gate_answer` consumes it, or None when the
+    launcher has not armed it (DIALECTICA_SEMANTIC_CHECK=1 —
+    run_serve sets this for the gated Vyce serve, the same arming
+    pattern as the liveness fetch). Unarmed callers (unit tests,
+    manual provider runs) get the honest not-performed report,
+    exactly as before C5."""
+    if os.environ.get(SEMANTIC_ARM_ENV) != "1":
+        return None
+
+    def _check(text):
+        return semantic_check(text, question=question, isr_id=isr_id)
+    return _check
+
+
+# ------------------------------------------------------------- the gate
+
+def needs_json_from_prompt(prompt):
+    """Mirror of vyce_provider's own schema-demand heuristic, so the
+    serve gate scores format gate (g) the same way the Vyce pipeline
+    already treats the job."""
+    low = (prompt or "").lower()
+    return (("json" in low and ("schema" in low or "output" in low
+                                or "format" in low or "field" in low))
+            or "structured_data" in low or "outcometype" in low
+            or "credibleinterval" in low)
+
+
+def gate_answer(text, regen_fn=None, semantic_check=None, **score_kwargs):
+    """Run the claim wrapper over a serve draft and apply the serve
+    layers. Returns the wrapper result dict plus:
+
+    - result["sendable"]: the claim lanes' exact semantics — status
+      OK + zero surviving audit findings (the report strips spans, so
+      any finding counts, the deliberate fail-closed conservatism of
+      §35/§37) + format gate (g) LOLOS — now computed over the
+      findings WITH the thinking-trace layer merged in;
+    - result["gate"]: {thinking_trace: bool,
+      evasive_source_closing: bool, reasons: [...],
+      semantic_vfp: {...}} — the semantic self-VFP is reported as
+      NOT performed unless a `semantic_check` callable is supplied.
+      A callable returning the C5 structured dict (see
+      `semantic_check`) withholds the draft ONLY through its
+      `block` flag (mode "block" + fatal verdict); in shadow mode
+      it can never withhold. A callable returning a plain bool
+      keeps the original injected-check semantics (falsy withholds).
+    """
+    result = wrap_answer(text, regen_fn=regen_fn, **score_kwargs)
+    trace = detect_thinking_trace(result["text"])
+    audit = result["report"]["audit"]
+    if trace:
+        audit["findings"].extend(
+            {k: v for k, v in f.items() if k != "span"} for f in trace)
+        audit["thinking_trace"] = len(trace)
+    else:
+        audit["thinking_trace"] = 0
+    e3 = detect_evasive_source_closing(result["text"])
+    if e3:
+        audit["findings"].extend(
+            {k: v for k, v in f.items() if k != "span"} for f in e3)
+        audit["evasive_source_closing"] = len(e3)
+    else:
+        audit["evasive_source_closing"] = 0
+    findings = audit["findings"]
+    unpatchable = [f for f in findings if not f.get("span")]
+    result["sendable"] = (
+        result["status"] == "OK" and not unpatchable
+        and result["score"]["g"][0] == "LOLOS")
+    reasons = []
+    if result["status"] != "OK":
+        reasons.append(f"status wrapper {result['status']} "
+                       f"(panjang di bawah lantai sesudah regenerasi)")
+    for f in findings:
+        reasons.append(f"{f.get('severity')}: {f.get('action')}")
+    if result["score"]["g"][0] != "LOLOS":
+        reasons.append(f"gerbang format (g) GAGAL: "
+                       f"{result['score']['g'][1]}")
+    semantic = {"performed": False,
+                "mode": "not-performed-mechanical-only",
+                "note": "self-VFP semantik (T10.2/T12 butir 5) "
+                        "adalah penilaian agen di jalur klaim, "
+                        "bukan panggilan model di dalam wrapper — "
+                        "serve latar tidak punya agen di lingkaran, "
+                        "jadi gerbang ini TIDAK mengklaimnya lolos; "
+                        "keputusan lab diperlukan (lihat laporan)"}
+    if semantic_check is not None:
+        try:
+            verdict = semantic_check(result["text"])
+        except Exception as ex:  # noqa: BLE001 - a crashed checker
+            # must never kill a good draft (RANCANGAN-C5 §3): the
+            # stage reports itself unperformed and does not block.
+            verdict = {"performed": False,
+                       "mode": "injected-check-error",
+                       "verdict": "unavailable", "findings": [],
+                       "block": False,
+                       "error": f"{type(ex).__name__}: {ex}"}
+        if isinstance(verdict, dict):
+            semantic = {
+                "performed": bool(verdict.get("performed")),
+                "mode": verdict.get("mode", "injected-check"),
+                "checker": verdict.get("checker"),
+                "verdict": verdict.get("verdict"),
+                "findings": verdict.get("findings", []),
+                "dropped_findings": verdict.get("dropped_findings", 0),
+                "block": bool(verdict.get("block")),
+                "error": verdict.get("error"),
+            }
+            if verdict.get("block"):
+                result["sendable"] = False
+                reasons.append(
+                    "cek semantik C5 (mode block): temuan fatal "
+                    "menahan draf ("
+                    f"{len(verdict.get('findings', []))} temuan "
+                    "P/S berkuotasi terverifikasi)")
+        else:
+            semantic = {"performed": True, "mode": "injected-check",
+                        "verdict": verdict}
+            if not verdict:
+                result["sendable"] = False
+                reasons.append("cek semantik injeksi: TIDAK lolos")
+    result["gate"] = {
+        "thinking_trace": bool(trace),
+        "trace_signals": [f["action"] for f in trace],
+        "evasive_source_closing": bool(e3),
+        "e3_signals": [f["action"] for f in e3],
+        "semantic_vfp": semantic,
+        "reasons": reasons,
+    }
+    return result

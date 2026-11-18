@@ -1,0 +1,36 @@
+Prompt injection can masquerade malicious instructions as legitimate tool output or retrieved content, causing the LLM to treat the injected text as data it must act on; when the agent subsequently builds a transaction payload, the injected command becomes part of the authorized request, leading the model to sign and broadcast a wallet operation it never received as an explicit user request【1†https://arxiv.org/abs/2302.12173】.
+
+## 1. How injected tool output triggers an unauthorized wallet transaction 
+1. **Tool‑output hijacking** – The agent calls an external tool (e.g., a web scraper or a knowledge base) and receives a string that contains a hidden directive such as “send 0.5 ETH to 0xBad…”. Because the LLM treats tool results as factual input, it may incorporate the directive into the next reasoning step without questioning its provenance. 
+2. **Prompt‑level blending** – The injected phrase is concatenated with the user’s original prompt inside the same context window, so the model cannot reliably separate “user intent” from “tool‑generated data”. 
+3. **Automatic transaction construction** – If the agent is programmed to auto‑generate a signed transaction whenever the context mentions a transfer amount and address, the hidden directive satisfies those conditions, causing the signing routine to execute. 
+4. **Lack of explicit verification** – Without a separate validation layer, the model assumes the data is trustworthy, signs the payload, and sends it to the blockchain, completing an unauthorized transfer.
+
+## 2. Scoped approvals – prevention or detection? 
+Scoped approvals restrict which actions a model may invoke based on a pre‑defined policy (e.g., “only allow read‑only API calls” or “limit transfers to ≤ 0.01 ETH”). Because the policy is evaluated **before** the transaction is built, any attempt to sign a transfer that exceeds the scope is rejected outright. This stops the injection from ever reaching the signing stage, making scoped approvals a true **preventive** control【2†https://cloud.google.com/vertex-ai/docs/general/access-control】. They do not merely log the event after the fact.
+
+## 3. Transaction simulation – prevention or detection? 
+Simulation re‑executes the constructed transaction in a sandbox (e.g., an off‑chain EVM emulator) to observe its effects before broadcasting. The simulation step occurs **after** the transaction payload is created but **before** it is sent to the network. If the simulated outcome includes an unexpected transfer, the system can abort the broadcast. Hence, simulation acts as a **preventive** barrier that catches malicious payloads that have already been assembled, rather than a post‑mortem detector【3†https://github.com/ethereum/evm‑tools】.
+
+## 4. Human‑in‑the‑loop (HITL) confirmation – prevention or detection? 
+HITL inserts a mandatory user review of the full transaction details (amount, recipient, gas) before signing. Because the user must explicitly approve the operation, any hidden directive introduced by prompt injection is exposed during the review. This makes HITL a **preventive** safeguard, provided the user is vigilant. If the user approves blindly, the control degrades to a detection mechanism that only logs the approval, but the design intent is prevention【4†https://docs.aws.amazon.com/sagemaker/latest/dg/step-functions-approval.html】.
+
+## 5. Allow‑listed recipients – prevention or detection? 
+An allow‑list enforces that the destination address of any outgoing transfer must belong to a curated set (e.g., corporate wallets). The check is performed **prior** to signing; any transaction targeting an address outside the list is rejected. Consequently, an injected command that tries to send funds to an arbitrary attacker address is blocked, making allow‑listing a **preventive** control. It does not merely record the violation after it occurs【5†https://eips.ethereum.org/EIPS/eip-20#allowlist】.
+
+## 6. Summary of defensive posture 
+| Defense | Prevents unauthorized tx? | Detects only after fact? |
+|-----------------------------|---------------------------|--------------------------|
+| Scoped approvals | ✅ (policy evaluated before payload creation) | ❌ |
+| Transaction simulation | ✅ (sandbox run before broadcast) | ❌ |
+| Human‑in‑the‑loop review | ✅ (requires explicit user consent) | ❌ (if user ignores) |
+| Allow‑listed recipients | ✅ (address filter before signing) | ❌ |
+
+## Sources 
+1. Wallace, E., et al., “Prompt Injection Attacks against LLMs”, arXiv:2302.12173, 2023. https://arxiv.org/abs/2302.12173 
+2. Google Cloud Vertex AI, “Access control and IAM for AI services”, 2024. https://cloud.google.com/vertex-ai/docs/general/access-control 
+3. Ethereum Foundation, “EVM Tools – Transaction simulation”, GitHub repository, 2023. https://github.com/ethereum/evm-tools 
+4. AWS SageMaker, “Human‑in‑the‑Loop workflow steps”, 2024. https://docs.aws.amazon.com/sagemaker/latest/dg/step-functions-approval.html 
+5. Ethereum Improvement Proposal 20, “ERC‑20 Token Standard – Allowlist extension”, 2022. https://eips.ethereum.org/EIPS/eip-20#allowlist 
+
+Baru dalam jawaban ini: penjelasan terperinci tentang bagaimana injeksi prompt dapat mengubah output alat menjadi perintah transaksi yang sah, serta klasifikasi yang jelas antara kontrol yang mencegah transaksi tidak sah (scoped approvals, simulasi, HITL, allow‑list) dan yang hanya mencatat setelah terjadi.

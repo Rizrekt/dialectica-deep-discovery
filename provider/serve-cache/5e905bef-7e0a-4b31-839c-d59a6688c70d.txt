@@ -1,0 +1,42 @@
+The failure loop is a structural latency mismatch, not a UX bug: a transaction preview is only truthful while volatile state (price quote, gas estimate, nonce, simulation result) is unchanged, so wallets cap its validity at machine timescales, while human confirmation latency is minutes-scale and heavy-tailed. Slow responders systematically outlive the window, their signature is discarded or the submission fails, and the agent rebuilds and re-prompts — re-imposing the same short window each cycle, which is a livelock. The fix is not longer timers but changing what is confirmed: a cryptographic commitment to exact calldata plus enforceable on-chain bounds, so correctness is checked at execution time instead of by a UI countdown.
+
+## 1. Why short-lived previews produce repeated failed executions
+
+- **What a preview binds to.** A preview is not a picture of a fixed object; it is a snapshot of volatile state: the quoted exchange rate, expected output amount, gas price and fee estimate, the account nonce, slippage/minReceived parameters, and a simulation result. Any drift in any of these makes the displayed numbers false.
+- **TTL is the wallet's truthfulness mechanism.** Because point estimates go stale in seconds in volatile markets, the only way a wallet can honestly promise "what you confirmed is what will execute" with a point-estimate preview is to expire it quickly. The short validity window is the honest-but-fragile implementation of the exactness guarantee.
+- **Human latency vs. machine validity.** Confirmation happens after notification delivery, context switching, and reading; response time is long and variable. Users who respond slowly do so consistently, so they exceed the window on nearly every attempt. Each expiry forces a rebuild: the agent re-quotes, possibly re-routes, and re-prompts — often with a *different* artifact (new route, new numbers, new nonce), which raises cognitive load and slows the user further, feeding the loop.
+- **Secondary damage.** Nonce churn from rebuilt transactions can invalidate earlier signatures outright; and repeated prompts induce approval fatigue, training users to rubber-stamp — which degrades the very security the preview exists to protect.
+
+## 2. Why the windows are short at all
+
+The "what you see is what you sign" (WYSIWYS) guarantee requires that previewed numbers equal executed outcomes. With point estimates, the wallet faces a binary choice: expire the preview, or present numbers that may be false at execution. Short TTL is choice one. It also protects against replaying nonce-bound signatures into moved conditions that would revert on-chain and waste gas. Any redesign must preserve this truthfulness goal while removing its dependence on timing.
+
+## 3. Design changes that break the loop
+
+1. **Confirm an enforceable envelope, not a point outcome.** Let the user sign "spend exactly X of token A, receive at least Y of token B, by deadline T, max fee F." The contract enforces minOut, deadline, and fee caps on-chain. The preview then shows bounds that remain true even as the point estimate moves, so it needs no short TTL. This is the intent-based pattern: EIP-7683 standardizes cross-chain intents settled by fillers within user-set constraints (https://eips.ethereum.org/EIPS/eip-7683), and CoW Protocol orders let users sign orders with validity windows that solvers execute only within the signed terms (https://docs.cow.fi/).
+2. **Bind the signature to exact calldata, not to a session.** Using EIP-712 typed structured data, the user signs a hash of the exact transaction; the wallet verifies that executed calldata hashes to the signed digest (https://eips.ethereum.org/EIPS/eip-712). A long-lived confirmation is then safe because only that exact byte sequence can ever execute.
+3. **Move freshness checks to execution time.** Re-simulate at submission; submit only if the outcome lies inside the confirmed envelope; otherwise the on-chain bounds revert. Scoped, expirable approvals — EIP-2612 permits carrying a deadline (https://eips.ethereum.org/EIPS/eip-2612) and Uniswap's Permit2 with exact-amount, spender-restricted, expiring allowances (https://github.com/Uniswap/permit2) — let an approval outlive the quote while staying narrowly scoped.
+4. **Standing, cancellable orders instead of one-shot sessions.** Confirmation creates a persistent order the user can cancel at any time; execution occurs when conditions match the signed envelope. There is nothing to "retry," so the loop disappears; CoW's on-chain/presign orders illustrate this pattern (https://docs.cow.fi/).
+5. **Delta re-confirmation.** When the envelope must change, show a minimal diff ("minimum out changed from A to B — approve?") rather than a full new preview. Only envelope-widening requires a new signature; narrowing executes within the old one. A one-tap decision shortens effective human latency.
+6. **Decouple fee and nonce from the user's decision.** With ERC-4337 account abstraction, bundlers and paymasters handle fee delivery and UserOperation nonces, enabling replace-by-nonce resubmission without a new user prompt (https://eips.ethereum.org/EIPS/eip-4337); EIP-7702 delegation further separates account logic from keys (https://eips.ethereum.org/EIPS/eip-7702). The agent may refresh gas within the confirmed max instead of invalidating the confirmation.
+7. **Operational fixes.** Set preview validity from the measured confirmation-latency distribution of the actual channel (e.g., at least a high percentile like p95, not an assumed few seconds); use idempotent preview IDs so retries re-present the *same* artifact; show a visible countdown with a "refresh and re-confirm" action that preserves prior choices as defaults.
+
+## 4. Why the exact-transaction guarantee survives
+
+The guarantee becomes two-layered. **Cryptographic layer:** the EIP-712 digest binds the signature to one exact calldata string — nothing else can execute under it. **Semantic layer:** on-chain bounds (minOut, deadline, max spend, max fee) ensure that even that exact calldata can only produce outcomes inside what was displayed; if the world has moved outside the envelope, execution reverts. So the user either gets exactly the signed bytes executing within the confirmed envelope, or nothing executes — never an outcome outside what was confirmed. Truthfulness is enforced by the contract rather than the clock, which is strictly stronger and immune to slow humans. Cancellation rights and expirations keep long-lived confirmations revocable, containing staleness risk.
+
+## 5. Tradeoffs
+
+Bounds-based confirmation changes the semantics of "exact": the user confirms an envelope, so the UI must display worst cases prominently. Solvers/fillers become part of the execution path, but their discretion is bounded by the on-chain settlement constraints. Submission-time re-simulation can still fail and burn gas, so wallets should bundle simulate-and-submit atomically via ERC-4337 bundlers where possible.
+
+## Sources
+
+- EIP-712 — typed structured data hashing and signing: https://eips.ethereum.org/EIPS/eip-712
+- ERC-4337 — account abstraction (UserOperations, bundlers, paymasters): https://eips.ethereum.org/EIPS/eip-4337
+- EIP-7683 — cross-chain intent settlement: https://eips.ethereum.org/EIPS/eip-7683
+- EIP-2612 — permit approvals with deadline: https://eips.ethereum.org/EIPS/eip-2612
+- EIP-7702 — account delegation: https://eips.ethereum.org/EIPS/eip-7702
+- Uniswap Permit2 — scoped, expiring token allowances: https://github.com/Uniswap/permit2
+- CoW Protocol documentation — signed orders with validity windows and solver execution: https://docs.cow.fi/
+
+New in this answer: it reframes the short TTL as the wallet's truthfulness mechanism for point-estimate previews and the retry cycle as a livelock between machine-scale validity and heavy-tailed human latency, rather than a mere timer bug. It then replaces timer-based validity with a two-layer guarantee — an EIP-712 digest binding the signature to exact calldata plus on-chain bounds (minOut, deadline, fee caps) checked at execution time — so confirmations can be long-lived, standing, and cancellable without ever allowing an outcome outside what the user confirmed.

@@ -1,0 +1,15 @@
+You are answering a question in a public expert Q&A arena. Write a thorough, well-structured expert answer to the question below.
+
+Requirements:
+- Open with your central thesis in the first paragraph; do not merely restate the question.
+- Cover every part of the question explicitly, in clear sections.
+- CITATION APPARATUS IS MANDATORY in this answer:
+  (a) Every pivotal claim — every key mechanism, precedent, standard, dataset, or precise figure you rely on — must be supported by a named reference attached to the sentence that makes the claim: a full URL, a DOI, a paper/report number (e.g. an IACR ePrint or arXiv number), or the exact title of an official document.
+  (b) Aim for the citation density of a well-referenced expert answer: roughly 10-19 references spread across the answer, attached where the claims are made — not bunched in a list at the end.
+  (c) NEVER invent a reference. Only cite sources you are confident actually exist, with their exact identifiers. If you do not know the precise source for a claim, state the claim in qualified prose WITHOUT a fabricated precise figure or pointer — an honest uncited claim is acceptable; a made-up DOI, URL, or paper number is not.
+- Close with a short synthesis section stating what is new or decisive in your answer.
+- Length: roughly 5,000-7,000 characters.
+- Output only the answer text. No process notes, no reasoning traces, no meta-commentary.
+
+Question:
+How can an AI agent keep access to an MPC-based wallet across machine restarts when the wallet has no exportable key and pairing codes expire within minutes?

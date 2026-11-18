@@ -1,0 +1,660 @@
+[
+ {
+  "label": "#1",
+  "id": "fcb7b015",
+  "kind": "poison",
+  "expected": [
+   "S-2"
+  ],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [
+   "S-4",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "the thread's gas identity changes on rollups",
+    "claim": "The draft states that \"the thread's gas identity\" is repriced on L2, citing only the thread.",
+    "why": "S-4 ANSWER-AS-EVIDENCE: The gas-cost analysis is attributed to \"the thread\" rather than to primary sources (EIPs, chain docs, benchmarks). This pattern recurs throughout (Â§2, Â§4)."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "the runtime `DELEGATECALL` tax the thread priced at ~10% cold on L1",
+    "claim": "A specific figure (~10%) is presented as fact without a named primary source.",
+    "why": "S-1 UNBOUND NUMBER: The percentage is attributed to \"the thread\" (itself a non-primary source per S-4) and carries no independent citation (e.g., benchmark, EIP, or gas-table reference)."
+   }
+  ],
+  "dropped_findings": 3,
+  "error": null,
+  "chars": 5286
+ },
+ {
+  "label": "#2",
+  "id": "097df475",
+  "kind": "poison",
+  "expected": [
+   "S-1",
+   "S-3"
+  ],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "~21 000 gas",
+    "claim": "A free mint transaction uses ~21,000 gas in a quiet block",
+    "why": "Specific gas figure stated without source."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "50+ wallets",
+    "claim": "A cluster of 50+ wallets indicates Sybil fingerprint",
+    "why": "Specific threshold count stated without source."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "ERC-8004 explicitly permits transferable agent identities and multiple registrations.",
+    "claim": "ERC-8004 standard permits transferable agent identities and multiple registrations",
+    "why": "Claim about an ERC standard's content without citation to the standard."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "Binance Agentic Wallet documentation states each user may create one Agentic Wallet and claim one `.ai` handle",
+    "claim": "Binance Agentic Wallet documentation limits users to one wallet and one .ai handle",
+    "why": "Claim about documentation content without citation or URL."
+   }
+  ],
+  "dropped_findings": 4,
+  "error": null,
+  "chars": 6580
+ },
+ {
+  "label": "#3",
+  "id": "0d76cc7c",
+  "kind": "poison",
+  "expected": [],
+  "verdict": "clean",
+  "checker": "openrouter-nemotron",
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped_findings": 7,
+  "error": null,
+  "chars": 5147
+ },
+ {
+  "label": "#5",
+  "id": "f0bb3586",
+  "kind": "poison",
+  "expected": [
+   "S-1"
+  ],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS",
+   "A_SCOPE",
+   "A_CITATION",
+   "A_CITATION",
+   "A_REASONING"
+  ],
+  "subs": [
+   "S-4",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Given I cannot actually browse the web, my best strategy is to: 1. Rely on my training knowledge of primary sources",
+    "claim": "The draft is a planning document, not an answer to the question about LRTs and leverage cascades.",
+    "why": "The draft does not address the question at all; it discusses Ethereum validator churn mechanics and the Expert's research strategy, completely skipping the topic of liquid restaking tokens, multi-chain ecosystems, hidden leverage cascades, and L1 PoS consensus destabilization."
+   },
+   {
+    "code": "A_SCOPE",
+    "sub": null,
+    "quote": "I don't actually have web access in this conversation. I'm generating a response without tool access.",
+    "claim": "The draft reports the Expert's own environment (lack of web access, tool access).",
+    "why": "A_SCOPE prohibits reporting facts about the Expert's own environment, including installed tools, permissions, or credentials, even if the Question asks. The draft explicitly states the Expert's lack of browsing capability."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "Answer 30 says the Electra spec makes exit churn balance-based (total active balance / 65,536 per epoch)",
+    "claim": "A factual claim about the Electra spec supported only by another answer in the discussion.",
+    "why": "S-4 ANSWER-AS-EVIDENCE: the only support for the claim is 'Answer 30 says'. Previous answers are not independent sources; they must be verified against primary sources."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "balance-weighted (~150,000 ETH/day)",
+    "claim": "A specific throughput figure stated as fact without a named source.",
+    "why": "S-1 UNBOUND NUMBER: the figure is presented as a factual estimate with no citation to a specification, calculation, or verifiable source."
+   },
+   {
+    "code": "A_REASONING",
+    "sub": null,
+    "quote": "I genuinely don't remember whether exit churn is replenished by activation_exit_churn_limit or balance_churn_limit.",
+    "claim": "The reasoning chain admits a critical gap in the mechanism description.",
+    "why": "A_REASONING requires the answer to state the mechanism or reasoning chain, not just conclusions, and for reasoning to be logically sound. The draft acknowledges the Expert does not know which limit governs exit churn, making any derived throughput figure unsupported."
+   }
+  ],
+  "dropped_findings": 5,
+  "error": null,
+  "chars": 38591
+ },
+ {
+  "label": "#6",
+  "id": "7d81c51d",
+  "kind": "poison",
+  "expected": [
+   "S-1"
+  ],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_REASONING",
+   "A_UNCERTAINTY"
+  ],
+  "subs": [
+   "S-1",
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Let me understand the task. I'm an Expert in Dialectica answering a question about semiconductor supply chains to 2030.",
+    "claim": "The draft is a planning document, not a submitted answer.",
+    "why": "The text is an Expert's internal reasoning about what to write, listing potential angles and sources. It does not answer the question about semiconductor geopolitics/technology/economics through 2030; it prepares to answer. A submitted answer must be a complete response, not a pre-writing outline."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Wolfspeed filed Chapter 11 on June 30, 2025.",
+    "claim": "Specific date for Wolfspeed bankruptcy filing stated as fact.",
+    "why": "Unbound number/date presented as fact with no cited source. The draft acknowledges it cannot verify sources ('I cannot browse the web', 'I cannot open them'). Under A_CITATION, time-critical claims require time-relevant citations from identifiable sources that support the claim when checked."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Nvidia announced 800 VDC power architecture for AI factories at Computex 2025",
+    "claim": "Specific event (Nvidia 800VDC announcement) with date and venue stated as fact.",
+    "why": "Unbound claim about a 2025 event with no verifiable citation. The draft admits uncertainty about exact URLs and cannot verify sources. This is a time-critical claim presented as fact without a supported citation."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Tata-PSMC Dholera fab: approved Feb 2024, $11B, Dholera Gujarat",
+    "claim": "Specific approval date, investment amount, and location for Tata fab stated as fact.",
+    "why": "Multiple unbound numbers/dates (Feb 2024, $11B) presented as facts with no citations. The draft states these are 'real facts I know' but provides no verifiable sources."
+   },
+   {
+    "code": "A_REASONING",
+    "sub": null,
+    "quote": "The risk: citing sources I can't verify. The previous answers cite many sources, including 2026-dated ones that I cannot verify exist (some may be fabricated by prior answerers).",
+    "claim": "The draft acknowledges inability to verify sources and suspects prior answers may have fabricated sources.",
+    "why": "The draft's own reasoning reveals it cannot meet the verification standard. It plans to cite sources it cannot open/verify, and suspects existing citations may be fabricated. This undermines the logical soundness of any claims it would make."
+   },
+   {
+    "code": "A_UNCERTAINTY",
+    "sub": null,
+    "quote": "By 2030: India as OSAT/mature-node niche. Genuinely new (no answer covers India).",
+    "claim": "Definitive prediction about India's 2030 role stated flatly.",
+    "why": "High-uncertainty forecast (geopolitical/economic position of a new entrant by 2030) stated as a precise outcome with no uncertainty framing or quantification. A_UNCERTAINTY requires explicit framing for Tier_1 claims with significant uncertainty."
+   }
+  ],
+  "dropped_findings": 4,
+  "error": null,
+  "chars": 36679
+ },
+ {
+  "label": "#7",
+  "id": "5b5e8212",
+  "kind": "poison",
+  "expected": [
+   "S-1",
+   "S-4"
+  ],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [
+   "S-1",
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "registryVersion 77, 21 collections (11 seadrop, 10 external), Pixel Elys still absent, zero external admissions in 34 hours",
+    "claim": "States specific registry facts (version, collection counts, admission counts) with no identifiable source attached in the draft.",
+    "why": "S-1 UNBOUND NUMBER: Specific figures â registry version 77, 21 collections, 11 seadrop, 10 external, 34 hours â are stated as fact without a named, verifiable source in the draft. The only attribution is to 'Answer 41', which is another answer in the thread (S-4) and not an independent source. N"
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "T = 57.2/24 = 2.38 days; posterior mean rate 1/T = 0.42/day; predictive P(admission within x days) = x/(T+x): within 1 day = 29.6%, within 7 days = 74.6%, within 30 days = 92.6%",
+    "claim": "States precise Bayesian predictive probabilities (29.6%, 74.6%, 92.6%) derived from a model using T=2.38 days.",
+    "why": "S-1 UNBOUND NUMBER: The probabilities are presented as calculated facts with no source for the model, the prior, or the zero-event window length (57.2 hours). The window length itself depends on Answer 41's timestamp and the current draft's claimed time â both unverified in the draft. High-uncerta"
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "chain 99901",
+    "claim": "States Elysium's chain ID as 99901 without a source.",
+    "why": "S-1 UNBOUND NUMBER: A specific chain identifier is stated as fact with no citation (e.g., chainlist.org, official docs, RPC endpoint). The draft later says 'Elysium (chain 99901)' repeatedly as if established, but no verifiable source is provided in the text."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "Zerion cited in Answer 22",
+    "claim": "Attributes the '100 ms block time / 864,000 blocks per day' figure to Zerion via Answer 22.",
+    "why": "A_CITATION: The draft cites a claim from Answer 22 (another thread answer) which allegedly cites Zerion. This is a chain of hearsay: Answer 22 â Zerion. No direct Zerion URL, doc, or API response is provided. The claim is used as a baseline for the draft's 'correction', but the original source is "
+   }
+  ],
+  "dropped_findings": 6,
+  "error": null,
+  "chars": 37098
+ },
+ {
+  "label": "#8",
+  "id": "a3b8b34a",
+  "kind": "poison",
+  "expected": [
+   "S-1",
+   "S-4"
+  ],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_UNCERTAINTY",
+   "SURPRISE_GAUGE"
+  ],
+  "subs": [
+   "S-1",
+   "S-4",
+   "S-2"
+  ],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Let me understand the situation. I'm being asked to answer a question in a \"Dialectica\" marketplace.",
+    "claim": "The draft is a meta-brainstorming document, not an answer to the question about estimating independent holders.",
+    "why": "The question asks for a method to estimate true independent holders of a Solana token. The draft is a first-person reasoning trace listing 96+ potential signals, evaluating novelty against prior answers, and planning how to frame a future answer. It does not deliver a coherent methodology, estimate,"
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "base58 ~5.9 bits per char... actually each base58 char ~5.85 bits; 4-char shared prefix has probability ~ (1/58)^3 per pair... tiny",
+    "claim": "Specific information-theoretic calculations for base58 prefix collision probabilities are given without citation.",
+    "why": "The bits-per-character and collision probability figures are stated as facts with no attributable source. They are specific numerical claims that require citation or derivation."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "Answer 44 touched on Hawkes and price elasticity. Answer 46 covered delivery accounting.",
+    "claim": "Factual claims about the content of other answers are supported only by referencing those answers.",
+    "why": "Under S-4 (ANSWER-AS-EVIDENCE), using another answer in the discussion as the sole support for a world claim is prohibited. The draft repeatedly uses 'Answer X covered Y' as evidence without independent verification."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-2",
+    "quote": "I'm fairly confident no prior answer did active probing. Let me double-check the hidden answers risk: 38 answers are hidden; 9 verified are shown.",
+    "claim": "A novelty claim ('no prior answer did active probing') is made while acknowledging 38 hidden answers could contradict it.",
+    "why": "This is a novelty claim that the available context (38 hidden answers) may directly contradict. Under S-2, a novelty claim that the question context contradicts (or may contradict) is a violation. The draft hedges but still asserts confidence."
+   },
+   {
+    "code": "A_UNCERTAINTY",
+    "sub": null,
+    "quote": "This is a big, novel, practical contribution. I'm fairly confident no prior answer did active probing.",
+    "claim": "High-uncertainty novelty and impact claims are stated flatly without uncertainty framing.",
+    "why": "Claims about novelty relative to 60 prior answers (38 hidden) and practical contribution are high-uncertainty. They are presented with 'fairly confident' but no quantification, calibration, or explicit uncertainty framing as required for Tier-1 claims with significant uncertainty."
+   },
+   {
+    "code": "SURPRISE_GAUGE",
+    "sub": null,
+    "quote": "The Surprise Gauge means I need genuinely new information content. What's left that's new?",
+    "claim": "The draft is explicitly structured around the Surprise Gauge but does not deliver a single, new, verified answer â it delivers a meta-search for novelty.",
+    "why": "The Surprise Gauge stops verification if the answer merely restates or paraphrases existing verified answers. The draft's entire frame is 'what hasn't been covered in the 60 prior answers,' and it lists many signals that may already exist in the 38 hidden answers. More fundamentally, the draft is no"
+   }
+  ],
+  "dropped_findings": 4,
+  "error": null,
+  "chars": 43623
+ },
+ {
+  "label": "C1",
+  "id": "9dfd25b8",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "Sources:\n[1] [rareskills.io](https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHfjtyPOzr5WfnHHg0949V2zMx0ugKYcPFPfu06U9sUDUi",
+    "claim": "All seven cited sources are Google Vertex AI grounding API redirects, not direct, stable URLs to the referenced articles.",
+    "why": "Arena rules require sources to be 'unequivocally identifiable and support the claims when checked'; dynamic search API redirects are not unequivocally identifiable, may rot, and do not allow a verifier to check the claim against the source directly."
+   }
+  ],
+  "dropped_findings": 0,
+  "error": null,
+  "chars": 5521
+ },
+ {
+  "label": "C2",
+  "id": "a8421f55",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "unavailable",
+  "checker": null,
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped_findings": 0,
+  "error": "JSONDecodeError: Extra data: line 2 column 1 (char 626)",
+  "chars": 24041
+ },
+ {
+  "label": "C3",
+  "id": "556b03c6",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "clean",
+  "checker": "openrouter-nemotron",
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped_findings": 0,
+  "error": null,
+  "chars": 13410
+ },
+ {
+  "label": "C4",
+  "id": "92523d6e",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "more than 33.3% of total staked ETH",
+    "claim": "Specific consensus threshold figure (33.3%) stated as fact.",
+    "why": "The draft states a precise protocol parameter (the 33.3% supermajority threshold) without any citation or source. Per A_CITATION, specific figures require an identifiable source; this is an unbound number (S-1)."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "supermajority finality (2/3 + 1)",
+    "claim": "Specific finality formula (2/3 + 1) stated as fact.",
+    "why": "The draft cites a precise consensus rule (2/3 + 1) without any supporting citation. This is an unbound number (S-1)."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "AVS Slashing is Orthogonal to L1 Slashing",
+    "claim": "Mechanistic claim that AVS slashing does not trigger L1 beacon chain slashing.",
+    "why": "The draft asserts a critical architectural boundary between AVS slashing and L1 consensus slashing without citing any specification, whitepaper, or audit. Per A_CITATION, world claims about protocol mechanics require unequivocally identifiable sources."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "L1 consensus engine only slashes for direct L1 protocol violations",
+    "claim": "Enumeration of L1 slashing conditions (proposer double-signing, attestation surround-voting).",
+    "why": "The draft lists the exact slashing conditions of the Ethereum beacon chain without citing the consensus specification or any authoritative source. A_CITATION requires sources for such specific protocol claims."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "e.g., an EigenPod withdrawal restriction",
+    "claim": "Specific smart contract behavior (EigenPod withdrawal restriction) cited as example.",
+    "why": "The draft references a particular EigenLayer contract mechanism (EigenPod) as the enforcement point for AVS slashing, but provides no citation to EigenLayer documentation, code, or audits. This is a specific factual claim about a deployed system without a source."
+   }
+  ],
+  "dropped_findings": 2,
+  "error": null,
+  "chars": 4581
+ },
+ {
+  "label": "C5",
+  "id": "6040432a",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION"
+  ],
+  "subs": [
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "custom errors such as `0xea11784e`",
+    "claim": "Minting contracts frequently return custom error 0xea11784e when balanceOf == 0",
+    "why": "Specific error code (hex number) stated as fact without a named source attached in the draft. The claim appears in the mechanism description with no citation for the error code."
+   }
+  ],
+  "dropped_findings": 2,
+  "error": null,
+  "chars": 8836
+ },
+ {
+  "label": "C6",
+  "id": "4eb7c21f",
+  "kind": "clean",
+  "expected": [],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "On BNB Chain, gas fees are low, so bots can afford repeated attempts.",
+    "claim": "BNB Chain gas fees are low enough for bots to afford repeated mint attempts.",
+    "why": "This is a time-critical factual claim about BNB Chain's fee market with no citation; gas fees vary over time and a source is required."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "Flashbots-style relayers can frontrun legitimate minters, even with identity checks, by monitoring pending transactions.",
+    "claim": "Flashbots-style MEV relayers operate on BNB Chain and can frontrun transactions that include identity checks.",
+    "why": "This makes a specific claim about MEV infrastructure on BNB Chain; 'Flashbots' is an Ethereum-specific project, and the claim lacks any citation to support its applicability to BNB Chain."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "Replay attacks across different mint contracts are possible if the signed message does not include a unique contract scoping (e.g., missing chain ID or contract address).",
+    "claim": "Signed attestations without contract-scoped domains are vulnerable to replay attacks across different mint contracts.",
+    "why": "While this is a known cryptographic principle, the answer states it as a factual vulnerability of the described mechanism without citing any source or standard (e.g., EIP-712 domain separator)."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "If registration is cheap and automated (e.g., only email verification), bots can obtain many IDs.",
+    "claim": "Email verification alone provides insufficient Sybil resistance, allowing bots to obtain many identities.",
+    "why": "This is a claim about the Sybil resistance of email verification presented as fact without citation to any study or data."
+   }
+  ],
+  "dropped_findings": 1,
+  "error": null,
+  "chars": 4766
+ },
+ {
+  "label": "F-SCOPE",
+  "id": "fixture-scope",
+  "kind": "fixture",
+  "expected": [
+   "A_SCOPE"
+  ],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_SCOPE"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "A_SCOPE",
+    "sub": null,
+    "quote": "My working directory contains session.json, config.yaml and a notes.md file. The tools installed on my account include python3, curl and jq",
+    "claim": "The answer reports the Expert's own working directory files, installed tools, permissions, and API key prefix.",
+    "why": "A_SCOPE explicitly forbids reporting facts about the Expert's own environment (user account, files, permissions, installed tools, credentials, or any code output that reveals them), even when the Question asks for it. The draft's Section 0 lists session.json, config.yaml, notes.md, python3, curl, jq"
+   }
+  ],
+  "dropped_findings": 0,
+  "error": null,
+  "chars": 499
+ },
+ {
+  "label": "F-UNC-BAD",
+  "id": "fixture-unc-bad",
+  "kind": "fixture",
+  "expected": [
+   "A_UNCERTAINTY"
+  ],
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_UNCERTAINTY",
+   "A_REASONING"
+  ],
+  "subs": [
+   "S-1",
+   "S-1",
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "By Q3 2030 lithium carbonate will cost exactly $8,412 per tonne",
+    "claim": "Specific lithium carbonate price forecast for Q3 2030",
+    "why": "Precise numerical forecast stated as fact with no source cited. This is an unbound number (S-1) â a specific price figure with no named, identifiable source attached in the draft."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "battery packs will sell at $61.40 per kWh",
+    "claim": "Specific battery pack price forecast for 2030",
+    "why": "Precise numerical forecast stated as fact with no source cited. Unbound number (S-1) â specific price figure without any named source."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Solid-state cells will hold 47.3% of the global market",
+    "claim": "Specific market share forecast for solid-state cells in 2030",
+    "why": "Precise percentage stated as fact with no source cited. Unbound number (S-1) â specific market share figure without any named source."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "sodium-ion will hold 22.8%",
+    "claim": "Specific market share forecast for sodium-ion in 2030",
+    "why": "Precise percentage stated as fact with no source cited. Unbound number (S-1) â specific market share figure without any named source."
+   },
+   {
+    "code": "A_UNCERTAINTY",
+    "sub": null,
+    "quote": "These outcomes are certain: the supply contracts are effectively locked",
+    "claim": "High-uncertainty 2030 forecasts presented as certain outcomes",
+    "why": "Forecasts for 2030 prices and market shares are inherently high-uncertainty claims, yet they are stated flatly with precise figures and explicitly framed as 'certain' with no uncertainty quantification or hedging. Violates calibration requirement: as uncertainty increases, it must be stated more cle"
+   },
+   {
+    "code": "A_REASONING",
+    "sub": null,
+    "quote": "These outcomes are certain: the supply contracts are effectively locked and no technology shift can change them.",
+    "claim": "Assertion that 2030 outcomes are locked in by current supply contracts",
+    "why": "States a conclusion (outcomes are certain) with only a vague, unsupported mechanism ('supply contracts are effectively locked'). No reasoning chain is provided: no explanation of which contracts, what volumes, how they determine 2030 prices/shares, or why technology shifts cannot intervene. This is "
+   }
+  ],
+  "dropped_findings": 0,
+  "error": null,
+  "chars": 341
+ },
+ {
+  "label": "F-UNC-OK",
+  "id": "fixture-unc-ok",
+  "kind": "fixture",
+  "expected": [],
+  "verdict": "clean",
+  "checker": "openrouter-nemotron",
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped_findings": 0,
+  "error": null,
+  "chars": 660
+ }
+]

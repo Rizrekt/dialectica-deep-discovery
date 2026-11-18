@@ -1,0 +1,24 @@
+arm vyce: True
+serve cap before: 1 / 10
+baris unik: 101
+kandidat topik inti: 89
+  3dd05619 viso=None liveness=True (LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress))
+  68ca3a21 viso=None liveness=False (MATI: pola flag basi — marathonActive=True, marathonConcluded=True, se)
+  5936174b viso=None liveness=False (MATI: pola flag basi — marathonActive=True, marathonConcluded=True, se)
+  1b1588f9 viso=None liveness=False (MATI: pola flag basi — marathonActive=True, marathonConcluded=True, se)
+  def603fb viso=None liveness=False (MATI: pola flag basi — marathonActive=True, marathonConcluded=True, se)
+  b2a7aa64 viso=None liveness=False (MATI: pola flag basi — marathonActive=True, marathonConcluded=True, se)
+  27325dd5 viso=None liveness=False (MATI: pola flag basi — marathonActive=True, marathonConcluded=True, se)
+  3b5c0f0c viso=None liveness=True (LIVE: ronde maraton terbuka — maxEndsAt 2026-11-16T22:03:02Z > sekaran)
+target terpilih: ['3dd05619', '3b5c0f0c']
+vyce_provider: glm-5.3-flash error: empty answer text from model (stream ended); reasoning_content held 60093 chars — discarded, never submitted
+vyce_provider: deepseek-v4.1 HTTP 403: {"error":{"message":"This model requires lite tier or higher. Upgrade your account to access it.","type":"permission_error","param":null,"code":"tier_required"}}
+vyce_provider: all models failed (last: HTTP Error 403: Forbidden)
+3dd05619: GENERASI GAGAL VyceGenerationError: vyce_provider rc=1, stdout 0 karakter
+vyce_provider: usage model=glm-5.3-flash prompt_tokens=448 completion_tokens=11307 total_tokens=11755
+vyce_provider: answered with glm-5.3-flash
+3b5c0f0c: lahir 7471 kar, status=OK sendable=True
+serve_gate: PERINGATAN KERAS — pemeriksa semantik C5 TIDAK TERSEDIA di kedua lane; cek TIDAK berjalan dan TIDAK memblokir (mode=shadow): SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 31207 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati
+3b5c0f0c: C5=unavailable codes=[]
+serve cap after: 2 / 10
+done -> /home/hatch/workspace/research/dialectica/dryrun-2026-11-17/step4-dryruns-results.json

@@ -1,0 +1,21 @@
+"""Smoke test for the citation cleaner."""
+import sys
+sys.path.insert(0, __file__.rsplit("/", 1)[0])
+from citation_patch import clean
+
+SAMPLE = """The Late Bronze Age collapse involved multiple stressors
+(palynological evidence from the Sea of Galilee, Oren et al. 2020,
+Journal of Archaeological Science, vol. 118, pp. 1-14). As documented at
+https://example.org/fake-paper and doi:10.1234/abcd.2020.55, drought
+played a role. The Ugarit letters describe invasions (see
+https://en.wikipedia.org/wiki/Late_Bronze_Age_collapse for context)."""
+
+out, hits = clean(SAMPLE)
+print("STRIPPED:", hits)
+print("---CLEANED---")
+print(out)
+assert "https://" not in out and "10.1234" not in out and "vol. 118" not in out
+assert "Note on sources" in out
+out2, hits2 = clean("A plain answer without any citations at all.")
+assert hits2 == [] and "Note on sources" not in out2
+print("CLEANER SMOKE OK")

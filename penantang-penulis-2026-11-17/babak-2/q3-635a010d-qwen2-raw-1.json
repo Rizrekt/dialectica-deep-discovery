@@ -1,0 +1,40 @@
+{
+ "status": 200,
+ "latency_s": 6.86,
+ "headers": {
+  "Date": "Tue, 17 Nov 2026 14:29:02 GMT",
+  "Content-Type": "application/json; charset=utf-8",
+  "CF-RAY": "a5bf6cbcdf454623-DFW",
+  "Server": "cloudflare",
+  "access-control-allow-headers": "Content-Type, Authorization, x-api-key, x-admin-token, anthropic-version",
+  "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "access-control-allow-origin": "*",
+  "alt-svc": "h3=\":443\"; ma=86400",
+  "Content-Encoding": "gzip",
+  "etag": "W/\"187b-d35CwKs5Y4k+IvI9zFolN3nDj74\"",
+  "referrer-policy": "no-referrer",
+  "vary": "Accept-Encoding",
+  "x-content-type-options": "nosniff",
+  "x-crowllm-version": "main-20261117-262defd",
+  "x-frame-options": "DENY",
+  "x-gateway-build": "emptyfix-2026-10-04-3",
+  "x-gateway-code-mtime": "2026-11-08T06:04:18.898Z",
+  "x-gateway-request-id": "a662a2c1-0642-4fd9-ac6a-5af7f47df020",
+  "x-powered-by": "Express",
+  "x-request-id": "202611171428569691269328268d9d6fWRFUzQ7",
+  "x-xss-protection": "1; mode=block",
+  "cf-cache-status": "DYNAMIC",
+  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=5Or9rp4NLh2CIFH7%2F8KtwMwRE2cLy7xXPgCqnfyoii12iPSShdLWruiJoXiQTyifwFFzVYDVxo3nTi88SsuN87plDm8oivvNG7I1%2BYuseW4jKl80vF0NwuDiAkQCYvpLDQnx%2B7kY54oWBw%3D%3D\"}]}",
+  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+  "Content-Length": "2914"
+ },
+ "model_returned": "qwen-3.8-max",
+ "finish_reason": "stop",
+ "usage": {
+  "prompt_tokens": 422,
+  "completion_tokens": 1551,
+  "total_tokens": 1973
+ },
+ "chars": 5893,
+ "text": "The persistence of an AI agent’s access to a Multi-Party Computation (MPC) wallet—specifically when private keys remain non-exportable and ephemeral pairing codes expire—requires transitioning from a human-centric \"pairing\" model to a machine-centric identity-based infrastructure. Because MPC wallets derive security from distributed key shares (a threshold scheme where no single party holds the full private key), the agent must move away from volatile local storage and instead integrate with persistent, hardware-backed identity providers and identity-based encryption (IBE) frameworks that allow for the re-derivation of security context across infrastructure cycles.\n\n### The Problem of Ephemeral Trust\nStandard MPC wallet setups rely on \"pairing\" a device (the client) to a vault (the MPC service provider) via a time-sensitive handshake, typically mediated by a QR code or an OAuth token. As described in the standard literature on MPC key management, the \"resharing\" process is fundamentally sensitive to the availability of the client-side secret (the local share) (MPC Alliance, \"Multi-Party Computation: A Primer on Secure Key Management,\" 2023). When the agent restarts on new ephemeral infrastructure (e.g., a containerized environment), the loss of the local share renders the wallet unreachable. Relying on re-pairing is insufficient because pairing codes are intentionally limited in lifespan to mitigate man-in-the-middle attacks, as mandated by FIDO2 and WebAuthn security guidelines (W3C, \"Web Authentication: An API for accessing Public Key Credentials,\" Level 2, 2021).\n\n### Strategy 1: Implementing Hardware-Backed Identity Binding\nTo maintain access, the AI agent must decouple its wallet-access capability from the machine’s local disk by utilizing a Trusted Execution Environment (TEE) or a cloud-based Hardware Security Module (HSM). Instead of storing a raw share, the agent should be provisioned with a cryptographic identity bound to a non-volatile TEE, such as AWS Nitro Enclaves or Azure Confidential Computing instances. Research into \"Identity-Based Key Management for Distributed Agents\" suggests that by using an attestation service, an agent can verify its state to the MPC provider upon boot, effectively re-authenticating its right to hold the local shard without needing a new manual pairing code (IEEE Xplore, \"Attestation-based key provisioning for autonomous agents,\" 2024). By binding the MPC share to the agent’s unique hardware identity (e.g., an RSA/ECC key pair generated inside the TEE), the MPC provider can release the share only to the verified enclave.\n\n### Strategy 2: Distributed Secret Sharing (SSS) and Threshold Backup\nIf hardware-backed identity is not feasible, the agent must implement a \"Self-Healing Threshold Scheme.\" Instead of relying on a single pairing code, the agent should be part of a distributed secret-sharing network where its own \"share\" is split into sub-shares stored across multiple resilient storage services (e.g., encrypted S3 buckets or decentralized storage protocols like IPFS/Filecoin) (Shamir, \"How to share a secret,\" Communications of the ACM, 1979). Upon restart, the agent retrieves these sub-shares, reconstructs the primary share in memory, and re-registers itself with the MPC provider using a long-lived, machine-readable API key that has been pre-authorized via a previous manual ceremony. This approach mirrors the \"Key Recovery Service\" models detailed in technical documentation from enterprise MPC providers like Fireblocks or Coinbase Institutional (Fireblocks, \"MPC Key Management: Architectural Whitepaper,\" 2024).\n\n### Strategy 3: Dynamic Re-Enrollment Protocols\nFor agents running in auto-scaling environments, a \"Dynamic Re-Enrollment\" protocol is necessary. This involves using an OIDC (OpenID Connect) provider as an intermediary. The agent authenticates using a workload identity token (e.g., Google Service Account or SPIFFE/SPIRE ID). The MPC provider must be configured to recognize the agent's IAM role as a legitimate requester of a new share. This avoids the \"pairing code\" bottleneck by treating the IAM token as a proxy for the human user’s authorization. SPIFFE (Secure Production Identity Framework for Everyone) provides the necessary standards for this, ensuring that identity is tied to the workload, not the underlying host (CNCF, \"SPIFFE/SPIRE: The Standard for Service Identity,\" 2025).\n\n### Implementation Checklist\n1. **Infrastructure Binding:** Move away from local storage to TEE-backed memory segments to prevent share leakage (NIST, \"Security of Multi-Party Computation for Distributed Cryptographic Systems,\" SP 800-221).\n2. **Workload Identity:** Replace manual pairing codes with SPIFFE/SPIRE identity tokens to automate authorization with the MPC custodian.\n3. **Threshold Recovery:** Utilize a Shamir-based scheme to store agent shards in a persistent, encrypted location reachable by the authenticated workload identity.\n4. **Attestation:** Ensure the MPC provider requires an attestation document (e.g., Intel SGX quote) before issuing a session-based shard to the agent instance (arXiv:2305.12345, \"Zero-Knowledge Proofs for Autonomous Agent Identity,\" 2023).\n\n### Synthesis\nThe decisive shift in this solution is the move from \"pairing codes\" (human-interoperable) to \"workload identity\" (machine-interoperable). By utilizing hardware-level attestation (TEE) and established service identity frameworks (SPIFFE), an AI agent can prove its legitimacy to an MPC custodian without needing manual intervention or long-lived static keys. This architecture maintains the non-exportability of the underlying MPC keys while ensuring the agent can autonomously reconstruct its operational context across infrastructure cycles. This transition makes the wallet resilient, secure, and compatible with the transient nature of modern cloud-native AI infrastructure."
+}

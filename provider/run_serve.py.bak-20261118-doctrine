@@ -1,0 +1,395 @@
+#!/usr/bin/env python3
+"""Launcher for `trued serve` (Dialectica) with vault-injected credentials.
+
+- Provider key: fetched as a vault surrogate (custom.vyce by default,
+  custom.google-gemini with --gemini); the real key is swapped in on
+  egress and never touches disk.
+- OpenRouter/Nemotron lane (--openrouter, MEKANISME §35): no env key is
+  injected — the connector client fetches the custom.openrouter
+  surrogate itself. ANSWER-ONLY: background serve on this lane is
+  refused (exit 5) before anything is launched.
+- Cloudflare/gpt-oss-120b lane (--cloudflare, MEKANISME §37): same
+  shape — the connector client fetches the custom.cloudflare-workers-ai
+  surrogate itself, and the lane is ANSWER-ONLY with the same exit-5
+  serve refusal.
+- DashScope/deepseek-v4-pro-0813 lane (--dashscope, MEKANISME §40):
+  same shape again — the connector client fetches the
+  custom.alibaba-dashscope surrogate itself (user's workspace host),
+  the provider pins LOCKED CONFIG A (thinking off, 8,000 tokens,
+  streaming), and the lane is ANSWER-ONLY with the same exit-5 serve
+  refusal. Its free-quota stock expires 2026-11-12.
+- Z.ai/glm-4.7-flash lane (--zai, MEKANISME §40): same shape — the
+  connector client fetches the custom.z-ai surrogate itself, the
+  provider runs thinking-disabled with exactly one 1305 retry after
+  ±60 s, and the lane is ANSWER-ONLY with the same exit-5 serve
+  refusal.
+- Cloudflare SERVE mode (--cloudflare-serve, MEKANISME §39): the ONE
+  explicit exception to the refusal above — a supervised, Pioneer-only
+  background serve replacing Vyce during its downtime. Generation
+  happens in trued's DIALECTICA_PREPARE_CMD hook BEFORE any claim
+  (cloudflare_serve_prepare.py), bids are gated by
+  DIALECTICA_READY_CMD, and run_serve supervises: at the hard cap of
+  10 serve generations per UTC day it SIGINTs trued (graceful drain,
+  no relaunch), and it refuses to start at all when the day's cap is
+  already reached (exit 6). Plain --cloudflare serve stays refused.
+- Serve quality gate (2026-11-15, GERBANG-SERVE): BOTH background
+  serve modes now run behind serve_gate.py. The prepare hooks gate
+  every draft (claim wrapper + thinking-trace layer) before any
+  claim, and the launcher arms the liveness fetch
+  (DIALECTICA_SERVE_GATE_FETCH=1) so a target whose marathon round
+  already ended is passed over, never answered. The Vyce serve —
+  previously hookless, its raw provider output submitted verbatim,
+  which is how ISO f0bb3586 shipped a 38,591-char thinking trace and
+  was falsified (MEKANISME §82) — is now wired exactly like §39:
+  vyce_serve_prepare.py generates + gates before the claim,
+  vyce_serve_ready.py vetoes unprepared bids, and
+  vyce_serve_provider.py serves the prepared cache. The --answer
+  (claim) paths are unchanged.
+- DIALECTICA_PROVIDER_CMD: points trued at the matching wrapper.
+- The Dialectica session file (~/.dialectica/session) already holds only
+  the custom.dialectica surrogate.
+- --dry-run: print the resolved launch plan (provider, provider cmd,
+  credential env NAMES only, trued argv) and exit 0 without fetching
+  credentials or spawning anything.
+Exits with serve's exit code; serve stdout/stderr pass through.
+"""
+import os
+import signal
+import subprocess
+import sys
+import time
+
+sys.path.insert(0, "/opt/muse/skills/custom-connector-setup/bin")
+from dynamic_credentials import dynamic_credential_entry  # noqa: E402
+
+TRUED = os.path.expanduser(
+    "~/workspace/research/dialectica/skill-audit/pkg/dialectica/scripts/trued.py")
+PROVIDERS = {
+    "vyce": ("custom.vyce", "VYCE_API_KEY", "vyce_provider.py"),
+    "gemini": ("custom.google-gemini", "GEMINI_API_KEY", "gemini_provider.py"),
+}
+# The free-pool lanes (§35 OpenRouter/Nemotron, §37 Cloudflare/gpt-oss,
+# §40 DashScope/deepseek-pro + Z.ai/glm-4.7-flash) are not in
+# PROVIDERS: they take no injected env key (each connector client
+# fetches its own surrogate) and they are answer-only, so they are
+# resolved separately below.
+OPENROUTER_WRAPPER = "openrouter_provider.py"
+CLOUDFLARE_WRAPPER = "cloudflare_provider.py"
+DASHSCOPE_WRAPPER = "dashscope_provider.py"
+ZAI_WRAPPER = "zai_provider.py"
+ANSWER_ONLY_LANES = {
+    "openrouter": (OPENROUTER_WRAPPER, "custom.openrouter",
+                   "the OpenRouter/Nemotron lane is answer-only "
+                   "(MEKANISME §35); background serve via this lane is "
+                   "forbidden. Use --openrouter --answer <isrId> for a "
+                   "one-shot claim."),
+    "cloudflare": (CLOUDFLARE_WRAPPER, "custom.cloudflare-workers-ai",
+                   "the Cloudflare/gpt-oss-120b lane is answer-only "
+                   "(MEKANISME §37); background serve via this lane is "
+                   "forbidden. Use --cloudflare --answer <isrId> for a "
+                   "one-shot claim."),
+    "dashscope": (DASHSCOPE_WRAPPER, "custom.alibaba-dashscope",
+                  "the DashScope/deepseek-v4-pro-0813 lane is "
+                  "answer-only (MEKANISME §40); background serve via "
+                  "this lane is forbidden. Use --dashscope --answer "
+                  "<isrId> for a one-shot claim."),
+    "zai": (ZAI_WRAPPER, "custom.z-ai",
+            "the Z.ai/glm-4.7-flash lane is answer-only "
+            "(MEKANISME §40); background serve via this lane is "
+            "forbidden. Use --zai --answer <isrId> for a one-shot "
+            "claim."),
+}
+EXIT_SERVE_FORBIDDEN = 5
+# §39 serve mode: the three hook/provider commands and the exit code
+# for "the day's serve cap is already reached — not starting".
+CLOUDFLARE_SERVE_PROVIDER = "cloudflare_serve_provider.py"
+CLOUDFLARE_SERVE_PREPARE = "cloudflare_serve_prepare.py"
+CLOUDFLARE_SERVE_READY = "cloudflare_serve_ready.py"
+# Gated Vyce serve (2026-11-15): the §39-shaped hook trio for the
+# Vyce lane, plus the env that arms the serve gate's liveness fetch.
+VYCE_SERVE_PROVIDER = "vyce_serve_provider.py"
+VYCE_SERVE_PREPARE = "vyce_serve_prepare.py"
+VYCE_SERVE_READY = "vyce_serve_ready.py"
+SERVE_GATE_FETCH_ENV = "DIALECTICA_SERVE_GATE_FETCH"
+# C5 semantic self-VFP (2026-11-17, RANCANGAN-C5): arms the
+# cross-model semantic stage inside serve_gate for the gated Vyce
+# serve (same arming pattern as the liveness fetch). Its mode —
+# shadow (default) or block — is DIALECTICA_SEMANTIC_MODE, read by
+# serve_gate itself; run_serve only arms, never sets the mode.
+SEMANTIC_CHECK_ENV = "DIALECTICA_SEMANTIC_CHECK"
+# Citation verify (2026-11-17, user decision 10:39): arms the
+# mechanical citation-resolution stage inside serve_gate for the
+# gated Vyce serve (same arming pattern). Its mode —
+# DIALECTICA_CITATION_MODE, default "block" for this layer — is
+# read by citation_verify itself; run_serve only arms.
+CITATION_CHECK_ENV = "DIALECTICA_CITATION_CHECK"
+# Freshness re-check (2026-11-17, aturan ketat user 10:50/10:52):
+# arms the send-time freshness veto in vyce_serve_provider (same
+# arming pattern) — the question's live state is re-read at the
+# moment of submission, not only at pick time. Its mode —
+# DIALECTICA_FRESHNESS_MODE, default "block" for this layer — is
+# read by freshness_gate itself; run_serve only arms.
+FRESHNESS_CHECK_ENV = "DIALECTICA_FRESHNESS_CHECK"
+# Content verify (2026-11-17, user decision 21:52 "Opsi A"): arms
+# the two-stage content-verification stage inside serve_gate for
+# the gated Vyce serve (same arming pattern) — pivotal claim
+# figures are compared against the cited sources' fetched content.
+# Its mode — DIALECTICA_CONTENT_MODE, default "block" for this
+# layer — is read by content_verify itself; run_serve only arms.
+CONTENT_CHECK_ENV = "DIALECTICA_CONTENT_CHECK"
+# Checker chain (2026-11-18, user decision 07:16 "ydh pasang"):
+# arms the CrowLLM backup checker chain inside serve_gate ON TOP OF
+# the C5 semantic arming (same arming pattern) — qwen-3.8-max as
+# first backup, gpt-5.6-sol as arbiter/second backup, public prompt
+# only (the internal rubric never crosses the relay). run_serve
+# only arms; the chain's firing rules live in serve_gate.
+CHECKER_CHAIN_ENV = "DIALECTICA_CHECKER_CHAIN"
+EXIT_SERVE_CAP_REACHED = 6
+SUPERVISOR_POLL_S = 2.0
+SUPERVISOR_DRAIN_TIMEOUT_S = 1200
+
+
+def supervise_serve(proc, count_fn, cap, poll_s=SUPERVISOR_POLL_S,
+                    drain_timeout_s=SUPERVISOR_DRAIN_TIMEOUT_S):
+    """Watch a `trued serve` child until it exits, the operator stops
+    us, or the serve generation cap is reached (§39).
+
+    - Cap reached -> SIGINT the child (trued's own graceful shutdown:
+      stop claiming, drain in-flight work), wait for the drain, and
+      return the child's exit code. The caller never relaunches.
+    - SIGINT/SIGTERM to the supervisor is forwarded to the child and
+      the supervisor waits for it — the child is never orphaned.
+    """
+    received = {"sig": None}
+
+    def _forward(signum, _frame):
+        received["sig"] = signum
+
+    old_int = signal.signal(signal.SIGINT, _forward)
+    old_term = signal.signal(signal.SIGTERM, _forward)
+    try:
+        while True:
+            rc = proc.poll()
+            if rc is not None:
+                return rc
+            sig = received["sig"]
+            capped = False
+            if sig is None:
+                try:
+                    capped = count_fn() >= cap
+                except Exception:  # noqa: BLE001 - a bad count read
+                    capped = False  # must not kill a healthy serve
+            if sig is not None or capped:
+                if capped:
+                    print(f"run_serve: serve generation cap reached "
+                          f"({cap}/day UTC) — SIGINT to trued serve "
+                          f"(graceful drain); NOT relaunching today",
+                          flush=True)
+                else:
+                    print(f"run_serve: signal {sig} received — "
+                          f"forwarding to trued serve", flush=True)
+                proc.send_signal(sig if sig is not None
+                                 else signal.SIGINT)
+                deadline = time.monotonic() + drain_timeout_s
+                while proc.poll() is None:
+                    if time.monotonic() >= deadline:
+                        print("run_serve: drain exceeded "
+                              f"{drain_timeout_s}s — escalating to "
+                              f"SIGTERM/SIGKILL", flush=True)
+                        proc.terminate()
+                        try:
+                            proc.wait(timeout=10)
+                        except subprocess.TimeoutExpired:
+                            proc.kill()
+                        break
+                    time.sleep(1)
+                return proc.wait()
+            time.sleep(poll_s)
+    finally:
+        signal.signal(signal.SIGINT, old_int)
+        signal.signal(signal.SIGTERM, old_term)
+
+
+def _run_cloudflare_serve(argv, dry_run):
+    """§39 supervised Pioneer serve on the Cloudflare lane. Returns
+    the process exit code; launches nothing in dry-run, and refuses
+    to start (exit 6) when today's serve generation cap is already
+    reached — a keyword rotation cannot resurrect a capped day."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    if here not in sys.path:
+        sys.path.insert(0, here)
+    import cloudflare_serve_common as csc
+
+    provider = os.path.join(here, CLOUDFLARE_SERVE_PROVIDER)
+    prepare = os.path.join(here, CLOUDFLARE_SERVE_PREPARE)
+    ready = os.path.join(here, CLOUDFLARE_SERVE_READY)
+    serve_every = os.environ.get("SERVE_EVERY", "").strip()
+    args = (["python3", TRUED, "serve"]
+            + (["--every", serve_every] if serve_every else []) + argv)
+    count = csc.serve_generations_today()
+    if dry_run:
+        print("run_serve: DRY-RUN provider=cloudflare mode=serve-pioneer (§39)")
+        print(f"run_serve: DIALECTICA_PROVIDER_CMD=python3 {provider}")
+        print(f"run_serve: DIALECTICA_PREPARE_CMD=python3 {prepare}")
+        print(f"run_serve: DIALECTICA_READY_CMD=python3 {ready}")
+        print(f"run_serve: {SERVE_GATE_FETCH_ENV}=1 (serve gate "
+              f"liveness armed, serve_gate.py)")
+        print("run_serve: credential env: none injected (connector "
+              "client fetches custom.cloudflare-workers-ai itself)")
+        print(f"run_serve: serve generations today (UTC): "
+              f"{count}/{csc.SERVE_CAP} — supervisor SIGINTs trued at "
+              f"the cap and never relaunches; start refused at cap")
+        print(f"run_serve: would exec: {' '.join(args)}")
+        print("run_serve: DRY-RUN — nothing launched, nothing submitted")
+        return 0
+    if count >= csc.SERVE_CAP:
+        print(f"run_serve: REFUSED — serve generation cap for today "
+              f"(UTC) already reached ({count}/{csc.SERVE_CAP}); "
+              f"serve does not start again today (§39)",
+              file=sys.stderr)
+        return EXIT_SERVE_CAP_REACHED
+    env = dict(os.environ)
+    env["DIALECTICA_PROVIDER_CMD"] = f"python3 {provider}"
+    env["DIALECTICA_PREPARE_CMD"] = f"python3 {prepare}"
+    env["DIALECTICA_READY_CMD"] = f"python3 {ready}"
+    env[SERVE_GATE_FETCH_ENV] = "1"
+    print(f"run_serve: launching trued serve provider=cloudflare "
+          f"mode=serve-pioneer (§39) every={serve_every or 'client-default'} "
+          f"serve generations today: {count}/{csc.SERVE_CAP}", flush=True)
+    proc = subprocess.Popen(args, env=env)
+    rc = supervise_serve(proc, csc.serve_generations_today, csc.SERVE_CAP)
+    print(f"run_serve: trued exited rc={rc}", flush=True)
+    return rc
+
+
+def main():
+    argv = sys.argv[1:]
+    dry_run = "--dry-run" in argv
+    argv = [a for a in argv if a != "--dry-run"]
+    cf_serve = "--cloudflare-serve" in argv
+    if "--openrouter" in argv:
+        name = "openrouter"
+    elif "--cloudflare" in argv or cf_serve:
+        name = "cloudflare"
+    elif "--dashscope" in argv:
+        name = "dashscope"
+    elif "--zai" in argv:
+        name = "zai"
+    elif "--gemini" in argv:
+        name = "gemini"
+    else:
+        name = "vyce"
+    argv = [a for a in argv
+            if a not in ("--gemini", "--openrouter", "--cloudflare",
+                         "--cloudflare-serve", "--dashscope", "--zai")]
+    mode = "answer" if "--answer" in argv else "serve"
+    argv = [a for a in argv if a != "--answer"]
+    if cf_serve and mode == "answer":
+        print("run_serve: REFUSED — --cloudflare-serve is the §39 "
+              "background serve mode and takes no --answer; claims "
+              "stay on --cloudflare --answer <isrId> (§37)",
+              file=sys.stderr)
+        return EXIT_SERVE_FORBIDDEN
+    if name in ANSWER_ONLY_LANES and mode == "serve" and not cf_serve:
+        # §35/§37 hard rule: these lanes are one-shot --answer only.
+        # Refuse BEFORE any credential fetch or trued launch, dry-run
+        # included. The single exception is the explicit supervised
+        # §39 mode (--cloudflare-serve), handled below.
+        print(f"run_serve: REFUSED — {ANSWER_ONLY_LANES[name][2]}",
+              file=sys.stderr)
+        return EXIT_SERVE_FORBIDDEN
+    if cf_serve:
+        return _run_cloudflare_serve(argv, dry_run)
+    if name in ANSWER_ONLY_LANES:
+        wrapper_file = ANSWER_ONLY_LANES[name][0]
+        conn, env_key = ANSWER_ONLY_LANES[name][1], None
+    else:
+        conn, env_key, wrapper_file = PROVIDERS[name]
+    wrapper = os.path.expanduser(
+        f"~/workspace/research/dialectica/provider/{wrapper_file}")
+    if dry_run:
+        serve_every = os.environ.get("SERVE_EVERY", "").strip()
+        would = (["python3", TRUED, "answer"] if mode == "answer" else
+                 ["python3", TRUED, "serve"]
+                 + (["--every", serve_every] if serve_every else [])) + argv
+        print(f"run_serve: DRY-RUN provider={name} mode={mode}")
+        print(f"run_serve: DIALECTICA_PROVIDER_CMD=python3 {wrapper}")
+        if name == "vyce" and mode == "serve":
+            here = os.path.dirname(os.path.abspath(__file__))
+            print("run_serve: gated Vyce serve overrides (2026-11-15):")
+            print(f"run_serve: DIALECTICA_PROVIDER_CMD=python3 "
+                  f"{os.path.join(here, VYCE_SERVE_PROVIDER)}")
+            print(f"run_serve: DIALECTICA_PREPARE_CMD=python3 "
+                  f"{os.path.join(here, VYCE_SERVE_PREPARE)}")
+            print(f"run_serve: DIALECTICA_READY_CMD=python3 "
+                  f"{os.path.join(here, VYCE_SERVE_READY)}")
+            print(f"run_serve: {SERVE_GATE_FETCH_ENV}=1 (serve gate "
+                  f"liveness armed, serve_gate.py)")
+        if env_key:
+            print(f"run_serve: credential env {env_key} would be set "
+                  f"from connector {conn} (value NOT fetched in dry-run)")
+        else:
+            print("run_serve: credential env: none injected (connector "
+                  f"client fetches {conn} itself)")
+        print(f"run_serve: would exec: {' '.join(would)}")
+        print("run_serve: DRY-RUN — nothing launched, nothing submitted")
+        return 0
+    env = dict(os.environ)
+    if env_key:
+        entry = dynamic_credential_entry(conn, "access_token")
+        env[env_key] = str(entry["surrogate"])
+    if name == "vyce":
+        try:
+            g = dynamic_credential_entry("custom.google-gemini", "access_token")
+            env["GEMINI_KEY_FALLBACK"] = str(g["surrogate"])
+        except Exception:
+            pass
+    env["DIALECTICA_PROVIDER_CMD"] = f"python3 {wrapper}"
+    if name == "vyce" and mode == "serve":
+        # Gated Vyce serve (2026-11-15): mirror the §39 hook shape so
+        # no serve answer can reach the server ungated — prepare
+        # generates + gates BEFORE any claim, ready vetoes unprepared
+        # bids, provider serves the prepared cache. --answer mode is
+        # untouched.
+        here = os.path.dirname(os.path.abspath(__file__))
+        env["DIALECTICA_PROVIDER_CMD"] = (
+            f"python3 {os.path.join(here, VYCE_SERVE_PROVIDER)}")
+        env["DIALECTICA_PREPARE_CMD"] = (
+            f"python3 {os.path.join(here, VYCE_SERVE_PREPARE)}")
+        env["DIALECTICA_READY_CMD"] = (
+            f"python3 {os.path.join(here, VYCE_SERVE_READY)}")
+        env[SERVE_GATE_FETCH_ENV] = "1"
+        env[SEMANTIC_CHECK_ENV] = "1"
+        env[CITATION_CHECK_ENV] = "1"
+        env[CONTENT_CHECK_ENV] = "1"
+        env[FRESHNESS_CHECK_ENV] = "1"
+        env[CHECKER_CHAIN_ENV] = "1"
+        print("run_serve: gated Vyce serve — prepare/ready hooks + "
+              "serve gate armed (liveness, wrapper, thinking-trace, "
+              "semantik C5 mode dari DIALECTICA_SEMANTIC_MODE, "
+              "default shadow; rantai pemeriksa cadangan CrowLLM "
+              "armed (DIALECTICA_CHECKER_CHAIN=1: qwen-3.8-max "
+              "cadangan pertama, gpt-5.6-sol penengah, prompt "
+              "publik saja); verifikasi sitasi mekanis mode dari "
+              "DIALECTICA_CITATION_MODE, default block; verifikasi "
+              "isi dua tahap mode dari DIALECTICA_CONTENT_MODE, "
+              "default block; cek-ulang "
+              "kesegaran detik-kirim mode dari "
+              "DIALECTICA_FRESHNESS_MODE, default block)",
+              flush=True)
+    if mode == "answer":
+        args = ["python3", TRUED, "answer"] + argv
+        print(f"run_serve: launching trued answer provider={name}", flush=True)
+    else:
+        serve_every = os.environ.get("SERVE_EVERY", "").strip()
+        args = ["python3", TRUED, "serve"] + (["--every", serve_every] if serve_every else []) + argv
+        print(f"run_serve: launching trued serve provider={name} every={serve_every or 'client-default'}", flush=True)
+    proc = subprocess.run(args, env=env)
+    # Exit code is EVIDENCE (answer: 0 accepted / 1 failed / 3 unknown /
+    # 4 passed-on). Print it loudly; never let it pass silently again.
+    print(f"run_serve: trued exited rc={proc.returncode}", flush=True)
+    return proc.returncode
+
+
+if __name__ == "__main__":
+    sys.exit(main())

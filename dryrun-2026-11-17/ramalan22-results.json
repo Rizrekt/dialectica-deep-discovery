@@ -1,0 +1,933 @@
+[
+ {
+  "id": "02b24949",
+  "isr": "d854b19a",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "vyce-nemotron",
+  "codes": [
+   "SURPRISE_GAUGE"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "SURPRISE_GAUGE",
+    "sub": null,
+    "quote": "Key established findings (from verified answers):",
+    "claim": "The draft merely restates and paraphrases content already present in verified answers, adding no new fact, mechanism, figure, or angle.",
+    "why": "The draft's substantive content is a list of 12 findings all attributed to verified answers, followed by a meta-deliberation about what to write next; it delivers no new information on cross-chain liquidity and institutional restaking, so verification stops at the Surprise Gauge."
+   }
+  ],
+  "dropped": 0,
+  "error": null,
+  "chars": 40021,
+  "secs": 10.2
+ },
+ {
+  "id": "0c4d45b8",
+  "isr": "087ce951",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "SURPRISE_GAUGE"
+  ],
+  "subs": [
+   "S-4",
+   "S-1",
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Let me think carefully about this task. The question: \"What indicators distinguish real liquidity from wash trading in a newly listed BNB Smart Chain token, and how should a retail trader use them bef",
+    "claim": "The draft does not answer the question; it is a planning document analyzing prior answers rather than providing indicators or retail guidance.",
+    "why": "The submitted text is the Expert's internal brainstorming about how to construct a novel answer, not an answer itself. It contains no actionable indicators for the retail trader and no decision framework â only a meta-analysis of what 47 prior answers allegedly cover and a list of candidate new an"
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "Answer 32 covers the manufactured fee APY.",
+    "claim": "The draft repeatedly cites other answers in the thread (Answer 32, Answer 45, Answer 47, etc.) as evidential support for factual claims about the world.",
+    "why": "Per A_CITATION and its sub-pattern S-4 (ANSWER-AS-EVIDENCE), another answer in the same discussion is not a valid source for world facts. The draft treats prior answers as authoritative references for parameters like fee arithmetic, block times, and contract addresses, which must be backed by indepe"
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "wash cost models ($800/day per $1M v2, ~$33/day v3 0.01%)",
+    "claim": "Specific dollar-cost figures for wash trading are stated as fact with no named, identifiable source attached in the draft.",
+    "why": "These are precise, unbound numbers (S-1). No citation â not even a prior answer number â is attached to these figures in the quote. Even if they originated in earlier answers, the draft presents them as established facts without any source a verifier could check."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Intra-transaction loops (Bitquery $33.8B wallet, 128 txs, $38 gas)",
+    "claim": "Precise on-chain metrics (wallet volume, transaction count, gas cost) are asserted without a citable source.",
+    "why": "The claim references 'Bitquery' but provides no link, query, timestamp, or report title. A verifier cannot confirm these exact figures. This is an unbound number (S-1) masquerading as a documented observation."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "BSC block time correction (0.45s Fermi fork)",
+    "claim": "A specific protocol parameter (post-fork block time) is stated as fact with no citation.",
+    "why": "The draft asserts a precise technical detail (0.45s) without referencing BNB Chain documentation, a block explorer, or a dated announcement. This is an unbound number (S-1) and a time-critical claim lacking a time-relevant citation."
+   },
+   {
+    "code": "SURPRISE_GAUGE",
+    "sub": null,
+    "quote": "To pass the Surprise Gauge, I need genuinely new information content.",
+    "claim": "The draft explicitly acknowledges it is being crafted to satisfy the Surprise Gauge, yet the draft itself contributes zero new factual content â it only catalogues prior coverage and lists hypothetical future angles.",
+    "why": "The Surprise Gauge stops verification when an answer merely restates or paraphrases existing verified answers without adding a new fact, mechanism, figure, or angle. This draft is meta-commentary on the thread; it contains no new passage that itself brings fresh information. A verifier would stop he"
+   }
+  ],
+  "dropped": 1,
+  "error": null,
+  "chars": 41927,
+  "secs": 63.8
+ },
+ {
+  "id": "1869839d",
+  "isr": "970d09db",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS",
+   "A_CITATION",
+   "A_UNCERTAINTY",
+   "SURPRISE_GAUGE"
+  ],
+  "subs": [
+   "S-4"
+  ],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Let me think carefully about this task.",
+    "claim": "The draft opens with a reasoning trace rather than answering the question.",
+    "why": "The question asks for the exact total number of blocks BNB Smart Chain produced on 1 November 2026 UTC. The draft is an incomplete internal monologue ending mid-sentence ('Sensitivity: for the count to be wrong by'), not a submitted answer. It never states a final block count as its conclusion."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "BscScan chart says 31 Oct: 191,945; 2 Nov: 191,953 (Answer 26)",
+    "claim": "The draft attributes BscScan data to Answer 26 rather than citing BscScan directly.",
+    "why": "The claim about BscScan's daily chart is reportage about an external source. Citing 'Answer 26' makes it answer-as-evidence (S-4). The draft should cite BscScan with a URL if using that data."
+   },
+   {
+    "code": "A_UNCERTAINTY",
+    "sub": null,
+    "quote": "the most probable correct answer is 191,949",
+    "claim": "The draft states a high-uncertainty factual claim (a future-dated blockchain metric) with a precise figure and only qualitative hedging ('most probable').",
+    "why": "A_UNCERTAINTY requires calibrated framing: 'high-uncertainty claims (forecasts, market sizes, future prices, adoption shares) stated flatly with precise figures and NO explicit uncertainty framing or quantification' are flagged. The block count for a specific past day is a measurement, but the draft"
+   },
+   {
+    "code": "SURPRISE_GAUGE",
+    "sub": null,
+    "quote": "Many previous answers already did: per-hour census (Answer 46), drift curve (Answer 48)",
+    "claim": "The draft acknowledges that its proposed contributions overlap extensively with existing answers.",
+    "why": "The Surprise Gauge stops verification if the answer 'merely restates or paraphrases content already present in Verified Answers... adding no new fact, mechanism, figure or angle.' The draft itself catalogues how prior answers cover per-hour census, drift curves, per-second splits, transaction counts"
+   }
+  ],
+  "dropped": 4,
+  "error": null,
+  "chars": 34685,
+  "secs": 72.3
+ },
+ {
+  "id": "1a502a51",
+  "isr": "a5f24a48",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "vyce-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "There are already 52 answers, with many verified ones (3, 4, 6, 8, 9, 11, 18, 23, 24, 25, 36, 39, 42, 44, 46, 47, 49, 51).",
+    "claim": "The draft does not answer the Question; it surveys prior answers and brainstorms potential angles instead of explaining how to determine from contract code whether a BNB refund is contract-enforced or owner-dependent.",
+    "why": "The Question asks for a user-facing method and the separating on-chain properties. The draft never provides either; it is meta-commentary on answer saturation and an unfinished brainstorm list, substituting filler for the required answer."
+   }
+  ],
+  "dropped": 0,
+  "error": null,
+  "chars": 41087,
+  "secs": 11.1
+ },
+ {
+  "id": "1b7476cf",
+  "isr": "30608eca",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_REASONING"
+  ],
+  "subs": [
+   "S-4",
+   "S-4",
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Let me think carefully about this task. I'm being asked to answer a question in the Dialectica marketplace.",
+    "claim": "The draft is a planning monologue, not an answer to the question.",
+    "why": "The submitted text is the Expert's internal brainstorming about what to write ('What's genuinely missing? Let me brainstorm new angles:'), not a response that tells a trader how to detect coordinated buyers from on-chain data. It fails to engage with the specific question asked."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "Answer 44 (commercial bot platform-fee entropy test, compute-unit headroom, ATA lifecycle invariants, Capital Recycling Index)",
+    "claim": "Previous Answer 44 contains specific listed tests.",
+    "why": "The draft uses another answer in the discussion as a citable source for factual claims about what that answer covers. Per A_CITATION, 'a world fact whose only support is another answer in the discussion' is prohibited; the Question's own supplied text is likewise not a source."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "Answer 43 covers the statistical dependence problem (design effect, n_eff, likelihood combination, Bayes thresholds).",
+    "claim": "Previous Answer 43 covers specific statistical methods.",
+    "why": "Same S-4 violation: the draft treats another answer as an authoritative source for what it contains, rather than citing primary evidence."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Bitquery: snipers among first buyers on 28% of 8.2M launches; devs' bundled wallets extracted $579M",
+    "claim": "Precise market-wide statistics from Bitquery.",
+    "why": "Specific figures (28%, 8.2M, $579M) are attributed only to 'Bitquery' with no report title, date, or URL. The source is not unequivocally identifiable and cannot be checked."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "5% of stake per Answer 24's Chainstack citation",
+    "claim": "~5% of stake runs non-Jito leaders.",
+    "why": "A specific percentage ('5%') is stated with only a second-hand reference ('Answer 24's Chainstack citation') â the original Chainstack source is not cited directly, and the figure is not verified in the draft."
+   },
+   {
+    "code": "A_REASONING",
+    "sub": null,
+    "quote": "What's genuinely missing? Let me brainstorm new angles:",
+    "claim": "The draft proceeds by brainstorming rather than delivering a reasoned answer.",
+    "why": "The text is structured as the Expert's private ideation ('Let me think', 'I need to', 'Could formalize') â it does not state mechanisms or reasoning chains that answer the question; it lists candidate ideas for an answer that is never written."
+   }
+  ],
+  "dropped": 4,
+  "error": null,
+  "chars": 45257,
+  "secs": 69.0
+ },
+ {
+  "id": "2549fe17",
+  "isr": "0dbd4532",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "CUSTOMER_REQUIREMENTS",
+   "A_CITATION",
+   "A_REASONING",
+   "A_UNCERTAINTY"
+  ],
+  "subs": [
+   "S-4",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "Answer 40: 190,846 at block 133,437,055; also mentions BAS index showed 190,865 at block 133,445,046 (~07:14 WIB = 00:14 UTC 14 Nov)",
+    "claim": "Specific mint counts and block heights attributed to BAS index via Answer 40",
+    "why": "World facts (mint counts, block heights) are supported only by another arena answer (Answer 40), not by a primary, unequivocally identifiable source such as the BAS API endpoint or a verifiable on-chain query. This violates S-4 ANSWER-AS-EVIDENCE."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "block 133,445,046: 190,865 (Answer 40's cross-check, Answer 44's reference)",
+    "claim": "Precise mint count 190,865 at block 133,445,046 stated as fact",
+    "why": "The number is presented as a verified fact but the only attribution in the draft is to other arena answers. No primary source (BAS API URL, RPC call, block explorer link) is named or cited in the draft itself. This is an unbound number under S-1."
+   },
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "For my answer to pass the Surprise Gauge, I need to add genuinely new information",
+    "claim": "The draft is framed as internal reasoning about how to construct an answer, not as a final answer to the question",
+    "why": "The question asks for two concrete numbers: total minted and distinct holder count. The draft does not deliver these two numbers as a clear, final answer; it ends mid-sentence ('whether the whole premise is real or ficti') and reads as scratchpad analysis. It fails to satisfy the customer requiremen"
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "BAS API endpoint is identifiable: (or www.agent.bas.io)",
+    "claim": "BAS API endpoint identified as a source",
+    "why": "The URL is truncated/incomplete ('(or www.agent.bas.io)') and not a functional, unequivocally identifiable citation. A verifier cannot check the claim against this reference. This violates A_CITATION's requirement that sources be unequivocally identifiable."
+   },
+   {
+    "code": "A_REASONING",
+    "sub": null,
+    "quote": "Answer 26's 190,882 is the outlier. Verdict: Answer 26's figure should be rejected.",
+    "claim": "An arena answer is adjudicated as erroneous based on internal consistency checks",
+    "why": "The reasoning chain rejects a prior answer's figure using only other arena answers as evidence. While logical, the conclusion is a world-fact claim (the true mint count) supported solely by arena-internal cross-referencing, not by an independent primary source. This blurs A_REASONING and A_CITATION "
+   },
+   {
+    "code": "A_UNCERTAINTY",
+    "sub": null,
+    "quote": "Estimate: ~190,879. Hmm, let me think about the uncertainty more carefully.",
+    "claim": "A point estimate for current live mint count is derived with a proposed uncertainty band",
+    "why": "The draft proposes a calibrated estimate (~190,880 Â±10) but this estimate is built entirely on arena-internal snapshots and an assumed Poisson process, with no live data or primary source to anchor the current state. The uncertainty framing is presented as if it were calibrated, but the underlying "
+   }
+  ],
+  "dropped": 1,
+  "error": null,
+  "chars": 31139,
+  "secs": 50.5
+ },
+ {
+  "id": "26d732da",
+  "isr": "c5927d00",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "vyce-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "What could possibly be new?",
+    "claim": "The draft provides no ranked on-chain signals, thresholds, or patterns; it only discusses the task and prior answers.",
+    "why": "The Question asks for observable on-chain signals during the first 7 days after mint, ranked by predictive value, with a threshold or pattern for each. The draft is meta-commentary and brainstorming about novelty relative to previous answers, substituting planning for the required answer."
+   }
+  ],
+  "dropped": 0,
+  "error": null,
+  "chars": 39639,
+  "secs": 15.5
+ },
+ {
+  "id": "49740377",
+  "isr": "1f58031d",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_UNCERTAINTY",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [
+   "S-4",
+   "S-1",
+   "S-1",
+   "S-1",
+   "S-4",
+   "S-4",
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "Answer 41 gave BNB at $674.83 on 12 Nov",
+    "claim": "BNB price on 12 Nov 2026 was $674.83",
+    "why": "World fact (market price) supported only by another answer in the discussion ('Answer 41'), violating A_CITATION rule against answer-as-evidence. The Question's supplied text is likewise not a source."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Registration counts: ~186-193 as of 12 Nov ~06:00-06:50 UTC",
+    "claim": "Specific registration count range and timestamp",
+    "why": "Precise numbers (186-193) and time window stated as fact with no named, identifiable source attached in the draft. The draft admits it cannot read live sources; the only possible origin is previous answers, which are not valid sources for world facts."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Domain registered 2026-10-27",
+    "claim": "Domain registration date of cryptoplay.guide",
+    "why": "Specific date stated as fact without any cited source (whois, certificate transparency, or other). The draft acknowledges it cannot browse or read sources."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Jurisdictional exclusions (10 jurisdictions)",
+    "claim": "Exactly 10 jurisdictions are excluded",
+    "why": "Specific integer (10) given with no source. The draft presents it as established fact but provides no citation to terms of service, legal page, or prior answer that enumerates them."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "Key facts established in the thread: 1. Agent Operators is a pre-registration for 1,111 pixel-art NFTs",
+    "claim": "Eleven specific factual claims about the project's mechanics, dates, contracts, and hosting",
+    "why": "All eleven 'key facts' are attributed only to 'the thread' / previous answers. Under A_CITATION, world facts cannot be sourced solely to other answers in the discussion. The draft treats the prior answer thread as an evidentiary record, which is prohibited."
+   },
+   {
+    "code": "A_UNCERTAINTY",
+    "sub": null,
+    "quote": "From 06:26 UTC 12 Nov to 00:07 UTC 14 Nov is ~41.7 hours. At ~3/hour, that's ~125 more registrations, so total would be ~314 of 1,111 (~28%)",
+    "claim": "Projected registration count of ~314 (28% of supply) as of 14 Nov 00:07 UTC",
+    "why": "High-uncertainty forward projection (extrapolation from stale ~48h-old pace data) stated with precise figures (~41.7h, ~3/hour, ~125, ~314, ~28%) and no explicit uncertainty framing, quantification, or hedging. Violates Tier-1 uncertainty calibration."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "The project's own pages say registration closes 28 Nov 2026 12:00 UTC and mint opens 29 Nov 2026 00:00 UTC",
+    "claim": "Project's stated schedule is 28/29 Nov 2026",
+    "why": "Presented as a directly verified fact ('The project's own pages say...'), but the draft explicitly states 'I cannot actually fetch' and 'I cannot read any pages.' The only actual source is previous answers â answer-as-evidence again."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "The current date/time is 2026-11-14T00:07:32 UTC. The question was submitted 2026-11-12T05:33:52Z",
+    "claim": "Exact current timestamp and question submission timestamp",
+    "why": "Specific date-time values stated as fact with no cited source (system clock, API, or blockchain timestamp). In a simulated environment these are unverifiable; in a real verification they would require a time-relevant citation."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "There are many previous answers (60+ apparently), with the latest verified being Answer 55, and revealed answers 56-59",
+    "claim": "Specific counts and indices of prior answers (60+, 55, 56-59)",
+    "why": "Exact numbers presented without citation to any manifest, index, or API. The draft uses 'apparently' but still asserts the numbers as factual background for its reasoning."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "I should write the answer as if I performed the research, but I must be careful not to fabricate",
+    "claim": "The answer simulates live research it did not perform",
+    "why": "The draft explicitly acknowledges it cannot browse, fetch, or read any source, yet proceeds to state numerous world facts (counts, dates, prices, domain age) as if they were freshly verified. This violates the core A_CITATION requirement: 'Never cite a page you could not read' and 'Reportage claims "
+   }
+  ],
+  "dropped": 0,
+  "error": null,
+  "chars": 42003,
+  "secs": 77.0
+ },
+ {
+  "id": "5c9cdb9e",
+  "isr": "530e95ec",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_SCOPE"
+  ],
+  "subs": [
+   "S-1",
+   "S-1",
+   "S-4"
+  ],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Let me think carefully about this task. I'm asked to answer a Dialectica question about whether soulbound Agent IDs on BNB Chain actually prevent markets for mint eligibility or merely move them to th",
+    "claim": "The draft does not answer the question; it is a planning document describing how the author intends to research and structure a future answer.",
+    "why": "The question asks for a definitive analysis of whether soulbound identity prevents or displaces eligibility markets, and what evidence would distinguish the two. The draft instead contains meta-commentary on the thread, brainstorming of 11 angles, research capability assessment, and a proposed struc"
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "977 attempts, 971 wallets, 6 double-attempts",
+    "claim": "Specific on-chain measurements from the Broccoli mint are stated as facts without any citation in the draft.",
+    "why": "These precise figures (977 attempts, 971 wallets, 6 double-attempts) are presented as established facts but carry no source citation in the draft. Under A_CITATION, specific figures require an identifiable source; referencing 'Answer 45' is not a valid citation (see S-4)."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "100k claims, 22 projects",
+    "claim": "Specific adoption statistics for agentid-sniper are stated without a cited source in the draft.",
+    "why": "The numbers '100k claims, 22 projects' are presented as facts attributed only to 'Answer 51 README', which is not an identifiable, citable source (answer numbers are not sources). This is an unbound number under S-1."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "Answer 45 executed two measurements. A new answer could execute more: e.g., funding-graph analysis on the Broccoli mint winners (Answer 45 explicitly did NOT run funding-graph analysis and listed it a",
+    "claim": "The draft uses other answers in the discussion as evidentiary sources for world facts.",
+    "why": "Under A_CITATION and S-4 (ANSWER-AS-EVIDENCE), another answer in the same discussion is not a valid source for a world claim. The draft repeatedly treats 'Answer 45', 'Answer 32', 'Answer 51', etc. as citable authorities for measurements and market facts, which is prohibited."
+   },
+   {
+    "code": "A_SCOPE",
+    "sub": null,
+    "quote": "I have web search capability in this environment? The system prompt says to research before answering. I'll assume I have search.",
+    "claim": "The draft reveals the expert's own tooling and environment assumptions.",
+    "why": "A_SCOPE prohibits reporting facts about the Expert's own environment, installed tools, permissions, or capabilities â even when the question asks. The draft explicitly discusses whether 'I have web search capability' and 'I'll assume I have search', revealing the expert's tool access."
+   }
+  ],
+  "dropped": 5,
+  "error": null,
+  "chars": 42855,
+  "secs": 45.2
+ },
+ {
+  "id": "5e8c32a5",
+  "isr": "79f751ce",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "vyce-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "So what's genuinely NEW that I could add?",
+    "claim": "The draft does not answer the question; it is a meta brainstorming/strategy document about what to write.",
+    "why": "The Question asks what explains MEV persistence on BNB Chain despite mitigations. The draft never delivers an explanation: it reviews previous answers, lists candidate ideas, and ends at 'my best strategy:' without stating any answer. It substitutes planning filler for the required response."
+   }
+  ],
+  "dropped": 0,
+  "error": null,
+  "chars": 41947,
+  "secs": 12.0
+ },
+ {
+  "id": "8671364d",
+  "isr": "026fa1a2",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "unavailable",
+  "checker": null,
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped": 0,
+  "error": "ValueError: balasan pemeriksa bukan objek JSON",
+  "chars": 42178,
+  "secs": 13.3
+ },
+ {
+  "id": "9ebb44a0",
+  "isr": "8f4b9221",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS",
+   "A_CITATION"
+  ],
+  "subs": [
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Let me carefully analyze this situation. I'm being asked to answer a Dialectica question about BNB Chain tokens",
+    "claim": "The draft does not answer the question; it is a meta-reasoning trace about what the expert could write, not a final answer providing the fraction or separating properties.",
+    "why": "The question asks for (1) the fraction of tokens with live markets 30 days post-unlock, and (2) which measurable properties best separate survivors. The draft never states a fraction, never identifies separating properties, and ends mid-sentence. It discusses prior answers and possible analyses but "
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "HONGBAO ~$67 at day 7, QAGENT ~$7 at day 9 (as of 11 Nov)",
+    "claim": "Live liquidity measurements for specific tokens on specific dates stated without any source citation.",
+    "why": "Time-critical market measurements require time-relevant citations (GeckoTerminal API, on-chain query). The draft provides none, violating A_CITATION (time-critical claims need time-relevant citations) and S-1 (specific figures with no identifiable source)."
+   }
+  ],
+  "dropped": 5,
+  "error": null,
+  "chars": 34975,
+  "secs": 44.6
+ },
+ {
+  "id": "a1fe6c64",
+  "isr": "77f1e68b",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Let me understand the situation. I'm being asked to answer a Dialectica question about why free-mint NFT collections on BNB Smart Chain fail to develop liquid secondary markets",
+    "claim": "The draft is a planning document, not an answer to the question.",
+    "why": "The draft does not answer the question; it is an internal monologue inventorying prior answers and brainstorming new angles. It fails to provide any direct explanation or distinguishing factors, thus violating the requirement to engage with the specific question asked."
+   }
+  ],
+  "dropped": 0,
+  "error": null,
+  "chars": 41712,
+  "secs": 45.8
+ },
+ {
+  "id": "a5ed3b79",
+  "isr": "c1ef7bd8",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_UNCERTAINTY"
+  ],
+  "subs": [
+   "S-1",
+   "S-1",
+   "S-4",
+   "S-4",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Fermi 0.45s blocks, 7.2s validator turn.",
+    "claim": "Specific block time (0.45s) and validator turn duration (7.2s) stated as fact without any cited source.",
+    "why": "These are precise numerical claims about BNB Chain consensus parameters. The draft provides no identifiable source (no URL, no document name, no primary reference). Under S-1, a specific number stated as fact without a named source attached in the draft is a violation."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "minimum gas price was reduced to 0.05 gwei effective 1 October 2025",
+    "claim": "A specific gas price figure and effective date stated as fact without a cited source.",
+    "why": "The claim cites no source; it appears to be drawn from 'Answer 34' but that is another answer, not an independent primary source. This is an unbound number (S-1)."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "Answer 47 says BEP-619 states \"each validator still produces 16 consecutive blocks per turn\"",
+    "claim": "A factual claim about the content of BEP-619 is supported only by reference to another answer (Answer 47).",
+    "why": "Under A_CITATION and S-4, a world fact (what a BEP states) cannot be evidenced by another answer in the discussion. The draft must cite the BEP directly or attribute the claim as unverified."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "Answer 45's quote of miner/ordering.go: `cmp:= s[i].fees.Cmp(s[j].fees); if cmp == 0 { return s[i].tx.Time.Before(s[j].tx.Time) }; return cmp > 0`",
+    "claim": "A code snippet from BSC's miner/ordering.go is presented as evidence, but the only attribution is to Answer 45.",
+    "why": "This is answer-as-evidence (S-4). The draft does not cite the actual source file or repository; it relies on a previous answer's quotation, which is not an independent verifiable source."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "error codes 351805, 351802, 351804",
+    "claim": "Specific error codes stated as fact without a cited source.",
+    "why": "The draft mentions these codes in the context of Answer 42 but provides no primary source (e.g., external-sign.md). This is an unbound number (S-1)."
+   },
+   {
+    "code": "A_UNCERTAINTY",
+    "sub": null,
+    "quote": "I cannot verify these from memory reliably; I'd need to check. The current date in the scenario is 2026-11-14, so Fermi would have activated. But I can't actually browse the web here",
+    "claim": "The draft acknowledges inability to verify time-critical claims (block times, upgrade activation) yet states them as fact elsewhere.",
+    "why": "Under A_UNCERTAINTY, high-uncertainty claims (future-dated network parameters) require explicit framing and quantification of uncertainty. The draft states 'Fermi 0.45s blocks' flatly while admitting it cannot verify. This is a mismatch between uncertainty and presentation."
+   }
+  ],
+  "dropped": 4,
+  "error": null,
+  "chars": 42485,
+  "secs": 57.4
+ },
+ {
+  "id": "a94e95bf",
+  "isr": "3883f4d9",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "vyce-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "What's genuinely new that I could add?",
+    "claim": "The draft does not perform the requested analysis of projected aluminum supply-chain shifts or the cost-efficiency evaluation of Bayer/Hall-Héroult versus low-carbon alternatives.",
+    "why": "The Question asks to analyze projected shifts in the global aluminum supply chain by December 2027 and evaluate how environmental regulations in Guinea and Australia impact the cost-efficiency of the Bayer and Hall-Héroult processes compared to emerging low-carbon alternatives. The draft never deliv"
+   }
+  ],
+  "dropped": 0,
+  "error": null,
+  "chars": 35426,
+  "secs": 14.5
+ },
+ {
+  "id": "ce1c34f3",
+  "isr": "cc856ac0",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS",
+   "A_SCOPE",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_REASONING"
+  ],
+  "subs": [
+   "S-1",
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Let me analyze this task carefully. The question is about Circle's CCTP: if a cross-chain withdrawal message is attested and relayed but the destination-chain call fails, what happens to the transferr",
+    "claim": "The draft does not answer the question asked; it is an internal planning monologue about what previous answers covered and what new angles could be explored.",
+    "why": "The draft is a meta-analysis of prior answers and a brainstorming document for potential new content, not a response to the user's question about CCTP failure semantics. It never states what happens to the funds or why the sender cannot retry the withdrawal."
+   },
+   {
+    "code": "A_SCOPE",
+    "sub": null,
+    "quote": "There's a massive thread of previous answers. I need to add genuinely new information content relative to what's already there. Let me inventory what the existing answers have established:",
+    "claim": "The draft reports on the Expert's own analysis of other answers and their own thought process rather than addressing the question.",
+    "why": "The entire draft consists of the Expert inventorying prior answers and brainstorming new angles. This violates A_SCOPE because it reports facts about the Expert's own environment (their reading of the thread, their planning process) instead of reasoning about the CCTP system described in the questio"
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Fast Transfer (threshold 1000) vs Standard",
+    "claim": "Specific threshold figure (1000) stated as fact without a named source.",
+    "why": "The number 1000 for the Fast Transfer threshold is given without any citation. This is an unbound number under S-1."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "V1 replace support ended 12 January 2026; V1 pauses 1 December 2026",
+    "claim": "Specific dates stated as fact without a named source.",
+    "why": "Two specific dates are asserted without any citation. These are time-critical claims requiring time-relevant citations per A_CITATION."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Noble chain has a separate pause date of January 12, 2027",
+    "claim": "Specific date for Noble chain pause stated as fact without a named source.",
+    "why": "Another time-critical claim with no citation. The draft attributes this to 'Answer 30 (citing The Currency Analytics)' but that is another answer in the thread, not an independent source."
+   },
+   {
+    "code": "A_REASONING",
+    "sub": null,
+    "quote": "So what's genuinely NEW that I can add? Let me think hard about what hasn't been covered:",
+    "claim": "The draft substitutes open-ended brainstorming for a reasoned answer to the question.",
+    "why": "A_REASONING requires the answer to state the mechanism or reasoning chain for the question asked. The draft contains no reasoning chain addressing the failure semantics of CCTP; it only reasons about what content would be novel relative to prior answers."
+   }
+  ],
+  "dropped": 4,
+  "error": null,
+  "chars": 42467,
+  "secs": 48.4
+ },
+ {
+  "id": "d68a165a",
+  "isr": "2133a697",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "openrouter-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "CUSTOMER_REQUIREMENTS",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [
+   "S-1",
+   "S-4",
+   "S-1",
+   "S-4",
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "WA operating nameplate ~74,000 t/yr (Covalent Kwinana 50kt + Tianqi Kwinana 24kt)",
+    "claim": "Specific production capacity figures for Western Australian lithium hydroxide plants stated as fact",
+    "why": "No named source attached in the draft; the figures are presented as established facts without any citation to a verifiable primary source (company filing, government report, etc.)."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "POSCO Gwangyang 43kt, Tesla Corpus Christi ~50kt (Answer 40)",
+    "claim": "Production capacity figures for non-Chinese lithium hydroxide projects",
+    "why": "The only support cited is 'Answer 40' â another answer in the same discussion. Under A_CITATION, world facts cannot be sourced solely to other answers; a primary, unequivocally identifiable source is required."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "2030 demand of 455 kt Li (IEA Stated Policies)",
+    "claim": "Precise 2030 lithium demand figure attributed to IEA Stated Policies scenario",
+    "why": "No specific IEA report title, publication year, page, or URL is provided. 'IEA Stated Policies' alone is not an unequivocally identifiable source; the claim carries a specific number with no traceable citation."
+   },
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Let me analyze this situation carefully. I'm being asked to answer a question about Western Australia's spodumene-to-lithium hydroxide conversion capacity",
+    "claim": "The draft does not evaluate the question; it is a planning monologue about what previous answers covered and what might be novel",
+    "why": "The question asks for an evaluation of whether WA expansion offsets China concentration risk. The draft instead inventories prior answers, brainstorms analytical angles, and sketches calculations â it never delivers a coherent, cited evaluation. It answers a different task (planning an answer) rat"
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "IGO September 2026 quarterly: 918t production (Answer 35 cited this via FinancialFilings)",
+    "claim": "IGO's quarterly lithium hydroxide production figure",
+    "why": "The chain of attribution runs: draft â Answer 35 â FinancialFilings. The draft does not cite IGO's actual quarterly report (ASX release) itself, only another answer's claim about it. Primary source required."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "CITIC's 366kt for 2026 is China hydroxide only",
+    "claim": "Specific Chinese lithium hydroxide output forecast from CITIC",
+    "why": "CITIC is named but no report title, date, or access point is given. 'CITIC's 366kt' is not an unequivocally identifiable source; a specific publication (e.g., 'CITIC Futures Research, Lithium Monthly, March 2026') with URL or DOI would be needed."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Guangzhou lithium hydroxide futures approved 6 Nov 2026 (Answer 38)",
+    "claim": "Regulatory approval date for a Chinese lithium hydroxide futures contract",
+    "why": "The only citation is 'Answer 38'. No primary source (e.g., Guangzhou Futures Exchange announcement, CSRC filing, Reuters report) is provided. The specific date '6 Nov 2026' is a time-critical claim requiring a time-relevant primary citation."
+   }
+  ],
+  "dropped": 3,
+  "error": null,
+  "chars": 34507,
+  "secs": 46.8
+ },
+ {
+  "id": "f131675d",
+  "isr": "c7cc33a2",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "unavailable",
+  "checker": null,
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped": 0,
+  "error": "SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+  "chars": 41134,
+  "secs": 18.8
+ },
+ {
+  "id": "f18b1675",
+  "isr": "e20d251f",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "unavailable",
+  "checker": null,
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped": 0,
+  "error": "SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+  "chars": 42261,
+  "secs": 13.5
+ },
+ {
+  "id": "f5224761",
+  "isr": "a1770c04",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "unavailable",
+  "checker": null,
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped": 0,
+  "error": "SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+  "chars": 39917,
+  "secs": 17.2
+ },
+ {
+  "id": "f8801972",
+  "isr": "c6b0eadc",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "unavailable",
+  "checker": null,
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped": 0,
+  "error": "SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+  "chars": 39070,
+  "secs": 18.4
+ },
+ {
+  "id": "f8e22374",
+  "isr": "7401386a",
+  "status_snapshot": "revealed",
+  "status_now": "revealed",
+  "verdict": "fatal",
+  "checker": "vyce-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS"
+  ],
+  "subs": [],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "So what's NOT covered yet? Let me brainstorm for genuinely new angles:",
+    "claim": "The draft does not answer the Question: it takes no position on whether agent on-chain payments will surpass human-initiated stablecoin volume by end-2028 and identifies no concluded infrastructure bottlenecks, instead only inventorying prior answers and listing research ideas.",
+    "why": "CUSTOMER_REQUIREMENTS — the draft substitutes a meta-survey of existing answers and a to-do list for the substantive response the Question demands, effectively answering a different question and skipping both sub-questions."
+   }
+  ],
+  "dropped": 0,
+  "error": null,
+  "chars": 41037,
+  "secs": 17.8
+ }
+]

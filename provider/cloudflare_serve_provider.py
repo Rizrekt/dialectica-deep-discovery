@@ -1,0 +1,113 @@
+#!/usr/bin/env python3
+"""DIALECTICA_PROVIDER_CMD at job time for the temporary Cloudflare
+serve lane (MEKANISME §39).
+
+Primary path: the answer was prepared BEFORE the claim by
+cloudflare_serve_prepare.py and sits in the serve cache under
+DIALECTICA_ISR_ID — print it and exit 0. No generation happens here,
+so nothing can be withheld at this step on the primary path.
+
+Fallback (live pipeline on the real job prompt, recorded under the
+serve lane): schema-correction jobs — the cached text is the very
+thing being corrected — and arrivals with no prepared cache entry
+(e.g. work assigned outside the prepare path). A withheld fallback
+draft exits 1 with empty stdout, which trued treats as "nothing
+submitted" and drops the job (the §35 consequence); that state is
+reachable only off the primary path, and is accepted to finish work
+already accepted rather than abandon it by construction.
+
+The fallback is serve-cap gated (SOLUSI-39 fix A): before any
+generation it checks the day's remaining serve generations, counted
+exactly as the prepare hook counts them. When the remainder cannot
+cover a full pipeline (1 generation + at most 1 wrapper regen) the
+fallback exits 1 WITHOUT generating, so it can never push the count
+above SERVE_CAP. The cache-hit primary path above is not gated: it
+generates nothing.
+
+Since 2026-11-15 the fallback also carries the liveness layer of
+the shared serve gate: when the fetched ISR detail PROVES the
+target dead (serve_gate.fallback_dead_reason), it exits 1 without
+generating rather than submit a post-round answer; an unverifiable
+fetch does not block finishing work already accepted.
+"""
+import os
+import sys
+
+import cloudflare_provider as cp
+import cloudflare_serve_common as csc
+import serve_gate
+from openrouter_wrapper import format_withhold_breakdown
+
+
+def main():
+    prompt = sys.stdin.read()
+    isr_id = os.environ.get("DIALECTICA_ISR_ID", "").strip()
+    job_kind = os.environ.get("DIALECTICA_JOB_KIND", "").strip()
+    if job_kind != "correction":
+        cached = csc.read_cache(isr_id)
+        if cached is not None:
+            # Liveness re-check on cache hit (2026-11-16, audit S5):
+            # only a PROVEN death blocks; unverifiable/unarmed fetch
+            # never drops a job (fallback semantics).
+            if isr_id:
+                dead = serve_gate.fallback_dead_reason(isr_id)
+                if dead:
+                    print(f"cloudflare_serve_provider: gerbang "
+                          f"liveness (cache-hit) — target terbukti "
+                          f"MATI ({dead}). Exiting 1 with empty "
+                          f"stdout; trued drops the job.",
+                          file=sys.stderr)
+                    return 1
+            print(f"cloudflare_serve_provider: serving prepared "
+                  f"answer for {isr_id} ({len(cached)} chars)",
+                  file=sys.stderr)
+            sys.stdout.write(cached + "\n")
+            return 0
+    if not prompt.strip():
+        print("cloudflare_serve_provider: empty prompt and no "
+              "prepared answer", file=sys.stderr)
+        return 2
+    if isr_id:
+        dead = serve_gate.fallback_dead_reason(isr_id)
+        if dead:
+            print(f"cloudflare_serve_provider: gerbang liveness — "
+                  f"target terbukti MATI ({dead}). Exiting 1 with "
+                  f"empty stdout; trued drops the job rather than "
+                  f"submit a post-round answer.", file=sys.stderr)
+            return 1
+    used = csc.serve_generations_today()
+    remaining = csc.SERVE_CAP - used
+    if remaining < csc.PIPELINE_MAX_GENERATIONS:
+        print(f"cloudflare_serve_provider: serve cap gate — "
+              f"{used}/{csc.SERVE_CAP} serve generations used today "
+              f"(UTC), remaining {remaining} cannot cover a full "
+              f"fallback pipeline "
+              f"({csc.PIPELINE_MAX_GENERATIONS} generations). "
+              f"Exiting 1 WITHOUT generating; trued drops the job "
+              f"(MEKANISME §35).", file=sys.stderr)
+        return 1
+    full = (cp.apply_steering(prompt, isr_id or None) + cp.LENGTH_SUFFIX
+            + serve_gate.SERVE_FORMAT_CONTRACT)
+    try:
+        result = csc.serve_pipeline(full, isr_id or None,
+                                    allow_regen=True)
+    except (cp.NeuronBudgetAbort, cp.GenerationError) as ex:
+        print(f"cloudflare_serve_provider: {ex}", file=sys.stderr)
+        return 1
+    print(f"cloudflare_serve_provider: fallback pipeline "
+          f"status={result['status']} sendable={result['sendable']} "
+          f"chars={result['report']['chars_final']}", file=sys.stderr)
+    if not result["sendable"]:
+        print("cloudflare_serve_provider: fallback draft WITHHELD "
+              "(sendable=false). Exiting 1 with empty stdout — trued "
+              "drops the job (MEKANISME §35).", file=sys.stderr)
+        print(f"cloudflare_serve_provider: "
+              f"{format_withhold_breakdown(result['report'])}",
+              file=sys.stderr)
+        return 1
+    sys.stdout.write(result["text"] + "\n")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

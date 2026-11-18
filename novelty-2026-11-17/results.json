@@ -1,0 +1,224 @@
+{
+ "cap_before": 3,
+ "isrs": [
+  {
+   "isr_id": "a6148000-3231-4912-ac1f-dfea21ff6afe",
+   "drafts": [
+    {
+     "label": "glm",
+     "draft_chars": 6574,
+     "runs": [
+      {
+       "verdict": "unavailable",
+       "checker": null,
+       "findings_total": 0,
+       "by_code": {},
+       "surprise_findings": [],
+       "dropped": 0,
+       "error": "SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 31882 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+       "rep": 1,
+       "condition": "tanpa-konteks"
+      },
+      {
+       "verdict": "unavailable",
+       "checker": null,
+       "findings_total": 0,
+       "by_code": {},
+       "surprise_findings": [],
+       "dropped": 0,
+       "error": "SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 31551 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+       "rep": 1,
+       "condition": "dengan-konteks"
+      }
+     ]
+    },
+    {
+     "label": "kontrol-parafrase",
+     "draft_chars": 2280,
+     "runs": [
+      {
+       "verdict": "unavailable",
+       "checker": null,
+       "findings_total": 0,
+       "by_code": {},
+       "surprise_findings": [],
+       "dropped": 0,
+       "error": "SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 32698 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+       "rep": 1,
+       "condition": "tanpa-konteks"
+      },
+      {
+       "verdict": "unavailable",
+       "checker": null,
+       "findings_total": 0,
+       "by_code": {},
+       "surprise_findings": [],
+       "dropped": 0,
+       "error": "SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 32595 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+       "rep": 1,
+       "condition": "dengan-konteks"
+      },
+      {
+       "verdict": "fatal",
+       "checker": "vyce-nemotron",
+       "findings_total": 2,
+       "by_code": {
+        "A_CITATION": 2
+       },
+       "surprise_findings": [],
+       "dropped": 0,
+       "error": null,
+       "rep": 2,
+       "condition": "tanpa-konteks"
+      },
+      {
+       "verdict": "unavailable",
+       "checker": null,
+       "findings_total": 0,
+       "by_code": {},
+       "surprise_findings": [],
+       "dropped": 0,
+       "error": "SemanticUnavailable: segmen 1/1: ValueError: balasan pemeriksa bukan objek JSON",
+       "rep": 2,
+       "condition": "dengan-konteks"
+      }
+     ]
+    }
+   ],
+   "glm_error": null
+  },
+  {
+   "isr_id": "67101f77-8684-4e5d-b3dc-aa89342ec386",
+   "drafts": [
+    {
+     "label": "glm",
+     "draft_chars": 741,
+     "runs": [
+      {
+       "verdict": "clean",
+       "checker": "vyce-nemotron",
+       "findings_total": 0,
+       "by_code": {},
+       "surprise_findings": [],
+       "dropped": 0,
+       "error": null,
+       "rep": 1,
+       "condition": "tanpa-konteks"
+      },
+      {
+       "verdict": "fatal",
+       "checker": "vyce-nemotron",
+       "findings_total": 1,
+       "by_code": {
+        "SURPRISE_GAUGE": 1
+       },
+       "surprise_findings": [
+        {
+         "quote": "the plant's point of interconnection (POI) sits behind a delivery constraint that binds repeatedly during high-renewable hours",
+         "why": "This is substantially a restatement/paraphrase of Verified Answer 2's core conclusion and mechanism (binding POI/interconnection limit, recapturing curtailed energy a standalone battery cannot reach, avoiding a second interconnection, and independent siting when congestion is downstream or system-wi"
+        }
+       ],
+       "dropped": 0,
+       "error": null,
+       "rep": 1,
+       "condition": "dengan-konteks"
+      }
+     ]
+    }
+   ],
+   "glm_error": null
+  },
+  {
+   "isr_id": "206c07dc-10fa-4fbb-950d-06aa4bf09f07",
+   "drafts": [
+    {
+     "label": "glm",
+     "draft_chars": 7872,
+     "runs": [
+      {
+       "verdict": "unavailable",
+       "checker": null,
+       "findings_total": 0,
+       "by_code": {},
+       "surprise_findings": [],
+       "dropped": 0,
+       "error": "SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 32667 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+       "rep": 1,
+       "condition": "tanpa-konteks"
+      },
+      {
+       "verdict": "unavailable",
+       "checker": null,
+       "findings_total": 0,
+       "by_code": {},
+       "surprise_findings": [],
+       "dropped": 0,
+       "error": "SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 33022 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+       "rep": 1,
+       "condition": "dengan-konteks"
+      }
+     ]
+    }
+   ],
+   "glm_error": null
+  }
+ ],
+ "cap_after": 6,
+ "control_retry": {
+  "label": "kontrol-parafrase-retry",
+  "draft_chars": 2280,
+  "runs": [
+   {
+    "verdict": "unavailable",
+    "checker": null,
+    "findings_total": 0,
+    "by_code": {},
+    "surprise_findings": [],
+    "dropped": 0,
+    "error": "SemanticUnavailable: segmen 1/1: ValueError: balasan pemeriksa bukan objek JSON",
+    "rep": 1,
+    "condition": "tanpa-konteks"
+   },
+   {
+    "verdict": "fatal",
+    "checker": "vyce-nemotron",
+    "findings_total": 1,
+    "by_code": {
+     "SURPRISE_GAUGE": 1
+    },
+    "surprise_findings": [
+     {
+      "quote": "Today, under MEV-Boost, the proposer is mostly a bystander: it signs a blinded header for a block assembled by an outside builder",
+      "why": "Verified Answer 1 and Verified Answer 2 already cover the proposer signing blinded headers, builder-controlled censorship, the cost of refusing bids, the 17-validator committee, 8 KB inclusion lists, fork-choice enforcement/orphaning, and failure modes like IL-view divergence and conditional-inclusi"
+     }
+    ],
+    "dropped": 0,
+    "error": null,
+    "rep": 1,
+    "condition": "dengan-konteks"
+   },
+   {
+    "verdict": "unavailable",
+    "checker": null,
+    "findings_total": 0,
+    "by_code": {},
+    "surprise_findings": [],
+    "dropped": 0,
+    "error": "SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 33054 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+    "rep": 2,
+    "condition": "tanpa-konteks"
+   },
+   {
+    "verdict": "unavailable",
+    "checker": null,
+    "findings_total": 0,
+    "by_code": {},
+    "surprise_findings": [],
+    "dropped": 0,
+    "error": "SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 34894 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+    "rep": 2,
+    "condition": "dengan-konteks"
+   }
+  ]
+ }
+}

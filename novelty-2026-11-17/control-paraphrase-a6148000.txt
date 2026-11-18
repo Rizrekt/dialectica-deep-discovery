@@ -1,0 +1,15 @@
+## What changes for a proposer's power to censor
+
+Today, under MEV-Boost, the proposer is mostly a bystander: it signs a blinded header for a block assembled by an outside builder, so the contents of the payload are the builder's choice and any censorship effectively happens at that layer. A proposer who dislikes this can refuse bids and build the block itself, but doing so means giving up the MEV income the auction normally delivers, which makes censorship resistance expensive in practice.
+
+FOCIL (EIP-7805) replaces this discretion with a duty imposed by the protocol itself. In each slot a committee of 17 validators — the proposer plus 16 appointed includers — publishes inclusion lists drawn from the mempool, each list holding up to 8 KB of transactions. Once a transaction appears on a valid aggregated list and can fit into the block, leaving it out is no longer permitted.
+
+## Why the duty binds: fork-choice enforcement
+
+The enforcement sits in the fork choice. Attesters check a block against the inclusion lists they saw frozen at the deadline; a block that skips a listed transaction that was valid and would have fit is treated as non-canonical and gets orphaned. The proposer and builder keep authority over ordering and over MEV extraction, but they lose the unilateral ability to drop transactions that reached the committee. Omitting a transaction stops being a business decision and becomes a consensus violation.
+
+## The new weaknesses this creates
+
+**Divergent views of the lists.** Compliance is judged against each attester's local, subjective set of aggregated lists at a fixed deadline. If propagation delays leave different attesters holding different aggregate sets, honest attesters can disagree about whether a block complied, producing split votes, more re-orgs, and slower finality.
+
+**Invalidation and stuffing.** A builder can arrange execution order so that a listed transaction becomes invalid before its turn — for example by consuming the sender's nonce or draining the balance — or can pack the block with high-value MEV transactions until the gas limit leaves no room. Because FOCIL excuses omissions where the transaction is invalid or cannot fit, this kind of payload stuffing reopens a practical bypass of the inclusion requirement.

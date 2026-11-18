@@ -1,0 +1,26 @@
+{
+ "status": 400,
+ "stream": true,
+ "ttft_s": null,
+ "latency_s": 1.51,
+ "headers": {
+  "Date": "Tue, 17 Nov 2026 14:19:32 GMT",
+  "Content-Type": "text/event-stream",
+  "CF-RAY": "a5bf5ef0d945c36c-DFW",
+  "Server": "cloudflare",
+  "alt-svc": "h3=\":443\"; ma=86400",
+  "Cache-Control": "no-cache",
+  "vary": "Accept-Encoding",
+  "x-crowllm-version": "main-20261117-262defd",
+  "x-request-id": "202611171419315003908538268d9d6gQWm8nER",
+  "cf-cache-status": "DYNAMIC",
+  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=5M4k8MrOFPTj0EkRrNFGuMBZqL8YoG10lXE8cmEBhSf3eEF8DXBw0igJmzWN8dzl9speGxI%2F4NDv4rsmI8c78wQlWLFt4cO%2FFKjdhantR0Xc4hqbyKLxQ0DZ0wPHsr%2F2YWdHqBgEYl3u7g%3D%3D\"}]}",
+  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+  "Transfer-Encoding": "chunked"
+ },
+ "model_returned": null,
+ "finish_reason": null,
+ "usage": null,
+ "chars": 0,
+ "text": ""
+}

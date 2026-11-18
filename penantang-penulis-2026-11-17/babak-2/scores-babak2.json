@@ -1,0 +1,444 @@
+{
+ "q1-2777178d": {
+  "glm": {
+   "chars": 6673,
+   "cite": {
+    "verdict": "findings",
+    "block": false,
+    "counts": {
+     "pointers": 19,
+     "verified": 14,
+     "findings": 3,
+     "pivotal_findings": 0,
+     "unverified": 2,
+     "pivotal_unverified": 0,
+     "fetches": 25
+    },
+    "findings_pivotal": [],
+    "findings_peripheral": [
+     {
+      "value": "proofofhumanity.site",
+      "kind": "domain",
+      "status": "dead",
+      "detail": "domain: tak ter-resolve (connect di apex maupun www)"
+     },
+     {
+      "value": "https://docs.passport.gitcoin.co",
+      "kind": "url",
+      "status": "dead",
+      "detail": "URL: tak ter-resolve (connect)"
+     },
+     {
+      "value": "https://www.proofofhumanity.site",
+      "kind": "url",
+      "status": "dead",
+      "detail": "URL: tak ter-resolve (connect)"
+     }
+    ],
+    "unverified_n": 2
+   },
+   "url_count": 17,
+   "citation_count": 17,
+   "citation_density": 2.548,
+   "number_tokens": 21,
+   "bound_numbers": 9,
+   "bound_ratio": 0.429,
+   "k2_passed": true,
+   "floor_passed": true,
+   "floor_failures": [],
+   "trace_findings": 0,
+   "send": {
+    "sendable": true,
+    "reasons": []
+   }
+  },
+  "qwen_babak1": {
+   "chars": 5111,
+   "cite": {
+    "verdict": "clean",
+    "block": false,
+    "counts": {
+     "pointers": 0,
+     "verified": 0,
+     "findings": 0,
+     "pivotal_findings": 0,
+     "unverified": 0,
+     "pivotal_unverified": 0,
+     "fetches": 0
+    },
+    "findings_pivotal": [],
+    "findings_peripheral": [],
+    "unverified_n": 0
+   },
+   "url_count": 0,
+   "citation_count": 0,
+   "citation_density": 0.0,
+   "number_tokens": 1,
+   "bound_numbers": 0,
+   "bound_ratio": 0.0,
+   "k2_passed": false,
+   "floor_passed": false,
+   "floor_failures": [
+    "LANTAI K-1(a) jumlah URL: aktual 0 < 1",
+    "LANTAI K-1(b) kepadatan sitasi: aktual 0.000 per 1.000 kar < 0.5 (0 sitasi dalam 5111 karakter)",
+    "LANTAI K-2 rasio angka terikat sitasi: aktual 0.000 < 0.3 (0 dari 1 token angka dalam ±150 karakter dari sebuah sitasi)"
+   ],
+   "trace_findings": 0,
+   "send": {
+    "sendable": false,
+    "reasons": [
+     "lantai mekanis K-1/K-2: GAGAL"
+    ]
+   }
+  },
+  "qwen_babak2": {
+   "chars": 5778,
+   "in_band": true,
+   "cite": {
+    "verdict": "fatal",
+    "block": true,
+    "counts": {
+     "pointers": 4,
+     "verified": 2,
+     "findings": 2,
+     "pivotal_findings": 2,
+     "unverified": 0,
+     "pivotal_unverified": 0,
+     "fetches": 5
+    },
+    "findings_pivotal": [
+     {
+      "value": "2308.12345",
+      "kind": "arxiv",
+      "status": "wrong_document",
+      "detail": "arXiv: dokumen LAIN — klaim 'interaction flawlessly. According to the' vs aktual 'Probing Early Modification of Gravity with Planck, ACT and SPT' (containment 0.00); penulis klaim 'Attacks' tidak ada "
+     },
+     {
+      "value": "10.1109/blockchain55366.2022.00012",
+      "kind": "doi",
+      "status": "dead",
+      "detail": "doi.org 404: DOI tidak terdaftar (Crossref juga 404)"
+     }
+    ],
+    "findings_peripheral": [],
+    "unverified_n": 0,
+    "error": null
+   },
+   "url_count": 0,
+   "citation_count": 3,
+   "citation_density": 0.519,
+   "number_tokens": 10,
+   "bound_numbers": 2,
+   "bound_ratio": 0.2,
+   "k2_passed": false,
+   "floor_passed": false,
+   "floor_failures": [
+    "LANTAI K-1(a) jumlah URL: aktual 0 < 1",
+    "LANTAI K-2 rasio angka terikat sitasi: aktual 0.200 < 0.3 (2 dari 10 token angka dalam ±150 karakter dari sebuah sitasi)"
+   ],
+   "trace_findings": 0,
+   "send": {
+    "sendable": false,
+    "reasons": [
+     "sitasi: TAHAN (fatal)",
+     "lantai mekanis K-1/K-2: GAGAL"
+    ]
+   }
+  }
+ },
+ "q2-d94d7e34": {
+  "glm": {
+   "chars": 7570,
+   "cite": {
+    "verdict": "fatal",
+    "block": true,
+    "counts": {
+     "pointers": 11,
+     "verified": 8,
+     "findings": 2,
+     "pivotal_findings": 1,
+     "unverified": 1,
+     "pivotal_unverified": 0,
+     "fetches": 12
+    },
+    "findings_pivotal": [
+     {
+      "value": "10.1145/2516651.2516734",
+      "kind": "doi",
+      "status": "dead",
+      "detail": "doi.org 404: DOI tidak terdaftar (Crossref juga 404)"
+     }
+    ],
+    "findings_peripheral": [
+     {
+      "value": "https://whitepaper.worldcoin/",
+      "kind": "url",
+      "status": "malformed",
+      "detail": "host 'whitepaper.worldcoin' tanpa TLD dikenal"
+     }
+    ],
+    "unverified_n": 1
+   },
+   "url_count": 22,
+   "citation_count": 32,
+   "citation_density": 4.227,
+   "number_tokens": 18,
+   "bound_numbers": 15,
+   "bound_ratio": 0.833,
+   "k2_passed": true,
+   "floor_passed": true,
+   "floor_failures": [],
+   "trace_findings": 0,
+   "send": {
+    "sendable": false,
+    "reasons": [
+     "sitasi: TAHAN (fatal)"
+    ]
+   }
+  },
+  "qwen_babak1": {
+   "chars": 5167,
+   "cite": {
+    "verdict": "clean",
+    "block": false,
+    "counts": {
+     "pointers": 0,
+     "verified": 0,
+     "findings": 0,
+     "pivotal_findings": 0,
+     "unverified": 0,
+     "pivotal_unverified": 0,
+     "fetches": 0
+    },
+    "findings_pivotal": [],
+    "findings_peripheral": [],
+    "unverified_n": 0
+   },
+   "url_count": 0,
+   "citation_count": 0,
+   "citation_density": 0.0,
+   "number_tokens": 9,
+   "bound_numbers": 0,
+   "bound_ratio": 0.0,
+   "k2_passed": false,
+   "floor_passed": false,
+   "floor_failures": [
+    "LANTAI K-1(a) jumlah URL: aktual 0 < 1",
+    "LANTAI K-1(b) kepadatan sitasi: aktual 0.000 per 1.000 kar < 0.5 (0 sitasi dalam 5167 karakter)",
+    "LANTAI K-2 rasio angka terikat sitasi: aktual 0.000 < 0.3 (0 dari 9 token angka dalam ±150 karakter dari sebuah sitasi)"
+   ],
+   "trace_findings": 0,
+   "send": {
+    "sendable": false,
+    "reasons": [
+     "lantai mekanis K-1/K-2: GAGAL"
+    ]
+   }
+  },
+  "qwen_babak2": {
+   "chars": 5384,
+   "in_band": true,
+   "cite": {
+    "verdict": "fatal",
+    "block": true,
+    "counts": {
+     "pointers": 8,
+     "verified": 2,
+     "findings": 6,
+     "pivotal_findings": 2,
+     "unverified": 0,
+     "pivotal_unverified": 0,
+     "fetches": 7
+    },
+    "findings_pivotal": [
+     {
+      "value": "2205.00123",
+      "kind": "arxiv",
+      "status": "wrong_document",
+      "detail": "arXiv: dokumen LAIN — klaim 'temporal clustering' vs aktual 'Deep-learning-augmented Computational Miniature Mesoscope' (containment 0.00)"
+     },
+     {
+      "value": "10.1093/cybsec/tyad001",
+      "kind": "doi",
+      "status": "wrong_document",
+      "detail": "Crossref: dokumen LAIN — klaim 'hub-and-spoke' vs aktual 'Post-quantum cryptographic assemblages and the governance of the quantum threat' (containment 0.00)"
+     }
+    ],
+    "findings_peripheral": [
+     {
+      "value": "https://www.w3.org/Security/wiki/Humanity_Verification",
+      "kind": "url",
+      "status": "dead",
+      "detail": "URL: HTTP 404"
+     },
+     {
+      "value": "https://vitalik.eth.limo/general/2022/01/26/sybil.html",
+      "kind": "url",
+      "status": "malformed",
+      "detail": "host 'vitalik.eth.limo' tanpa TLD dikenal"
+     },
+     {
+      "value": "https://dci.mit.edu/research/governance-ai",
+      "kind": "url",
+      "status": "dead",
+      "detail": "URL: HTTP 404"
+     },
+     {
+      "value": "https://worldcoin.org/blog/announcements/introducing-world-id",
+      "kind": "url",
+      "status": "dead",
+      "detail": "URL: HTTP 404"
+     }
+    ],
+    "unverified_n": 0,
+    "error": null
+   },
+   "url_count": 8,
+   "citation_count": 11,
+   "citation_density": 2.043,
+   "number_tokens": 13,
+   "bound_numbers": 11,
+   "bound_ratio": 0.846,
+   "k2_passed": true,
+   "floor_passed": true,
+   "floor_failures": [],
+   "trace_findings": 0,
+   "send": {
+    "sendable": false,
+    "reasons": [
+     "sitasi: TAHAN (fatal)"
+    ]
+   }
+  }
+ },
+ "q3-635a010d": {
+  "glm": {
+   "chars": 6964,
+   "cite": {
+    "verdict": "fatal",
+    "block": true,
+    "counts": {
+     "pointers": 10,
+     "verified": 8,
+     "findings": 2,
+     "pivotal_findings": 1,
+     "unverified": 0,
+     "pivotal_unverified": 0,
+     "fetches": 12
+    },
+    "findings_pivotal": [
+     {
+      "value": "2020/940",
+      "kind": "eprint",
+      "status": "wrong_document",
+      "detail": "IACR ePrint: dokumen LAIN — klaim 'Secure Multiparty Computation (MPC)' vs aktual 'Directly revocable ciphertext-policy attribute-based encryption from lattices"
+     }
+    ],
+    "findings_peripheral": [
+     {
+      "value": "https://docs.web3auth.com/",
+      "kind": "url",
+      "status": "dead",
+      "detail": "URL: tak ter-resolve (connect)"
+     }
+    ],
+    "unverified_n": 0
+   },
+   "url_count": 23,
+   "citation_count": 23,
+   "citation_density": 3.303,
+   "number_tokens": 17,
+   "bound_numbers": 8,
+   "bound_ratio": 0.471,
+   "k2_passed": true,
+   "floor_passed": true,
+   "floor_failures": [],
+   "trace_findings": 0,
+   "send": {
+    "sendable": false,
+    "reasons": [
+     "sitasi: TAHAN (fatal)"
+    ]
+   }
+  },
+  "qwen_babak1": {
+   "chars": 4971,
+   "cite": {
+    "verdict": "clean",
+    "block": false,
+    "counts": {
+     "pointers": 0,
+     "verified": 0,
+     "findings": 0,
+     "pivotal_findings": 0,
+     "unverified": 0,
+     "pivotal_unverified": 0,
+     "fetches": 0
+    },
+    "findings_pivotal": [],
+    "findings_peripheral": [],
+    "unverified_n": 0
+   },
+   "url_count": 0,
+   "citation_count": 0,
+   "citation_density": 0.0,
+   "number_tokens": 12,
+   "bound_numbers": 0,
+   "bound_ratio": 0.0,
+   "k2_passed": false,
+   "floor_passed": false,
+   "floor_failures": [
+    "LANTAI K-1(a) jumlah URL: aktual 0 < 1",
+    "LANTAI K-1(b) kepadatan sitasi: aktual 0.000 per 1.000 kar < 0.5 (0 sitasi dalam 4971 karakter)",
+    "LANTAI K-2 rasio angka terikat sitasi: aktual 0.000 < 0.3 (0 dari 12 token angka dalam ±150 karakter dari sebuah sitasi)"
+   ],
+   "trace_findings": 0,
+   "send": {
+    "sendable": false,
+    "reasons": [
+     "lantai mekanis K-1/K-2: GAGAL"
+    ]
+   }
+  },
+  "qwen_babak2": {
+   "chars": 5893,
+   "in_band": true,
+   "cite": {
+    "verdict": "clean",
+    "block": false,
+    "counts": {
+     "pointers": 1,
+     "verified": 1,
+     "findings": 0,
+     "pivotal_findings": 0,
+     "unverified": 0,
+     "pivotal_unverified": 0,
+     "fetches": 1
+    },
+    "findings_pivotal": [],
+    "findings_peripheral": [],
+    "unverified_n": 0,
+    "error": null
+   },
+   "url_count": 0,
+   "citation_count": 2,
+   "citation_density": 0.339,
+   "number_tokens": 20,
+   "bound_numbers": 6,
+   "bound_ratio": 0.3,
+   "k2_passed": true,
+   "floor_passed": false,
+   "floor_failures": [
+    "LANTAI K-1(a) jumlah URL: aktual 0 < 1",
+    "LANTAI K-1(b) kepadatan sitasi: aktual 0.339 per 1.000 kar < 0.5 (2 sitasi dalam 5893 karakter)"
+   ],
+   "trace_findings": 0,
+   "send": {
+    "sendable": false,
+    "reasons": [
+     "lantai mekanis K-1/K-2: GAGAL"
+    ]
+   }
+  }
+ }
+}

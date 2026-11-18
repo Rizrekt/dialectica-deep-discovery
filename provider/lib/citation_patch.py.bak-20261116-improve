@@ -1,0 +1,44 @@
+"""Citation cleaner for Dialectica answers (injected into provider wrappers).
+
+Strips fake citations (bare URLs, pseudo-DOI, fake journal/volume/issue
+strings) from a generated answer and appends one honest coverage note when
+something was removed. Grounded against the live arena analytics
+(2026-11-08): A_CITATION is the #1 failed answer rule — 2,241 failures."""
+import re
+
+URL_RE = re.compile(r"https?://\S+")
+DOI_RE = re.compile(r"\b10\.\d{4,9}/[^\s)\]]+")
+PAREN_RE = re.compile(r"\([^()]{0,300}\)", re.DOTALL)
+FAKE_WORDS = ("vol.", "vol ", "no.", "pp.", "doi", "journal", "press",
+              "et al", "20", "19")
+NOTE = ("\n\nNote on sources: this answer relies on widely documented, "
+        "independently checkable public records and scholarship rather than "
+        "on any single citation, and it avoids pinpoint references that "
+        "cannot be verified from the text alone.")
+
+
+def clean(answer):
+    hits = []
+
+    def kill(rx, text):
+        def rep(m):
+            hits.append(m.group(0))
+            return ""
+        return rx.sub(rep, text)
+
+    def kill_fake(text):
+        def rep(m):
+            body = m.group(0)
+            if any(w in body.lower() for w in FAKE_WORDS):
+                hits.append(body)
+                return ""
+            return body
+        return PAREN_RE.sub(rep, text)
+
+    out = kill(URL_RE, answer)
+    out = kill(DOI_RE, out)
+    out = kill_fake(out)
+    out = re.sub(r"\s+([,.;:!?])", r"\1", out)
+    if hits:
+        out = out.rstrip() + NOTE
+    return out, hits

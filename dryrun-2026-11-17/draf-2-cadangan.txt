@@ -1,0 +1,5 @@
+A marketplace cannot move the underlying NFT on-chain when the token contract reverts every transfer, so it must trade a separate claim: the marketplace takes custody of the locked NFT in a vault and issues a transferable wrapper or receipt token, while settlement updates an internal ledger rather than calling the blocked token contract.
+
+## 1. Trading mechanism when transfers are blocked
+
+When an NFT contract reverts transferFrom, safeTransferFrom, or an equivalent hook such as _beforeTokenTransfer, the original token cannot

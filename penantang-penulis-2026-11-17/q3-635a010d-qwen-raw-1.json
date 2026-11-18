@@ -1,0 +1,26 @@
+{
+ "status": 503,
+ "latency_s": 40.72,
+ "headers": {
+  "Date": "Tue, 17 Nov 2026 14:18:49 GMT",
+  "Content-Type": "application/json; charset=utf-8",
+  "CF-RAY": "a5bf5cf14dc3e8ea-ORD",
+  "Server": "cloudflare",
+  "alt-svc": "h3=\":443\"; ma=86400",
+  "vary": "Accept-Encoding",
+  "x-crowllm-version": "main-20261117-262defd",
+  "x-request-id": "202611171418099477356788268d9d6wdeYoElg",
+  "cf-cache-status": "DYNAMIC",
+  "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=yLBQy87TO5NYd3GOWscWupU6df3mu3a22TZY%2B8zqnigmCkj%2FmIV%2BKjCgsohmz7ZP3f5iXMrq4%2BXX1Tw49SYHWRWWsXAKvViqjUV25vFmGOQ3kMzoQPFebpQqIug1U7R7JjLP%2BSm2y1Ypwg%3D%3D\"}]}",
+  "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+  "Content-Length": "221"
+ },
+ "body": {
+  "error": {
+   "message": "An error occurred while communicating with the model provider. Please try again shortly. (request id: 202611171418099477356788268d9d6wdeYoElg)",
+   "type": "server_error",
+   "param": "",
+   "code": "upstream_503"
+  }
+ }
+}

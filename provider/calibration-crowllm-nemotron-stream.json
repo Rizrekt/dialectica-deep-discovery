@@ -1,0 +1,335 @@
+{
+ "model": "nvidia/nemotron-3.5-super-vl-120b-a12b:free",
+ "mode": "streaming-supplement",
+ "items": [
+  {
+   "label": "#1",
+   "id": "fcb7b015",
+   "chars": 5286,
+   "attempts": [
+    {
+     "attempt": 1,
+     "ok": true,
+     "status": 200,
+     "latency_s": 10.72,
+     "usage": {
+      "prompt_tokens": 1647,
+      "completion_tokens": 1219,
+      "total_tokens": 2866,
+      "prompt_tokens_details": {
+       "cached_tokens": 0,
+       "text_tokens": 0,
+       "audio_tokens": 0,
+       "image_tokens": 0
+      },
+      "completion_tokens_details": {
+       "text_tokens": 0,
+       "audio_tokens": 0,
+       "image_tokens": 0,
+       "reasoning_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+     },
+     "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+    }
+   ],
+   "calls": 1,
+   "verdict": "UNPARSEABLE",
+   "kept": [],
+   "dropped": 0,
+   "fmt": "empty",
+   "latency_s": 10.72,
+   "raw_head": "",
+   "kind": "poison"
+  },
+  {
+   "label": "#2",
+   "id": "097df475",
+   "chars": 6580,
+   "attempts": [
+    {
+     "attempt": 1,
+     "ok": true,
+     "status": 200,
+     "latency_s": 22.35,
+     "usage": {
+      "prompt_tokens": 1756,
+      "completion_tokens": 3470,
+      "total_tokens": 5226
+     },
+     "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+    }
+   ],
+   "calls": 1,
+   "verdict": "FATAL",
+   "kept": [
+    {
+     "issue": "Leftover meta-commentary in Indonesian left inside the answer text",
+     "quote": "Baru dalam jawaban ini: claim accounting replayable from public chain dataâgas-cost scaling with window contention, reverted-claim burn, FCFS burst measurement via state-counter steps, and common-fu"
+    },
+    {
+     "issue": "Incorrect claim that BNB Chain/BSC uses EIP-1559 base_fee + priority_fee pricing",
+     "quote": "where `effective_gas_price = base_fee + priority_fee` under EIP-1559 on BSC."
+    },
+    {
+     "issue": "Unverified / likely invented named source and standard (ERC-8004, Binance Agentic Wallet `.ai` handle policy)",
+     "quote": "Binance Agentic Wallet documentation states each user may create one Agentic Wallet and claim one `.ai` handle; ERC-8004 explicitly permits transferable agent identities and multiple registrations."
+    }
+   ],
+   "dropped": 0,
+   "fmt": "pure-json",
+   "latency_s": 22.35,
+   "kind": "poison"
+  },
+  {
+   "label": "#5",
+   "id": "f0bb3586",
+   "chars": 38591,
+   "attempts": [
+    {
+     "attempt": 1,
+     "ok": true,
+     "status": 200,
+     "latency_s": 44.59,
+     "usage": {
+      "prompt_tokens": 11201,
+      "completion_tokens": 3606,
+      "total_tokens": 14807
+     },
+     "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+    }
+   ],
+   "calls": 1,
+   "verdict": "UNPARSEABLE",
+   "kept": [],
+   "dropped": 0,
+   "fmt": "empty",
+   "latency_s": 44.59,
+   "raw_head": "",
+   "kind": "poison"
+  },
+  {
+   "label": "#8",
+   "id": "a3b8b34a",
+   "chars": 43623,
+   "attempts": [
+    {
+     "attempt": 1,
+     "ok": true,
+     "status": 200,
+     "latency_s": 41.37,
+     "usage": {
+      "prompt_tokens": 10418,
+      "completion_tokens": 3178,
+      "total_tokens": 13596
+     },
+     "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+    }
+   ],
+   "calls": 1,
+   "verdict": "FATAL",
+   "kept": [
+    {
+     "issue": "The draft is working notes/meta-commentary about the answering task (thread saturation, the Surprise Gauge, novelty scoring of previous answers) rather than an answer to the question; it never deliver",
+     "quote": "The Surprise Gauge means I need genuinely new information content. What's left that's new?"
+    },
+    {
+     "issue": "Leftover first-person reasoning traces and unresolved deliberation appear inside the answer text (e.g., questioning whether an active canary probe counts as \"on-chain data alone\").",
+     "quote": "I should be careful: is it within \"on-chain data alone\"?"
+    },
+    {
+     "issue": "The numbered list only triages candidate signals for novelty; no actual answer to estimating independent Solana token holders is ever presented.",
+     "quote": "Let me think about what hasn't been covered:"
+    }
+   ],
+   "dropped": 0,
+   "fmt": "pure-json",
+   "latency_s": 41.37,
+   "kind": "poison"
+  },
+  {
+   "label": "C1",
+   "id": "9dfd25b8",
+   "chars": 5521,
+   "attempts": [
+    {
+     "attempt": 1,
+     "ok": false,
+     "error": "client rc=1: {\"status\": 503, \"stream\": true, \"ttft_s\": null, \"latency_s\": 0.95, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:44:08 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc6bfaf8f10f70-EWR\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encodi"
+    },
+    {
+     "attempt": 2,
+     "ok": true,
+     "status": 200,
+     "latency_s": 28.44,
+     "usage": {
+      "prompt_tokens": 2241,
+      "completion_tokens": 4308,
+      "total_tokens": 6549
+     },
+     "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+    }
+   ],
+   "calls": 2,
+   "verdict": "UNPARSEABLE",
+   "kept": [],
+   "dropped": 0,
+   "fmt": "empty",
+   "latency_s": 28.44,
+   "raw_head": "",
+   "kind": "clean"
+  },
+  {
+   "label": "C2",
+   "id": "a8421f55",
+   "chars": 24041,
+   "attempts": [
+    {
+     "attempt": 1,
+     "ok": true,
+     "status": 200,
+     "latency_s": 32.31,
+     "usage": {
+      "prompt_tokens": 6094,
+      "completion_tokens": 3508,
+      "total_tokens": 9602
+     },
+     "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+    }
+   ],
+   "calls": 1,
+   "verdict": "UNPARSEABLE",
+   "kept": [],
+   "dropped": 0,
+   "fmt": "empty",
+   "latency_s": 32.31,
+   "raw_head": "",
+   "kind": "clean"
+  },
+  {
+   "label": "C3",
+   "id": "556b03c6",
+   "chars": 13410,
+   "attempts": [
+    {
+     "attempt": 1,
+     "ok": true,
+     "status": 200,
+     "latency_s": 22.55,
+     "usage": {
+      "prompt_tokens": 3107,
+      "completion_tokens": 3437,
+      "total_tokens": 6544
+     },
+     "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+    }
+   ],
+   "calls": 1,
+   "verdict": "UNPARSEABLE",
+   "kept": [],
+   "dropped": 0,
+   "fmt": "json-parse-error",
+   "latency_s": 22.55,
+   "raw_head": "{\"verdict\": \"FATAL\", \"findings\": [{\"issue\": \"The reference list contains invented future retrieval dates (all sources are cited as âRetrieved November 13, 2026â), indicating fabricated citations.\"",
+   "kind": "clean"
+  },
+  {
+   "label": "C4",
+   "id": "92523d6e",
+   "chars": 4581,
+   "attempts": [
+    {
+     "attempt": 1,
+     "ok": true,
+     "status": 200,
+     "latency_s": 29.58,
+     "usage": {
+      "prompt_tokens": 1300,
+      "completion_tokens": 4446,
+      "total_tokens": 5746
+     },
+     "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+    }
+   ],
+   "calls": 1,
+   "verdict": "UNPARSEABLE",
+   "kept": [],
+   "dropped": 0,
+   "fmt": "empty",
+   "latency_s": 29.58,
+   "raw_head": "",
+   "kind": "clean"
+  },
+  {
+   "label": "C5",
+   "id": "6040432a",
+   "chars": 8836,
+   "attempts": [
+    {
+     "attempt": 1,
+     "ok": true,
+     "status": 200,
+     "latency_s": 26.33,
+     "usage": {
+      "prompt_tokens": 2445,
+      "completion_tokens": 3545,
+      "total_tokens": 5990
+     },
+     "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+    }
+   ],
+   "calls": 1,
+   "verdict": "FATAL",
+   "kept": [
+    {
+     "issue": "References cite future-dated (2026) sources and specific URLs/post IDs that appear invented and unverifiable",
+     "quote": "Binance Square. (2026, October 27). *Agent ID Free Mint Safety Guide (Must-Read for Beginners)*. https://www.binance.com/en/square/post/15515712536841"
+    },
+    {
+     "issue": "Draft asserts a specific ERC-8004 agent-identity standard and a named SPACE ID/BAW HandleRegistry contract address for `.ai` handles that appear fabricated",
+     "quote": "standard ERC-8004 agent identity registries (BNB Chain, 2026)"
+    },
+    {
+     "issue": "Multiple named sources (Boltbook, Biteye, Defiant, Sourcify) are given 2026 dates and specific links that cannot be verified and read as hallucinated",
+     "quote": "Boltbook. (2026, October 27). *Ran the 22 free .ai mint list on-chain at 06:50 WAT: 9 still free, 8 dead, 6 unverified*. https://boltbook.ai/post/alpha/free-mint-analysis-2026"
+    }
+   ],
+   "dropped": 0,
+   "fmt": "pure-json",
+   "latency_s": 26.33,
+   "kind": "clean"
+  },
+  {
+   "label": "D-GLM",
+   "id": "3b5c0f0c",
+   "chars": 7471,
+   "attempts": [
+    {
+     "attempt": 1,
+     "ok": true,
+     "status": 200,
+     "latency_s": 34.41,
+     "usage": {
+      "prompt_tokens": 2071,
+      "completion_tokens": 3714,
+      "total_tokens": 5785
+     },
+     "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+    }
+   ],
+   "calls": 1,
+   "verdict": "UNPARSEABLE",
+   "kept": [],
+   "dropped": 0,
+   "fmt": "empty",
+   "latency_s": 34.41,
+   "raw_head": "",
+   "kind": "debt"
+  }
+ ],
+ "total_calls": 11
+}

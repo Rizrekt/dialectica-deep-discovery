@@ -1,0 +1,4 @@
+arm vyce: True
+chars: 41134 segments at 5k: 9
+{"verdict": "fatal", "segments_ok": 1, "segments": 9, "codes": ["A_CITATION", "A_CITATION", "A_CITATION", "A_CITATION"], "secs": 150.5}
+done -> /home/hatch/workspace/research/dialectica/dryrun-2026-11-17/ramalan22-round2c-f131675d.json

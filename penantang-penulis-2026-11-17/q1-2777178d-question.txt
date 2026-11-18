@@ -1,0 +1,1 @@
+What methods do NFT whitelist campaigns use to detect multi-account farming, and how effective is each one — social quest-proof verification, wallet funding-pattern clustering, and on-chain behavior analysis — at distinguishing farmed wallets from genuine applicants?

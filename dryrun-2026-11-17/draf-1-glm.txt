@@ -1,0 +1,58 @@
+A transfer block only stops the token from moving through the contract's *general* transfer path; a dedicated marketplace can still trade such NFTs whenever the block was written with a carve-out — a privileged operator, an allowlisted vault, or a claim layer above the token — and every one of those designs replaces the chain's "you hold it, you control it" guarantee with trust in a custodian, an operator, and whoever holds the admin or upgrade keys.
+
+## 1. What "blocks all transfers" actually blocks
+
+Under ERC-721, tokens move via `transferFrom`/`safeTransferFrom`, authorized by the owner directly or by an address approved through `approve` / `setApprovalForAll` (EIP-721, https://eips.ethereum.org/EIPS/eip-721). A "locked" NFT is one where the contract reverts on those calls; EIP-5192 standardizes the signal — a `locked(uint256 tokenId) returns (bool)` interface — and requires transfers of locked tokens to revert (https://eips.ethereum.org/EIPS/eip-5192). Implementations split into two families, and the distinction determines everything else:
+
+- **Absolute lock**: every non-mint, non-burn move reverts regardless of approvals. Generic marketplaces cannot settle these at all — even a buyer-approved transfer reverts, and marketplaces that respect EIP-5192 typically disable trading for such items.
+- **Carve-out lock**: transfers revert *unless* `msg.sender` (or `from`/`to`) is a privileged address — an admin, a game/settlement contract, or an allowlisted vault. Some such contracts also disable `approve`/`setApprovalForAll` entirely, so the only legal mover is the privileged path.
+
+## 2. How a dedicated marketplace still enables trading
+
+**Pattern A — privileged operator settlement.** The standard design behind first-party game and platform marketplaces: the NFT contract exempts the marketplace's settlement contract from the lock. Trading then looks conventional — the seller signs an off-chain order as typed structured data (EIP-712, https://eips.ethereum.org/EIPS/eip-712), the buyer fills it, and the settlement contract executes the move through the exempt path. Third-party venues stay blocked because their generic `transferFrom` reverts — which is often the point: the lock doubles as marketplace exclusivity and fee capture.
+
+**Pattern B — vault/wrapper.** If the contract permits transfers only to or from an allowlisted vault, the marketplace runs that vault: sellers deposit the NFT (the one move the contract allows), receive a freely tradable wrapped token (ERC-20 or ERC-721), and the wrapper trades on any venue; redemption sends the original back. The marketplace trades the wrapper, never the underlying.
+
+**Pattern C — claim/IOU trading under an absolute lock.** If nothing can move the token, the marketplace trades *claims*: the seller proves control (a signature from the owner address), the marketplace records the sale in its own ledger or mints a derivative IOU token, and settlement of the underlying is deferred until — if ever — the lock is lifted. The on-chain registry keeps showing the seller as owner even after the "sale"; the buyer holds only a promise plus, at best, a contractual or derivative claim.
+
+## 3. Custody trust assumptions
+
+- **Pattern A**: users typically must grant `setApprovalForAll` to the settlement contract — normal marketplace risk, but amplified: the same privileged path that honors your sale can move tokens without your signature if the exemption is not scoped per-order. If the operator role sits on an externally owned key rather than a contract, you are trusting a key, not code.
+- **Pattern B**: the vault is the custodian. Wrapper holders trust vault solvency and redeemability; an admin pause, exploit, or key loss strands every wrapper while the underlying sits frozen. Wrappers can also drift from the underlying — metadata changes, royalty changes, or utility that accrues only to the on-chain owner.
+- **Pattern C**: full custodial trust. Beneficial ownership and registered ownership permanently diverge: the on-chain owner retains anything that accrues to that address (airdrops, governance votes, future utility) while the buyer holds a claim with no on-chain enforcement. Sellers, symmetrically, trust the operator to pay out.
+
+In all three, the ERC-721 property that possession equals control is gone; the registry no longer tells you who economically owns the asset.
+
+## 4. Operator honesty
+
+A privileged operator is a single chokepoint whose honesty you must underwrite:
+
+- **Censorship and ordering**: it can refuse to fill orders, delay settlement, reorder execution, or prioritize its own positions.
+- **Rule changes**: fees, listing rules, and supported order types are whatever the operator says they are, whenever it says so.
+- **Double-selling (Pattern C)**: nothing on-chain prevents the operator from selling the same claim to two buyers; an off-chain claim ledger has no consensus layer, so honesty literally replaces it.
+- **Key compromise**: whoever holds the operator key can move every token the exemption reaches, or every claim the ledger records.
+
+Mitigations reduce but never eliminate this: EIP-712 signed orders with nonces make orders verifiable and replay-protected; multisigs and timelocks on the operator role slow unilateral action; reserve attestations can discipline vaults. But each mitigation is only as strong as the admin keys that installed it and can modify it.
+
+## 5. Upgrade keys: the lock is a promise, not a law
+
+Contracts with transfer locks are usually ownable (EIP-173, https://eips.ethereum.org/EIPS/eip-173), and many sit behind upgradeable proxies — where the implementation is swappable through the admin slot defined in EIP-1967 (https://eips.ethereum.org/EIPS/eip-1967) or via UUPS hooks per EIP-1822 (https://eips.ethereum.org/EIPS/eip-1822); OpenZeppelin's upgrade tooling documents this mechanics (https://docs.openzeppelin.com/upgrades-plugins/). The key holder can, without anyone's consent:
+
+- **lift the lock**, converting a "soulbound" credential or locked collectible into an ordinary tradable token — destroying exactly the non-transferability that buyers may have paid a premium for (on the intentional non-transferability model, see Buterin, "Soulbound," https://vitalik.ca/general/2022/01/26/soulbound.html);
+- **swap the operator allowlist** to a new settlement contract that drains approved tokens;
+- **insert fees or siphons** into the previously "blocked" transfer path.
+
+For **buyers**, the checklist is: which pattern is this; does `locked()` exist and what does it return; who can call the unlock and admin functions; is the operator a contract or a key; are there timelocks or multisigs behind those roles. Price the key holder, not the lock. For **sellers**: approving a bypass-capable operator is broader exposure than a normal marketplace approval; under Pattern C you remain the on-chain owner with residual claims attached to that address; and if the admin unlocks the contract after you sold at a "locked" discount, the scarcity story behind your sale changes after the fact.
+
+## Sources
+
+- EIP-721, Non-Fungible Token Standard — https://eips.ethereum.org/EIPS/eip-721
+- EIP-5192, Minimal Non-Transferable NFTs — https://eips.ethereum.org/EIPS/eip-5192
+- EIP-712, Typed Structured Data Hashing and Signing — https://eips.ethereum.org/EIPS/eip-712
+- EIP-173, Contract Ownership Standard — https://eips.ethereum.org/EIPS/eip-173
+- EIP-1967, Proxy Storage Slots — https://eips.ethereum.org/EIPS/eip-1967
+- EIP-1822, Universal Upgradeable Proxy Standard (UUPS) — https://eips.ethereum.org/EIPS/eip-1822
+- Vitalik Buterin, "Soulbound" (vitalik.ca, 2022-01-26) — https://vitalik.ca/general/2022/01/26/soulbound.html
+- OpenZeppelin Upgrades Plugins documentation — https://docs.openzeppelin.com/upgrades-plugins/
+
+New in this answer: a three-pattern taxonomy — privileged-operator settlement, vault/wrapper, and custodial claim trading — that maps each way a dedicated marketplace trades locked NFTs to its specific custody failure mode. It frames the lock and the dedicated marketplace as a single design decision: the same carve-out that enables trading is what blocks third-party venues. Finally, it prices the upgrade key for both sides of the trade: "locked" is only as durable as the EIP-1967/EIP-173 admin key behind it, with buyers facing a silent unlock and sellers having sold at a locked discount before one.

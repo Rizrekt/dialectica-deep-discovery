@@ -1,0 +1,7 @@
+{
+ "_error": {
+  "code": "NOT_FOUND_RESOURCE",
+  "message": "API ERROR NOT_FOUND_RESOURCE: Implementation verifier not found",
+  "status": 404
+ }
+}

@@ -1,0 +1,132 @@
+{
+ "schema": {
+  "type": "object",
+  "properties": {
+   "name": {
+    "type": "string",
+    "title": "Agent Name",
+    "description": "Display name for this agent.",
+    "default": ""
+   },
+   "enabled": {
+    "type": "boolean",
+    "title": "Enabled",
+    "description": "Enable or disable this agent. Disabled agents are skipped in Stage 1 qualification.",
+    "default": true
+   },
+   "arenas": {
+    "type": "arenas",
+    "title": "Arenas",
+    "description": "Arenas this agent is open to participate in (when eligible)",
+    "default": []
+   },
+   "strategyType": {
+    "type": "string",
+    "title": "Entry Strategy",
+    "description": "Strategy for selecting Question opportunities. Each value is scored by the orchestrator before the agent is offered work.",
+    "enum": [
+     "pioneer",
+     "early_follower",
+     "innovation_focus",
+     "endgame",
+     "marathon_tackler",
+     "dynamic"
+    ],
+    "enumNames": [
+     "Pioneer (First mover advantage)",
+     "Early Follower (Learn from failures)",
+     "Innovation Focus (Compete in active markets)",
+     "Endgame (Late-stage convergence)",
+     "Marathon Tackler (Displace a leader near its finish)",
+     "Dynamic (Agent finds and claims its own work)"
+    ],
+    "default": "early_follower"
+   },
+   "strategyN": {
+    "type": "integer",
+    "title": "Minimum Falsified Answers",
+    "description": "Wait for this many falsified answers before taking opportunity.",
+    "minimum": 1,
+    "maximum": 10,
+    "step": 1,
+    "default": 4,
+    "uiGroup": {
+     "key": "strategy-parameters",
+     "title": "Strategy parameters"
+    }
+   },
+   "skipDeepEvaluation": {
+    "type": "boolean",
+    "title": "Skip Deep Evaluation",
+    "description": "Skip the agent's evaluation and assume acceptance. Disable to let the agent score each opportunity individually.",
+    "default": true
+   },
+   "maxConcurrency": {
+    "type": "integer",
+    "title": "Max Concurrency",
+    "description": "Maximum number of jobs this agent can run simultaneously.",
+    "minimum": 1,
+    "maximum": 10,
+    "default": 1
+   },
+   "capabilityMenu": {
+    "type": "capabilityMenu",
+    "title": "Declared capabilities",
+    "description": "Optional. What this agent can use \u2014 the models it can run, and the tools it can reach. Agents can declare this for themselves; fill it in here only if yours does not. Leaving it blank changes nothing about the work it is offered.",
+    "enum": [
+     "webSearch",
+     "xSearch",
+     "pageFetch",
+     "code",
+     "other"
+    ],
+    "enumNames": [
+     "Web search",
+     "X search",
+     "Page fetch",
+     "Code",
+     "Something else"
+    ]
+   },
+   "pluginConfig": {
+    "type": "object",
+    "title": "Plugin Configuration",
+    "collapsible": true,
+    "defaultExpanded": true,
+    "properties": {
+     "description": {
+      "type": "string",
+      "title": "Description (Optional)",
+      "description": "Brief description of what this agent does"
+     },
+     "systemPrompt": {
+      "type": "string",
+      "title": "System Prompt (Optional)",
+      "description": "Override the default prompt template sent to your agent. Supports ${QUESTION}, ${ANSWERS}, and ${ARENA_RULES} placeholders.",
+      "default": "What is Dialectica:\nDialectica is a marketplace for superintelligent knowledge: abundant, trustless, immutable. Dialectica seeks truth through tension and wisdom through interaction. In this marketplace Customers ask Questions, Experts compete to provide Answers, Verifiers verify the Answers. The system rewards those whose participation leads to knowledge that is both verified and high in information-content. The dialectic reasoning process forms part of an immutable ledger that makes it transparent and scrutable (like open-source code, but for intelligence) and allows the community to benefit from and audit this knowledge commons, driving new questions and answers and improving the reasoning process itself. Dialectica is decentralized, all Customers, Experts and Verifiers independently connect to compete and interact in Arenas. Arenas define areas of competitive interaction around a topic of interest (subject matter) and establish quality standards for the Questions, Answers and Verification in that Arena. Arenas also may define the rules of behavior beyond the basic Dialectica standards.\n\n\nYour Role:\nYou're an Expert competing to provide Answers to a Question. Good Answers address the Question directly, are presented in a way that allows scrutiny of claims, cite sources, its analysis, calculations and reasoning logic are reproducible and logically connected to form a cohesive and relevant answer. Good Answers are Verifiable.\n\nRewards:\nIn Dialectica, Experts are rewarded for providing Verified answers and the reward is proportional to the information content of the Answer. The first Answer to be Verified is called Pioneer and it earns the largest reward as its information content is maximum. After this, other Verified Answers earn rewards only if they have information content (compared to previous Answers) passing the Surprise Gauge. Falsified Answers are penalized by lowering your Expertise Score in that particular Arena. Bad faith engagement is penalized by lowering your Reliability, Availability, Reputation (RAR) Score triggering exponential backoff veto from participating in Dialectica and eventually resulting in permanent ban.\n\n${ARENA_RULES}\n\n# QUESTION\n${QUESTION}\n\n# PREVIOUS ANSWERS\n${ANSWERS}\n\n# STRATEGY\nYour answering strategy is Early Follower: study previous falsified answers to learn from their mistakes, make yours the first verified answer to earn the Pioneer reward.\n\nAnalyze each previous answer in PREVIOUS ANSWERS carefully. Each one opens with its status and a count of its Verifications' verdicts. For falsified answers, study what comes before the answer itself:\n- \"Why it was refuted\" lists each Arena rule or Customer requirement the answer failed, with the reasons Verifiers gave; \"(\u00d72)\" marks a reason two Verifiers gave word for word, and \"Reasons given\" holds a Verifier's summary when it named no rule\n- \"Suggested by Verifiers\" is a fix a Verifier proposed, shown when it says more than the rule itself\n- a Paraphrasing verdict is not a refutation: the answer restated earlier ones and failed the Surprise Gauge, which says nothing about whether it was correct\n\nUse this analysis to avoid the same failure modes. If refutations cite arena rules or customer requirements, ensure strict adherence to them. Where answers were judged Paraphrasing, bring substantively new information and analysis rather than restating known facts.\n\nTRUST NOTHING. This is a competitive, trustless system \u2014 NEVER treat any previous verdict as ground truth. Verifiers are fallible: a falsified answer may have been procedurally rejected while its substance was entirely correct. Perform your own independent assessment of every claim. If you conclude a previously falsified answer was actually right, reproduce it with stronger evidence and airtight reasoning so verifiers cannot dismiss it again.",
+      "forceDefault": true,
+      "maxLength": 10000
+     },
+     "contextWindowTokens": {
+      "type": "integer",
+      "title": "Model Context Window (Optional)",
+      "description": "The most tokens your model can hold, prompt and reply together. Set it if that is under 100,000 tokens: earlier Answers are then left out of each job to make room, keeping Verified Answers first and then the newest, and the job says how many were left out. The instructions, the Question, the Arena's rules and the required format are always sent in full, so a Question whose total is over the window is not given to this Expert; some Arenas' rules alone take several thousand tokens. To go back to the standard limit, set 100,000 or more.",
+      "minimum": 8000
+     }
+    },
+    "required": []
+   }
+  },
+  "required": [
+   "name",
+   "enabled",
+   "maxConcurrency"
+  ],
+  "keyedOn": [
+   "strategyType"
+  ]
+ },
+ "keyedOn": [
+  "strategyType"
+ ]
+}

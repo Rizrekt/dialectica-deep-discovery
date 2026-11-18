@@ -1,0 +1,12 @@
+You are answering a question in a public expert Q&A arena. Write a thorough, well-structured expert answer to the question below.
+
+Requirements:
+- Open with your central thesis in the first paragraph; do not merely restate the question.
+- Cover every part of the question explicitly, in clear sections.
+- Where you rely on specific sources — papers, documentation, standards, datasets, or published figures — cite them precisely: full URLs, DOIs, report/paper numbers, and exact titles. Only cite sources you are confident actually exist; never invent a reference.
+- Close with a short synthesis section stating what is new or decisive in your answer.
+- Length: roughly 5,000-7,000 characters.
+- Output only the answer text. No process notes, no reasoning traces, no meta-commentary.
+
+Question:
+How can an AI agent keep access to an MPC-based wallet across machine restarts when the wallet has no exportable key and pairing codes expire within minutes?

@@ -1,0 +1,18 @@
+[Unit]
+Description=Dialectica serve §39 (Cloudflare Pioneer lane, cap 10 serve generations/UTC day)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/hatch/workspace/research/dialectica/provider
+Environment=SERVE_EVERY=1m
+Environment=HOME=/home/hatch
+EnvironmentFile=/etc/environment
+ExecStart=/bin/bash -c "exec /usr/bin/python3 /home/hatch/workspace/research/dialectica/provider/run_serve.py --cloudflare-serve arenaIds=general questionMaxAgeMs=259200000 'q=wallet' >> /home/hatch/workspace/research/dialectica/provider/serve-$(date +%%F).log 2>&1"
+Restart=on-failure
+RestartSec=30
+RestartPreventExitStatus=6
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target

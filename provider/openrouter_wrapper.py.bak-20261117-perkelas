@@ -1,0 +1,649 @@
+#!/usr/bin/env python3
+"""Post-generation wrapper for the OpenRouter/Nemotron lane (Dialectica).
+
+MEKANISME §34. The raw Nemotron 3 Ultra output measured in the OpenRouter
+benchmark (BENCH-2026-11-10) has three consistent, mechanical defects:
+
+1. Mojibake: the answer arrives double-encoded (UTF-8 bytes read as
+   Latin-1), 31-88+ markers per answer ("EIPâ€'1167", "Ã—").
+2. Length: median 3,846 chars against the rubric floor of 4,500 (§30 R3).
+3. Citation binding (experiment E1 in QUALITY.md): numbers are repeatedly
+   attached to the WRONG named document (EIP-2929 given the pre-Berlin
+   700-gas CALL cost; EIP-3860 credited with a DELEGATECALL surcharge;
+   EIP-1167 given a 10-byte bytecode). Rubric item (d) is a dead gate:
+   a draft that fails it is never sent.
+
+This module is the mechanical fence. It never invents a source and never
+calls a model itself; regeneration is injected by the caller as a
+callback. Pipeline: normalise mojibake -> length guard (one regeneration
+with an explicit expansion instruction when below the floor; still short
+= GAGAL-LANJUT, do not send) -> number/citation audit + citation_patch
+(wrong or unverifiably-bound numbers are REMOVED, never replaced with an
+invented value) -> automatic QUALITY.md rubric score (a)-(g).
+
+Canonical values used by the audit are the values written in the named
+documents themselves, cross-checked against the steering ground truth for
+ISR 60fa9935 and the BENCH spot-audit: EIP-1167 runtime bytecode = 45
+bytes; EIP-2929 cold account access = 2,600 gas, warm = 100 gas (700 gas
+is the pre-Berlin CALL base cost, not EIP-2929); EIP-3860 = initcode
+metering, limit 49,152 bytes and 2 gas per 32-byte word (it is NOT a
+DELEGATECALL or CALL surcharge); EIP-2028 = 16 gas per non-zero calldata
+byte, 4 gas per zero byte; EIP-170 max contract size = 24,576 bytes.
+
+MEKANISME §45 (post-falsified-#2 gate): the audit above only judges
+numbers bound to named documents, so a draft with almost NO citations
+and almost NO numbers gives it nothing to judge — claim #2 (ISO
+097df475) shipped with 0 URLs and passed. The mechanical floor below
+(K-1/K-2 from STUDI-JUARA-VERDICT-2026-11-10, n=153 verified / 204
+falsified external) is the complementary dead gate: a draft is NOT
+sendable when it has < 1 URL, citation density < 0.5 per 1,000 chars,
+or a citation-bound number ratio < 0.30. Floor failures are reported as
+findings (severity FLOOR, span None) so every lane's existing fail-
+closed sendable semantics (any surviving finding = withheld) applies
+without any provider change; the semantic support gate (self-VFP,
+operator prompt T10.2/T12) remains a separate, non-delegable check —
+claim #1 passed every mechanical threshold and died on support.
+"""
+
+import json
+import re
+import sys
+
+# ---------------------------------------------------------------- mojibake
+
+_HIGH = re.compile(r"[\u0080-\u00ff]+")
+_MARKER = re.compile(r"[\u0080-\u009f]|Ã(?=[\u0080-\u00ff])|â(?=[\u0080-\u00ff])|Â(?=[\u0080-\u00ff])")
+
+
+def count_mojibake_markers(text):
+    """Count double-encoding markers: C1 control chars (never legitimate
+    in prose) plus the classic Ã/â/Â lead chars of a mis-decoded run."""
+    return len(_MARKER.findall(text))
+
+
+def _repair_run(run):
+    """Try to turn one run of high chars back into the UTF-8 text it was.
+    Accept only a decode whose re-encoding reproduces the run exactly."""
+    for enc in ("latin-1", "cp1252"):
+        try:
+            fixed = run.encode(enc).decode("utf-8")
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            continue
+        try:
+            if fixed.encode("utf-8").decode(enc) == run and fixed != run:
+                return fixed
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            continue
+    return run
+
+
+def normalize_mojibake(text):
+    """Repair double-encoded spans. Returns (clean_text, before, after)
+    marker counts. Spans that do not round-trip are left untouched, so
+    legitimate characters (e.g. a real '×' or '±') survive."""
+    before = count_mojibake_markers(text)
+    out = _HIGH.sub(lambda m: _repair_run(m.group(0)), text)
+    return out, before, count_mojibake_markers(out)
+
+
+# ------------------------------------------------------------- length guard
+
+LENGTH_FLOOR = 4500
+LENGTH_BAND = (4500, 8000)
+MARATHON_BAND = (10000, 12000)
+
+EXPANSION_INSTRUCTION = (
+    "\n\n---\nINSTRUKSI PERLUASAN (wajib): draf sebelumnya untuk pertanyaan "
+    "ini hanya {prev} karakter — di bawah lantai 4.500. Tulis ulang jawaban "
+    "LENGKAP dari awal dengan panjang 5.500–7.500 karakter. Pertahankan "
+    "persis struktur yang diminta (pembuka tesis ≤3 kalimat, seksi ## "
+    "bernomor dengan lead-in tebal, penutup yang menamai kebaruan). Perluas "
+    "SETIAP seksi dengan analisis mekanisme, angka yang benar dari dokumen "
+    "yang disebut namanya, dan contoh hitungan — jangan mengulang kalimat "
+    "yang sama, jangan menambah seksi baru."
+)
+
+
+# ------------------------------------------------------- citation auditing
+
+def _num(tok):
+    """Parse a number token, tolerating thousand groups written with a
+    dot, comma, narrow no-break space or no-break space (49.152 / 49 152)."""
+    tok = tok.strip()
+    if re.fullmatch(r"\d{1,3}([.,\u202f\u00a0]\d{3})+", tok):
+        return int(re.sub(r"[.,\u202f\u00a0]", "", tok))
+    try:
+        return float(tok.replace(",", "."))
+    except ValueError:
+        return None
+
+
+NUM_RE = re.compile(
+    r"\d{1,3}(?:[.,\u202f\u00a0]\d{3})+(?:[.,]\d+)?|\d+(?:[.,]\d+)?")
+DOC_RE = re.compile(r"\b(?:EIP|ERC)-\d+\b")
+# A number is BOUND to a document only in tight syntactic shapes: a value
+# with a unit shortly before a parenthetical tag — "16 gas/byte (EIP-2028)"
+# — or a value shortly after an attribution preposition — "menurut
+# EIP-1167, 10 byte". Loose same-sentence co-occurrence is NOT binding
+# (derived arithmetic lives in the same sentences and is not attributed).
+BOUND_AFTER_RE = re.compile(
+    r"(?<![\w\-])(?P<num>\d{1,3}(?:[.,\u202f\u00a0]\d{3})+|\d+(?:[.,]\d+)?)"
+    r"\s*(?:gas|byte|bytes|%)[^()\n]{0,40}?\((?P<doc>(?:EIP|ERC)-\d+)\)")
+BOUND_BEFORE_RE = re.compile(
+    r"(?:menurut|sesuai|per|dalam|under)\s+(?P<doc>(?:EIP|ERC)-\d+)"
+    r"[^0-9\n]{0,40}?(?<![\w\-])"
+    r"(?P<num>\d{1,3}(?:[.,\u202f\u00a0]\d{3})+|\d+(?:[.,]\d+)?)")
+
+# Values actually written in the named documents (see module docstring).
+CANON = {
+    "EIP-1167": {45},
+    "EIP-2929": {2600, 100},
+    "EIP-3860": {49152, 2},
+    "EIP-2028": {16, 4},
+    "EIP-170": {24576},
+    "EIP-1967": set(),
+}
+
+
+def _sentences(text):
+    parts = re.split(r"(?<=[.!?])\s+|\n+", text)
+    return [p for p in (s.strip() for s in parts) if p]
+
+
+def audit_numbers(text):
+    """Extract number claims bound to named documents and judge them.
+
+    Returns a list of findings: {severity, doc, value, excerpt, action,
+    span} — severity WRONG (contradicts the named document's own value)
+    or BOUND-UNVERIFIED (a specific number explicitly attributed to a
+    named document that does not carry it). Span marks the number token
+    to remove when patching. Numbers not bound to a named document are
+    not judged here (they are the rubric's manual Tier-0 review).
+    """
+    # Nemotron writes "EIP‑1167" with U+2011 non-breaking hyphens. Map all
+    # Unicode dashes to ASCII for matching; the replacement is 1:1 per
+    # character, so spans stay valid against the caller's original text.
+    text = re.sub(r"[\u2010-\u2015]", "-", text)
+    findings = []
+
+    def add(sev, doc, value, sent, span, action):
+        findings.append({
+            "severity": sev, "doc": doc, "value": value,
+            "excerpt": sent[:180], "action": action, "span": span,
+        })
+
+    seen = set()
+
+    def add_once(sev, doc, value, sent, span, action):
+        key = (sev, doc, value, sent[:80])
+        if key in seen:
+            return
+        seen.add(key)
+        add(sev, doc, value, sent, span, action)
+
+    offset = 0
+    for sent in _sentences(text):
+        base = text.find(sent, offset)
+        if base < 0:
+            base = offset
+        offset = base + len(sent)
+        docs = DOC_RE.findall(sent)
+        if not docs:
+            continue
+        low = sent.lower()
+        doc_spans = [(base + m.start(), base + m.end())
+                     for m in DOC_RE.finditer(sent)]
+        nums = []
+        for m in NUM_RE.finditer(sent):
+            sp = (base + m.start(), base + m.end())
+            if any(sp[0] < d[1] and d[0] < sp[1] for d in doc_spans):
+                continue  # the digits of "EIP-1167" itself are not a claim
+            val = _num(m.group(0))
+            if val is not None:
+                nums.append((m.group(0), val, sp))
+
+        if "EIP-2929" in docs:
+            for raw, val, sp in nums:
+                if val == 100 and re.search(
+                        r"cold[^0-9]{0,24}" + re.escape(raw) + r"|" +
+                        re.escape(raw) + r"[^0-9]{0,24}cold", sent):
+                    add_once("WRONG", "EIP-2929", val, sent, sp,
+                             "cold access menurut EIP-2929 = 2.600 gas, "
+                             "bukan 100; angka dibuang")
+                if val == 700:
+                    add_once("WRONG", "EIP-2929", val, sent, sp,
+                             "700 gas = biaya dasar CALL pra-Berlin, bukan "
+                             "nilai EIP-2929 (cold 2.600 / warm 100); "
+                             "angka dibuang")
+        # EIP-3860 credited with a CALL/DELEGATECALL effect only counts
+        # when the attribution is syntactic (parenthetical tag, the word
+        # "surcharge", or a cost-change verb aimed at CALL) — a sentence
+        # that correctly credits EIP-3860 with initcode cost while also
+        # discussing DELEGATECALL is not a misattribution.
+        if "EIP-3860" in docs and (
+                re.search(r"(?:delegatecall|call)\b[^()\n]{0,30}"
+                          r"\(\s*eip-3860\s*\)", low)
+                or re.search(r"surcharge[^.\n]{0,48}eip-3860", low)
+                or re.search(r"eip-3860[^.\n]{0,48}surcharge", low)
+                or re.search(r"eip-3860[^.\n]{0,48}(?:mengurangi|menambah|"
+                             r"menaikkan|reduces?|adds?)[^.\n]{0,24}"
+                             r"(?:biaya|cost)[^.\n]{0,24}call", low)):
+            add_once("WRONG", "EIP-3860", None, sent, None,
+                     "EIP-3860 = metering initcode (batas 49.152 byte, "
+                     "2 gas per kata 32-byte), BUKAN surcharge "
+                     "DELEGATECALL / pengurang biaya CALL; atribusi "
+                     "salah ditandai untuk citation_patch manual")
+        if "EIP-1167" in docs:
+            # Only a SIZE claim counts ("bytecode 10 byte", "(10 byte)");
+            # a byte-range offset like "offset 10-29" is correct prose.
+            m10 = re.search(r"\b10(?=\s*[-–]?\s*(?:byte|bytes)\b)", sent)
+            if m10:
+                sp = (base + m10.start(), base + m10.end())
+                add_once("WRONG", "EIP-1167", 10, sent, sp,
+                         "bytecode runtime EIP-1167 = 45 byte, bukan 10; "
+                         "angka dibuang")
+        if "EIP-2028" in docs and re.search(r"\b1\s*gas\s*(per|/)\s*byte",
+                                            low):
+            add_once("WRONG", "EIP-2028", 1, sent, None,
+                     "EIP-2028 = 16 gas/byte non-zero, 4 gas/byte zero, "
+                     "bukan 1 gas/byte; klaim ditandai")
+        flagged_spans = {f["span"] for f in findings if f.get("span")}
+        for rx in (BOUND_AFTER_RE, BOUND_BEFORE_RE):
+            for m in rx.finditer(sent):
+                doc = m.group("doc")
+                canon = CANON.get(doc)
+                if not canon:
+                    continue
+                val = _num(m.group("num"))
+                sp = (base + m.start("num"), base + m.end("num"))
+                if val is not None and val not in canon \
+                        and sp not in flagged_spans:
+                    add_once("BOUND-UNVERIFIED", doc, val, sent, sp,
+                             "angka terikat sintaksis ke " + doc +
+                             " tetapi bukan nilai dokumen itu; angka "
+                             "dibuang (klaim turun ke Tier-0 tanpa angka)")
+    return findings
+
+
+def apply_citation_patch(text, findings):
+    """Remove the flagged number tokens (right-to-left). Never inserts a
+    replacement value and never invents a source. Returns (patched,
+    applied) where applied lists what was actually removed."""
+    doc_spans = [(m.start(), m.end()) for m in DOC_RE.finditer(text)]
+    spans = sorted({f["span"] for f in findings if f.get("span")},
+                   reverse=True)
+    applied = []
+    out = text
+    for start, end in spans:
+        if any(start < d[1] and d[0] < end for d in doc_spans):
+            continue  # never cut the digits of a document's own name
+        applied.append(out[start:end])
+        out = out[:start] + out[end:]
+    out = re.sub(r"[ \t]{2,}", " ", out)
+    out = re.sub(r"\s+([,.;:!?])", r"\1", out)
+    return out, applied
+
+
+# ------------------------------------------------ mechanical floor (§45)
+#
+# Metric definitions follow STUDI-JUARA-VERDICT-2026-11-10 §1 as written
+# there: a citation is a URL or a named reference (EIP-/ERC-/BIP-/CAIP-/
+# RFC/arXiv/DOI/ISO/NIST patterns); citation density = citations per
+# 1,000 characters; the bound ratio is the proportion of number tokens
+# lying within ±150 characters of a URL/named reference. The study's own
+# extraction code was not preserved, so two implementation choices are
+# declared here: number tokens are this module's NUM_RE (the same
+# tokenizer the audit uses), and tokens overlapping a citation span
+# (the digits of "EIP-1167" itself, digits inside a URL/DOI/arXiv id)
+# are excluded from both the numerator and the denominator — they are
+# part of the citation, not claims bound to it.
+
+URL_RE = re.compile(r"https?://[^\s<>\[\]{}|\\^`\"']+")
+_URL_TRAILING = ".,;:!?)]}\"'"
+NAMED_REF_RES = (
+    re.compile(r"\b(?:EIP|ERC|BIP|CAIP)-\d+\b"),
+    re.compile(r"\bRFC[-\s]?\d+\b"),
+    re.compile(r"arXiv[:\s]\d{4}\.\d{4,5}\b", re.IGNORECASE),
+    re.compile(r"arxiv\.org/abs/\d{4}\.\d{4,5}\b", re.IGNORECASE),
+    re.compile(r"(?:doi:\s*)?10\.\d{4,9}/[^\s<>\[\]{}|\\^`\"']+",
+               re.IGNORECASE),
+    re.compile(r"\bISO(?:/IEC)?[-\s]?\d{3,5}(?::\d{4})?\b"),
+    re.compile(r"\bNIST\b(?:\s+(?:SP|FIPS|IR)\s?[\d-]+)?"),
+)
+
+BOUND_WINDOW = 150                # characters, per the study definition
+FLOOR_MIN_URLS = 1                # K-1(a)
+FLOOR_MIN_CITATION_DENSITY = 0.5  # K-1(b), citations per 1,000 chars
+FLOOR_MIN_BOUND_RATIO = 0.30      # K-2
+
+
+def citation_spans(text):
+    """All citation spans (URLs + named references) with overlaps
+    merged. Returns [(start, end, is_url)] sorted by start. A named
+    reference inside a URL (a DOI or arXiv id in a link) is part of
+    that URL's span, never a second citation."""
+    raw = []
+    for m in URL_RE.finditer(text):
+        end = m.end()
+        while end > m.start() + 8 and text[end - 1] in _URL_TRAILING:
+            end -= 1
+        raw.append((m.start(), end, True))
+    for rx in NAMED_REF_RES:
+        for m in rx.finditer(text):
+            raw.append((m.start(), m.end(), False))
+    raw.sort()
+    merged = []
+    for s, e, is_url in raw:
+        if merged and s < merged[-1][1]:
+            ps, pe, pu = merged[-1]
+            merged[-1] = (ps, max(pe, e), pu or is_url)
+        else:
+            merged.append((s, e, is_url))
+    return merged
+
+
+def mechanical_floor(text):
+    """Evaluate the §45 mechanical floor (K-1/K-2) over a draft.
+
+    Returns a dict with the measured metrics, per-check verdicts
+    ({actual, threshold, passed}), `passed` overall and `failures` —
+    one human-readable string per failed check, naming the floor and
+    the actual value (the mandatory withhold reason)."""
+    cites = citation_spans(text)
+    url_count = sum(1 for _, _, u in cites if u)
+    density = len(cites) / (len(text) / 1000.0) if text else 0.0
+    total = bound = 0
+    for m in NUM_RE.finditer(text):
+        s, e = m.start(), m.end()
+        if any(s < ce and cs < e for cs, ce, _ in cites):
+            continue  # digits of a citation itself, not a claim
+        total += 1
+        if any(max(cs - e, s - ce) <= BOUND_WINDOW for cs, ce, _ in cites):
+            bound += 1
+    ratio = bound / total if total else 0.0
+    checks = {
+        "url": {"actual": url_count, "threshold": FLOOR_MIN_URLS,
+                "passed": url_count >= FLOOR_MIN_URLS},
+        "density": {"actual": round(density, 3),
+                    "threshold": FLOOR_MIN_CITATION_DENSITY,
+                    "passed": density >= FLOOR_MIN_CITATION_DENSITY},
+        "ratio": {"actual": round(ratio, 3),
+                  "threshold": FLOOR_MIN_BOUND_RATIO,
+                  "passed": ratio >= FLOOR_MIN_BOUND_RATIO},
+    }
+    failures = []
+    if not checks["url"]["passed"]:
+        failures.append(
+            f"LANTAI K-1(a) jumlah URL: aktual {url_count} < "
+            f"{FLOOR_MIN_URLS}")
+    if not checks["density"]["passed"]:
+        failures.append(
+            f"LANTAI K-1(b) kepadatan sitasi: aktual {density:.3f} per "
+            f"1.000 kar < {FLOOR_MIN_CITATION_DENSITY} ({len(cites)} "
+            f"sitasi dalam {len(text)} karakter)")
+    if not checks["ratio"]["passed"]:
+        failures.append(
+            f"LANTAI K-2 rasio angka terikat sitasi: aktual "
+            f"{ratio:.3f} < {FLOOR_MIN_BOUND_RATIO} ({bound} dari "
+            f"{total} token angka dalam ±{BOUND_WINDOW} karakter dari "
+            f"sebuah sitasi)")
+    return {
+        "url_count": url_count,
+        "citation_count": len(cites),
+        "citation_density": round(density, 3),
+        "number_tokens": total,
+        "bound_numbers": bound,
+        "bound_ratio": round(ratio, 3),
+        "checks": checks,
+        "passed": not failures,
+        "failures": failures,
+    }
+
+
+def floor_findings(floor):
+    """Express floor failures as wrapper findings (severity FLOOR,
+    span None) so the established fail-closed channel applies: every
+    lane computes sendable from the surviving findings, so a floor
+    failure withholds the draft everywhere with no provider change.
+    The action text carries the mandatory reason — which floor failed
+    and the actual measured value."""
+    keys = {"url": "K-1(a)", "density": "K-1(b)", "ratio": "K-2"}
+    out = []
+    for name, failure in zip(
+            (k for k in ("url", "density", "ratio")
+             if not floor["checks"][k]["passed"]),
+            floor["failures"]):
+        out.append({
+            "severity": "FLOOR", "doc": f"LANTAI {keys[name]}",
+            "value": floor["checks"][name]["actual"],
+            "excerpt": (f"lantai mekanik §45: URL "
+                        f"{floor['url_count']}, sitasi "
+                        f"{floor['citation_count']} "
+                        f"({floor['citation_density']}/1.000 kar), "
+                        f"rasio terikat {floor['bound_ratio']} "
+                        f"({floor['bound_numbers']}/"
+                        f"{floor['number_tokens']} token angka)"),
+            "action": (failure + " — DRAF DITAHAN UTUH (pintu mati "
+                       "mekanik §45; tidak ada patch untuk lantai — "
+                       "perbaiki drafnya, bukan angkanya)"),
+            "span": None,
+        })
+    return out
+
+
+# ------------------------------------------------------------ rubric score
+
+GENERIC_OPENERS = (
+    "this is an important", "in this answer", "in this essay",
+    "smart contract proxies are widely used", "pada dasarnya pertanyaan ini",
+    "pertanyaan ini penting", "dalam jawaban ini", "dalam esai ini",
+)
+NOVELTY_MARKERS = re.compile(
+    r"belum dibahas|belum ada|belum disentuh|belum dipertimbangkan|"
+    r"yang baru|kebaruan|novel|not (yet )?(covered|addressed|discussed)|"
+    r"belum pernah|missing|hilang dari|"
+    # §52/§53 + §7.1 prep 2026-11-11: the exact closing marker our own
+    # steering orders ("Baru dalam jawaban ini:") was NOT recognised —
+    # (e) false negatives in 2/2 shadow drills. Case variants are
+    # covered by IGNORECASE; a few preposition variants are listed too.
+    r"baru dalam jawaban ini|baru di jawaban ini|"
+    r"baru pada jawaban ini|baru dalam respons ini",
+    re.IGNORECASE)
+
+
+def score_rubric(text, expected_sections=6, needs_json=False,
+                 marathon=False, forbidden_overlap=()):
+    """Mechanical approximation of QUALITY.md **v2** items (a)-(g)
+    (adopted 2026-11-11, EVALUASI §4.3/§7.1 butir 2). Items (h)/(i) are
+    NOT scored here — they need the question's sub-question list and
+    are scored on the SENT text by audit_sent_draft.py (§7.1 butir 3).
+    Returns {item: (status, note)} with status LOLOS/GAGAL/N-A.
+
+    v2 changes vs v1: (b) coverage over lead-in — numbered sections
+    covering the sub-questions decide; bold lead-ins are advisory only
+    (counted in the note, never required). (c) the ceiling is advisory,
+    not a fail gate — only the 4,500-char floor fails (evaluasi §4.2:
+    plafon 12 rb failed x4 while verified answers exceeded it)."""
+    score = {}
+    blocks = [b.strip() for b in re.split(r"\n\s*\n", text) if b.strip()]
+    opening = blocks[0] if blocks else ""
+    sents = [s for s in re.split(r"(?<=[.!?])\s+", opening) if s.strip()]
+    generic = any(opening.lower().startswith(g) for g in GENERIC_OPENERS)
+    score["a"] = ("LOLOS" if 1 <= len(sents) <= 3 and not generic
+                  and len(opening) >= 40 else "GAGAL",
+                  f"pembuka {len(sents)} kalimat, {len(opening)} kar"
+                  + (", pembuka generik" if generic else ""))
+    headers = re.findall(r"^##\s+\d+", text, flags=re.M)
+    bold_leads = len(re.findall(r"^##[^\n]*\n\*\*", text, flags=re.M))
+    score["b"] = ("LOLOS" if len(headers) >= expected_sections
+                  else "GAGAL",
+                  f"{len(headers)} seksi ## bernomor (target "
+                  f"{expected_sections}), {bold_leads} lead-in tebal "
+                  f"(v2: lead-in anjuran, bukan syarat)")
+    lo, hi = MARATHON_BAND if marathon else LENGTH_BAND
+    over = len(text) > hi
+    score["c"] = ("GAGAL" if len(text) < LENGTH_FLOOR else "LOLOS",
+                  f"{len(text)} karakter (lantai {LENGTH_FLOOR}; pita "
+                  f"anjuran {lo}–{hi}"
+                  + (" — di atas plafon anjuran, v2: catatan saja, "
+                     "bukan gagal" if over else "") + ")")
+    closing = blocks[-1] if blocks else ""
+    score["e"] = ("LOLOS" if NOVELTY_MARKERS.search(closing) else "GAGAL",
+                  "penutup menamai kebaruan" if NOVELTY_MARKERS.search(closing)
+                  else "penutup tanpa penamaan kebaruan eksplisit")
+    if forbidden_overlap:
+        hits = [f for f in forbidden_overlap if f in text]
+        score["f"] = ("GAGAL" if hits else "LOLOS",
+                      f"tumpang-tindih terlarang: {hits}" if hits
+                      else "tidak mengulang identitas terlarang")
+    else:
+        score["f"] = ("N-A",
+                      "mode bayangan: tidak ada pembanding verified di "
+                      "pipa mekanis — cek manual di lab")
+    if needs_json:
+        try:
+            json.loads(text)
+            score["g"] = ("LOLOS", "JSON valid persis")
+        except ValueError:
+            score["g"] = ("GAGAL", "skema JSON diminta tetapi teks bukan "
+                          "JSON valid")
+    else:
+        score["g"] = ("LOLOS", "format prosa terstruktur sesuai tuntutan "
+                      "prompt (bukan skema JSON)")
+    return score
+
+
+RUBRIC_LABELS = {
+    "a": "pembuka tesis/koreksi ≤3 kalimat",
+    "b": "struktur ##/### mencakup semua sub-pertanyaan (v2: cakupan "
+         "di atas lead-in)",
+    "c": "panjang: lantai 4.500 (v2: plafon = anjuran, bukan gagal)",
+    "d": "sitasi persis + entailment angka poros (E1 diadopsi v2)  "
+         "← pintu mati",
+    "e": "penutup menamai kebaruan yang BENAR (v2)",
+    "f": "bukan parafrase verified yang ada",
+    "g": "format skema klien persis  ← pintu mati",
+    "h": "cakupan sub-pertanyaan atas teks TERKIRIM  ← pintu mati "
+         "(dinilai audit_sent_draft.py)",
+    "i": "bukti empiris ≥1 fakta/angka dunia terikat sumbernya "
+         "(dinilai audit_sent_draft.py)",
+}
+
+
+def rubric_sheet(score, isr="—", model="—", kelas="bayangan"):
+    lines = [f"RUBRIK v2 — {isr} — {model} — {kelas}"]
+    for item in "abcdefg":
+        status, note = score[item]
+        lines.append(f"({item}) {RUBRIC_LABELS[item]}: {status} — {note}")
+    dead_fail = any(score[i][0] == "GAGAL" for i in ("d", "g"))
+    any_fail = any(v[0] == "GAGAL" for v in score.values())
+    vonis = "LEWATI TARGET" if dead_fail else (
+        "PERBAIKI" if any_fail else "KIRIM (bayangan: arsip saja)")
+    lines.append(f"VONIS: {vonis}")
+    return "\n".join(lines)
+
+
+# -------------------------------------------------------------- the pipeline
+
+def wrap_answer(raw_text, regen_fn=None, **score_kwargs):
+    """Run the full wrapper over one raw answer.
+
+    regen_fn, when given, is called once with EXPANSION_INSTRUCTION if
+    the normalised text is below the length floor; it must return the
+    new raw text. Returns a result dict: {text, status, report} where
+    status is OK or GAGAL-LANJUT (still below floor after one regen —
+    the text must NOT be sent anywhere).
+    """
+    report = {"generations": 1}
+    text, before, after = normalize_mojibake(raw_text)
+    report["mojibake"] = {"markers_before": before, "markers_after": after}
+    report["chars_raw"] = len(raw_text)
+    report["chars_normalised"] = len(text)
+
+    regenerated = False
+    if len(text) < LENGTH_FLOOR and regen_fn is not None:
+        regen_raw = regen_fn(EXPANSION_INSTRUCTION.format(prev=len(text)))
+        report["generations"] = 2
+        regenerated = True
+        text, b2, a2 = normalize_mojibake(regen_raw)
+        report["mojibake_regen"] = {"markers_before": b2,
+                                    "markers_after": a2}
+        report["chars_regen"] = len(text)
+    report["regenerated"] = regenerated
+    report["chars_final_pre_patch"] = len(text)
+    report["status"] = "OK" if len(text) >= LENGTH_FLOOR else "GAGAL-LANJUT"
+
+    audit_findings = audit_numbers(text)
+    patched, applied = apply_citation_patch(text, audit_findings)
+    # §45 floor is measured on the patched text — the text that would
+    # actually be sent — and its failures join the findings list, so
+    # the dead gate (d) and every lane's sendable semantics (any
+    # surviving finding = withheld) cover the floor unchanged.
+    floor = mechanical_floor(patched)
+    findings = audit_findings + floor_findings(floor)
+    report["floor"] = floor
+    report["audit"] = {
+        "findings": [{k: v for k, v in f.items() if k != "span"}
+                     for f in findings],
+        "numbers_removed": applied,
+        "wrong": sum(1 for f in findings if f["severity"] == "WRONG"),
+        "bound_unverified": sum(1 for f in findings
+                                if f["severity"] == "BOUND-UNVERIFIED"),
+        "floor_failures": sum(1 for f in findings
+                              if f["severity"] == "FLOOR"),
+    }
+    score = score_rubric(patched, **score_kwargs)
+    score["d"] = ("LOLOS" if not findings else "GAGAL",
+                  f"{len(findings)} temuan audit angka/lantai "
+                  f"({report['audit']['wrong']} salah-atribusi, "
+                  f"{report['audit']['bound_unverified']} terikat-tak-"
+                  f"terverifikasi, "
+                  f"{report['audit']['floor_failures']} lantai mekanik "
+                  f"§45) — angka salah sudah di-patch mekanis; kegagalan "
+                  f"lantai menahan seluruh draf"
+                  if findings else "nol temuan audit angka, lantai "
+                  "mekanik §45 lolos")
+    report["rubric"] = {k: list(v) for k, v in score.items()}
+    report["chars_final"] = len(patched)
+    return {"text": patched, "status": report["status"], "report": report,
+            "score": score}
+
+
+def withhold_breakdown(report):
+    """Severity breakdown of a wrap report's audit findings (§7.1
+    butir 6 — utang §50.5: providers used to print only the finding
+    COUNT on withhold, forcing a raw generation + offline wrap-file
+    to diagnose). Returns {wrong, bound_unverified, floor, total}."""
+    audit = (report or {}).get("audit", {}) or {}
+    wrong = audit.get("wrong", 0)
+    bound = audit.get("bound_unverified", 0)
+    floor = audit.get("floor_failures", 0)
+    total = len(audit.get("findings", []) or [])
+    return {"wrong": wrong, "bound_unverified": bound, "floor": floor,
+            "total": total}
+
+
+def format_withhold_breakdown(report):
+    """One stderr-ready line: the §50.5 severity breakdown."""
+    b = withhold_breakdown(report)
+    return (f"withhold breakdown: wrong={b['wrong']} "
+            f"bound-unverified={b['bound_unverified']} "
+            f"floor={b['floor']} (total {b['total']} temuan)")
+
+
+def main():
+    if len(sys.argv) >= 3 and sys.argv[1] == "wrap-file":
+        with open(sys.argv[2], encoding="utf-8") as fh:
+            data = json.load(fh)
+        raw = data.get("text", "") if isinstance(data, dict) else str(data)
+        result = wrap_answer(raw)
+        print(json.dumps({"status": result["status"],
+                          "report": result["report"]},
+                         ensure_ascii=False, indent=2))
+        return 0
+    print(__doc__)
+    return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())

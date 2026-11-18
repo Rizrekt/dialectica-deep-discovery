@@ -1,0 +1,45 @@
+[
+ {
+  "isr": "3dd05619-fdd1-48b5-b01d-768c914008c1",
+  "viso": null,
+  "hits": [
+   "ethereum",
+   "rollup",
+   "gas",
+   "eip-"
+  ],
+  "liveness": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_progress)",
+  "question": "How does the separate blob fee market introduced by EIP-4844 change the data-availability cost equilibrium for Ethereum rollups compared with calldata, and under what demand conditions do blob fees stop being negligible relative to execution gas?",
+  "gen_ok": false,
+  "gen_secs": 69.3,
+  "error": "VyceGenerationError: vyce_provider rc=1, stdout 0 karakter"
+ },
+ {
+  "isr": "3b5c0f0c-1637-4cba-a2eb-8429c0a9d910",
+  "viso": null,
+  "hits": [
+   "bridge"
+  ],
+  "liveness": "LIVE: ronde maraton terbuka — maxEndsAt 2026-11-16T22:03:02Z > sekarang (active=True, concluded=True)",
+  "question": "How do zero-knowledge proofs reduce the cost of verifying cross-chain bridge transactions compared with optimistic fraud proofs?",
+  "gen_ok": true,
+  "gen_secs": 82.8,
+  "gate_status": "OK",
+  "sendable": true,
+  "score_g": "LOLOS",
+  "final_chars": 7471,
+  "audit_findings": 0,
+  "thinking_trace": false,
+  "reasons": [],
+  "draft": "Zero-knowledge bridges replace the optimistic model's \"cheap to post, expensive to dispute, slow to finalize\" verification with \"expensive to produce off-chain, near-free to verify on-chain\": a succinct validity proof attests to the source chain's consensus and the relayed message in one shot, so the destination contract pays a single fixed, small verification fee and no challenge window exists at all.\n\n## 1. What each design must actually verify on-chain\n\nAn optimistic bridge (e.g., the canonical Arbitrum and OP-Stack bridges, or Across's UMA-oracle settlement) has a party post a claim — a state root, message root, or attestation — on the destination chain. In the honest case, \"verification\" is literally waiting: anyone has a dispute window to submit a fraud proof, and if none arrives the claim is accepted. If a dispute occurs, the destination chain must re-execute the disputed computation on-chain: Arbitrum resolves challenges through an interactive bisection game ending in a one-step proof executed in an on-chain WASM VM, and OP-Stack fault proofs run an on-chain MIPS emulator (Cannon) — multi-round games requiring several bonded L1 transactions before resolution (Arbitrum docs, https://docs.arbitrum.io/; OP Stack fault-proof specification, https://specs.optimism.io/protocol/fault-proofs.html).\n\nA ZK bridge instead has a prover generate a succinct proof that (a) the source chain's light-client consensus (signatures, validator-set updates, finality) finalized a header, and (b) that header commits to the message being relayed. The destination contract runs one fixed verifier. The zkBridge paper (Xie et al., ACM CCS 2022) formalizes exactly this: a distributed-prover SNARK (deVirgo) over the source chain's consensus, with constant-size on-chain verification (https://arxiv.org/abs/2210.00273).\n\n## 2. Per-message gas: a fixed small verifier vs. a dispute-contingent game\n\nThe on-chain cost of a validity proof is independent of the underlying computation: Groth16 verification touches a constant number of group elements regardless of circuit size (Groth, EUROCRYPT 2016, https://eprint.iacr.org/2016/260). On Ethereum the dominant cost is the pairing precompile, priced at 45,000·k + 34,000 gas for k pairs under EIP-1108 (https://eips.ethereum.org/EIPS/eip-1108), so a full Groth16 verification lands on the order of a few hundred thousand gas — and batching many headers/messages into one aggregated proof amortizes that fixed cost across all of them, driving per-message cost toward the price of storing the message itself.\n\nOptimistic bridges also have low happy-path gas (posting a root is cheap), so per-message gas alone is not where ZK wins. The ZK advantage is that this cost is unconditional, bounded, and known in advance, whereas optimistic verification cost is a random variable: near zero most of the time, but a multi-transaction, multi-round dispute game with on-chain VM execution when fraud is attempted — and the system must be permanently provisioned (watchers running full nodes, challenger bonds) so that any dispute is answered within the window.\n\n## 3. Latency and locked capital: the dominant cost ZK removes\n\nThe real cost of optimistic verification is time. Canonical withdrawals on Arbitrum and OP-Stack rollups wait roughly seven days for the fraud-proof window to close (Arbitrum docs, https://docs.arbitrum.io/; Optimism docs, https://docs.optimism.io/). During that window capital is locked and messages are not final, so anyone wanting fast service must pay a liquidity provider to front the funds and bear revert risk. Across, for example, repays users instantly and later settles against UMA's optimistic oracle after its liveness window (https://docs.across.to/; https://docs.uma.xyz/) — the fee users pay is, in effect, the monetized price of the fraud-proof delay.\n\nA ZK bridge finalizes as soon as the proof verifies: no challenge period, no locked-capital carry, no LP subsidy to bridge the gap. The latency budget becomes prover time — the zkBridge authors report block proofs generated in tens of seconds with the distributed deVirgo prover (https://arxiv.org/abs/2210.00273), and production systems like Polyhedra's zkLightClient (Cosmos-style PoS chains to Ethereum) and Succinct's Telepathy (Ethereum sync-committee light-client proofs) deliver finality in minutes rather than days (https://www.polyhedra.network/; https://succinct.xyz/).\n\n## 4. Where the cost goes instead: provers, circuits, and setup\n\nZK does not make verification free; it relocates it. The costs are (i) prover computation and hardware, heavily parallelizable — deVirgo distributes proving across untrusted machines; (ii) circuit engineering per source chain, since every consensus's signature scheme (ed25519, BLS12-381) and validator-set logic must be arithmetized, which is why ZK light clients first targeted sync-committee and Cosmos-style consensus; and (iii) setup considerations: Groth16 needs a per-circuit trusted ceremony, while universal-setup systems like PLONK avoid per-circuit ceremonies at slightly higher verifier cost (Gabizon, Williamson, Ciobotaru, https://eprint.iacr.org/2019/953). None of these costs appear on the destination chain's gas meter — that accounting shift is precisely what makes ZK bridges cheap for users.\n\n## 5. Break-even logic and the security dividend\n\nFor low-volume, latency-insensitive flows, optimistic designs remain cheaper in expectation: no prover capex, and disputes should be rare. ZK wins as (a) message volume grows, since the fixed verifier cost amortizes while watchtower and bond infrastructure scales poorly; (b) latency is priced, since minutes beat a seven-day window; and (c) worst-case guarantees matter, because a ZK bridge's soundness is cryptographic rather than dependent on at least one honest watcher reacting in time. That last point is also a security dividend: an optimistic bridge fails silently if no watcher challenges, while an invalid ZK proof is rejected by the verifier regardless of who is watching.\n\n## Sources\n\n- Xie, Zhang, Cheng, Zhang, Zhang, Chen, Song, \"zkBridge: Trustless Cross-chain Bridges Made Practical,\" ACM CCS 2022 — https://arxiv.org/abs/2210.00273\n- J. Groth, \"On the Size of Pairing-based Non-interactive Arguments,\" EUROCRYPT 2016 — https://eprint.iacr.org/2016/260\n- EIP-1108: alt_bn128 Precompile Gas Cost Reductions — https://eips.ethereum.org/EIPS/eip-1108\n- Gabizon, Williamson, Ciobotaru, \"PLONK\" — https://eprint.iacr.org/2019/953\n- Arbitrum documentation (bridge withdrawals and challenge mechanics) — https://docs.arbitrum.io/\n- OP Stack fault-proof specification — https://specs.optimism.io/protocol/fault-proofs.html\n- Optimism documentation (withdrawal delay) — https://docs.optimism.io/\n- Across documentation — https://docs.across.to/; UMA Optimistic Oracle documentation — https://docs.uma.xyz/\n- Polyhedra (zkLightClient) — https://www.polyhedra.network/; Succinct (Telepathy) — https://succinct.xyz/\n\nNew in this answer: It frames the comparison as a relocation of cost — optimistic systems keep happy-path on-chain gas near zero but carry a dispute-contingent worst case plus a multi-day latency that gets monetized as LP fees — and ties the ZK side's on-chain price to the exact EIP-1108 pairing-precompile schedule and Groth16's circuit-size-independent verifier. It also states the break-even conditions (volume, latency pricing, watcher liveness) rather than declaring either design uniformly cheaper.",
+  "semantic": {
+   "verdict": "unavailable",
+   "checker": null,
+   "codes": [],
+   "subs": [],
+   "findings": [],
+   "dropped": 0,
+   "error": "SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 31207 chars — discarded, never submitted || openr"
+  }
+ }
+]

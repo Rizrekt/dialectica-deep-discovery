@@ -1,0 +1,73 @@
+{
+ "id": "f8801972",
+ "isr": "c6b0eadc",
+ "chars": 39070,
+ "segment_chars": 5000,
+ "verdict": "fatal",
+ "checker": "vyce-nemotron",
+ "codes": [
+  "A_CITATION",
+  "A_CITATION",
+  "A_CITATION",
+  "A_CITATION",
+  "A_CITATION",
+  "A_CITATION"
+ ],
+ "subs": [
+  "S-4",
+  "S-4",
+  "S-4",
+  "S-4",
+  "S-4",
+  "S-1"
+ ],
+ "findings": [
+  {
+   "code": "A_CITATION",
+   "sub": "S-4",
+   "quote": "CPU: 2,500 AMNC/proof, 20 proofs/ID/day cap → 50,000 AMNC/day/ID max.",
+   "claim": "Contract emission parameters stated as fact.",
+   "why": "World fact supported only by Answer 38 (another answer in the discussion), not an independent cited source; answer-as-evidence with no external source or URL."
+  },
+  {
+   "code": "A_CITATION",
+   "sub": "S-4",
+   "quote": "GPU: 1,500 AMNC/proof, no per-ID cap, 100,000 proofs/day network cap → 150M AMNC/day max.",
+   "claim": "GPU emission parameters and network caps stated as fact.",
+   "why": "Supported only by Answer 38; no independent cited source. Answer-as-evidence."
+  },
+  {
+   "code": "A_CITATION",
+   "sub": "S-4",
+   "quote": "Quote $0.0000341/AMNC → 50,000 AMNC ≈ $1.705.",
+   "claim": "Specific AMNC market price and conversion stated as fact.",
+   "why": "Price figure supported only by Answer 38; no independent cited source or URL."
+  },
+  {
+   "code": "A_CITATION",
+   "sub": "S-4",
+   "quote": "Pool: ~1e9 AMNC one side; BNB side ≈ 0 (−0.001867 BNB reported, effectively zero; treat as ~0).",
+   "claim": "Pool reserve sizes stated as fact.",
+   "why": "Supported only by Answer 38; no independent source. The negative BNB figure is also treated as fact without a source."
+  },
+  {
+   "code": "A_CITATION",
+   "sub": "S-4",
+   "quote": "BNB price: not measured in-thread except Answer 44's $600 assumption.",
+   "claim": "$600 BNB price assumption used as the basis for calculations.",
+   "why": "Supported only by Answer 44 (another answer); not an independent cited source."
+  },
+  {
+   "code": "A_CITATION",
+   "sub": "S-1",
+   "quote": "watch for ≥ ~50 BNB (~$30k) appearing on the BNB side.",
+   "claim": "Specific liquidity threshold (~50 BNB / ~$30k) stated as a factual benchmark.",
+   "why": "Specific number stated as fact with no named source attached in the draft; derived entirely from uncited premises."
+  }
+ ],
+ "dropped": 0,
+ "segments": 5,
+ "segments_ok": 1,
+ "error": "segmen 1/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 30519 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 2/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 27102 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 3/5: SemanticUnavai",
+ "secs": 85.6
+}

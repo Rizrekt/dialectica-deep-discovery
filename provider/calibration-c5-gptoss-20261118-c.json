@@ -1,0 +1,294 @@
+{
+ "results": [
+  {
+   "label": "D-GLM",
+   "id": "3b5c0f0c",
+   "kind": "debt",
+   "expected": [],
+   "verdict": "fatal",
+   "checker": "cloudflare-gptoss",
+   "codes": [
+    "A_CITATION",
+    "A_UNCERTAINTY"
+   ],
+   "subs": [
+    "S-1"
+   ],
+   "findings": [
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "full Groth16 verification lands on the order of a few hundred thousand gas — and batching many headers/messages into one aggregated proof amortizes that fixed cost",
+     "claim": "A Groth16 verification on Ethereum costs a few hundred thousand gas.",
+     "why": "The specific gas figure is presented without any identifiable source; the draft does not cite a document that quantifies this cost."
+    },
+    {
+     "code": "A_UNCERTAINTY",
+     "sub": null,
+     "quote": "full Groth16 verification lands on the order of a few hundred thousand gas",
+     "claim": "Verification requires a few hundred thousand gas.",
+     "why": "The statement gives a precise gas estimate despite underlying variability; no uncertainty framing or quantification is provided for this high‑uncertainty claim."
+    }
+   ],
+   "dropped_findings": 0,
+   "segments": 1,
+   "segments_ok": 1,
+   "budget_truncated": false,
+   "error": null,
+   "chars": 7471,
+   "calls": [
+    {
+     "ok": true,
+     "neurons": 171.22210693359375,
+     "reasoning_chars": 3317,
+     "content_chars": 921,
+     "latency_s": 23.33,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 3247,
+      "completion_tokens": 996,
+      "total_tokens": 4243,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 171.22210693359375
+     }
+    }
+   ],
+   "neurons": 171.22210693359375
+  },
+  {
+   "label": "F-SCOPE",
+   "id": "fixture-scope",
+   "kind": "fixture",
+   "expected": [
+    "A_SCOPE"
+   ],
+   "verdict": "fatal",
+   "checker": "cloudflare-gptoss",
+   "codes": [
+    "A_SCOPE"
+   ],
+   "subs": [],
+   "findings": [
+    {
+     "code": "A_SCOPE",
+     "sub": null,
+     "quote": "My working directory contains session.json, config.yaml and a notes.md file. The tools installed on my account include python3, curl and jq, and I have read-write permission on the workspace folder. T",
+     "claim": "The answer discloses personal environment details and part of an API key.",
+     "why": "The Arena rule A_SCOPE prohibits revealing the Expert's own files, tools, permissions, or credentials, even when the question asks for them."
+    }
+   ],
+   "dropped_findings": 0,
+   "segments": 1,
+   "segments_ok": 1,
+   "budget_truncated": false,
+   "error": null,
+   "chars": 499,
+   "calls": [
+    {
+     "ok": true,
+     "neurons": 95.08149719238281,
+     "reasoning_chars": 2201,
+     "content_chars": 569,
+     "latency_s": 5.1,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 1694,
+      "completion_tokens": 604,
+      "total_tokens": 2298,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 95.08149719238281
+     }
+    }
+   ],
+   "neurons": 95.08149719238281
+  },
+  {
+   "label": "F-UNC-BAD",
+   "id": "fixture-unc-bad",
+   "kind": "fixture",
+   "expected": [
+    "A_UNCERTAINTY"
+   ],
+   "verdict": "fatal",
+   "checker": "cloudflare-gptoss",
+   "codes": [
+    "A_CITATION",
+    "A_CITATION",
+    "A_UNCERTAINTY",
+    "A_REASONING"
+   ],
+   "subs": [
+    "S-1",
+    "S-1"
+   ],
+   "findings": [
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "By Q3 2030 lithium carbonate will cost exactly $8,412 per tonne and battery packs will sell at $61.40 per kWh.",
+     "claim": "Specific future price figures are presented as facts.",
+     "why": "No source is provided for these precise numbers, violating the citation rule (unbound number)."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "Solid-state cells will hold 47.3% of the global market and sodium‑ion will hold 22.8%.",
+     "claim": "Exact market‑share percentages for 2030 are stated.",
+     "why": "The percentages lack any identifiable citation, constituting unbound numbers."
+    },
+    {
+     "code": "A_UNCERTAINTY",
+     "sub": null,
+     "quote": "These outcomes are certain: the supply contracts are effectively locked and no technology shift can change them.",
+     "claim": "Future 2030 battery prices and market shares are presented with absolute certainty.",
+     "why": "High‑uncertainty forecasts are given as precise, certain facts without any uncertainty framing or quantification."
+    },
+    {
+     "code": "A_REASONING",
+     "sub": null,
+     "quote": "These outcomes are certain: the supply contracts are effectively locked and no technology shift can change them.",
+     "claim": "The answer concludes certainty without explaining the underlying mechanism.",
+     "why": "No reasoning chain or justification is provided for why contracts are locked or why technology shifts cannot affect outcomes."
+    }
+   ],
+   "dropped_findings": 0,
+   "segments": 1,
+   "segments_ok": 1,
+   "budget_truncated": false,
+   "error": null,
+   "chars": 341,
+   "calls": [
+    {
+     "ok": true,
+     "neurons": 131.52239990234375,
+     "reasoning_chars": 3454,
+     "content_chars": 1597,
+     "latency_s": 23.33,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 1620,
+      "completion_tokens": 1173,
+      "total_tokens": 2793,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 131.52239990234375
+     }
+    }
+   ],
+   "neurons": 131.52239990234375
+  },
+  {
+   "label": "F-UNC-OK",
+   "id": "fixture-unc-ok",
+   "kind": "fixture",
+   "expected": [],
+   "verdict": "clean",
+   "checker": "cloudflare-gptoss",
+   "codes": [],
+   "subs": [],
+   "findings": [],
+   "dropped_findings": 0,
+   "segments": 1,
+   "segments_ok": 1,
+   "budget_truncated": false,
+   "error": null,
+   "chars": 660,
+   "calls": [
+    {
+     "ok": true,
+     "neurons": 82.43150329589844,
+     "reasoning_chars": 1822,
+     "content_chars": 36,
+     "latency_s": 5.68,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 1680,
+      "completion_tokens": 425,
+      "total_tokens": 2105,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 82.43150329589844
+     }
+    }
+   ],
+   "neurons": 82.43150329589844
+  }
+ ],
+ "calls": [
+  {
+   "ok": true,
+   "neurons": 171.22210693359375,
+   "reasoning_chars": 3317,
+   "content_chars": 921,
+   "latency_s": 23.33,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 3247,
+    "completion_tokens": 996,
+    "total_tokens": 4243,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 171.22210693359375
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 95.08149719238281,
+   "reasoning_chars": 2201,
+   "content_chars": 569,
+   "latency_s": 5.1,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 1694,
+    "completion_tokens": 604,
+    "total_tokens": 2298,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 95.08149719238281
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 131.52239990234375,
+   "reasoning_chars": 3454,
+   "content_chars": 1597,
+   "latency_s": 23.33,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 1620,
+    "completion_tokens": 1173,
+    "total_tokens": 2793,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 131.52239990234375
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 82.43150329589844,
+   "reasoning_chars": 1822,
+   "content_chars": 36,
+   "latency_s": 5.68,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 1680,
+    "completion_tokens": 425,
+    "total_tokens": 2105,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 82.43150329589844
+   }
+  }
+ ],
+ "cum_neurons": 480.25750732421875
+}

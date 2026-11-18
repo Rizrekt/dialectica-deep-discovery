@@ -1,0 +1,6 @@
+arm vyce: True
+deepseek: HTTP 403 {"error":{"message":"This model requires lite tier or higher. Upgrade your account to access it.","type":"permission_err
+gpt-oss: OK chars=8032 neurons=0.0->188.08621215820312
+serve_gate: PERINGATAN KERAS — pemeriksa semantik C5 TIDAK TERSEDIA di kedua lane; cek TIDAK berjalan dan TIDAK memblokir (mode=shadow): SemanticUnavailable: segmen 1/1: ValueError: balasan pemeriksa bukan objek JSON
+gpt-oss gate: OK sendable=False sem=unavailable
+done -> /home/hatch/workspace/research/dialectica/dryrun-2026-11-17/step2-writers-results.json

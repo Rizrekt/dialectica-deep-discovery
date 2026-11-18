@@ -1,0 +1,8 @@
+Sebuah pasar NFT yang berdedikasi tetap dapat mengaktifkan perdagangan token yang transfernya diblokir pada tingkat kontrak intan dengan memindahkan eksekusi ke lapisan perantara—seperti kustodian, pembungkus, atau tanda tangan off-chain—tetapi perpindahan ini mengganti jaminan on-chain dengan kepercayaan pada penyimpanan, kejujuran operator, dan kunci upgrade.
+
+## 1. Mekanisme Perdagangan Ketika Transfer Diblokir
+**Pembuka:** Ketika fungsi `transferFrom` atau `safeTransferFrom` pada kontrak NFT selalu kembali dengan error, perpindahan langsung antar dompet tidak dapat terjadi, sehingga pasar harus menggunakan perantara yang dapat memindah atau mewakili aset.
+
+Menurut spesifikasi EIP-721 (https://eips.ethereum.org/EIPS/eip-721), `transferFrom`, `safeTransferFrom`, `approve`, dan `setApprovalForAll` adalah antarmuka standar untuk perpindahan token non-fungible. Jika kontrak intan memblokir semua panggilan fungsi tersebut—misalnya melalui modifier yang selalu revert di `_beforeTokenTransfer`—izin on-chain seperti approval tidak cukup, karena panggilan tetap gagal di tingkat kontrak. Untuk itu, pasar yang berdedikasi biasanya mencoba tiga mekanisme.
+
+Pertama, model kustodian atau vault. Pengguna mengunci NFT asli di kontrak yang dikontrol pasar, dan pasar mencetak token wakilan (wrapper) yang mewakili klaim atas NFT tersebut. Perdagangan kemudian dilakukan pada

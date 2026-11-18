@@ -1,0 +1,20 @@
+{
+ "cap_before": 0,
+ "neurons_before": 2535.9459075927734,
+ "attempts": [
+  {
+   "isr": "dfbe5197-a447-4148-8848-810ee8bcc62b",
+   "rc": 0,
+   "line": "jawaban siap untuk dfbe5197-a447-4148-8848-810ee8bcc62b (5386 karakter, gerbang serve lolos)",
+   "seconds": 101.5,
+   "fallback_log": [
+    "fallback: vyce gagal → vyce gpt-oss-120b (VyceGenerationError: SIMULASI R1: GLM gagal total (dipaksa driver uji kering))"
+   ],
+   "draft_chars": 5386,
+   "cap_after": 1
+  }
+ ],
+ "cap_after": 1,
+ "neurons_after": 2535.9459075927734,
+ "success_isr": "dfbe5197-a447-4148-8848-810ee8bcc62b"
+}

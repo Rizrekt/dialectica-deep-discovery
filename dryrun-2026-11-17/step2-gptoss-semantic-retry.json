@@ -1,0 +1,10 @@
+{
+ "verdict": "unavailable",
+ "checker": null,
+ "codes": [],
+ "subs": [],
+ "findings": [],
+ "dropped": 0,
+ "error": "SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 29787 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dile",
+ "secs": 17.1
+}

@@ -1,0 +1,60 @@
+Short answer. The question's premise is wrong in two ways, and correcting them changes the prediction. First, there is no northern summer solstice (Ls = 90 deg) in calendar year 2028: I recomputed the Martian calendar with a Kepler solver (see section 1) and the Ls = 90 deg dates bracketing 2028 are 16 April 2027 and 3 March 2029. The solstice that actually falls in 2028 is the southern summer solstice, Ls = 270 deg, on 12 March 2028. Second, a solstice is not a pressure peak: at the northern summer solstice the Chryse pressure is falling steeply and sits ~1.2 mbar below the seasonal maximum, because the pressure maximum tracks the SOUTH polar cap, not the solstice. The model and the numbers below are computed from the Viking 1 record itself (all four Viking years), not estimated from the earlier answers — and they correct two of them.
+
+1. The dates, recomputed
+
+I solved Kepler's equation for Mars (eccentricity 0.0934, orbital period 686.98 days, perihelion at Ls = 251 deg), anchored to Ls = 180 deg on 17 October 2027. The solver reproduces the independently validated anchors Ls = 90 deg on 16 April 2027 and Ls = 0 deg (MY40) on 17 August 2028 to within 0.4 deg (about 1 sol), so its dates are good to ~1 day.
+
+- Northern summer solstice, MY39 (Ls = 90 deg): 16 April 2027.
+- Southern summer solstice, MY39 (Ls = 270 deg): 12 March 2028 (Ls = 269.98 deg at 00:00 UTC on 12 March; Ls = 270 deg is crossed during that day).
+- Northern spring equinox, MY40 (Ls = 0 deg): 17 August 2028.
+- Northern summer solstice, MY40 (Ls = 90 deg): 3 March 2029 (Ls = 89.62 deg at 00:00 UTC on 3 March; Ls = 90 deg is crossed during that day).
+
+This refutes an earlier answer's date of 18 March 2028 for the Ls = 270 deg solstice: on 18 March my solver gives Ls = 273.75 deg, i.e. 3.75 deg past the solstice. It confirms the 12 March 2028 date given in the verified answer (Answer 12) and in Answers 2, 6, 7 and 13.
+
+2. The model
+
+Peak daily pressure is the sum of two terms:
+
+P_peak(Ls) = P_mean(Ls) + deltaP_tide(Ls)
+
+(a) The seasonal term, P_mean(Ls), is set by the CO2 mass balance. The atmosphere is ~95% CO2, and its total mass obeys dM/dt = sublimation from the summer cap minus condensation onto the winter cap; surface pressure at a fixed site is proportional to atmospheric mass. The south cap dominates the cycle because southern summer coincides with perihelion (Ls = 251 deg): insolation at perihelion exceeds insolation at aphelion by a factor ((1+e)/(1-e))^2 = 1.45, so the south seasonal cap sublimates faster and more completely than the north cap does in northern summer. Hence the seasonal pressure maximum occurs in southern summer (Ls ~253–266 deg), not at either solstice, and the northern-summer secondary maximum is smaller (section 3).
+
+(b) The tide term, deltaP_tide(Ls), is the within-sol excursion above the daily mean, driven by the thermal tides (S1/S2). It is larger when the atmosphere is dustier and warmer: measured daily pressure range averages 0.242 mbar (24 Pa) at Ls 85–95 deg but 0.472 mbar (47 Pa) at Ls 265–275 deg — about twice as large at the southern solstice.
+
+At the northern summer solstice (Ls = 90 deg) the north cap is sublimating but the south cap is simultaneously freezing through southern winter, and the south cap's condensation wins: the net mass flux is negative, so pressure is FALLING at dP/dLs = -0.0244 mbar/deg (-24 Pa per 10 deg of Ls), measured from the VL1 record. At the southern summer solstice (Ls = 270 deg) the south cap's sublimation dominates and the curve is near its peak, dP/dLs = -0.0047 mbar/deg — nearly flat, just past the maximum.
+
+3. The numbers, computed from vl_avep.dat (NASA PDS daily table, all four Viking years; daily maximum = daily minimum + daily range)
+
+Seasonal anchors (daily means): primary minimum 6.769–6.804 mbar (677–680 Pa) at Ls ~144–152 deg; secondary maximum 8.337–8.366 mbar (834–837 Pa) at Ls ~52 deg; primary maximum 8.983–9.055 mbar (898–906 Pa) at Ls ~253–266 deg; secondary minimum 7.790–7.925 mbar (779–793 Pa) at Ls ~338–359 deg. The south-driven maximum exceeds the north-driven maximum by ~0.65 mbar (65 Pa).
+
+Predictions for the real events (daily mean +- 1 SD across years; peak = within-sol maximum):
+
+Event | Date | Ls | Daily mean | Peak daily reading
+Northern summer solstice, MY39 | 16 Apr 2027 | 90 deg | 7.80 +- 0.07 mbar (780 Pa) | 7.91 +- 0.08 mbar (791 Pa); observed range 7.79–8.04 mbar
+Southern summer solstice, MY39 | 12 Mar 2028 | 270 deg | 8.87 +- 0.08 mbar (887 Pa) | 9.08 +- 0.09 mbar (908 Pa); observed range 8.94–9.30 mbar
+Northern summer solstice, MY40 | 3 Mar 2029 | 90 deg | 7.80 +- 0.07 mbar (780 Pa) | 7.91 +- 0.08 mbar (791 Pa)
+
+Notes on the table: the Ls 85–95 deg window uses Viking years 2–4 only (n = 63 days), because VL1 landed at Ls ~97 deg and year 1 has no data before that. The Ls 265–275 deg window uses years 1–3 (n = 29 days; year 4 ends at Ls ~226 deg). The tide contribution (peak minus mean) is +0.11 mbar (11 Pa) at Ls 90 deg and +0.20 mbar (20 Pa) at Ls 270 deg.
+
+4. Corrections to earlier answers
+
+- Answer 12 (the verified answer) gives peaks of ~7.7–7.8 mbar at Ls 90 deg and ~8.9–9.0 mbar at Ls 270 deg. Those numbers match my computed DAILY MEANS (7.80 and 8.87 mbar), not the within-sol peaks: the true peak daily readings average 7.91 and 9.08 mbar, i.e. +0.11 and +0.20 mbar higher. The verified answer's dates and means are correct; its "peak" column understates the peak.
+- Answer 9 is wrong twice: the solstice is 12 March 2028, not 18 March, and the VL1 site elevation is -3.68 km MOLA, not ~-1.5 km.
+- Answer 8's claim that pressures at Chryse range "up to over 10.0 hPa" is refuted by the record: the highest within-sol pressure reading in the entire four-year VL1 record is 9.565 mbar (957 Pa), on sol 318 at Ls 277.5 deg in year 1 — during the decay of the 1977B global dust storm. No reading reaches 10 mbar.
+- The interannual stability that makes these 1976–1982 numbers predictive for 2028 is measured, not assumed: Lange et al. (2022) compared VL1 and InSight pressures 40 years apart and found no change larger than +/-8 Pa (+/-0.08 mbar) in the CO2 cycle. Year-to-year window means in my table differ by at most 0.05 mbar.
+
+5. Storm caveat for March 2028
+
+The numbers above assume a normal year. If a planet-encircling dust storm is active near Ls 270 deg in 2028 (MY39), the daily MEAN barely moves — the 1977A/B storms shifted it by at most 0.07 mbar — but the daily MAX can spike: the 1977B precedent reached 9.565 mbar (957 Pa), about 0.5 mbar above the typical peak, because storm heating amplifies the thermal tides. So the March 2028 peak forecast is 9.08 mbar in a normal year, with an upper bound near ~9.5 mbar if a global storm is underway.
+
+6. Confidence
+
+High (85–90%) on the dates (Kepler solver checked against three anchors), the seasonal anchors, and the window statistics — all computed directly from the PDS table. Medium-high (75–80%) on the 2028 point predictions, the residual risk being interannual weather (SD ~0.08 mbar) and the unknown dust state of MY39. The mechanism (south-cap dominance via perihelion) is standard and follows from the measured asymmetry of the two seasonal maxima.
+
+References
+
+Hess, S. L., Ryan, J. A., Tillman, J. E., Henry, R. M., & Leovy, C. B. (1980). The annual cycle of pressure on Mars measured by Viking Landers 1 and 2. Geophysical Research Letters, 7(3), 197–200. https://doi.org/10.1029/GL007i003p00197
+
+Lange, L., Forget, F., Banfield, D., Wolff, M., Spiga, A., Millour, E., Viudez-Moreiras, D., Bierjon, A., Piqueux, S., Newman, C., Pla-Garcia, J., & Banerdt, W. B. (2022). InSight pressure data recalibration, and its application to the study of long-term pressure changes on Mars. arXiv:2209.13412. https://arxiv.org/abs/2209.13412
+
+Tillman, J. E. (1989). Viking Lander 1 and 2, Mars, surface meteorological data, daily averaged pressure (VL1/VL2-M-MET-4-DAILY-AVG-PRESSURE-V1.0). NASA Planetary Data System. https://atmos.nmsu.edu/data_and_services/atmospheres_data/MARS/viking/surface_met.html

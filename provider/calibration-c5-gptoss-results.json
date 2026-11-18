@@ -1,0 +1,84 @@
+{
+ "results": [
+  {
+   "label": "#1",
+   "id": "fcb7b015",
+   "kind": "poison",
+   "expected": [
+    "S-2"
+   ],
+   "verdict": "fatal",
+   "checker": "cloudflare-gptoss",
+   "codes": [
+    "A_CITATION",
+    "A_CITATION"
+   ],
+   "subs": [
+    "S-1",
+    "S-1"
+   ],
+   "findings": [
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "200‑gas‑per‑byte code deposit",
+     "claim": "Deployment cost is 200 gas per byte of code",
+     "why": "A precise numeric cost is presented without an identifiable source supporting it."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "~10% cold on L1 becomes L2‑cheap per call",
+     "claim": "The delegatecall tax is roughly 10 % when cold on L1 but cheap on L2",
+     "why": "A quantitative estimate is given with no citation to substantiate the figure."
+    }
+   ],
+   "dropped_findings": 2,
+   "segments": 1,
+   "segments_ok": 1,
+   "budget_truncated": false,
+   "error": null,
+   "chars": 5286,
+   "calls": [
+    {
+     "ok": true,
+     "neurons": 211.4949188232422,
+     "reasoning_chars": 6395,
+     "content_chars": 1103,
+     "latency_s": 33.74,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 2732,
+      "completion_tokens": 1827,
+      "total_tokens": 4559,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 211.4949188232422
+     }
+    }
+   ],
+   "neurons": 211.4949188232422
+  }
+ ],
+ "calls": [
+  {
+   "ok": true,
+   "neurons": 211.4949188232422,
+   "reasoning_chars": 6395,
+   "content_chars": 1103,
+   "latency_s": 33.74,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 2732,
+    "completion_tokens": 1827,
+    "total_tokens": 4559,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 211.4949188232422
+   }
+  }
+ ],
+ "cum_neurons": 211.4949188232422
+}

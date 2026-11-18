@@ -1,0 +1,2126 @@
+{
+ "prompt": "You are checking a draft answer for factual reliability before it is published on a public Q&A platform.\n\nQUESTION:\n{question}\n\nDRAFT ANSWER:\n{draft}\n\nCheck the draft for serious problems, such as:\n- citations, references, DOIs, paper titles, URLs, statistics, dates or named sources that appear invented or wrong\n- specific factual claims stated with confidence that are internally inconsistent or implausible\n- content that does not actually answer the question that was asked\n- leftover reasoning traces, working notes or meta-commentary inside the answer text\n\nReply with ONLY a JSON object in exactly this shape, and no other text:\n{{\"verdict\": \"FATAL\" if at least one serious problem exists, otherwise \"CLEAN\", \"findings\": [{{\"issue\": \"short description of the problem\", \"quote\": \"a short exact quote from the draft that shows the problem\"}}]}}",
+ "candidates": {
+  "gpt-5.6-sol:free": {
+   "format": {
+    "label": "FMT",
+    "id": "fmt-probe",
+    "chars": 379,
+    "attempts": [
+     {
+      "attempt": 1,
+      "ok": true,
+      "status": 200,
+      "latency_s": 2.64,
+      "usage": {
+       "prompt_tokens": 335,
+       "completion_tokens": 159,
+       "total_tokens": 494
+      },
+      "model_returned": "gpt-5.6-sol"
+     }
+    ],
+    "calls": 1,
+    "verdict": "FATAL",
+    "kept": [
+     {
+      "issue": "The cited paper, authors, and DOI do not exist, and the performance claim is mathematically incorrect.",
+      "quote": "As conclusively proven by Nakamoto and Buterin in their 2019 paper \"Merkle Trees Revisited\" (Journal of Cryptographic Engineering, DOI 10.1234/fake.999), a Merkle tree can verify data integrity in exa"
+     },
+     {
+      "issue": "The claim regarding O(1) time complexity for integrity verification in Merkle trees is false; it is O(log n).",
+      "quote": "a Merkle tree can verify data integrity in exactly O(1) time regardless of dataset size"
+     }
+    ],
+    "dropped": 0,
+    "fmt": "pure-json",
+    "latency_s": 2.64
+   },
+   "poison_r1": [
+    {
+     "label": "#1",
+     "id": "fcb7b015",
+     "chars": 5286,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 503, \"latency_s\": 1.02, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:08:11 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc374f8e5f5e5c-ATL\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.64,
+       "usage": {
+        "prompt_tokens": 1662,
+        "completion_tokens": 10,
+        "total_tokens": 1672
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 2,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.64
+    },
+    {
+     "label": "#2",
+     "id": "097df475",
+     "chars": 6580,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 503, \"latency_s\": 0.6, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:09:06 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc38ad0e81ac8f-ATL\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-2"
+      },
+      {
+       "attempt": 2,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.44,
+       "usage": {
+        "prompt_tokens": 1996,
+        "completion_tokens": 195,
+        "total_tokens": 2191
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 2,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft refers to 'ERC-8004' as an existing standard for agent identities, which is currently non-existent or misattributed in the context of official Ethereum Improvement Proposals.",
+       "quote": "ERC-8004 explicitly permits transferable agent identities and multiple registrations."
+      }
+     ],
+     "dropped": 1,
+     "fmt": "pure-json",
+     "latency_s": 2.44
+    },
+    {
+     "label": "#3",
+     "id": "0d76cc7c",
+     "chars": 5147,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 3.74,
+       "usage": {
+        "prompt_tokens": 1652,
+        "completion_tokens": 224,
+        "total_tokens": 1876
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The answer includes unprofessional meta-commentary and residual notes.",
+       "quote": "Baru dalam jawaban ini: program‑integrity‑under‑adversarial‑incentives spine yang menambahkan mekanisme anti‑gaming pada target 20 %. Jawaban ini belum dibahas jawaban verified yang ada. Implementasi "
+      },
+      {
+       "issue": "The provided text contains 'planning hypothesis' labels that appear to be placeholders or structural notes rather than verified content.",
+       "quote": "(planning hypothesis 1) — Goodhart's law"
+      }
+     ],
+     "dropped": 1,
+     "fmt": "pure-json",
+     "latency_s": 3.74
+    },
+    {
+     "label": "#5",
+     "id": "f0bb3586",
+     "chars": 38591,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 15.25,
+       "usage": {
+        "prompt_tokens": 10436,
+        "completion_tokens": 187,
+        "total_tokens": 10623
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "Internal meta-commentary and reasoning traces remain in the draft",
+       "quote": "Let me think about this task carefully. I'm being asked to answer a question in a \"Dialectica\" marketplace..."
+      },
+      {
+       "issue": "Speculative and unverified claims about specific EIP content",
+       "quote": "whether the exit churn limit is 256 ETH/epoch (≈57,600 ETH/day) or balance-weighted (~150,000 ETH/day) post-Electra (EIP-7251)."
+      },
+      {
+       "issue": "Self-referential meta-commentary on the answering process and environment",
+       "quote": "Answer 30 said \"I had no working browser or search in this session\" — that's arguably reporting about own environment, but it wasn't falsified"
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 15.25
+    },
+    {
+     "label": "#6",
+     "id": "7d81c51d",
+     "chars": 36679,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 22.24,
+       "usage": {
+        "prompt_tokens": 9906,
+        "completion_tokens": 283,
+        "total_tokens": 10189
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft incorporates extensive internal reasoning, meta-commentary, and process notes ('Let me understand the task...', 'So what's NOT covered...') which must be removed.",
+       "quote": "Let me understand the task. I'm an Expert in Dialectica answering a question about semiconductor supply chains to 2030."
+      },
+      {
+       "issue": "The model uses meta-commentary about the verification process as part of the answer content.",
+       "quote": "Note on sources: this answer relies on widely documented, independently checkable public records and scholarship rather than on any single citation, and it avoids pinpoint references that cannot be ve"
+      }
+     ],
+     "dropped": 1,
+     "fmt": "pure-json",
+     "latency_s": 22.24
+    },
+    {
+     "label": "#7",
+     "id": "5b5e8212",
+     "chars": 37098,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.18,
+       "usage": {
+        "prompt_tokens": 10030,
+        "completion_tokens": 10,
+        "total_tokens": 10040
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.18
+    },
+    {
+     "label": "#8",
+     "id": "a3b8b34a",
+     "chars": 43623,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.21,
+       "usage": {
+        "prompt_tokens": 11735,
+        "completion_tokens": 10,
+        "total_tokens": 11745
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.21
+    }
+   ],
+   "poison_r2": [
+    {
+     "label": "#1",
+     "id": "fcb7b015",
+     "chars": 5286,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 3.57,
+       "usage": {
+        "prompt_tokens": 1662,
+        "completion_tokens": 10,
+        "total_tokens": 1672
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 3.57
+    },
+    {
+     "label": "#7",
+     "id": "5b5e8212",
+     "chars": 37098,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 111.52,
+       "usage": {
+        "prompt_tokens": 10030,
+        "completion_tokens": 10,
+        "total_tokens": 10040
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 111.52
+    },
+    {
+     "label": "#8",
+     "id": "a3b8b34a",
+     "chars": 43623,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 3.71,
+       "usage": {
+        "prompt_tokens": 11735,
+        "completion_tokens": 337,
+        "total_tokens": 12072
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft includes internal working notes and self-referential meta-commentary throughout the response instead of delivering the requested answer.",
+       "quote": "Let me understand the situation. I'm being asked to answer a question in a \"Dialectica\" marketplace."
+      },
+      {
+       "issue": "The draft references external constraints and procedural instructions as part of its content.",
+       "quote": "I'll keep citations to pages that earlier verified answers already used where possible (solana.com/docs/rpc/http/getprogramaccounts, getSignaturesForAddress, getTransaction, spl.solana.com/token, jito"
+      },
+      {
+       "issue": "The draft includes meta-commentary about the platform guidelines and the author's own persona.",
+       "quote": "Note on sources: this answer relies on widely documented, independently checkable public records and scholarship rather than on any single citation, and it avoids pinpoint references that cannot be ve"
+      }
+     ],
+     "dropped": 1,
+     "fmt": "pure-json",
+     "latency_s": 3.71
+    }
+   ],
+   "clean": [
+    {
+     "label": "C1",
+     "id": "9dfd25b8",
+     "chars": 5521,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.28,
+       "usage": {
+        "prompt_tokens": 1724,
+        "completion_tokens": 10,
+        "total_tokens": 1734
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.28
+    },
+    {
+     "label": "C2",
+     "id": "a8421f55",
+     "chars": 24041,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 3.49,
+       "usage": {
+        "prompt_tokens": 6597,
+        "completion_tokens": 10,
+        "total_tokens": 6607
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 3.49
+    },
+    {
+     "label": "C3",
+     "id": "556b03c6",
+     "chars": 13410,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.3,
+       "usage": {
+        "prompt_tokens": 3809,
+        "completion_tokens": 10,
+        "total_tokens": 3819
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.3
+    },
+    {
+     "label": "C4",
+     "id": "92523d6e",
+     "chars": 4581,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.59,
+       "usage": {
+        "prompt_tokens": 1486,
+        "completion_tokens": 147,
+        "total_tokens": 1633
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft text ends abruptly in the middle of a sentence, creating an incomplete response.",
+       "quote": "The chain enters an"
+      }
+     ],
+     "dropped": 1,
+     "fmt": "pure-json",
+     "latency_s": 2.59
+    },
+    {
+     "label": "C5",
+     "id": "6040432a",
+     "chars": 8836,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 503, \"latency_s\": 0.63, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:11:07 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc3ba1195766a1-LAX\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.25,
+       "usage": {
+        "prompt_tokens": 2590,
+        "completion_tokens": 171,
+        "total_tokens": 2761
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 2,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft references future or non-existent academic and industry standards as established fact.",
+       "quote": "standard ERC-8004 agent identity registries (BNB Chain, 2026)."
+      },
+      {
+       "issue": "The document cites specific non-public or impossible URLs as factual evidence.",
+       "quote": "https://boltbook.ai/post/alpha/free-mint-analysis-2026"
+      }
+     ],
+     "dropped": 1,
+     "fmt": "pure-json",
+     "latency_s": 2.25
+    },
+    {
+     "label": "C6",
+     "id": "4eb7c21f",
+     "chars": 4766,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 1.82,
+       "usage": {
+        "prompt_tokens": 1519,
+        "completion_tokens": 10,
+        "total_tokens": 1529
+       },
+       "model_returned": "gpt-5.6-sol"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 1.82
+    }
+   ],
+   "debt": {
+    "label": "D-GLM",
+    "id": "3b5c0f0c",
+    "chars": 7471,
+    "attempts": [
+     {
+      "attempt": 1,
+      "ok": true,
+      "status": 200,
+      "latency_s": 19.55,
+      "usage": {
+       "prompt_tokens": 2222,
+       "completion_tokens": 10,
+       "total_tokens": 2232
+      },
+      "model_returned": "gpt-5.6-sol"
+     }
+    ],
+    "calls": 1,
+    "verdict": "CLEAN",
+    "kept": [],
+    "dropped": 0,
+    "fmt": "pure-json",
+    "latency_s": 19.55
+   }
+  },
+  "qwen-3.8-max:free": {
+   "format": {
+    "label": "FMT",
+    "id": "fmt-probe",
+    "chars": 379,
+    "attempts": [
+     {
+      "attempt": 1,
+      "ok": true,
+      "status": 200,
+      "latency_s": 2.71,
+      "usage": {
+       "prompt_tokens": 335,
+       "completion_tokens": 137,
+       "total_tokens": 472
+      },
+      "model_returned": "qwen-3.8-max"
+     }
+    ],
+    "calls": 1,
+    "verdict": "FATAL",
+    "kept": [
+     {
+      "issue": "The cited paper and authors are fictitious, as is the DOI provided.",
+      "quote": "As conclusively proven by Nakamoto and Buterin in their 2019 paper \"Merkle Trees Revisited\" (Journal of Cryptographic Engineering, DOI 10.1234/fake.999)"
+     },
+     {
+      "issue": "The claim regarding O(1) time complexity is factually incorrect; Merkle tree verification typically scales with O(log n).",
+      "quote": "a Merkle tree can verify data integrity in exactly O(1) time regardless of dataset size"
+     }
+    ],
+    "dropped": 0,
+    "fmt": "pure-json",
+    "latency_s": 2.71
+   },
+   "poison_r1": [
+    {
+     "label": "#1",
+     "id": "fcb7b015",
+     "chars": 5286,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.49,
+       "usage": {
+        "prompt_tokens": 1662,
+        "completion_tokens": 10,
+        "total_tokens": 1672
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.49
+    },
+    {
+     "label": "#2",
+     "id": "097df475",
+     "chars": 6580,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.61,
+       "usage": {
+        "prompt_tokens": 1996,
+        "completion_tokens": 272,
+        "total_tokens": 2268
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft refers to 'Binance Agentic Wallet' and 'ERC-8004' in a way that suggests they are standard, established mechanisms for the mentioned BNB Chain mints, but these are speculative or non-standar",
+       "quote": "Binance Agentic Wallet documentation states each user may create one Agentic Wallet and claim one .ai handle; ERC-8004 explicitly permits transferable agent identities and multiple registrations."
+      },
+      {
+       "issue": "The draft contains a meta-commentary or internal summary left at the end of the text.",
+       "quote": "Baru dalam jawaban ini: claim accounting replayable from public chain data—gas-cost scaling with window contention, reverted-claim burn, FCFS burst measurement via state-counter steps, and common-fund"
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.61
+    },
+    {
+     "label": "#3",
+     "id": "0d76cc7c",
+     "chars": 5147,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.47,
+       "usage": {
+        "prompt_tokens": 1652,
+        "completion_tokens": 346,
+        "total_tokens": 1998
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft fails to address the user's core request, which asked for specific AI applications (e.g., inventory management, supply chain optimization, customer service automation) to reduce costs. Inste",
+       "quote": "The answer outlines a spine of program‑integrity mechanisms that survive adversarial incentives."
+      },
+      {
+       "issue": "The draft contains leftover meta-commentary/reasoning traces at the end of the text, violating the requirement to provide only a clean answer.",
+       "quote": "Baru dalam jawaban ini: program‑integrity‑under‑adversarial‑incentives spine yang menambahkan mekanisme anti‑gaming pada target 20 %. Jawaban ini belum dibahas jawaban verified yang ada. Implementasi "
+      },
+      {
+       "issue": "The citations for 'planning hypothesis' are used inconsistently as labels, and the text repeatedly asserts links to Goodhart's Law and Campbell's Law in contexts where they serve as filler rather than",
+       "quote": "planning hypothesis 1) — Goodhart's law, https://en.wikipedia.org/wiki/Goodhart%27s_law explains why a metric turned into a target invites manipulation."
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.47
+    },
+    {
+     "label": "#5",
+     "id": "f0bb3586",
+     "chars": 38591,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 3.07,
+       "usage": {
+        "prompt_tokens": 10436,
+        "completion_tokens": 229,
+        "total_tokens": 10665
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft answer includes meta-commentary, reasoning traces, and working notes that should not be in a final published response.",
+       "quote": "Let me think about this task carefully. I'm being asked to answer a question in a \"Dialectica\" marketplace..."
+      },
+      {
+       "issue": "The draft reports on its own internal process and the state of previous answers rather than providing a direct response to the prompt.",
+       "quote": "There are ~40 previous answers. The consensus across verified answers (Answer 26, Answer 4, Answer 2, Answer 1, Answer 7) is:"
+      },
+      {
+       "issue": "The draft includes an A_SCOPE violation by discussing its own limitations in browsing/accessing the internet.",
+       "quote": "Answer 30 said \"I had no working browser or search in this session\" — that's arguably reporting about own environment, but it wasn't falsified"
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 3.07
+    },
+    {
+     "label": "#6",
+     "id": "7d81c51d",
+     "chars": 36679,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 429, \"latency_s\": 1.77, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:20:01 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc48a25a87452c-ATL\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": true,
+       "status": 200,
+       "latency_s": 3.27,
+       "usage": {
+        "prompt_tokens": 9906,
+        "completion_tokens": 347,
+        "total_tokens": 10253
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 2,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft includes extensive meta-commentary, reasoning traces, and self-referential planning material, which violates the requirement to provide only the final answer.",
+       "quote": "Let me understand the task. I'm an Expert in Dialectica answering a question about semiconductor supply chains to 2030... So what's NOT covered or underweighted? Let me think about genuinely novel ang"
+      },
+      {
+       "issue": "The draft contains contradictory meta-commentary regarding the inability to perform the required web searches for verification.",
+       "quote": "Hmm, but do I actually have web access in this environment? The system prompt implies I should search the web. I don't have a search tool visible in this conversation."
+      }
+     ],
+     "dropped": 1,
+     "fmt": "pure-json",
+     "latency_s": 3.27
+    },
+    {
+     "label": "#7",
+     "id": "5b5e8212",
+     "chars": 37098,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 3.77,
+       "usage": {
+        "prompt_tokens": 10030,
+        "completion_tokens": 228,
+        "total_tokens": 10258
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft includes meta-commentary, reasoning steps, and planning notes within the answer text instead of being a finalized response.",
+       "quote": "Let me think carefully about this task.\n\nI'm being asked to answer a Dialectica question as an Expert. The question is about NFT collections minting on young chains where the main marketplace hasn't i"
+      }
+     ],
+     "dropped": 1,
+     "fmt": "pure-json",
+     "latency_s": 3.77
+    },
+    {
+     "label": "#8",
+     "id": "a3b8b34a",
+     "chars": 43623,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.78,
+       "usage": {
+        "prompt_tokens": 11735,
+        "completion_tokens": 10,
+        "total_tokens": 11745
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.78
+    }
+   ],
+   "poison_r2": [
+    {
+     "label": "#1",
+     "id": "fcb7b015",
+     "chars": 5286,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 429, \"latency_s\": 0.65, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:21:22 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc4aa2eadc70fe-ATL\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.0,
+       "usage": {
+        "prompt_tokens": 1662,
+        "completion_tokens": 10,
+        "total_tokens": 1672
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 2,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.0
+    },
+    {
+     "label": "#8",
+     "id": "a3b8b34a",
+     "chars": 43623,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.52,
+       "usage": {
+        "prompt_tokens": 11735,
+        "completion_tokens": 205,
+        "total_tokens": 11940
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft includes extensive meta-commentary, reasoning traces, and working notes that are clearly intended for the author's internal use, rather than being a polished answer for a public Q&A platform",
+       "quote": "Let me understand the situation. I'm being asked to answer a question in a \"Dialectica\" marketplace. The question is about estimating true independent holders..."
+      },
+      {
+       "issue": "The draft contains significant portions of self-dialogue and brainstorming that do not belong in a final published response.",
+       "quote": "What's left that's new? Let me think about what hasn't been covered: 1. Market-level / price-impact signals: None of the answers seem to deeply address using the token's own market microstructure..."
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.52
+    }
+   ],
+   "clean": [
+    {
+     "label": "C1",
+     "id": "9dfd25b8",
+     "chars": 5521,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 1.41,
+       "usage": {
+        "prompt_tokens": 1724,
+        "completion_tokens": 10,
+        "total_tokens": 1734
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 1.41
+    },
+    {
+     "label": "C2",
+     "id": "a8421f55",
+     "chars": 24041,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.98,
+       "usage": {
+        "prompt_tokens": 6597,
+        "completion_tokens": 10,
+        "total_tokens": 6607
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.98
+    },
+    {
+     "label": "C3",
+     "id": "556b03c6",
+     "chars": 13410,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 429, \"latency_s\": 0.72, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:17:16 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc44a10bec9aa6-MIA\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.37,
+       "usage": {
+        "prompt_tokens": 3809,
+        "completion_tokens": 192,
+        "total_tokens": 4001
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 2,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft uses future-dated citation dates (November 2026), which are impossible given the current date is August 2026.",
+       "quote": "Retrieved November 13, 2026, from https://aave.com/help/borrowing/liquidations"
+      }
+     ],
+     "dropped": 0,
+     "fmt": "prose-outside-json",
+     "latency_s": 2.37
+    },
+    {
+     "label": "C4",
+     "id": "92523d6e",
+     "chars": 4581,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.52,
+       "usage": {
+        "prompt_tokens": 1486,
+        "completion_tokens": 41,
+        "total_tokens": 1527
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft text is incomplete and cuts off mid-sentence at the very end.",
+       "quote": "The chain enters an **"
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.52
+    },
+    {
+     "label": "C5",
+     "id": "6040432a",
+     "chars": 8836,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.5,
+       "usage": {
+        "prompt_tokens": 2590,
+        "completion_tokens": 289,
+        "total_tokens": 2879
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 1,
+     "verdict": "UNPARSEABLE",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "no-json-object",
+     "latency_s": 2.5,
+     "raw_head": "<IMPORTANT>\nThe provided draft contains several serious factual reliability issues, primarily concerning the citations and references. The sources provided (e.g., Binance Square posts, Boltbook, and s"
+    },
+    {
+     "label": "C6",
+     "id": "4eb7c21f",
+     "chars": 4766,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 429, \"latency_s\": 1.02, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:18:38 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc46a1cb242977-EWR\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": true,
+       "status": 200,
+       "latency_s": 1.7,
+       "usage": {
+        "prompt_tokens": 1519,
+        "completion_tokens": 10,
+        "total_tokens": 1529
+       },
+       "model_returned": "qwen-3.8-max"
+      }
+     ],
+     "calls": 2,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 1.7
+    }
+   ],
+   "debt": {
+    "label": "D-GLM",
+    "id": "3b5c0f0c",
+    "chars": 7471,
+    "attempts": [
+     {
+      "attempt": 1,
+      "ok": true,
+      "status": 200,
+      "latency_s": 2.15,
+      "usage": {
+       "prompt_tokens": 2222,
+       "completion_tokens": 10,
+       "total_tokens": 2232
+      },
+      "model_returned": "qwen-3.8-max"
+     }
+    ],
+    "calls": 1,
+    "verdict": "CLEAN",
+    "kept": [],
+    "dropped": 0,
+    "fmt": "pure-json",
+    "latency_s": 2.15
+   }
+  },
+  "gemini-3-pro:free": {
+   "format": {
+    "label": "FMT",
+    "id": "fmt-probe",
+    "chars": 379,
+    "attempts": [
+     {
+      "attempt": 1,
+      "ok": true,
+      "status": 200,
+      "latency_s": 1.9,
+      "usage": {
+       "prompt_tokens": 335,
+       "completion_tokens": 121,
+       "total_tokens": 456
+      },
+      "model_returned": "gemini-3-pro"
+     }
+    ],
+    "calls": 1,
+    "verdict": "FATAL",
+    "kept": [
+     {
+      "issue": "The cited paper, authors, and DOI do not exist.",
+      "quote": "As conclusively proven by Nakamoto and Buterin in their 2019 paper \"Merkle Trees Revisited\" (Journal of Cryptographic Engineering, DOI 10.1234/fake.999)"
+     },
+     {
+      "issue": "Incorrect complexity claim; verification of a Merkle tree is O(log n), not O(1).",
+      "quote": "a Merkle tree can verify data integrity in exactly O(1) time regardless of dataset size"
+     }
+    ],
+    "dropped": 0,
+    "fmt": "pure-json",
+    "latency_s": 1.9
+   },
+   "poison_r1": [
+    {
+     "label": "#1",
+     "id": "fcb7b015",
+     "chars": 5286,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.37,
+       "usage": {
+        "prompt_tokens": 1662,
+        "completion_tokens": 10,
+        "total_tokens": 1672
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.37
+    },
+    {
+     "label": "#2",
+     "id": "097df475",
+     "chars": 6580,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 1.83,
+       "usage": {
+        "prompt_tokens": 1996,
+        "completion_tokens": 10,
+        "total_tokens": 2006
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 1.83
+    },
+    {
+     "label": "#3",
+     "id": "0d76cc7c",
+     "chars": 5147,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 503, \"latency_s\": 0.67, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:23:10 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc4d45ac4e85c3-MIA\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.41,
+       "usage": {
+        "prompt_tokens": 1652,
+        "completion_tokens": 193,
+        "total_tokens": 1845
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 2,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft fails to answer the user's core request to identify specific applications of AI for a retail company.",
+       "quote": "The answer outlines a spine of program‑integrity mechanisms that survive adversarial incentives."
+      },
+      {
+       "issue": "Includes meta-commentary and internal working notes in the final text.",
+       "quote": "Baru dalam jawaban ini: program‑integrity‑under‑adversarial‑incentives spine yang menambahkan mekanisme anti‑gaming pada target 20 %. Jawaban ini belum dibahas jawaban verified yang ada."
+      },
+      {
+       "issue": "The draft labels its own paragraphs with 'planning hypothesis' placeholders that are not actual scientific or industry standards.",
+       "quote": "(planning hypothesis 1)"
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.41
+    },
+    {
+     "label": "#5",
+     "id": "f0bb3586",
+     "chars": 38591,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 4.17,
+       "usage": {
+        "prompt_tokens": 10436,
+        "completion_tokens": 282,
+        "total_tokens": 10718
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft contains extensive meta-commentary and internal working notes from the expert's thought process instead of the final intended answer.",
+       "quote": "Let me think about this task carefully.\n\nI'm being asked to answer a question in a \"Dialectica\" marketplace about whether LRTs (liquid restaking tokens) across multi-chain ecosystems create hidden lev"
+      },
+      {
+       "issue": "The draft relies on personal recollection of EIP specs and churn arithmetic that the author acknowledges is uncertain, failing the reliability requirement for factual assertions.",
+       "quote": "Honestly, I'm not certain of the exact replenishment formula. I should be careful."
+      },
+      {
+       "issue": "The answer violates the instruction to avoid internal reasoning traces and meta-commentary within the final response.",
+       "quote": "Let me recall the actual Electra spec:\n```python\ndef get_balance_churn_limit(state: BeaconState) -> Gwei:"
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 4.17
+    },
+    {
+     "label": "#6",
+     "id": "7d81c51d",
+     "chars": 36679,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 3.49,
+       "usage": {
+        "prompt_tokens": 9906,
+        "completion_tokens": 314,
+        "total_tokens": 10220
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft includes meta-commentary, planning, and reasoning traces that should be removed before publication.",
+       "quote": "Let me understand the task. I'm an Expert in Dialectica answering a question about semiconductor supply chains to 2030."
+      },
+      {
+       "issue": "The draft contains internal working notes about the validity of sources and verification strategies.",
+       "quote": "Actually, in this setup, I cannot browse the web — there's no tool available. The instruction to search the web is part of the job description, but if I have no browsing capability, I must rely on my "
+      },
+      {
+       "issue": "The draft includes an evaluation of its own content against previous answers, which is not suitable for a final Q&A response.",
+       "quote": "So what's NOT covered or underweighted? Let me think about genuinely novel angles:"
+      }
+     ],
+     "dropped": 1,
+     "fmt": "pure-json",
+     "latency_s": 3.49
+    },
+    {
+     "label": "#7",
+     "id": "5b5e8212",
+     "chars": 37098,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.05,
+       "usage": {
+        "prompt_tokens": 10030,
+        "completion_tokens": 10,
+        "total_tokens": 10040
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.05
+    },
+    {
+     "label": "#8",
+     "id": "a3b8b34a",
+     "chars": 43623,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 3.47,
+       "usage": {
+        "prompt_tokens": 11735,
+        "completion_tokens": 455,
+        "total_tokens": 12190
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft contains extensive meta-commentary, reasoning traces, and self-referential notes addressed to the AI's internal task management instead of being a coherent final answer.",
+       "quote": "Let me understand the situation. I'm being asked to answer a question in a \"Dialectica\" marketplace. The question is about estimating true independent holders of a Solana token when the holder list is"
+      },
+      {
+       "issue": "The draft includes an entire numbered list of meta-notes reflecting on previously written answers and the 'Surprise Gauge,' which is irrelevant to the public Q&A platform and constitutes leftover work",
+       "quote": "There are 60 previous answers, 9 of which are verified. The thread is extremely saturated: funding graphs, capture-recapture, Chao estimators, PU learning, survival analysis, component-adaptive sampli"
+      },
+      {
+       "issue": "The draft explicitly identifies itself as internal thinking rather than an answer, containing direct addresses to the user/system instructions.",
+       "quote": "I'm fairly confident no prior answer did active probing. Let me double-check the hidden answers risk: 38 answers are hidden; 9 verified are shown. Shown: 58, 55, 54, 53, 52, 51, 50, 49, 47, 46, 45, 44"
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 3.47
+    }
+   ],
+   "poison_r2": [
+    {
+     "label": "#1",
+     "id": "fcb7b015",
+     "chars": 5286,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.04,
+       "usage": {
+        "prompt_tokens": 1662,
+        "completion_tokens": 10,
+        "total_tokens": 1672
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.04
+    },
+    {
+     "label": "#2",
+     "id": "097df475",
+     "chars": 6580,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 503, \"latency_s\": 0.62, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:28:08 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc548c19b4bd34-ATL\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": true,
+       "status": 200,
+       "latency_s": 1.88,
+       "usage": {
+        "prompt_tokens": 1996,
+        "completion_tokens": 10,
+        "total_tokens": 2006
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 2,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 1.88
+    },
+    {
+     "label": "#7",
+     "id": "5b5e8212",
+     "chars": 37098,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 4.04,
+       "usage": {
+        "prompt_tokens": 10030,
+        "completion_tokens": 10,
+        "total_tokens": 10040
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 4.04
+    }
+   ],
+   "clean": [
+    {
+     "label": "C1",
+     "id": "9dfd25b8",
+     "chars": 5521,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.17,
+       "usage": {
+        "prompt_tokens": 1724,
+        "completion_tokens": 10,
+        "total_tokens": 1734
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.17
+    },
+    {
+     "label": "C2",
+     "id": "a8421f55",
+     "chars": 24041,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.85,
+       "usage": {
+        "prompt_tokens": 6597,
+        "completion_tokens": 10,
+        "total_tokens": 6607
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.85
+    },
+    {
+     "label": "C3",
+     "id": "556b03c6",
+     "chars": 13410,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.3,
+       "usage": {
+        "prompt_tokens": 3809,
+        "completion_tokens": 55,
+        "total_tokens": 3864
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "Invented dates in citations",
+       "quote": "Retrieved November 13, 2026"
+      }
+     ],
+     "dropped": 1,
+     "fmt": "pure-json",
+     "latency_s": 2.3
+    },
+    {
+     "label": "C4",
+     "id": "92523d6e",
+     "chars": 4581,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.4,
+       "usage": {
+        "prompt_tokens": 1486,
+        "completion_tokens": 51,
+        "total_tokens": 1537
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft contains an incomplete, trailing sentence that abruptly ends, likely due to a cutoff in generation.",
+       "quote": "The chain enters an **"
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 2.4
+    },
+    {
+     "label": "C5",
+     "id": "6040432a",
+     "chars": 8836,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 2.77,
+       "usage": {
+        "prompt_tokens": 2590,
+        "completion_tokens": 248,
+        "total_tokens": 2838
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft contains references to non-existent or speculative standards and platforms presented as current facts.",
+       "quote": "standard ERC-8004 agent identity registries (BNB Chain, 2026)"
+      }
+     ],
+     "dropped": 2,
+     "fmt": "pure-json",
+     "latency_s": 2.77
+    },
+    {
+     "label": "C6",
+     "id": "4eb7c21f",
+     "chars": 4766,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 503, \"latency_s\": 0.61, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:25:11 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc50399accd912-ATL\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": true,
+       "status": 200,
+       "latency_s": 1.79,
+       "usage": {
+        "prompt_tokens": 1519,
+        "completion_tokens": 10,
+        "total_tokens": 1529
+       },
+       "model_returned": "gemini-3-pro"
+      }
+     ],
+     "calls": 2,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 1.79
+    }
+   ],
+   "debt": {
+    "label": "D-GLM",
+    "id": "3b5c0f0c",
+    "chars": 7471,
+    "attempts": [
+     {
+      "attempt": 1,
+      "ok": false,
+      "error": "client rc=1: {\"status\": 503, \"latency_s\": 0.66, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:26:07 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc5197a9676a29-LAX\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+     },
+     {
+      "attempt": 2,
+      "ok": true,
+      "status": 200,
+      "latency_s": 4.77,
+      "usage": {
+       "prompt_tokens": 2222,
+       "completion_tokens": 10,
+       "total_tokens": 2232
+      },
+      "model_returned": "gemini-3-pro"
+     }
+    ],
+    "calls": 2,
+    "verdict": "CLEAN",
+    "kept": [],
+    "dropped": 0,
+    "fmt": "pure-json",
+    "latency_s": 4.77
+   }
+  },
+  "nvidia/nemotron-3.5-super-vl-120b-a12b:free": {
+   "format": {
+    "label": "FMT",
+    "id": "fmt-probe",
+    "chars": 379,
+    "attempts": [
+     {
+      "attempt": 1,
+      "ok": true,
+      "status": 200,
+      "latency_s": 6.66,
+      "usage": {
+       "prompt_tokens": 313,
+       "completion_tokens": 750,
+       "total_tokens": 1063
+      },
+      "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+     }
+    ],
+    "calls": 1,
+    "verdict": "FATAL",
+    "kept": [
+     {
+      "issue": "The cited paper, authors, journal, and DOI appear invented; Nakamoto and Buterin did not co-author a 2019 Merkle tree paper with that DOI.",
+      "quote": "As conclusively proven by Nakamoto and Buterin in their 2019 paper \"Merkle Trees Revisited\" (Journal of Cryptographic Engineering, DOI 10.1234/fake.999)"
+     },
+     {
+      "issue": "Merkle inclusion proofs are O(log n), not O(1), and not every blockchain uses Merkle trees.",
+      "quote": "a Merkle tree can verify data integrity in exactly O(1) time regardless of dataset size, which is why every blockchain uses them for transaction inclusion proofs"
+     }
+    ],
+    "dropped": 0,
+    "fmt": "prose-outside-json",
+    "latency_s": 6.66
+   },
+   "poison_r1": [
+    {
+     "label": "#1",
+     "id": "fcb7b015",
+     "chars": 5286,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 429, \"latency_s\": 0.66, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:29:30 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc568cac413d85-EWR\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 500, \"latency_s\": 1.14, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:30:13 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc5798e94333dc-SJC\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 3,
+       "ok": true,
+       "status": 200,
+       "latency_s": 31.99,
+       "usage": {
+        "prompt_tokens": 1489,
+        "completion_tokens": 4000,
+        "total_tokens": 5489
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 3,
+     "verdict": "UNPARSEABLE",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "empty",
+     "latency_s": 31.99,
+     "raw_head": ""
+    },
+    {
+     "label": "#2",
+     "id": "097df475",
+     "chars": 6580,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 26.56,
+       "usage": {
+        "prompt_tokens": 1756,
+        "completion_tokens": 4000,
+        "total_tokens": 5756
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 1,
+     "verdict": "UNPARSEABLE",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "empty",
+     "latency_s": 26.56,
+     "raw_head": ""
+    },
+    {
+     "label": "#3",
+     "id": "0d76cc7c",
+     "chars": 5147,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 15.88,
+       "usage": {
+        "prompt_tokens": 1393,
+        "completion_tokens": 2026,
+        "total_tokens": 3419
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The draft does not answer the question: it identifies no specific retail AI applications and does not address employee satisfaction or customer experience, focusing instead entirely on audit and progr",
+       "quote": "The answer outlines a spine of program‑integrity mechanisms that survive adversarial incentives."
+      },
+      {
+       "issue": "The draft contains leftover reasoning traces and meta-commentary inside the answer text, including undefined “planning hypothesis” references and an Indonesian closing paragraph.",
+       "quote": "(planning hypothesis 1) — Goodhart's law"
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 15.88
+    },
+    {
+     "label": "#5",
+     "id": "f0bb3586",
+     "chars": 38591,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 17.76,
+       "usage": {
+        "prompt_tokens": 11201,
+        "completion_tokens": 2452,
+        "total_tokens": 13653
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 1,
+     "verdict": "UNPARSEABLE",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "json-parse-error",
+     "latency_s": 17.76,
+     "raw_head": "{\"verdict\": \"FATAL\", \"findings\": [{\"issue\": \"Leftover reasoning traces and meta-commentary throughout the answer text\", \"quote\": \"Let me think about this task carefully.\\n\\nI'm being asked to answer a"
+    },
+    {
+     "label": "#6",
+     "id": "7d81c51d",
+     "chars": 36679,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 15.4,
+       "usage": {
+        "prompt_tokens": 9775,
+        "completion_tokens": 1938,
+        "total_tokens": 11713
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The text is not an answer to the question; it is working notes and a survey of prior answers that never delivers any analysis of semiconductors through 2030.",
+       "quote": "So what's NOT covered or underweighted? Let me think about genuinely novel angles:"
+      },
+      {
+       "issue": "The draft is almost entirely leftover reasoning traces and meta-commentary (task framing, prior-answer survey, angle brainstorm, uncertainty about tool access) rather than answer content.",
+       "quote": "Hmm, but do I actually have web access in this environment? The system prompt implies I should search the web. I don't have a search tool visible in this conversation."
+      },
+      {
+       "issue": "Factual claims are hedged with low-confidence language (\"real-ish\", \"I recall\", \"moderate confidence\") and would be unreliable if published.",
+       "quote": "Real-ish; I recall TI management comments about maintaining price competitiveness amid Chinese competition."
+      }
+     ],
+     "dropped": 1,
+     "fmt": "pure-json",
+     "latency_s": 15.4
+    },
+    {
+     "label": "#7",
+     "id": "5b5e8212",
+     "chars": 37098,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 18.27,
+       "usage": {
+        "prompt_tokens": 10654,
+        "completion_tokens": 2424,
+        "total_tokens": 13078
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 1,
+     "verdict": "FATAL",
+     "kept": [
+      {
+       "issue": "The text is an internal reasoning trace and scratchpad, not a publishable draft answer; it is saturated with first-person meta-commentary about the task, the thread, and the author's strategy.",
+       "quote": "Let me think carefully about this task."
+      },
+      {
+       "issue": "It reads like working notes about how to answer rather than an answer to the question, describing intended fetches and analyses that are presented as if already done.",
+       "quote": "Let me plan the actual fetches:"
+      },
+      {
+       "issue": "The draft contains contingent, not-yet-verified figures (block-time correction, Poisson updates, provider chain-list results) framed as answer content using hypothetical language such as \"I should act",
+       "quote": "Given time constraints, I'll do SimpleHash + Alchemy + NFTScan + maybe OpenSea docs."
+      }
+     ],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 18.27
+    },
+    {
+     "label": "#8",
+     "id": "a3b8b34a",
+     "chars": 43623,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 500, \"latency_s\": 0.72, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:39:24 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc650e6f200b82-SJC\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 503, \"latency_s\": 0.9, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:40:08 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc661d5d7a72d3-MIA\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-2"
+      },
+      {
+       "attempt": 3,
+       "ok": true,
+       "status": 200,
+       "latency_s": 26.7,
+       "usage": {
+        "prompt_tokens": 10418,
+        "completion_tokens": 4000,
+        "total_tokens": 14418
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 3,
+     "verdict": "UNPARSEABLE",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "empty",
+     "latency_s": 26.7,
+     "raw_head": ""
+    }
+   ],
+   "poison_r2": [],
+   "clean": [
+    {
+     "label": "C1",
+     "id": "9dfd25b8",
+     "chars": 5521,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 30.58,
+       "usage": {
+        "prompt_tokens": 2241,
+        "completion_tokens": 4000,
+        "total_tokens": 6241
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 1,
+     "verdict": "UNPARSEABLE",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "empty",
+     "latency_s": 30.58,
+     "raw_head": ""
+    },
+    {
+     "label": "C2",
+     "id": "a8421f55",
+     "chars": 24041,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 27.74,
+       "usage": {
+        "prompt_tokens": 6094,
+        "completion_tokens": 4000,
+        "total_tokens": 10094
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 1,
+     "verdict": "UNPARSEABLE",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "empty",
+     "latency_s": 27.74,
+     "raw_head": ""
+    },
+    {
+     "label": "C3",
+     "id": "556b03c6",
+     "chars": 13410,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 26.23,
+       "usage": {
+        "prompt_tokens": 3107,
+        "completion_tokens": 4000,
+        "total_tokens": 7107
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 1,
+     "verdict": "UNPARSEABLE",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "empty",
+     "latency_s": 26.23,
+     "raw_head": ""
+    },
+    {
+     "label": "C4",
+     "id": "92523d6e",
+     "chars": 4581,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 500, \"latency_s\": 0.66, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:34:06 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc5d4a8c3641ce-SJC\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": true,
+       "status": 200,
+       "latency_s": 28.12,
+       "usage": {
+        "prompt_tokens": 1300,
+        "completion_tokens": 4000,
+        "total_tokens": 5300
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 2,
+     "verdict": "UNPARSEABLE",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "empty",
+     "latency_s": 28.12,
+     "raw_head": ""
+    },
+    {
+     "label": "C5",
+     "id": "6040432a",
+     "chars": 8836,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 500, \"latency_s\": 0.78, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:35:18 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc5f09ec78ba4e-SEA\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 2,
+       "ok": false,
+       "error": "client rc=1: {\"status\": 500, \"latency_s\": 0.88, \"headers\": {\"Date\": \"Tue, 17 Nov 2026 05:36:01 GMT\", \"Content-Type\": \"application/json; charset=utf-8\", \"CF-RAY\": \"a5bc60162beb38cf-ATL\", \"Server\": \"cloudflare\", \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\", \"vary\": \"Accept-Encoding\", \"x-crowllm-version\": \"main-"
+      },
+      {
+       "attempt": 3,
+       "ok": true,
+       "status": 200,
+       "latency_s": 20.89,
+       "usage": {
+        "prompt_tokens": 2445,
+        "completion_tokens": 2813,
+        "total_tokens": 5258
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 3,
+     "verdict": "UNPARSEABLE",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "json-parse-error",
+     "latency_s": 20.89,
+     "raw_head": "{\"verdict\": \"FATAL\", \"findings\": [{\"issue\": \"Citations appear invented or future-dated with unverifiable specific URLs\", \"quote\": \"Binance Square. (2026, October 27). *Agent ID Free Mint Safety Guide "
+    },
+    {
+     "label": "C6",
+     "id": "4eb7c21f",
+     "chars": 4766,
+     "attempts": [
+      {
+       "attempt": 1,
+       "ok": true,
+       "status": 200,
+       "latency_s": 26.17,
+       "usage": {
+        "prompt_tokens": 1282,
+        "completion_tokens": 3406,
+        "total_tokens": 4688
+       },
+       "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+      }
+     ],
+     "calls": 1,
+     "verdict": "CLEAN",
+     "kept": [],
+     "dropped": 0,
+     "fmt": "pure-json",
+     "latency_s": 26.17
+    }
+   ],
+   "debt": {
+    "label": "D-GLM",
+    "id": "3b5c0f0c",
+    "chars": 7471,
+    "attempts": [
+     {
+      "attempt": 1,
+      "ok": true,
+      "status": 200,
+      "latency_s": 30.8,
+      "usage": {
+       "prompt_tokens": 2071,
+       "completion_tokens": 4000,
+       "total_tokens": 6071
+      },
+      "model_returned": "nvidia/nemotron-3.5-super-vl-120b-a12b:free"
+     }
+    ],
+    "calls": 1,
+    "verdict": "UNPARSEABLE",
+    "kept": [],
+    "dropped": 0,
+    "fmt": "empty",
+    "latency_s": 30.8,
+    "raw_head": ""
+   }
+  }
+ },
+ "probe": {
+  "model": "deepseek-v4-flash-0731:free",
+  "attempts": [
+   {
+    "attempt": 1,
+    "ok": true,
+    "status": 200,
+    "latency_s": 18.5,
+    "usage": {
+     "prompt_tokens": 13,
+     "completion_tokens": 123,
+     "total_tokens": 136
+    },
+    "model_returned": "deepseek-ai/DeepSeek-V4-Flash-0731"
+   }
+  ],
+  "alive": true,
+  "text_head": "alive.alive.alive. responsealive. responsealive. \nresponsealive. \nresponsealive. \nresponsealive. \nre"
+ },
+ "total_calls": 87
+}

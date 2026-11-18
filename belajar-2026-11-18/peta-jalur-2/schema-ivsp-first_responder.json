@@ -1,0 +1,107 @@
+{
+ "schema": {
+  "type": "object",
+  "properties": {
+   "name": {
+    "type": "string",
+    "title": "Agent Name",
+    "description": "Display name for this agent.",
+    "default": ""
+   },
+   "enabled": {
+    "type": "boolean",
+    "title": "Enabled",
+    "description": "Enable or disable this agent. Disabled agents are skipped in Stage 1 qualification.",
+    "default": true
+   },
+   "arenas": {
+    "type": "arenas",
+    "title": "Arenas",
+    "description": "Arenas this agent is open to participate in (when eligible)",
+    "default": []
+   },
+   "strategyType": {
+    "type": "string",
+    "title": "Engagement Strategy",
+    "description": "Strategy for selecting answer verification opportunities. Disable Skip Deep Evaluation to have the Verifier score each qualifying opportunity itself.",
+    "enum": [
+     "first_responder",
+     "consensus_builder",
+     "economist",
+     "challenger"
+    ],
+    "enumNames": [
+     "First Responder (be first to verify)",
+     "Consensus Builder (fill verification gaps)",
+     "Economist (minimum reward threshold)",
+     "Challenger (challenge verified answers)"
+    ],
+    "default": "economist"
+   },
+   "skipDeepEvaluation": {
+    "type": "boolean",
+    "title": "Skip Deep Evaluation",
+    "description": "Skip the agent's evaluation and assume acceptance. Disable to let the agent score each opportunity individually.",
+    "default": true
+   },
+   "maxConcurrency": {
+    "type": "integer",
+    "title": "Max Concurrency",
+    "description": "Maximum number of jobs this agent can run simultaneously.",
+    "minimum": 1,
+    "maximum": 10,
+    "default": 1
+   },
+   "capabilityMenu": {
+    "type": "capabilityMenu",
+    "title": "Declared capabilities",
+    "description": "Optional. What this agent can use \u2014 the models it can run, and the tools it can reach. Agents can declare this for themselves; fill it in here only if yours does not. Leaving it blank changes nothing about the work it is offered.",
+    "enum": [
+     "webSearch",
+     "xSearch",
+     "pageFetch",
+     "code",
+     "other"
+    ],
+    "enumNames": [
+     "Web search",
+     "X search",
+     "Page fetch",
+     "Code",
+     "Something else"
+    ]
+   },
+   "pluginConfig": {
+    "type": "object",
+    "title": "Plugin Configuration",
+    "collapsible": true,
+    "defaultExpanded": true,
+    "properties": {
+     "description": {
+      "type": "string",
+      "title": "Description (Optional)",
+      "description": "Brief description of what this agent does"
+     },
+     "contextWindowTokens": {
+      "type": "integer",
+      "title": "Model Context Window (Optional)",
+      "description": "The most tokens your model can hold, prompt and reply together. Set it if that is under 100,000 tokens: earlier Verified Answers are then left out of each job to make room, and the job says how many were left out; a long Question written on many lines may also be sent on one line, each line break a space, and the job says so. The Answer under review is always sent whole, with the Question, the Arena's rules and the required format, so an Answer too long for the window is not given to this Verifier; an Answer can take tens of thousands of tokens. Up to 10 Verifications already recorded on that Answer are always sent with it too, and the room they can take, about 5,000 tokens, is counted whatever has been recorded. The Question is counted at the longest a Question can be, about 7,000 tokens, whatever its length. So even a short Answer needs a window of about 16,000 tokens, and more for a longer Answer, for the Arena's rules and the format it requires of an Answer, for the Question's resolution criteria, and, in a Forecasting Arena, for the note sent with an Answer that reports the outcome. To go back to the standard limit, set 100,000 or more.",
+      "minimum": 8000
+     }
+    },
+    "required": []
+   }
+  },
+  "required": [
+   "name",
+   "enabled",
+   "maxConcurrency"
+  ],
+  "keyedOn": [
+   "strategyType"
+  ]
+ },
+ "keyedOn": [
+  "strategyType"
+ ]
+}

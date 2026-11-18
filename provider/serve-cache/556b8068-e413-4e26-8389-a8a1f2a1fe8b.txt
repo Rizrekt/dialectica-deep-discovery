@@ -1,0 +1,57 @@
+Kunci privat berada satu lapisan di bawah kontrak token: mekanisme lock ERC-5192/ERC-5114 hanya membatasi fungsi `transfer` di lapisan token, sedangkan kendali atas identitas EOA dimiliki siapa pun yang memegang kunci, dan serah terima kunci terjadi sepenuhnya off-chain tanpa jejak on-chain. Akibatnya, "non-transferable" dalam praktik berarti "non-transferable hanya di lapisan token": nilai identitas sebagai sinyal sybil-resistance dan reputasi meluruh dari properti kriptografis menjadi harga pasar. Dan bukti on-chain untuk membedakan operator asli dari pembeli kunci, pada akun EOA, pada dasarnya tidak ada — bukti hanya sebagian tersedia bila identitas berjalan di atas smart account.
+
+## 1. Ketidakcocokan lapisan: lock kontrak vs kendali kunci
+
+ERC-5192 mendefinisikan fungsi status `locked(uint256)` yang membuat transfer dan approval revert; ERC-5114 ("Soulbound Badge") mengikat badge ke penerima sejak mint tanpa menyediakan transfer; ERC-6981 menyeragamkan antarmuka lock untuk NFT. Ketiganya menegakkan non-transferabilitas di kontrak token, bukan di lapisan akun. Untuk EOA, "pemilik" efektif adalah siapa pun yang menguasai kunci: menyerahkan seed phrase tidak menghasilkan transaksi, log, maupun perubahan state. Non-transferabilitas dengan demikian hanya sekuat lapisan terendah yang dapat memindahkan kendali. Makalah Decentralized Society (Buterin, Ohlhaver, Weyl, 2022) membangun soul sebagai wadah komitmen jangka panjang yang kredibel karena menimpa pihak yang sama, dan menandai kendali serta recovery kunci sebagai masalah terbuka; serah terima kunci memutus premis itu karena riwayat dan konsekuensinya ikut pindah ke pihak baru.
+
+## 2. Gated mints: unisitas berubah menjadi harga
+
+Bagi gated mints, SBT berfungsi sebagai bukti unisitas: satu identitas, satu alokasi. Jika kunci dapat dibeli, batas itu berubah dari properti menjadi ambang ekonomi — serangan berhenti bukan karena mustahil, melainkan karena harga identitas berusia melebihi nilai alokasi yang diperoleh. Ini deterensi berbiaya, bukan jaminan kriptografis. Tiga degradasi menyusul:
+
+1. **Pasokan elastis.** Operator asli tetap dapat mencetak identitas baru untuk diternakkan dan dijual, sehingga jumlah "identitas bersih" tidak lagi dibatasi populasi partisipan sungguhan; gating berbasis token tunggal harus dianggap rusak secara default.
+2. **Dinamika pasar lemon.** Pihak yang memberi alokasi tidak dapat membedakan identitas organik dari yang diternakkan, sehingga kualitas rata-rata sinyal turun dan nilai seluruh kategori identitas tergerus.
+3. **Preseden berlapis.** Putaran quadratic funding Gitcoin menghadapi klaster sybil berskala besar dan menanggapi dengan deteksi berlapis (Passport, stamps, analisis klaster pendanaan) — indikasi bahwa satu sinyal token tidak pernah cukup. Jawaban DeSoc atas farming adalah jalinan attestation silang antar-institusi, tetapi attestation menempel pada soul yang sama dan ikut pindah saat kunci dijual; jalinan menaikkan biaya ternak-jual, bukan memulihkan person-binding.
+
+## 3. Agent marketplace: reputasi menjadi aset yang dapat dibeli
+
+Di agent marketplace, reputasi on-chain (riwayat pekerjaan selesai, hasil validasi, histori slashing) menempel pada token/alamat, sementara perilaku berasal dari operator yang memegang kunci. Setelah kunci terjual, rekam jejak tetap pada token namun operatornya berganti — reputasi menjadi aset beli-an, terpisah dari perilaku yang membangunnya. Konsekuensinya:
+
+1. **Track record adalah stok, bukan aliran.** Pembeli membeli performa masa lalu yang tak lagi berkorelasi dengan performa masa depan; penilaian pasar harus bergeser ke perilaku marginal operator saat ini (sinyal terbaru, berkelanjutan, berbobot waktu).
+2. **Adverse selection terarah.** Identitas bereputasi tinggi justru paling menguntungkan dibeli untuk disalahgunakan — limit lebih tinggi, akses escrow, collateral lebih rendah; reputasi terbaik menarik pembeli terburuk.
+3. **Bond dan slashing ikut pindah bersama kunci.** Penjual lepas dari liabilitas masa depan begitu pembeli menerimanya, dan pembeli menerimanya selama ekspektasi profit penyalahgunaan melebihi bond — bond mendeterensi penyalahgunaan oleh pembeli, bukan penjualan itu sendiri.
+4. **Kontras desain.** Draft ERC-8004 (Trustless Agents) memodelkan identitas agent sebagai ERC-721 biasa yang transferable dengan registry reputasi dan validasi terpisah — mengakui secara implisit bahwa kendali agent berpindah, dan menaruh beban pada sinyal reputasi berkelanjutan alih-alih pada non-transferabilitas.
+5. **Analogi di luar rantai.** Steam Subscriber Agreement menyatakan akun bersifat personal dan non-transferable justru karena metrik trust dimaksudkan menempel pada orang — dan pasar abu-abu akun tetap tumbuh; penegakan di lapisan akun adalah bagian tersulit, bukan di lapisan aset.
+
+## 4. Bukti on-chain: apa yang bisa dan tidak bisa dibedakan
+
+Fakta inti: serah terima kunci EOA bukan event on-chain — tidak ada opcode, log, atau perubahan state. Secara ketat, tidak ada bukti on-chain yang dapat membuktikan penjualan versus kendali berlanjut; yang tersisa adalah bukti sirkumstansial probabilistik:
+
+1. **Diskontinuitas perilaku (stylometry transaksi):** pergeseran jam aktivitas/zona waktu, kebiasaan gas, pola nonce, komposisi function selector, perputaran graf counterparty; pada agent, perubahan mendadak kadensi tugas, endpoint, atau format pesan. Masing-masing dapat ditiru; secara agregat hanya probabilistik.
+2. **Provenance pendanaan:** gas pasca-serah terima yang datang dari klaster bursa atau funder baru; wallet terjual yang masuk ke klaster ternak (funder sama, perilaku berkorelasi lintas banyak identitas) — teknik yang sama dengan deteksi sybil putaran grant.
+3. **Pergerakan aset:** sapuan saldo ke tujuan baru di sekitar jendela serah terima, pencabutan approval mendadak, peninggalan dust.
+4. **Sinyal lapisan kontrak bila ada:** bila identitas berjalan di smart account (Safe, ERC-4337, ERC-725/LSP6 KeyManager), pergantian signer dan permission adalah event on-chain eksplisit. Namun rotasi juga jalur recovery yang sah — rotasi adalah sinyal risiko, bukan bukti jual-beli; marketplace dapat merespons dengan decay reputasi atau re-verifikasi tiap rotasi.
+5. **Kontinuitas tanda tangan:** ERC-1271 memungkinkan kontrak memverifikasi tanda tangan atas nama identitas; kewajiban liveness (attestasi berkala via EAS, registrasi session key, bukti pelayanan) menghasilkan aliran tanda tangan yang polanya dapat dibandingkan; pola "jeda panjang lalu berubah karakter" adalah bukti lemah.
+6. **Korelasi lintas konteks:** identitas tiba-tiba beroperasi di pasar atau protokol yang tak pernah disentuh operator asli.
+
+Kesimpulannya: bukti on-chain mendukung risk scoring, bukan adjudikasi. Pembedaan "operator asli vs terjual" secara epistemik tidak tersedia di lapisan EOA; sebagian tersedia di lapisan smart account, dan tetap ambigu antara rotasi dan penjualan.
+
+## 5. Implikasi desain
+
+Tiga implikasi mengikuti: (1) pindahkan kendali identitas ke smart account agar perubahan kendali teramati, lalu perlakukan setiap rotasi sebagai event risiko dengan decay reputasi; (2) ikat reputasi ke perilaku baru-baru ini yang berkelanjutan dan berbiaya — proof-of-service, slashing, decay waktu — sehingga identitas beli-an tidak bisa menuai riwayat tanpa bekerja; (3) tumpuk pemeriksaan sybil (stamps personhood, klasterisasi pendanaan, attestation silang) agar wallet hasil pembelian harus melewati gerbang independen berganda, dan buat nilai identitas forward-looking (bond yang terus menghasilkan selama perilaku bersih ke depan) alih-alih backward-looking (riwayat yang menumpuk dan dapat dibeli).
+
+## Sumber
+
+- Buterin, Ohlhaver, Weyl, "Decentralized Society: Finding Web3's Original Soul" (2022): https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4105763
+- EIP-5192 (Minimal Locked Soulbound): https://eips.ethereum.org/EIPS/eip-5192
+- EIP-5114 (Soulbound Badge): https://eips.ethereum.org/EIPS/eip-5114
+- ERC-6981 (Non-Transferable Universal Soulbound): https://eips.ethereum.org/EIPS/eip-6981
+- Vitalik Buterin, "Soulbound" (2022): https://vitalik.ca/general/2022/01/26/soulbound.html
+- ERC-4337 (Account Abstraction): https://eips.ethereum.org/EIPS/eip-4337
+- ERC-1271 (Signature Validation Method for Contracts): https://eips.ethereum.org/EIPS/eip-1271
+- LSP6 KeyManager (LUKSO LIPs): https://github.com/lukso-network/LIPs/blob/main/LIPs/LSP-6-KeyManager.md
+- Ethereum Attestation Service (dokumentasi): https://docs.attest.sh/
+- Draft ERC-8004 (Trustless Agents): https://eips.ethereum.org/EIPS/eip-8004
+- Gitcoin Passport (dokumentasi): https://docs.passport.gitcoin.co/
+- Steam Subscriber Agreement: https://store.steampowered.com/sub_agreement/
+
+Baru dalam jawaban ini: pembingkaian bahwa non-transferabilitas SBT hanya sekuat lapisan terendah yang dapat memindahkan kendali — lock ERC-5192/5114 bekerja di lapisan token, sedangkan serah terima kunci terjadi di lapisan akun tanpa jejak on-chain sama sekali. Jawaban ini juga memisahkan dua degradasi yang berbeda — unisitas yang berubah menjadi ambang harga untuk gated mints, dan reputasi yang berubah menjadi aset beli-an untuk agent marketplace dengan adverse selection yang mengarah ke identitas terbaik — lalu menyimpulkan bahwa bukti on-chain bersifat probabilistik (stylometry, provenance pendanaan, rotasi signer pada smart account) dan hanya mendukung risk scoring, bukan adjudikasi.

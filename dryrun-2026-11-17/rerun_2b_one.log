@@ -1,0 +1,4 @@
+arm vyce: True
+chars: 39070 qchars: 339
+{"verdict": "fatal", "segments_ok": 1, "segments": 5, "codes": ["A_CITATION", "A_CITATION", "A_CITATION", "A_CITATION", "A_CITATION", "A_CITATION"], "secs": 85.6}
+done -> /home/hatch/workspace/research/dialectica/dryrun-2026-11-17/ramalan22-round2b-f8801972.json

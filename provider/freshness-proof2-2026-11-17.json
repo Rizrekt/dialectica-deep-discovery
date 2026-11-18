@@ -1,0 +1,40 @@
+{
+ "pulled_rows": 30,
+ "viso0_core_rows": 8,
+ "checks": [
+  {
+   "isr_id": "540643f2-23b1-4632-8e9f-0e8cde1b8f51",
+   "ts": 1794888518.1543632,
+   "class": "PIONEER",
+   "mode": "block",
+   "status": "fresh",
+   "withhold": false,
+   "reasons": [],
+   "pick": {
+    "isr_id": "540643f2-23b1-4632-8e9f-0e8cde1b8f51",
+    "picked_at": 1794888407.9563491,
+    "target_class": "PIONEER",
+    "viso_at_pick": 0,
+    "verified_at_pick": 0,
+    "answers_at_pick": 0,
+    "source": "tarikan segar prove2 (viso 0, umur 110 dtk)"
+   },
+   "live": {
+    "verified_now": 0,
+    "verified_list": 0,
+    "verified_detail": 0,
+    "crowd_now": 0,
+    "iso_list_len": 0,
+    "iso_total_detail": 0,
+    "status_counts": {},
+    "question_status": "open",
+    "liveness_ok": true,
+    "liveness_reason": "LIVE: pertanyaan terbuka tanpa dimensi maraton (status open)"
+   },
+   "fetch": {
+    "detail": "ok",
+    "isos": "ok"
+   }
+  }
+ ]
+}

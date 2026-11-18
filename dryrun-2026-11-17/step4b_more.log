@@ -1,0 +1,28 @@
+arm vyce: True
+serve_gate: PERINGATAN KERAS — pemeriksa semantik C5 TIDAK TERSEDIA di kedua lane; cek TIDAK berjalan dan TIDAK memblokir (mode=shadow): SemanticUnavailable: segmen 1/1: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 29015 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati
+C5 retry 3b5c0f0c: unavailable []
+API ERROR ENDPOINT_NOT_FOUND: API endpoint not found
+API ERROR ENDPOINT_NOT_FOUND: API endpoint not found
+fields: {"3dd05619": {"error": "2"}, "3b5c0f0c": {"error": "2"}}
+  68ca3a21 liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  5936174b liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  1b1588f9 liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  def603fb liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  b2a7aa64 liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  27325dd5 liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  c3730bab liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  c7cc33a2 liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  2d968d7e liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  827c2add liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  10a145b4 liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  9aa6b1c1 liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  c94f521d liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  f043c3ec liveness=False (MATI: pola flag basi — marathonActive=True, marathonConclude)
+  26cc93f2 liveness=True (LIVE: pertanyaan terbuka tanpa dimensi maraton (status in_pr)
+vyce_provider: usage model=glm-5.3-flash prompt_tokens=481 completion_tokens=7465 total_tokens=7946
+vyce_provider: answered with glm-5.3-flash
+26cc93f2: lahir 7682 kar status=OK sendable=True
+26cc93f2: C5=clean codes=[]
+API ERROR ENDPOINT_NOT_FOUND: API endpoint not found
+serve cap after: 3 / 10
+done

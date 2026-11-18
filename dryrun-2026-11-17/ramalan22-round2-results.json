@@ -1,0 +1,242 @@
+[
+ {
+  "id": "8671364d",
+  "isr": "026fa1a2",
+  "chars": 42178,
+  "verdict": "fatal",
+  "checker": "vyce-nemotron",
+  "codes": [
+   "CUSTOMER_REQUIREMENTS",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [
+   "S-1",
+   "S-1",
+   "S-1",
+   "S-1",
+   "S-1",
+   "S-1",
+   "S-1",
+   "S-1",
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "What's genuinely missing? Let me brainstorm angles not covered:",
+    "claim": "The draft substitutes meta-commentary about existing answers and brainstorming for actually answering the question.",
+    "why": "The draft never addresses why receipt-free voting remains unsolved for on-chain juries/DAOs or how far MACI's key-switching and zk-SNARK tallying close the gap; it only inventories other answers and brainstorms what is missing."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Votium $250M+",
+    "claim": "A specific dollar figure ($250M+) is stated as fact with no named source attached in the draft.",
+    "why": "S-1 UNBOUND NUMBER: a specific price/statistic presented as established without a named source in the draft itself; Votium is a platform name, not a citation."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Hidden Hand $45M",
+    "claim": "A specific dollar figure ($45M) is stated as fact with no named source attached in the draft.",
+    "why": "S-1 UNBOUND NUMBER: a specific price/statistic presented as established without a named source in the draft itself; Hidden Hand is a platform name, not a citation."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "There are already 70 answers, most verified.",
+    "claim": "A specific count (70 answers) is stated as fact with no named source and is not supported by the Question context.",
+    "why": "S-1 UNBOUND NUMBER: a specific count presented as established platform state without a named source in the draft; the Question text does not supply this figure."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "announced ~2023-2024.",
+    "claim": "Gitcoin Grants Stack v2 integrated MACI was announced around 2023-2024.",
+    "why": "Specific date range about an external deployment is stated as fact with no named source attached in the draft."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "16,384 users, 125 options",
+    "claim": "MACI's trusted setup ceremony involved 16,384 users and 125 options.",
+    "why": "Specific counts are stated as fact with no named source attached in the draft."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "Küsters/Truderung/Vogt proved that for a large class",
+    "claim": "Küsters, Truderung, and Vogt proved an incompatibility theorem for remote e-voting protocols.",
+    "why": "Scholarly factual claim presented as established with no citation or identifiable source in the draft."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "clr.fund's largest was 4,704 contributors.",
+    "claim": "clr.fund's largest round had 4,704 contributors.",
+    "why": "A specific figure (4,704) about an external-world event is stated as fact with no named source attached in the draft itself; the draft even flags it as needing verification ('Need to verify'), making it an unbound number under S-1."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "after the UK Ballot Act 1872, electoral bribery declined (measured by election petition cases).",
+    "claim": "The UK Ballot Act 1872 caused a measurable decline in electoral bribery",
+    "why": "Specific date and empirical trend stated as established fact with no named source attached in the draft; the segment itself postpones sourcing and its closing note disavows pinpoint citations, so S-1 UNBOUND NUMBER applies."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Victoria, Australia 1856 first Australian ballot;",
+    "claim": "Victoria, Australia introduced the first Australian ballot in 1856",
+    "why": "Specific date and historical first claimed as fact with no named source attached in the draft; S-1 UNBOUND NUMBER."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "US adoption Louisville 1888 / Massachusetts 1889;",
+    "claim": "The US adopted the Australian ballot in Louisville in 1888 and Massachusetts in 1889",
+    "why": "Specific dates claimed as fact with no named source attached in the draft; S-1 UNBOUND NUMBER."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "before that, parties printed colored ballots enabling verification;",
+    "claim": "Before the Australian ballot, parties printed colored ballots that enabled vote verification",
+    "why": "External-world historical claim stated as fact with no named source attached in the draft; A_CITATION reportage requires an identifiable supporting source."
+   }
+  ],
+  "dropped": 0,
+  "segments": 5,
+  "segments_ok": 4,
+  "error": "segmen 3/5: ValueError: balasan pemeriksa bukan objek JSON",
+  "secs": 79.4
+ },
+ {
+  "id": "f131675d",
+  "isr": "c7cc33a2",
+  "chars": 41134,
+  "verdict": "unavailable",
+  "checker": null,
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped": 0,
+  "segments": null,
+  "segments_ok": null,
+  "error": "SemanticUnavailable: segmen 1/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 32385 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 2/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 29614 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 3/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 32673 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 4/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 28270 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 5/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 26266 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+  "secs": 99.0
+ },
+ {
+  "id": "f18b1675",
+  "isr": "e20d251f",
+  "chars": 42261,
+  "verdict": "fatal",
+  "checker": "vyce-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "A_CITATION"
+  ],
+  "subs": [
+   "S-1"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "Chia uses VDFs.",
+    "claim": "Chia uses VDFs.",
+    "why": "Specific factual claim about an external project presented as established, with no named source attached in the draft."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": null,
+    "quote": "drand is a real, running threshold BLS randomness beacon",
+    "claim": "drand is a real, running threshold BLS randomness beacon.",
+    "why": "Factual claim about external infrastructure presented as established, with no named source attached in the draft."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "Groth16 ~230k gas, Plonk ~300k",
+    "claim": "Groth16 verification costs ~230k gas; Plonk ~300k.",
+    "why": "Specific gas figures stated as fact with no named source attached in the draft."
+   }
+  ],
+  "dropped": 0,
+  "segments": 5,
+  "segments_ok": 2,
+  "error": "segmen 3/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 31181 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 4/5: ValueError: balasan pemeriksa bukan objek JSON || segmen 5/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 34703 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+  "secs": 82.6
+ },
+ {
+  "id": "f5224761",
+  "isr": "a1770c04",
+  "chars": 39917,
+  "verdict": "fatal",
+  "checker": "vyce-nemotron",
+  "codes": [
+   "A_CITATION",
+   "A_CITATION",
+   "CUSTOMER_REQUIREMENTS"
+  ],
+  "subs": [
+   "S-1",
+   "S-4"
+  ],
+  "findings": [
+   {
+    "code": "A_CITATION",
+    "sub": "S-1",
+    "quote": "50% burned, 50% to leader after SIMD-0096",
+    "claim": "Solana priority fees are split 50% burned / 50% to leader after SIMD-0096",
+    "why": "Specific figure (50%) and protocol mechanism stated as fact with no named source attached in the draft; S-1 unbound number."
+   },
+   {
+    "code": "A_CITATION",
+    "sub": "S-4",
+    "quote": "there is no on-chain Bundle account metadata; bundle membership is off-chain",
+    "claim": "Jito bundle membership is off-chain and there is no on-chain Bundle account metadata",
+    "why": "The only support given is \"established by multiple other answers\" — answer-as-evidence; a world fact cannot be sourced to prior answers in the discussion."
+   },
+   {
+    "code": "CUSTOMER_REQUIREMENTS",
+    "sub": null,
+    "quote": "Alternatively, I can frame the stake/vote authority structure as **foundational domain knowledge (Tier-0)**",
+    "claim": "The draft discusses stake/vote authority fields and its own citation plan instead of the requested sandwich-attack detection and operator-linkage patterns.",
+    "why": "The Question asks how a trader can detect, from on-chain data alone, whether Solana sandwich attacks across tokens are run by the same operator and what measurable patterns link separate attacks to one entity. The draft never addresses sandwich attacks, MEV, on-chain detection, or operator linkage; "
+   }
+  ],
+  "dropped": 1,
+  "segments": 5,
+  "segments_ok": 2,
+  "error": "segmen 1/5: ValueError: balasan pemeriksa bukan objek JSON || segmen 2/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 31615 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 3/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 31383 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+  "secs": 75.9
+ },
+ {
+  "id": "f8801972",
+  "isr": "c6b0eadc",
+  "chars": 39070,
+  "verdict": "unavailable",
+  "checker": null,
+  "codes": [],
+  "subs": [],
+  "findings": [],
+  "dropped": 0,
+  "segments": null,
+  "segments_ok": null,
+  "error": "SemanticUnavailable: segmen 1/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 30386 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 2/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 28165 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 3/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 29427 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 4/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 28857 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati || segmen 5/5: SemanticUnavailable: vyce-nemotron: RuntimeError: empty answer text from model (stream ended); reasoning_content held 32794 chars — discarded, never submitted || openrouter-nemotron: SemanticUnavailable: kuota free OpenRouter tersisa 1 < 2 — lane pemeriksa utama dilewati",
+  "secs": 91.9
+ }
+]

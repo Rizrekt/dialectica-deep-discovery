@@ -1,0 +1,53 @@
+[
+ {
+  "q": 1,
+  "tag": "2777178d",
+  "attempts": [
+   {
+    "attempt": 1,
+    "status": 200,
+    "latency_s": 5.8,
+    "finish": "stop"
+   }
+  ],
+  "answer_chars": 5111
+ },
+ {
+  "q": 2,
+  "tag": "d94d7e34",
+  "attempts": [
+   {
+    "attempt": 1,
+    "status": 200,
+    "latency_s": 37.6,
+    "finish": "stop"
+   }
+  ],
+  "answer_chars": 5167
+ },
+ {
+  "q": 3,
+  "tag": "635a010d",
+  "attempts": [
+   {
+    "attempt": 1,
+    "status": 503,
+    "latency_s": 41.0,
+    "finish": null
+   },
+   {
+    "attempt": 2,
+    "status": 503,
+    "latency_s": 1.2,
+    "finish": null
+   },
+   {
+    "attempt": 3,
+    "status": 400,
+    "latency_s": 1.8,
+    "finish": null
+   }
+  ],
+  "answer_chars": 0
+ }
+]

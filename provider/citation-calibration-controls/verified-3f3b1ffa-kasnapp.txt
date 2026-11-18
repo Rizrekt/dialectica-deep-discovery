@@ -1,0 +1,88 @@
+## Answer: Viking 1 pressure at Chryse Planitia and the 2028 solstice
+
+### 0. A date correction that changes the answer
+
+"Martian summer solstice of 2028" is ambiguous, and one reading has no such date. Solar longitude $L_s=90^\circ$ is the northern-hemisphere summer solstice, $L_s=270^\circ$ the northern winter / southern summer solstice (LMD, n.d.). The tabulated Mars-year dates are: Mars Year 39 northern summer solstice 16 April 2027 and Mars Year 40 northern summer solstice 3 March 2029, with the $L_s=270^\circ$ solstice falling on 12 March 2028 (Wikipedia, "Timekeeping on Mars," table of Martian seasons). **There is therefore no northern summer solstice ($L_s=90^\circ$) in calendar year 2028.** This answer gives both cases explicitly, because they predict opposite ends of the pressure cycle:
+
+- **Case A — northern summer solstice, $L_s=90^\circ$** (nearest occurrences 16 Apr 2027 and 3 Mar 2029): pressure near the seasonal low side.
+- **Case B — the solstice that actually falls in 2028, $L_s=270^\circ$ on 12 Mar 2028** (southern summer solstice): pressure near the seasonal maximum.
+
+Any model that assigns a single "solstice peak" without stating the hemisphere is underspecified.
+
+### 1. Viking 1 baseline at Chryse Planitia
+
+Viking 1 landed at $22.48^\circ$N, $47.8^\circ$W in Chryse Planitia on 20 July 1976, at $L_s \approx 97^\circ$, just after northern summer solstice (Hess, 1979). Its first-sols record is the anchor for Case A: mean pressure 7.65 mbar with a diurnal variation of amplitude about 0.1 mbar (Hess et al., 1976). The binned Viking 1 record confirms this directly: at $L_s=97.2^\circ$, sol 1.02, pressure 7.71 mbar (Tillman et al., 1990, Viking Lander 1 binned data).
+
+The full Viking climatology is:
+
+- Daily-mean pressure at Viking 1 varies by about $\pm15\%$ around the annual mean over the year, driven by condensation/sublimation of the primarily CO$_2$ atmosphere onto and from the polar caps (Tillman, 1998, "Pressure overview," University of Washington).
+- Hess (1979) quantified the same cycle from the first 57% of a Martian year at both landers: a semiannual oscillation with peak-to-peak difference 26% of the mean pressure, with the average minimum pressure at Viking 1 of 6.85 mbar.
+- Roughly 25% of the atmosphere, which is about 95% CO$_2$ by volume, is cycled into and out of the seasonal caps each year (Prettyman & Titus, 2004).
+- The two minima are not equal: the pressure minimum in late northern winter is higher than the corresponding minimum in late southern winter (Tillman, 1998) — i.e. the deepest minimum is associated with the southern winter cap, near/after $L_s=90^\circ$.
+
+From the Hess anchors, a consistent annual-mean estimate follows without inventing new data. If the minimum daily mean is $\approx$6.85 mbar and max$-$min $\approx$ 0.26 $\times$ mean, then mean $\approx$ 7.8–7.9 mbar and maximum daily mean $\approx$ 8.85–8.95 mbar. This is corroborated by the raw binned record, which shows pressures of 8.94–9.03 mbar at $L_s \approx 269$–$270^\circ$ (Tillman et al., 1990) — the seasonal maximum region.
+
+### 2. Physical mechanism: why $L_s=90^\circ$ and $L_s=270^\circ$ differ
+
+The mechanism is a global CO$_2$ mass budget, not local weather:
+
+1. In polar night, surface temperatures fall below the CO$_2$ frost point ($\approx$143–150 K), so CO$_2$ condenses directly from the atmosphere onto the winter cap, removing mass from the atmosphere and lowering global surface pressure.
+2. In polar spring/summer the seasonal ice sublimes, returning CO$_2$ to the atmosphere and raising pressure (Prettyman & Titus, 2004).
+3. At $L_s=90^\circ$ (northern summer solstice) the two caps act in opposition: the northern seasonal cap is subliming, but the southern cap is in deep winter and condensing. Because Mars is near aphelion at $L_s=71^\circ$ and the southern winter is longer and colder (orbital eccentricity), southern condensation dominates the net budget at this season, so pressure at Viking 1 is falling from its $L_s \approx 97^\circ$ value of $\approx$7.7 mbar toward the deeper southern-winter minimum (Tillman, 1998).
+4. At $L_s=270^\circ$ (southern summer solstice) the reverse holds: the massive southern seasonal cap sublimes rapidly near perihelion ($L_s=251^\circ$), while northern condensation is comparatively weak, so global atmospheric mass and Viking 1 pressure reach their annual maximum, $\approx$8.9–9.0 mbar in the binned record.
+5. Local correction: the local pressure cycle is not a pure global-mass signal. Hourdin et al. (1993) showed, in a GCM validated against Viking pressures, that orographic effects (hemispheric mean-height difference) and a dynamical/geostrophic effect also contribute, the dynamical term reaching $\approx$25% of the global-mass signal at high latitudes. At Viking 1 ($22.5^\circ$N) the correction is smaller than at polar latitudes, but it is the reason a local reading cannot be converted to total atmospheric mass by a single scale factor, and why the model below carries an explicit local-uncertainty term.
+
+The diurnal cycle is a small, separate term: daily maxima occur near midnight and $\approx$10:00 local time and minima near 04:00 and 18:00, driven by daytime heating/expansion and night cooling/contraction (Mars Pathfinder ASI/MET summary, comparing Pathfinder with Viking 1). For Viking 1 the diurnal amplitude is $\approx$0.1 mbar (Hess et al., 1976), so the *peak daily reading* is the daily mean plus $\approx$0.1 mbar.
+
+### 3. The model
+
+Let $p_d(L_s)$ be the daily-mean pressure at the Viking 1 site and $p_{peak}(L_s)$ the highest reading within that sol. The synthesis model is:
+
+$$p_d(L_s) = \bar p + \Delta p_{CO2}(L_s) + \Delta p_{dyn}(L_s) + \epsilon_{weather}$$
+
+$$p_{peak}(L_s) = p_d(L_s) + 0.10\ \mathrm{mbar}$$
+
+with, fitted to the Viking anchors above (not to a new GCM run):
+
+- $\bar p \approx 7.85$ mbar (annual mean at Viking 1, from §1);
+- $\Delta p_{CO2}(L_s)$: the CO$_2$ mass term, semiannual, ranging from about $-1.0$ mbar (deep southern-winter minimum, $L_s \approx 130$–$160^\circ$) to about $+1.05$ mbar (southern-summer maximum, $L_s \approx 250$–$270^\circ$); at $L_s=90^\circ$ it is $\approx -0.15$ mbar and falling, i.e. $p_d \approx 7.7$ mbar;
+- $\Delta p_{dyn}(L_s)$: local orographic/dynamical term, $|\Delta p_{dyn}| \lesssim 0.2$ mbar at this latitude (Hourdin et al., 1993);
+- $\epsilon_{weather}$: synoptic/front and dust variability, low in summer, higher in autumn/winter (Tillman, 1998); $\pm0.1$–$0.3$ mbar in quiet years, larger in a global-dust-storm year.
+
+In words: pressure is set by which winter cap is growing fastest. The model predicts a *falling* pressure through northern summer solstice and a *maximum* at southern summer solstice — the opposite of a naive "summer solstice = highest pressure" reading.
+
+### 4. Predictions for 2028
+
+**Case A — northern summer solstice, $L_s=90^\circ$ (16 Apr 2027 / 3 Mar 2029; no occurrence in 2028):**
+Daily mean $\approx$ **7.6–7.8 mbar**, peak daily reading $\approx$ **7.7–7.9 mbar**. This is essentially the Viking landing value (7.65 mbar mean, $L_s=97^\circ$), because the solstice is only $\approx7^\circ$ of $L_s$ earlier, and the seasonal slope there is gentle ($\sim$0.01 mbar per degree of $L_s$). The reading is on a declining branch: the seasonal minimum ($\approx$6.9 mbar daily mean) follows $\sim$40–60$^\circ$ of $L_s$ later.
+
+**Case B — the solstice in calendar 2028, $L_s=270^\circ$, 12 Mar 2028 (southern summer solstice):**
+Daily mean $\approx$ **8.8–9.0 mbar**, peak daily reading $\approx$ **8.9–9.1 mbar**. This is the annual maximum, matching the binned Viking 1 values of 8.94–9.03 mbar at $L_s=269$–$270^\circ$.
+
+### 5. Uncertainty and falsifiability
+
+- **Confidence:** high for the sign and ordering (Case B > Case A by $\approx$1.2 mbar) and for the Case A value, which is directly anchored by Viking 1's own landing-season data. Moderate ($\pm0.3$ mbar) for the exact Case B peak, because interannual variability is real: Viking year 1 vs year 2 differed visibly in winter, with a pressure jump around $L_s=272^\circ$ in year 1 that persisted $\approx$100 sols (Tillman, 1998).
+- **What would falsify this model:** a daily-mean pressure at $L_s=90^\circ$ above 8.2 mbar or below 7.2 mbar in a quiet (non-global-dust-storm) year, or a $L_s=270^\circ$ daily mean below 8.4 mbar, would contradict the Viking climatology on which it is built. A global dust storm in 2028 would be a known confounder, not a refutation of the CO$_2$-cycle mechanism: dust changes the thermal structure and cap energy balance and can shift pressures by several tenths of a millibar.
+- **What this model does not do:** it does not extrapolate a secular trend (no evidence in the Viking record alone for a 1976→2028 drift at the $\pm0.3$ mbar level is claimed here), and it is a climatological synthesis, not a GCM forecast for a specific sol in 2028.
+
+### 6. Conclusion
+
+At Chryse Planitia, seasonal CO$_2$ sublimation does not raise pressure at every solstice: it raises pressure when the *southern* cap sublimes ($L_s \approx 270^\circ$, $\approx$9.0 mbar peak daily) and lowers it when the southern cap grows through northern summer ($L_s=90^\circ$, $\approx$7.8 mbar peak daily). If "summer solstice of 2028" means the solstice occurring in 2028, the expected peak daily reading is **$\approx$8.9–9.1 mbar on 12 March 2028**; if it means the northern summer solstice, the expected peak daily reading is **$\approx$7.7–7.9 mbar**, at the nearest occurrences in April 2027 and March 2029.
+
+## References
+
+Hess, S. L. (1979). The seasonal variation of atmospheric pressure on Mars as affected by the south polar cap. *Journal of Geophysical Research, 84*(B6), 2923–2927. https://archive.org/download/wikipedia-scholarly-sources-corpus/10.1029%252F00eo00067.zip/10.1029%252FJB084iB06p02923.pdf
+
+Hess, S. L., Henry, R. M., Leovy, C. B., Ryan, J. A., & Tillman, J. E. (1976). Preliminary meteorological results on Mars from the Viking 1 lander. *Science, 193*(4255), 788–791. https://www.science.org/doi/10.1126/science.193.4255.788
+
+Hourdin, F., Le Van, P., Forget, F., & Talagrand, O. (1993). Meteorological variability and the annual surface pressure cycle on Mars. *Journal of the Atmospheric Sciences, 50*, 3625–3640. https://www-mars.lmd.jussieu.fr/mars/jas93.pdf
+
+Laboratoire de Météorologie Dynamique. (n.d.). Martian seasons and solar longitude $L_s$. https://www-mars.lmd.jussieu.fr/mars/time/solar_longitude.new
+
+Prettyman, T. H., & Titus, T. N. (2004). Exploring Martian polar atmospheric circulation and surface interactions. *Eos, Transactions, American Geophysical Union, 85*(41), 403. https://pubs.usgs.gov/publication/70202323
+
+Tillman, J. E. (1998). Mars atmospheric pressure overview (rev. July 19, 1998). University of Washington. http://www-k12.atmos.washington.edu/k12/resources/mars_data-information/pressure_overview.html
+
+Tillman, J. E., Murphy, J. R., & Leovy, C. B. (1990). Viking Lander 1 binned and splined meteorological data (Rev. 2.2). University of Washington. http://www-k12.atmos.washington.edu/k12/mars/data/vl1/part1.html
+
+Wikipedia. (n.d.). Timekeeping on Mars (table of Martian seasons, Mars Years 39–40). https://en.wikipedia.org/wiki/Timekeeping_on_Mars

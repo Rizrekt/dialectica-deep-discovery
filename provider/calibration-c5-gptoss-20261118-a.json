@@ -1,0 +1,631 @@
+{
+ "results": [
+  {
+   "label": "#5",
+   "id": "f0bb3586",
+   "kind": "poison",
+   "expected": [
+    "S-1"
+   ],
+   "verdict": "fatal",
+   "checker": "cloudflare-gptoss",
+   "codes": [
+    "A_CITATION",
+    "A_CITATION",
+    "A_SCOPE",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "CUSTOMER_REQUIREMENTS",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_REASONING"
+   ],
+   "subs": [
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-4",
+    "S-1",
+    "S-1"
+   ],
+   "findings": [
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "the exit churn limit is 256 ETH/epoch (≈57,600 ETH/day)",
+     "claim": "The exit churn limit is 256 ETH per epoch, equivalent to about 57,600 ETH per day",
+     "why": "A specific numeric claim is presented without any identifiable source supporting it."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "with ~44.5M ETH total active balance: 44.5e6 / 65536 ≈ 679 ETH/epoch ≈ 152,800 ETH/day",
+     "claim": "Current total active balance yields a per‑epoch churn of ~679 ETH, or ~152,800 ETH per day",
+     "why": "The calculation relies on a total‑active‑balance figure and derived numbers that are not sourced to any blockchain data or official report."
+    },
+    {
+     "code": "A_SCOPE",
+     "sub": null,
+     "quote": "I don't actually have web access in this conversation. I'm generating a response without tool access.",
+     "claim": "The answer reports the expert's lack of web access (environmental detail).",
+     "why": "Reporting on the Expert's own tool availability violates A_SCOPE, which forbids disclosing personal environment details."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "256 ETH/epoch (~57,600/day)",
+     "claim": "A specific churn figure is presented as fact.",
+     "why": "The number is uncited; no identifiable source is provided, violating A_CITATION (S-1)."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "At 44.5M ETH: 44,500,000/65,536 ≈ 678.8 → ~679 ETH/epoch",
+     "claim": "A precise balance‑churn limit is given without any source.",
+     "why": "Specific numeric claim lacks an identifiable citation, matching S-1."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "823,366/65,536 ≈ 12.56 → 12 validators/epoch",
+     "claim": "Validator churn limit is calculated and stated as fact.",
+     "why": "No source is provided for this specific calculation, violating S-1."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "activation_exit_churn_limit = min(679, 32×12=384) = 384 ETH/epoch",
+     "claim": "A precise activation/exit churn limit is asserted.",
+     "why": "Uncited specific figure; S-1 applies."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "exit churn becomes balance‑based and larger (4× current)",
+     "claim": "EIP‑8061 is said to quadruple exit churn without citation.",
+     "why": "No identifiable source supporting this quantitative claim; S-1."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "validator_churn_limit = max(4, active_validator_count/65,536)",
+     "claim": "Specific churn‑limit formula is given without source.",
+     "why": "Specific numeric rule lacks citation, matching S-1."
+    },
+    {
+     "code": "CUSTOMER_REQUIREMENTS",
+     "sub": null,
+     "quote": "currently exit churn is capped at MIN_ACTIVATION_BALANCE × validator_churn_limit = 32 × 12 = 384 ETH/epoch ≈ 86,400 ETH/day, NOT the balance-based 679 ETH/epoch",
+     "claim": "The answer discusses EIP‑8061 exit‑churn mechanics instead of addressing whether liquid‑restaking tokens create hidden leverage cascades that could destabilise L1 consensus",
+     "why": "The draft does not engage with the specific question about LRTs and leverage cascades; it is off‑topic and fails the customer’s request"
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "currently exit churn is capped at MIN_ACTIVATION_BALANCE × validator_churn_limit = 32 × 12 = 384 ETH/epoch ≈ 86,400 ETH/day",
+     "claim": "Specific numeric figure (384 ETH/epoch, 86,400 ETH/day) is presented as fact",
+     "why": "No identifiable source is provided for this concrete number, violating the unbound‑number rule"
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-4",
+     "quote": "Answer 37 computed 4× 57,600 = 230,400/day based on the pre‑Electra 256 ETH/epoch figure",
+     "claim": "The claim that the exit‑churn would be 230,400 ETH/day relies solely on another answer in the discussion as its source",
+     "why": "Using another answer as the only evidence is prohibited; the source is not an independent, verifiable citation"
+    },
+    {
+     "code": "A_CITATION",
+     "sub": null,
+     "quote": "Cointelegraph reported \"record above 1M ETH with an 18‑day‑16‑hour wait\"",
+     "claim": "Empirical exit‑queue duration and derived throughput are based on a Cointelegraph report",
+     "why": "The world‑claim is not accompanied by a proper, identifiable citation (e.g., APA reference), so the supporting source is insufficient"
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "balance_churn_limit (679) > activation_exit_churn_limit (384) at current params",
+     "claim": "Specific numeric values for churn limits are presented as facts.",
+     "why": "No identifiable source is provided for these numbers, violating the citation rule for unbound figures."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "exits would run at ~679 ETH/epoch ≈ 153k/day",
+     "claim": "Exit throughput is quantified without citation.",
+     "why": "The figure is given as fact without any supporting source, constituting an unbound number."
+    },
+    {
+     "code": "A_REASONING",
+     "sub": null,
+     "quote": "Unless the Aug 2025 queue math: hmm, wait. What if the \"18 days\" wait time is computed by beaconcha.in using a DIFFERENT (outdated) throughput assumption?",
+     "claim": "Speculative reasoning jumps between conflicting interpretations without a clear logical chain.",
+     "why": "The answer makes leaps and contradictory hypotheses without systematically linking premises to conclusions."
+    }
+   ],
+   "dropped_findings": 7,
+   "segments": 4,
+   "segments_ok": 4,
+   "budget_truncated": false,
+   "error": null,
+   "chars": 38591,
+   "calls": [
+    {
+     "ok": true,
+     "neurons": 228.97650146484375,
+     "reasoning_chars": 3498,
+     "content_chars": 1914,
+     "latency_s": 29.88,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 4070,
+      "completion_tokens": 1459,
+      "total_tokens": 5529,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 228.97650146484375
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 242.43560791015625,
+     "reasoning_chars": 4644,
+     "content_chars": 1997,
+     "latency_s": 39.66,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 3998,
+      "completion_tokens": 1690,
+      "total_tokens": 5688,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 242.43560791015625
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 277.3400573730469,
+     "reasoning_chars": 6413,
+     "content_chars": 1672,
+     "latency_s": 39.0,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 4420,
+      "completion_tokens": 2005,
+      "total_tokens": 6425,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 277.3400573730469
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 199.14471435546875,
+     "reasoning_chars": 2557,
+     "content_chars": 2157,
+     "latency_s": 19.06,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 3951,
+      "completion_tokens": 1077,
+      "total_tokens": 5028,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 199.14471435546875
+     }
+    }
+   ],
+   "neurons": 947.8968811035156
+  },
+  {
+   "label": "#6",
+   "id": "7d81c51d",
+   "kind": "poison",
+   "expected": [
+    "S-1"
+   ],
+   "verdict": "fatal",
+   "checker": "cloudflare-gptoss",
+   "codes": [
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION",
+    "A_CITATION"
+   ],
+   "subs": [
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1",
+    "S-1"
+   ],
+   "findings": [
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "India Semiconductor Mission approvals ~$10B+;",
+     "claim": "The draft states that the India Semiconductor Mission approvals total roughly $10 billion plus, but provides no source for this specific figure.",
+     "why": "A specific monetary figure is presented without an identifiable source, violating A_CITATION (unbound number)."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "first \"Made in India\" chips 2025-2026.",
+     "claim": "The draft predicts the first \"Made in India\" chips will appear in 2025‑2026 without citing any source.",
+     "why": "Future-specific forecast presented as fact without citation; qualifies as S-1 unbound number and also lacks uncertainty framing."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "US Commerce considering chip location tracking, the \"Chip Security Act\" bill.",
+     "claim": "The statement that US Commerce is considering chip location tracking and that a \"Chip Security Act\" bill exists is made without any source.",
+     "why": "A concrete policy claim is offered without an identifiable source, constituting an S-1 violation."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "transformer lead times 2-5 years,",
+     "claim": "The draft asserts transformer lead times are 2–5 years but gives no citation for this range.",
+     "why": "Specific operational timeframe is presented without supporting source, triggering S-1."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "gas turbine order books sold out through 2028-2030 (GE Vernova),",
+     "claim": "The claim that gas turbine order books are sold out through 2028‑2030 (citing GE Vernova) lacks a verifiable source reference.",
+     "why": "A precise market‑capacity claim is made without an identifiable citation, an S-1 violation."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "SK hynix/Samsung using EUV in DRAM;",
+     "claim": "The draft says SK hynix and Samsung are using EUV lithography in DRAM production, yet no source is provided.",
+     "why": "A specific technological development is asserted without citation, constituting an S-1 unbound number."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "CXMT stuck at DUV;",
+     "claim": "The statement that CXMT remains at DUV lithography is presented without any supporting reference.",
+     "why": "A concrete claim about a company's technology road‑map lacks a source, triggering S-1."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "data centre electricity 945 TWh by 2030",
+     "claim": "IEA \"Energy and AI\" report projects data centre electricity consumption of 945 TWh by 2030",
+     "why": "A precise forecast figure is presented without an identifiable source; the claim lacks a citation linking it to the IEA report."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "SEMI estimates secondary market ~$5-6B/yr?",
+     "claim": "The secondary market for used/refurbished semiconductor equipment is about $5‑6 billion per year according to SEMI",
+     "why": "The monetary estimate is given without an explicit, identifiable source; SEMI is mentioned but no specific report or URL is cited."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "Nvidia→OpenAI up to $100B for 10GW",
+     "claim": "Nvidia has committed up to $100 billion to OpenAI for 10 GW of compute",
+     "why": "A large financial figure is asserted without a verifiable citation to a press release, filing, or news article."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "AMD→OpenAI 6GW with warrants up to 160M shares",
+     "claim": "AMD pledged 6 GW of compute to OpenAI and received warrants for up to 160 million shares",
+     "why": "The statement provides specific numbers but does not cite any source that confirms the deal."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "Meta's $27B Hyperion SPV",
+     "claim": "Meta created a $27 billion Hyperion special‑purpose vehicle for AI‑related financing",
+     "why": "A precise dollar amount is presented without an identifiable source or document linking Meta to the Hyperion SPV."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "Bain: ~$2T annual AI revenue needed by 2030 to fund compute",
+     "claim": "Bain estimates that about $2 trillion of AI revenue per year will be required by 2030 to fund compute demand",
+     "why": "The estimate is given without a citation to the specific Bain report, article, or webpage that contains this figure."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "\"NVIDIA and OpenAI announce strategic partnership to deploy 10 gigawatts of AI systems\"",
+     "claim": "A partnership between Nvidia and OpenAI will deploy 10 GW of AI systems.",
+     "why": "Specific figure (10 GW) is presented without any identifiable source; violates A_CITATION (unbound number)."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "\"AMD and OpenAI Announce Strategic Partnership to Deliver 6 Gigawatts of AMD GPUs\"",
+     "claim": "AMD and OpenAI will deliver 6 GW of AMD GPUs.",
+     "why": "Exact number (6 GW) is given with no citation; unbound statistic."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "\"OpenAI and Broadcom announce strategic collaboration to develop and deploy 10 gigawatts of OpenAI accelerators\"",
+     "claim": "OpenAI and Broadcom will develop and deploy 10 GW of accelerators.",
+     "why": "Specific quantity (10 GW) lacks an identifiable source; unbound number."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "\"Chip Security Act of 2025\"",
+     "claim": "A federal Chip Security Act requiring location‑verification mechanisms was introduced in 2025.",
+     "why": "Legislative claim is made without a verifiable citation (bill number or congress.gov link); unbound fact."
+    },
+    {
+     "code": "A_CITATION",
+     "sub": "S-1",
+     "quote": "\"NVIDIA 800 VDC...\"",
+     "claim": "Nvidia announced an 800 VDC power architecture for AI accelerators.",
+     "why": "Technical specification (800 VDC) is asserted without a supporting citation; unbound number."
+    }
+   ],
+   "dropped_findings": 10,
+   "segments": 4,
+   "segments_ok": 4,
+   "budget_truncated": false,
+   "error": null,
+   "chars": 36679,
+   "calls": [
+    {
+     "ok": true,
+     "neurons": 236.27195739746094,
+     "reasoning_chars": 4842,
+     "content_chars": 1857,
+     "latency_s": 32.32,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 4010,
+      "completion_tokens": 1594,
+      "total_tokens": 5604,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 236.27195739746094
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 261.2174072265625,
+     "reasoning_chars": 5608,
+     "content_chars": 2313,
+     "latency_s": 41.83,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 4074,
+      "completion_tokens": 1930,
+      "total_tokens": 6004,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 261.2174072265625
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 252.03103637695312,
+     "reasoning_chars": 4787,
+     "content_chars": 1911,
+     "latency_s": 37.16,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 4066,
+      "completion_tokens": 1799,
+      "total_tokens": 5865,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 252.03103637695312
+     }
+    },
+    {
+     "ok": true,
+     "neurons": 241.8629913330078,
+     "reasoning_chars": 3900,
+     "content_chars": 3533,
+     "latency_s": 24.95,
+     "status": 200,
+     "usage": {
+      "prompt_tokens": 3320,
+      "completion_tokens": 1998,
+      "total_tokens": 5318,
+      "prompt_tokens_details": {
+       "cached_tokens": 0
+      },
+      "neurons": 241.8629913330078
+     }
+    }
+   ],
+   "neurons": 991.3833923339844
+  }
+ ],
+ "calls": [
+  {
+   "ok": true,
+   "neurons": 228.97650146484375,
+   "reasoning_chars": 3498,
+   "content_chars": 1914,
+   "latency_s": 29.88,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 4070,
+    "completion_tokens": 1459,
+    "total_tokens": 5529,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 228.97650146484375
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 242.43560791015625,
+   "reasoning_chars": 4644,
+   "content_chars": 1997,
+   "latency_s": 39.66,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 3998,
+    "completion_tokens": 1690,
+    "total_tokens": 5688,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 242.43560791015625
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 277.3400573730469,
+   "reasoning_chars": 6413,
+   "content_chars": 1672,
+   "latency_s": 39.0,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 4420,
+    "completion_tokens": 2005,
+    "total_tokens": 6425,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 277.3400573730469
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 199.14471435546875,
+   "reasoning_chars": 2557,
+   "content_chars": 2157,
+   "latency_s": 19.06,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 3951,
+    "completion_tokens": 1077,
+    "total_tokens": 5028,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 199.14471435546875
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 236.27195739746094,
+   "reasoning_chars": 4842,
+   "content_chars": 1857,
+   "latency_s": 32.32,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 4010,
+    "completion_tokens": 1594,
+    "total_tokens": 5604,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 236.27195739746094
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 261.2174072265625,
+   "reasoning_chars": 5608,
+   "content_chars": 2313,
+   "latency_s": 41.83,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 4074,
+    "completion_tokens": 1930,
+    "total_tokens": 6004,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 261.2174072265625
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 252.03103637695312,
+   "reasoning_chars": 4787,
+   "content_chars": 1911,
+   "latency_s": 37.16,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 4066,
+    "completion_tokens": 1799,
+    "total_tokens": 5865,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 252.03103637695312
+   }
+  },
+  {
+   "ok": true,
+   "neurons": 241.8629913330078,
+   "reasoning_chars": 3900,
+   "content_chars": 3533,
+   "latency_s": 24.95,
+   "status": 200,
+   "usage": {
+    "prompt_tokens": 3320,
+    "completion_tokens": 1998,
+    "total_tokens": 5318,
+    "prompt_tokens_details": {
+     "cached_tokens": 0
+    },
+    "neurons": 241.8629913330078
+   }
+  }
+ ],
+ "cum_neurons": 1939.2802734375
+}

@@ -1,0 +1,51 @@
+The refusal is, by default, pointing at a real and well-documented risk class — an unlimited ERC-20 allowance to an unaudited spender persists until revoked and lets that spender pull any amount at any future time — so the user's real question is not whether blanket approvals are dangerous, but whether this particular marketplace's residual risk justifies the trade and whether the wallet offers a bounded path. The ex-ante evidence that settles it is checkable in three places before signing anything: the marketplace's on-chain footprint, the risk system's own stated trigger and alternatives, and the risk profile of the proposed workaround. On the third point there is a decisive asymmetry: moving the asset to a less restricted wallet does not reduce the flagged risk at all, because the allowance risk lives in the marketplace contract, not in the wallet that signs.
+
+## 1. What the refusal already establishes
+
+- Under EIP-20, `approve(spender, amount)` combined with `transferFrom` creates an allowance with no built-in expiry or cap; setting it to the maximum value grants indefinite pulling rights (https://eips.ethereum.org/EIPS/eip-20). For NFT marketplaces, `setApprovalForAll` under EIP-721 grants transfer rights over an entire collection (https://eips.ethereum.org/EIPS/eip-721).
+- Allowance drainers and approval-phishing kits that harvest unlimited approvals are a consistently documented loss category in periodic crime reporting by firms such as Chainalysis (https://www.chainalysis.com) and ScamSniffer (https://scamsniffer.io). A policy refusing blanket approvals to small, unaudited contracts is therefore refusing a recognized risk class, not expressing taste. The open question is calibration: does the refusal block only the dangerous form (unlimited, persistent) or also the safe forms (exact-amount, single-use)?
+
+## 2. Pre-trade evidence about the marketplace (all verifiable before signing)
+
+- **Source verification:** Is the contract verified on the block explorer or byte-code-matched on Sourcify (https://sourcify.dev)? Unverified code means nothing rules out hidden pull or sweep logic.
+- **Custody-like powers:** Check for proxy/upgradeability patterns via EIP-1967 storage slots (https://eips.ethereum.org/EIPS/eip-1967), owner-gated functions, pausing, or token-sweep paths. If an admin key can move user tokens or swap the logic, an unlimited allowance is functionally a custody transfer.
+- **Age and third-party value at stake:** Deployment date, transaction history, and whether independent capital already sits in the protocol (DeFiLlama listings, https://defillama.com). Public exploit databases such as rekt.news (https://rekt.news) are dominated by young or unaudited deployments, so longevity without incident is weak but real evidence.
+- **Bounty signals:** A live bug bounty (e.g., Immunefi, https://immunefi.com) partially substitutes for an audit; its absence on an already-unaudited contract removes the last external check.
+- **Approval architecture:** Does the marketplace pull exact amounts per trade (`transferFrom` in the same transaction), or does it demand a standing allowance? Does it support EIP-2612 `permit` signatures (https://eips.ethereum.org/EIPS/eip-2612) or Uniswap's Permit2 (https://github.com/Uniswap/permit2), which enable single-use, deadline-bound authorizations instead of persistent allowances? A marketplace needing only bounded approvals is materially safer to trade with.
+- **Simulation:** Run the exact approval and trade in a simulator — Tenderly (https://tenderly.co) or the wallet's built-in screening such as Blockaid (https://www.blockaid.io) — and read what future powers the allowance creates. Also cap exposure structurally: the maximum loss from an allowance is the approved token balance, so size the approval to the trade, never to the balance.
+
+## 3. Evidence about the risk system itself
+
+- **Is the trigger stated and falsifiable?** Agent wallets run deterministic policy engines (allowlists, spend caps, simulation gates — the pattern enabled for smart accounts by EIP-4337, https://eips.ethereum.org/EIPS/eip-4337, and implemented in products like Safe, https://safe.global). A refusal that names its trigger — e.g., a verification, audit, or contract-age requirement — hands the user a claim they can confirm on-chain in minutes. An opaque refusal carries almost no information and warrants more independent checking, not less.
+- **Does it offer a bounded alternative?** If the wallet permits a one-time exact-amount approval or a session spending cap, the "riskier workaround" framing collapses: the safe path exists inside the restricted wallet, and the refusal is both protective and non-blocking. If no bounded path is offered, that is evidence of a blunt rule — but it still does not make migration safer (Section 4).
+- **Consistency:** Does the same policy allow unlimited approvals to large, aged, audited protocols? A conditional rule indicates calibrated risk assessment; a uniform block indicates a blunt guardrail. The wallet's published policy documentation is itself ex-ante evidence of which one you are facing.
+
+## 4. The workaround comparison — the decisive asymmetry
+
+- The flagged risk — unlimited allowance to an unaudited spender — is a property of the marketplace contract. It is identical whether the approval is signed from the restricted wallet or a less restricted one. Migration therefore does not mitigate the risk the refusal addressed; it only adds new ones: fresh key handling during the transfer (seed-phrase exposure is a leading immediate-loss vector), loss of the agent wallet's simulation and policy layer, and loss of account-abstraction protections such as spending caps or recovery.
+- The workaround is consequently weakly dominated: same marketplace risk, strictly more operational risk. The only scenario in which migration is rational is when the less restricted wallet enables a strictly safer approval pattern — per-trade exact approvals or permit signatures — that the restricted wallet refuses to support. Even then, if the restricted wallet permits a one-time exact-amount approval, that is the least-risk path of all: no migration, no persistent allowance, no new keys.
+- Ex ante, the burden of proof sits with the workaround, not the refusal.
+
+## 5. Decision rule
+
+- **Treat the refusal as protective when:** the stated trigger is verifiable on-chain and checks out (unverified source, upgradeable proxy with an active admin key, no bounty, brand-new deployment). Act inside the restriction: exact-amount approval, a permit-based flow, or walk away; and revoke any residual allowance afterwards via approval checkers such as Etherscan's (https://etherscan.io/tokenapprovalchecker).
+- **Treat it as likely over-restrictive when:** the marketplace is verified and immutable, has substantial history with real third-party value, carries a bounty or audit — and the wallet still refuses without naming a trigger or offering a bounded path. Even then, prefer a bounded approval over migrating custody; migrate only if even bounded approvals are blocked and the trade's value justifies fresh key-handling risk.
+- **Never convert a bounded refusal into an unbounded migration:** the refusal caps one mechanism (persistent unlimited allowance), while migration re-opens every mechanism at once.
+
+## Sources
+
+- EIP-20 (allowance semantics): https://eips.ethereum.org/EIPS/eip-20
+- EIP-721 (`setApprovalForAll`): https://eips.ethereum.org/EIPS/eip-721
+- EIP-2612 (permit): https://eips.ethereum.org/EIPS/eip-2612
+- EIP-1967 (proxy storage slots): https://eips.ethereum.org/EIPS/eip-1967
+- EIP-4337 (smart-account policy context): https://eips.ethereum.org/EIPS/eip-4337
+- Sourcify verification: https://sourcify.dev
+- Etherscan token approval checker: https://etherscan.io/tokenapprovalchecker
+- ConsenSys smart-contract best practices: https://consensys.github.io/smart-contract-best-practices/
+- OpenZeppelin Contracts (SafeERC20/allowance handling): https://docs.openzeppelin.com/contracts/
+- Uniswap Permit2: https://github.com/Uniswap/permit2
+- Tenderly: https://tenderly.co · Blockaid: https://www.blockaid.io · Safe: https://safe.global
+- rekt.news: https://rekt.news · Immunefi: https://immunefi.com · DeFiLlama: https://defillama.com
+- Chainalysis: https://www.chainalysis.com · ScamSniffer: https://scamsniffer.io
+
+New in this answer: the decisive ex-ante test is an invariance check — the risk a blanket-approval refusal flags lives in the marketplace contract, so moving the asset to a less restricted wallet cannot mitigate it and only adds key-handling and policy-layer losses, making the workaround weakly dominated unless it unlocks a strictly safer approval pattern such as exact-amount or permit-based authorization. Second, the refusal's own behavior is evidence: a stated, on-chain-falsifiable trigger plus a bounded alternative marks a calibrated system, while an opaque rule with no bounded path marks a blunt one — but even a blunt refusal never justifies converting a bounded restriction into an unbounded migration.

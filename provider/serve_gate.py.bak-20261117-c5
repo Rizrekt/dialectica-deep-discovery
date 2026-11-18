@@ -1,0 +1,569 @@
+#!/usr/bin/env python3
+"""Shared SERVE quality gate for Dialectica (built 2026-11-15 as lab
+preparation after the first falsified serve answer, MEKANISME §82).
+
+Why this module exists: the one-shot claim path has always sent its
+drafts through the full wrapper gate (`openrouter_wrapper.wrap_answer`
++ the fail-closed sendable semantics of §35/§45: status OK + zero
+surviving audit findings + format gate (g) LOLOS, with the §45
+mechanical floor K-1/K-2 riding as FLOOR findings). The background
+SERVE paths did not share that protection end to end:
+
+- the Vyce serve ran with NO prepare hook and NO wrapper at all — the
+  provider's raw model output was submitted verbatim, which is how
+  ISO f0bb3586 shipped a 38,591-char thinking trace (0 URLs, 0
+  citations, 557 unbound numbers) and was falsified in ±85 s;
+- neither serve path verified that the target was still LIVE — the
+  §82 structural finding was 11/11 sampled serve answers landing on
+  questions whose marathon round had already ended
+  (`marathonEligible=false`, upside $0, full downside).
+
+This module is the single gate both serve lanes now share. It does
+NOT define a second standard: the content gate is the claim wrapper
+itself, reused verbatim, plus two serve-specific layers the claim
+path gets from its operator instead —
+
+1. LIVENESS (`liveness_check`): the three-field filter of
+   KULIT-SISTEM-2026-11-14 edge #2 over the ISR detail —
+   `marathonActive` + `marathonConcluded` + the eligible rounds'
+   `endsAt`. LIVE only when a round's max `endsAt` is still in the
+   future, or (no marathon dimension at all) the question is still
+   open. The stale-flag pattern (concluded, every endsAt past) is
+   DEAD; a marathon question with no future endsAt is DEAD
+   (fail-closed); an unavailable detail is DEAD at prepare time.
+
+2. THINKING-TRACE (`detect_thinking_trace`): mechanical detectors
+   for the f0bb3586 species — a draft that is the model's raw
+   reasoning monologue instead of an answer: (i) opens with a
+   reasoning preamble ("Let me think about this task carefully."),
+   (ii) carries first-person uncertainty monologue ("I genuinely
+   don't remember…", "I really can't reproduce it reliably."),
+   (iii) is dominated by a raw code dump, or (iv) closes with a plan
+   ("Decision: I will structure my novel contribution around…")
+   instead of delivering the answer. A trace finding has no span, so
+   under the lanes' established semantics it is unpatchable and
+   withholds the draft.
+
+3. EVASIVE SOURCE CLOSING (`detect_evasive_source_closing`, E3 —
+   ADOPTED by the lab of 2026-11-15, LAB-E3-SENSUS-E-2026-11-15.md
+   §1.5–§1.6): an explicit source-evasion admission in the draft's
+   CLOSING or SOURCE SECTION ("avoids pinpoint references", "cannot
+   be verified from the text alone", "no live web access", "I give
+   no URLs", …). All four falsified serve answers (f0bb3586,
+   7d81c51d, 5b5e8212, a3b8b34a) closed with the same verbatim
+   evasion; the measured false-positive rate is 0/203 verified
+   (KORPUS-JUARA-2026-11-14). The scan is deliberately BOUNDED to
+   the closing block and source sections: deferral language in the
+   body (e.g. "verify exact current values in the live docs" in
+   verified 0006fe08) is NOT a trigger. Like the trace layer, the
+   finding has no span and withholds the draft.
+
+SEMANTIC SELF-VFP — deliberately NOT mechanised here. On the claim
+path, semantic support (operator prompt T10.2 / T12 item 5) is the
+operating agent's own judgement: open every citation and point at
+the sentence that supports each bound claim. It is not a model call
+inside the wrapper, and the wrapper's own docstring calls it a
+separate, non-delegable check (claim #1 passed every mechanical
+threshold and died on support). A background serve has no agent in
+the loop, so this gate cannot honestly reproduce that check:
+`gate_answer` therefore reports `semantic_vfp.performed = False` on
+every result, and whether serve may run on the mechanical gate alone
+— or must add a semantic stage first — is an explicit lab decision
+(see GERBANG-SERVE-2026-11-15.md). The gate accepts an optional
+`semantic_check` callable so a lab-approved stage can be plugged in
+without redesign; it ships unpopulated.
+
+Fetch arming: reading the ISR detail needs the account session, so
+`fetch_isr_detail` only touches the network when the launcher arms
+it with DIALECTICA_SERVE_GATE_FETCH=1 (run_serve sets this for both
+serve modes). Unarmed (unit tests, manual provider runs) it reports
+state "disabled" and callers fall back as documented per call site:
+prepare hooks evaluate the search row's own fields; job-time
+fallbacks proceed unless death is PROVEN (a job already exists —
+dropping it on an unverifiable fetch would burn reliability for
+nothing; the structural gate is prepare, before any claim).
+"""
+import datetime
+import os
+import re
+import sys
+import time
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+from openrouter_wrapper import wrap_answer  # noqa: E402
+
+TRUED_DIR = os.path.expanduser(
+    "~/workspace/research/dialectica/skill-audit/pkg/dialectica/scripts")
+FETCH_ENV = "DIALECTICA_SERVE_GATE_FETCH"
+
+# --------------------------------------------------------------- liveness
+
+_TS_FORMATS = ("%Y-%m-%dT%H:%M:%S.%f%z", "%Y-%m-%dT%H:%M:%S%z",
+               "%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M:%S")
+
+
+def parse_ts(value):
+    """Parse an API timestamp to epoch seconds. Accepts ISO strings
+    (with Z or offset, with/without fractional seconds) and numeric
+    epoch seconds or milliseconds. Returns None when unparseable."""
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        v = float(value)
+        return v / 1000.0 if v > 1e12 else v
+    text = str(value).strip()
+    if not text:
+        return None
+    iso = text.replace("Z", "+00:00") if text.endswith("Z") else text
+    try:
+        dt = datetime.datetime.fromisoformat(iso)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=datetime.timezone.utc)
+        return dt.timestamp()
+    except ValueError:
+        pass
+    for fmt in _TS_FORMATS:
+        try:
+            dt = datetime.datetime.strptime(text, fmt)
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=datetime.timezone.utc)
+            return dt.timestamp()
+        except ValueError:
+            continue
+    return None
+
+
+def _fmt_ts(epoch):
+    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(epoch))
+
+
+def liveness_check(detail, now=None):
+    """Three-field liveness over an ISR detail dict (KULIT-SISTEM
+    edge #2). Returns (ok, reason); reason names the deciding fields.
+
+    LIVE iff a marathon round is provably open (some eligible
+    `endsAt` in the future — this also covers a NEW round on a
+    concluded question), or the question carries no marathon
+    dimension and is still open. Everything else is DEAD, including
+    a marathon question whose rounds cannot be shown to be open."""
+    if not isinstance(detail, dict):
+        return False, "detail ISR tidak tersedia — liveness tidak " \
+                      "terverifikasi (fail-closed)"
+    now = time.time() if now is None else now
+    status = str(detail.get("status") or "")
+    active = bool(detail.get("marathonActive"))
+    concluded = bool(detail.get("marathonConcluded")
+                     or detail.get("concluded"))
+    elig = detail.get("marathonEligibleIsos") or []
+    ends = []
+    for entry in elig:
+        if isinstance(entry, dict):
+            ts = parse_ts(entry.get("endsAt"))
+            if ts is not None:
+                ends.append(ts)
+    if ends:
+        max_ends = max(ends)
+        if max_ends > now:
+            return True, (f"LIVE: ronde maraton terbuka — maxEndsAt "
+                          f"{_fmt_ts(max_ends)} > sekarang "
+                          f"(active={active}, concluded={concluded})")
+        return False, (f"MATI: pola flag basi — marathonActive="
+                       f"{active}, marathonConcluded={concluded}, "
+                       f"semua endsAt ronde sudah lewat (max "
+                       f"{_fmt_ts(max_ends)}); target pasca-ronde, "
+                       f"upside $0 (KULIT-SISTEM celah 1 / §82)")
+    if active or concluded:
+        return False, (f"MATI (fail-closed): pertanyaan maraton "
+                       f"(active={active}, concluded={concluded}) "
+                       f"tanpa satu pun endsAt masa depan yang bisa "
+                       f"ditunjukkan — ronde live tidak terbukti")
+    if status == "settled":
+        return False, ("MATI: pertanyaan settled tanpa ronde maraton "
+                       "live — tidak ada yang bisa dimenangi")
+    if status in ("in_progress", "open", ""):
+        return True, ("LIVE: pertanyaan terbuka tanpa dimensi "
+                      "maraton (status "
+                      f"{status or 'tidak dinyatakan'})")
+    return False, (f"MATI (fail-closed): status pertanyaan tidak "
+                   f"dikenal: {status!r}")
+
+
+def row_liveness_detail(row):
+    """Normalise a search row into the detail shape liveness_check
+    reads, as far as the row's own fields go (question-prefixed
+    variants included). Used when no detail fetch is armed — the
+    row can still prove the stale-flag death on its own fields."""
+    row = row or {}
+    elig = row.get("marathonEligibleIsos") or []
+    if not elig and row.get("endsAt"):
+        elig = [{"endsAt": row.get("endsAt")}]
+    return {
+        "status": row.get("status") or row.get("questionStatus") or "",
+        "marathonActive": bool(
+            row.get("marathonActive", row.get("questionMarathonActive"))),
+        "marathonConcluded": bool(
+            row.get("marathonConcluded",
+                    row.get("questionMarathonConcluded",
+                            row.get("concluded")))),
+        "marathonEligibleIsos": elig,
+    }
+
+
+def fetch_isr_detail(isr_id):
+    """Fetch the ISR detail via the audited client. Returns
+    (detail_or_None, state) with state "ok" / "failed" / "disabled".
+    Only touches the network when armed by the launcher
+    (DIALECTICA_SERVE_GATE_FETCH=1); the client's call() exits on API
+    error, so BaseException is caught — a failed fetch is data, not
+    a crash, for a gate that must decide."""
+    if os.environ.get(FETCH_ENV) != "1":
+        return None, "disabled"
+    if not isr_id:
+        return None, "failed"
+    if TRUED_DIR not in sys.path:
+        sys.path.insert(0, TRUED_DIR)
+    try:
+        import trued
+        data = trued.call(f"/api/node/isr/{isr_id}", timeout=30)
+    except BaseException:  # noqa: BLE001 - includes SystemExit
+        return None, "failed"
+    if not isinstance(data, dict):
+        return None, "failed"
+    return data, "ok"
+
+
+def liveness_gate_for_row(row, detail_fetcher=None, isr_id=None):
+    """Prepare-time liveness verdict for a search row. Fail-closed
+    wherever the gate is armed: a failed fetch passes the Question
+    over (no job exists yet, so passing costs nothing). Unarmed, the
+    row's own fields decide — they can still prove death."""
+    fetcher = detail_fetcher or fetch_isr_detail
+    isr_id = isr_id or str((row or {}).get("id")
+                           or (row or {}).get("isrId") or "")
+    detail, state = fetcher(isr_id)
+    if state == "ok":
+        return liveness_check(detail)
+    if state == "failed":
+        return False, ("gerbang liveness: pengambilan detail ISR "
+                       "gagal — fail-closed, pertanyaan dilewati "
+                       "sebelum klaim")
+    return liveness_check(row_liveness_detail(row))
+
+
+def fallback_dead_reason(isr_id, detail_fetcher=None):
+    """Job-time (fallback) liveness: returns a withhold reason only
+    when the target is PROVEN dead by a fetched detail. A failed or
+    unarmed fetch proves nothing, and a job already exists — dropping
+    it on an unverifiable fetch would spend reliability for nothing,
+    so the fallback proceeds (the structural gate is prepare)."""
+    fetcher = detail_fetcher or fetch_isr_detail
+    detail, state = fetcher(isr_id)
+    if state != "ok":
+        return None
+    ok, reason = liveness_check(detail)
+    return None if ok else reason
+
+
+# --------------------------------------------------------- thinking trace
+
+_TRACE_OPENERS = re.compile(
+    r"^\s*(let me think|let me analyze|let me analyse|let me "
+    r"consider|let me start by thinking|okay,? let me think|ok,? "
+    r"let me think|hmm,? let me|let's think about)", re.IGNORECASE)
+
+_TRACE_MONOLOGUE = (
+    "let me think", "let me reconsider", "let me re-think",
+    "i genuinely don't remember", "i genuinely do not remember",
+    "i don't remember", "i do not remember",
+    "i really can't reproduce", "i can't reproduce",
+    "i cannot reproduce", "i need to think", "i'm not sure",
+    "i am not sure", "i don't recall", "i do not recall",
+)
+
+_TRACE_PLAN_CLOSING = re.compile(
+    r"(decision\s*:|my plan is|next,? i will|i will structure|"
+    r"i will now (write|draft|structure)|langkah berikutnya,? saya "
+    r"akan|selanjutnya saya akan)", re.IGNORECASE)
+
+_CODE_LINE = re.compile(
+    r"^\s*(def\s+\w+\s*\(|class\s+\w+|import\s+\w+|from\s+\w+\s+"
+    r"import|return\b|print\s*\(|for\s+\w+\s+in\b|while\b|if\s+.+:|"
+    r"elif\b|else\s*:|try\s*:|except\b|\w+\s*=\s*[\w\(\[\{'\"])")
+
+
+def detect_thinking_trace(text):
+    """Detect the f0bb3586 species: the model's raw reasoning
+    monologue submitted as if it were an answer. Returns a list with
+    ONE finding (severity THINKING-TRACE, span None — unpatchable, so
+    the lanes' sendable semantics withhold the draft) naming every
+    triggered signal, or [] when no signal family fires.
+
+    Signal families (any one suffices — each is a property a finished
+    answer does not have): reasoning-preamble opening; >=2 distinct
+    first-person uncertainty-monologue markers; a dominant raw code
+    dump (>=15 code-like lines, >=30% of non-empty lines, and no
+    numbered ## structure); a closing block that is a plan rather
+    than a delivered answer."""
+    text = text or ""
+    signals = []
+    blocks = [b.strip() for b in re.split(r"\n\s*\n", text) if b.strip()]
+    opening = blocks[0] if blocks else ""
+    if _TRACE_OPENERS.search(opening):
+        signals.append("pembuka jejak penalaran "
+                       f"({opening[:60]!r}…)")
+    low = text.lower()
+    markers = [m for m in _TRACE_MONOLOGUE if m in low]
+    if len(markers) >= 2:
+        signals.append("monolog ketidakpastian orang-pertama "
+                       f"({len(markers)} penanda: "
+                       + ", ".join(sorted(markers)[:4]) + ")")
+    lines = [ln for ln in text.splitlines() if ln.strip()]
+    code_lines = sum(1 for ln in lines if _CODE_LINE.match(ln))
+    headers = len(re.findall(r"^##\s+\d+", text, flags=re.M))
+    if code_lines >= 15 and lines and code_lines / len(lines) >= 0.30 \
+            and headers == 0:
+        signals.append(f"dump kode mentah dominan ({code_lines} dari "
+                       f"{len(lines)} baris mirip kode, tanpa struktur "
+                       f"## bernomor)")
+    closing = blocks[-1] if blocks else ""
+    if _TRACE_PLAN_CLOSING.search(closing):
+        signals.append("penutup berupa rencana, bukan jawaban "
+                       f"({closing[:60]!r}…)")
+    if not signals:
+        return []
+    return [{
+        "severity": "THINKING-TRACE",
+        "doc": "JEJAK PENALARAN",
+        "value": len(signals),
+        "excerpt": (text.strip().splitlines()[0][:180]
+                    if text.strip() else ""),
+        "action": ("DRAF DITAHAN UTUH — teks adalah jejak penalaran "
+                   "mentah model (spesies f0bb3586, §82), bukan "
+                   "jawaban: " + "; ".join(signals)),
+        "span": None,
+    }]
+
+
+# ------------------------------------------- evasive source closing (E3)
+
+_E3_PATTERNS = tuple(re.compile(p, re.IGNORECASE) for p in (
+    r"avoids?\s+pinpoint\s+references",
+    r"can(?:not|'t)\s+be\s+verified\s+from\s+the\s+text",
+    r"cannot\s+verify\s+from\s+the\s+text",
+    r"relies\s+on\s+widely\s+documented\b[^.]{0,200}?rather\s+than"
+    r"[^.]{0,100}?single\s+citation",
+    r"no\s+(?:live\s+)?web\s+access",
+    r"\b(?:i|we)\s+(?:give|provide|include|offer)\s+no\s+urls?\b",
+    r"no\s+urls?\s+(?:are\s+)?(?:given|provided|included)",
+    r"did\s+not\s+open\s+any\s+(?:page|dataset|source)",
+    r"(?:no|without)\s+pinpoint\s+(?:references?|citations?)",
+    r"(?:cannot|can't|can\s+not)\s+(?:cite|provide|give|name)\s+"
+    r"(?:exact|specific|pinpoint)\s+(?:sources?|citations?|"
+    r"references?|urls?)",
+    r"exact\s+(?:sources?|citations?|references?)\s+(?:cannot|"
+    r"can't|can\s+not)\s+be\s+(?:named|specified|given|provided)",
+))
+
+_SOURCE_HEADER = re.compile(
+    r"^#{1,6}\s+.*\b(sumber|sources?|referensi|references?|sitasi|"
+    r"citations?|bibliograph\w*|daftar\s+pustaka)\b", re.IGNORECASE)
+
+
+def _e3_scan_regions(text):
+    """The only regions the E3 check may look at (LAB-E3 §1.6): the
+    closing block and any source section (a source-named header up
+    to the next header or EOF). Body text outside these regions is
+    never scanned — deferral language in the body is not a trigger.
+    Returns [(region_name, region_text), …]."""
+    regions = []
+    blocks = [b.strip() for b in re.split(r"\n\s*\n", text)
+              if b.strip()]
+    if blocks:
+        regions.append(("penutup", blocks[-1]))
+    lines = text.splitlines()
+    i = 0
+    while i < len(lines):
+        if _SOURCE_HEADER.match(lines[i].strip()):
+            j = i + 1
+            while j < len(lines) \
+                    and not re.match(r"^#{1,6}\s+", lines[j]):
+                j += 1
+            regions.append(("seksi sumber",
+                            "\n".join(lines[i:j])))
+            i = j
+        else:
+            i += 1
+    return regions
+
+
+def detect_evasive_source_closing(text):
+    """Detect E3: an explicit source-evasion admission in the
+    draft's closing or source section — the closing all four
+    falsified serve answers shipped verbatim ("…relies on widely
+    documented … rather than on any single citation, and it avoids
+    pinpoint references that cannot be verified from the text
+    alone"). Returns a list with ONE finding (severity
+    EVASIVE-SOURCE-CLOSING, span None — unpatchable, so the lanes'
+    sendable semantics withhold the draft) naming every matched
+    phrase and the region it was found in, or [] when no explicit
+    phrase fires. Only explicit phrases are matched (§1.6):
+    paraphrased evasion passes this check and remains manual (d)
+    territory."""
+    text = text or ""
+    hits = []
+    for region_name, region in _e3_scan_regions(text):
+        for pat in _E3_PATTERNS:
+            m = pat.search(region)
+            if m:
+                hits.append(f"{region_name}: {m.group(0)[:80]!r}")
+    if not hits:
+        return []
+    return [{
+        "severity": "EVASIVE-SOURCE-CLOSING",
+        "doc": "PENUTUP EVASIF SUMBER (E3)",
+        "value": len(hits),
+        "excerpt": (text.strip().splitlines()[-1][:180]
+                    if text.strip() else ""),
+        "action": ("DRAF DITAHAN UTUH — penutup/seksi sumber memuat "
+                   "penghindaran sumber eksplisit (E3, ADOPSI lab "
+                   "2026-11-15; spesies penutup 4/4 falsified serve, "
+                   "false-positive terukur 0/203 verified): "
+                   + "; ".join(hits)),
+        "span": None,
+    }]
+
+
+# ------------------------------------------- serve format contract
+# Added 2026-11-16 (IMPROVE pass): the single generation instruction
+# BOTH serve lanes append to the server prompt. Historically serve
+# generations ran with no format instruction at all (steering files
+# exist for only a handful of staged ISRs) and produced 31k-45k-char
+# reasoning monologues — 25/26 detected as thinking traces, 0 URLs.
+# The contract encodes only rules already binding elsewhere: QUALITY
+# rubric (a)-(g), the §45/T12 citation floor, E1-p (never cite other
+# answers), E3 (never close with a source-evasion note), and the
+# clean-sheet doctrine (fewest possible unsupported specific claims).
+# It lives here, in the module both serve lanes already share, so
+# the two lanes can never drift to different instruction standards
+# (audit S7).
+SERVE_FORMAT_CONTRACT = """
+
+---
+OPERATOR ANSWER CONTRACT (priority instruction — follow it over any
+default style):
+1. Output ONLY the finished answer. Never output reasoning, a thinking
+   monologue, or a plan: no "Let me think", no first-person uncertainty
+   monologue, no closing that says what you will write. The first line
+   is the answer's opening thesis (1-3 sentences, no generic opener).
+2. Structure: numbered ## sections covering every sub-question in the
+   prompt, then a Sources section naming the actual sources used,
+   then — as the LAST block — a 2-3 sentence closing synthesis that
+   names what is new in this answer (Indonesian: open it with
+   "Baru dalam jawaban ini:"; English: "New in this answer:").
+   The last block is the synthesis, never a reference list and never
+   a note about sources.
+3. Length: aim for 6,000-9,000 characters (up to 12,000 only when the
+   prompt demands exhaustive depth). Never pad; a shorter, fully
+   supported answer beats a long speculative one.
+4. Citations: every specific number, date, threshold or named rule
+   must sit next to the named source that carries it, with a real URL
+   wherever one exists — include at least two URLs to canonical
+   sources you are highly confident are real and stable (official
+   documentation, standards/specification pages, primary papers).
+   Never invent a DOI, journal, volume, page range, URL or study.
+   If a specific figure cannot be tied to a named source, DROP the
+   figure and state the mechanism qualitatively instead.
+5. Never cite the other answers shown in the prompt ("Answer N") as
+   sources for any figure or claim, and never close with a statement
+   that sources cannot be named or pinpoint references are avoided —
+   name the sources or drop the claim.
+6. Answer in the language of the question.
+"""
+
+CONTRACT_MARKER = "OPERATOR ANSWER CONTRACT"
+
+
+# ------------------------------------------------------------- the gate
+
+def needs_json_from_prompt(prompt):
+    """Mirror of vyce_provider's own schema-demand heuristic, so the
+    serve gate scores format gate (g) the same way the Vyce pipeline
+    already treats the job."""
+    low = (prompt or "").lower()
+    return (("json" in low and ("schema" in low or "output" in low
+                                or "format" in low or "field" in low))
+            or "structured_data" in low or "outcometype" in low
+            or "credibleinterval" in low)
+
+
+def gate_answer(text, regen_fn=None, semantic_check=None, **score_kwargs):
+    """Run the claim wrapper over a serve draft and apply the serve
+    layers. Returns the wrapper result dict plus:
+
+    - result["sendable"]: the claim lanes' exact semantics — status
+      OK + zero surviving audit findings (the report strips spans, so
+      any finding counts, the deliberate fail-closed conservatism of
+      §35/§37) + format gate (g) LOLOS — now computed over the
+      findings WITH the thinking-trace layer merged in;
+    - result["gate"]: {thinking_trace: bool,
+      evasive_source_closing: bool, reasons: [...],
+      semantic_vfp: {performed: False, mode: ...}} — the semantic
+      self-VFP is reported as NOT performed unless a lab-approved
+      `semantic_check` callable is supplied (see module docstring).
+    """
+    result = wrap_answer(text, regen_fn=regen_fn, **score_kwargs)
+    trace = detect_thinking_trace(result["text"])
+    audit = result["report"]["audit"]
+    if trace:
+        audit["findings"].extend(
+            {k: v for k, v in f.items() if k != "span"} for f in trace)
+        audit["thinking_trace"] = len(trace)
+    else:
+        audit["thinking_trace"] = 0
+    e3 = detect_evasive_source_closing(result["text"])
+    if e3:
+        audit["findings"].extend(
+            {k: v for k, v in f.items() if k != "span"} for f in e3)
+        audit["evasive_source_closing"] = len(e3)
+    else:
+        audit["evasive_source_closing"] = 0
+    findings = audit["findings"]
+    unpatchable = [f for f in findings if not f.get("span")]
+    result["sendable"] = (
+        result["status"] == "OK" and not unpatchable
+        and result["score"]["g"][0] == "LOLOS")
+    reasons = []
+    if result["status"] != "OK":
+        reasons.append(f"status wrapper {result['status']} "
+                       f"(panjang di bawah lantai sesudah regenerasi)")
+    for f in findings:
+        reasons.append(f"{f.get('severity')}: {f.get('action')}")
+    if result["score"]["g"][0] != "LOLOS":
+        reasons.append(f"gerbang format (g) GAGAL: "
+                       f"{result['score']['g'][1]}")
+    semantic = {"performed": False,
+                "mode": "not-performed-mechanical-only",
+                "note": "self-VFP semantik (T10.2/T12 butir 5) "
+                        "adalah penilaian agen di jalur klaim, "
+                        "bukan panggilan model di dalam wrapper — "
+                        "serve latar tidak punya agen di lingkaran, "
+                        "jadi gerbang ini TIDAK mengklaimnya lolos; "
+                        "keputusan lab diperlukan (lihat laporan)"}
+    if semantic_check is not None:
+        verdict = semantic_check(result["text"])
+        semantic = {"performed": True, "mode": "injected-check",
+                    "verdict": verdict}
+        if not verdict:
+            result["sendable"] = False
+            reasons.append("cek semantik injeksi: TIDAK lolos")
+    result["gate"] = {
+        "thinking_trace": bool(trace),
+        "trace_signals": [f["action"] for f in trace],
+        "evasive_source_closing": bool(e3),
+        "e3_signals": [f["action"] for f in e3],
+        "semantic_vfp": semantic,
+        "reasons": reasons,
+    }
+    return result
