@@ -1,0 +1,452 @@
+#!/usr/bin/env python3
+"""Tests for the two-stage content-verify layer
+(content_verify.py, built 2026-11-17 per user decision 21:52
+"Opsi A").
+
+Proves, WITHOUT any real network (a deterministic FakeFetcher is
+injected everywhere) and WITHOUT any real model call (a stub
+model_call is injected) and WITHOUT launching any serve:
+
+- TOKENS: percent / decimal / grouped / currency / full date /
+  spelled-out percent are STRONG; bare years and bare integers
+  are WEAK; identifier spans (RFC 5233, BIP-32, ePrint) never
+  become tokens; figures inside a cited URL never become claim
+  tokens (pointer spans are masked).
+- PRESENCE: a percent token requires percent context in the
+  source (a bare "50" proves nothing); grouped digits match with
+  or without separators; dates match MDY/DMY/ISO forms; a
+  spelled-out percent in the source matches a digit claim.
+- CLAIMS: sentence pairing, paragraph fallback, repetition
+  dedupe (the Hop closing repetition merges into the body claim),
+  Sources-section lines generate no claims, unbound precision
+  claims are recorded (not fatal).
+- STAGE 1: the Hop pattern (live source, figures absent) is a
+  pivotal finding and FATAL in block mode, never in shadow; a
+  source carrying the figures supports; a bot-walled source puts
+  the claim in the UNVERIFIABLE class (no finding, no block); a
+  dead source is "no-source" (the citation layer owns death).
+- STAGE 2: an unsupported entailment verdict is fatal; a
+  supported verdict WITH a verbatim-verifiable evidence quote
+  rescues a stage-1 finding; a supported verdict WITHOUT a
+  verifiable quote degrades to unclear and the stage-1 finding
+  stands; the call budget is honoured and skips are recorded; a
+  raising model lane leaves stage-1 verdicts standing and is
+  reported in `error`.
+- CHECKER-FAILURE DOCTRINE: canary down -> available=False,
+  verdict "unverified", nothing blocked.
+- GATE: gate_answer without the stage reports content_verify NOT
+  performed and the clean fixture stays sendable; a blocking
+  content verdict withholds; a clean verdict keeps sendable; a
+  crashing callable never withholds; the arming helper follows
+  DIALECTICA_CONTENT_CHECK; the layer default mode is "block".
+"""
+import json
+import os
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+import citation_verify as cv  # noqa: E402
+import content_verify as cnv  # noqa: E402
+import serve_gate  # noqa: E402
+import test_cloudflare_serve as tcs  # noqa: E402  (fixtures only)
+
+CHECKS = [0]
+FAILURES = []
+
+
+def check(name, cond, detail=""):
+    CHECKS[0] += 1
+    if cond:
+        print(f"  PASS  {name}")
+    else:
+        FAILURES.append(name)
+        print(f"  FAIL  {name}  {detail}")
+
+
+CANARY_CR = "https://api.crossref.org/works/10.1145/2504730.2504747"
+CANARY_DOI = "https://doi.org/10.1145/2504730.2504747"
+CANARY_OK = {CANARY_CR: cv.FetchResult(
+    CANARY_CR, status=200,
+    text=json.dumps({"message": {
+        "title": ["A fistful of bitcoins"],
+        "author": [{"family": "Meiklejohn"}]}}))}
+
+
+class FakeFetcher:
+    """Deterministic fetcher seam (same contract as the citation
+    tests): routes map URL -> FetchResult; a missing route is a
+    connection failure."""
+
+    def __init__(self, routes):
+        self.routes = dict(routes)
+        self.calls = 0
+        self.connect_failures = 0
+        self._cache = {}
+
+    def get(self, url):
+        if url in self._cache:
+            return self._cache[url]
+        self.calls += 1
+        result = self.routes.get(url)
+        if result is None:
+            result = cv.FetchResult(url, error="no route",
+                                    error_kind="connect")
+        if result.error_kind == "connect":
+            self.connect_failures += 1
+        self._cache[url] = result
+        return result
+
+
+def ok(url, text):
+    return cv.FetchResult(url, status=200, text=text)
+
+
+def no_model(prompt):
+    raise AssertionError("model must not be called in this case")
+
+
+def run(draft, routes, model_call=None, mode="block", **kw):
+    fetcher = FakeFetcher({**CANARY_OK, **routes})
+    return cnv.verify_content(
+        draft, fetcher=fetcher,
+        model_call=model_call if model_call is not None else no_model,
+        mode=mode, log_path=None, **kw)
+
+
+HOP_DRAFT = (
+    "## 2. Wallet funding-pattern clustering\n\n"
+    "**Effectiveness.** The clearest public precedent is Hop "
+    "Protocol's 2022 airdrop: Hop built a sybil list largely from "
+    "funding-graph analysis and let identified sybils self-report "
+    "to keep 50% of their would-be allocation, while bounty "
+    "hunters earned 10% of the value of sybils they reported "
+    "(Hop Protocol, docs.hop.exchange).\n\n"
+    "New in this answer: it anchors calibration to concrete "
+    "precedents — Hop Protocol's 50%/10% self-report and bounty "
+    "scheme as the reference case for funding-cluster detection.")
+HOP_URL = "https://docs.hop.exchange/"
+HOP_HOME = ("<html><title>Hop Docs</title><body>Welcome to the "
+            "Hop Protocol documentation. Bridge, send, earn. "
+            "Liquidity pools and the Hop token.</body></html>")
+
+
+# ------------------------------------------------------------ tokens
+
+def token_cases():
+    print("== tokens ==")
+    toks = cnv.extract_precision_tokens(
+        "Hunters earned 25% of the saved tokens, about 869,566 HOP, "
+        "a 2.5 fold rise, fees of $1.5 million, on August 8, 2022.")
+    kinds = {(t.raw, t.kind, t.strong) for t in toks}
+    check("tokens: percent strong", ("25%", "percent", True) in kinds,
+          f"{kinds}")
+    check("tokens: grouped strong",
+          ("869,566", "grouped", True) in kinds, f"{kinds}")
+    check("tokens: decimal strong", ("2.5", "decimal", True) in kinds,
+          f"{kinds}")
+    check("tokens: currency strong",
+          any(k[1] == "currency" and k[2] for k in kinds), f"{kinds}")
+    check("tokens: full date strong",
+          ("August 8, 2022", "date", True) in kinds, f"{kinds}")
+    toks = cnv.extract_precision_tokens(
+        "Per RFC 5233 and BIP-32 (2012), see ePrint 2020/940.")
+    check("tokens: identifiers masked, year weak only",
+          [(t.kind, t.strong) for t in toks] == [("year", False)],
+          f"{[(t.raw, t.kind) for t in toks]}")
+    toks = cnv.extract_precision_tokens(
+        "hunters were promised twenty five percent of tokens")
+    check("tokens: spelled percent phrase (partial words)",
+          any(t.kind == "percent" for t in toks), f"{toks}")
+    toks = cnv.extract_precision_tokens(
+        "hunters were promised fifty percent of the tokens")
+    check("tokens: spelled-out percent strong",
+          any(t.kind == "percent" and t.strong for t in toks),
+          f"{[(t.raw, t.kind) for t in toks]}")
+
+
+def presence_cases():
+    print("== presence ==")
+    src = cnv._fold("Hunters were promised 25% of all tokens, "
+                    "about 869566 HOP, decided August 8, 2022.")
+    t = cnv.PrecisionToken("25%", "percent", "25", True, (0, 3))
+    check("presence: percent found with % context",
+          cnv._token_present(t, src) is not None)
+    t2 = cnv.PrecisionToken("50%", "percent", "50", True, (0, 3))
+    check("presence: absent percent NOT found",
+          cnv._token_present(t2, src) is None)
+    bare = cnv._fold("over 50 wallets were flagged in 2022")
+    check("presence: bare '50' does NOT satisfy a percent token",
+          cnv._token_present(t2, bare) is None)
+    g = cnv.PrecisionToken("869,566", "grouped", "869566", True,
+                           (0, 7))
+    check("presence: grouped digits match separator-stripped",
+          cnv._token_present(g, src) is not None)
+    d = cnv.PrecisionToken("August 8, 2022", "date", "2022-08-08",
+                           True, (0, 14))
+    check("presence: date matches MDY form",
+          cnv._token_present(d, src) is not None)
+    check("presence: date matches ISO form",
+          cnv._token_present(d, cnv._fold("log 2022-08-08 entry"))
+          is not None)
+    w = cnv.PrecisionToken("25%", "percent", "25", True, (0, 3))
+    check("presence: spelled-out percent in source matches",
+          cnv._token_present(
+              w, cnv._fold("hunters got twenty five percent back"))
+          is not None or cnv._token_present(
+              w, cnv._fold("a 25 percent share")) is not None)
+
+
+# ------------------------------------------------------------ claims
+
+def claim_cases():
+    print("== claims ==")
+    claims, _ = cnv.extract_claims(HOP_DRAFT)
+    hop = [c for c in claims if "Hop" in c.sentence]
+    check("claims: Hop assertion extracted once (closing dupe "
+          "merged)", len(hop) == 1, f"{len(claims)} claims")
+    if hop:
+        c = hop[0]
+        check("claims: Hop claim pivotal (figure + precedent)",
+              c.pivotal and "T1-precision-figure" in c.pivotal_reasons
+              and "T2-precedent-marker" in c.pivotal_reasons,
+              f"{c.pivotal_reasons}")
+        check("claims: Hop claim paired with docs.hop pointer",
+              any("hop.exchange" in p.value for p in c.pointers),
+              f"{[p.value for p in c.pointers]}")
+    draft = ("A figure of 42% appears with no source at all in "
+             "this sentence.")
+    claims, _ = cnv.extract_claims(draft)
+    check("claims: unbound precision claim recorded, not paired",
+          len(claims) == 1 and not claims[0].pointers)
+    draft = ("Body claim: adoption rose 30% last year "
+             "(https://example.com/report).\n\n## Sources\n\n"
+             "- Example — https://example.com/report restates 30% "
+             "and 99% figures.")
+    claims, _ = cnv.extract_claims(draft)
+    check("claims: Sources-section lines generate no claims",
+          len(claims) == 1 and "99%" not in claims[0].sentence,
+          f"{[c.sentence[:50] for c in claims]}")
+    draft = ('Douceur ("The Sybil Attack," IPTPS 2002, '
+             "https://link.springer.com/chapter/10.1007/"
+             "3-540-45748-8_24) frames the field.")
+    claims, _ = cnv.extract_claims(draft)
+    toks = claims[0].tokens if claims else []
+    check("claims: figures inside a cited URL are not tokens",
+          all(t.kind != "decimal" for t in toks),
+          f"{[(t.raw, t.kind) for t in toks]}")
+
+
+# ------------------------------------------------------------ stage 1
+
+def stage1_cases():
+    print("== stage 1 ==")
+    out = run(HOP_DRAFT, {HOP_URL: ok(HOP_URL, HOP_HOME)},
+              model_call=lambda prompt: json.dumps(
+                  {"verdict": "unsupported", "evidence": "",
+                   "why": "source never mentions the scheme"}))
+    check("stage1+2: Hop pattern is FATAL and blocks in block mode",
+          out["verdict"] == "fatal" and out["block"] is True,
+          f"{out['verdict']} block={out['block']}")
+    hop = [c for c in out["claims"] if "Hop" in c["claim"]]
+    check("stage1: Hop tokens 50%/10% marked NOT found in source",
+          hop and all(t["found"] is False for t in hop[0]["tokens"]
+                      if t["kind"] == "percent"),
+          f"{hop[0]['tokens'] if hop else None}")
+    out = run(HOP_DRAFT, {HOP_URL: ok(HOP_URL, HOP_HOME)},
+              model_call=lambda prompt: json.dumps(
+                  {"verdict": "unsupported", "evidence": "",
+                   "why": "x"}), mode="shadow")
+    check("shadow: Hop pattern fatal verdict but NEVER blocks",
+          out["verdict"] == "fatal" and out["block"] is False)
+    healthy = ("The documented scheme promised hunters 25% of the "
+               "tokens they saved (Hop Protocol, "
+               "docs.hop.exchange).")
+    home25 = ("<html><body>Hop sybil hunters were promised 25% of "
+              "all HOP tokens saved.</body></html>")
+    out = run(healthy, {HOP_URL: ok(HOP_URL, home25)},
+              model_call=lambda prompt: json.dumps(
+                  {"verdict": "supported",
+                   "evidence": "promised 25% of all HOP tokens",
+                   "why": "figure stated"}))
+    check("stage1: source carrying the figure supports the claim",
+          out["verdict"] in ("clean", "findings")
+          and out["block"] is False,
+          f"{out['verdict']}")
+    out = run(HOP_DRAFT,
+              {HOP_URL: cv.FetchResult(HOP_URL, status=403,
+                                       text="bot wall")})
+    check("stage1: bot-walled source -> claim UNVERIFIABLE class, "
+          "no block", out["verdict"] == "unverified"
+          and out["block"] is False, f"{out['verdict']}")
+    out = run(HOP_DRAFT,
+              {HOP_URL: cv.FetchResult(HOP_URL, status=404)})
+    hop = [c for c in out["claims"] if "Hop" in c["claim"]]
+    check("stage1: dead source -> no-source class, not a content "
+          "conviction", hop and hop[0]["source_status"] == "dead"
+          and out["block"] is False,
+          f"{hop[0]['source_status'] if hop else None} "
+          f"verdict={out['verdict']}")
+
+
+# ------------------------------------------------------------ stage 2
+
+def stage2_cases():
+    print("== stage 2 ==")
+    # Rescue: stage 1 misses (the source states the figure as
+    # "a quarter" — no percent form for the normaliser to find);
+    # stage 2 reads the excerpt and supports it with a verbatim
+    # quote.
+    draft = ("Hunters kept 25% of the allocation "
+             "(https://example.com/scheme).")
+    url = "https://example.com/scheme"
+    src = ("<html><body>Hunters kept a quarter of the allocation "
+           "for themselves.</body></html>")
+    out = run(draft, {url: ok(url, src)},
+              model_call=lambda prompt: json.dumps(
+                  {"verdict": "supported",
+                   "evidence": "Hunters kept a quarter of the "
+                               "allocation",
+                   "why": "a quarter = 25%"}))
+    claim = out["claims"][0] if out["claims"] else {}
+    check("stage2: supported + verbatim evidence settles claim",
+          claim.get("final") == "supported"
+          and out["block"] is False,
+          f"{claim.get('stage1')}/{claim.get('stage2')}/"
+          f"{claim.get('final')}")
+    out = run(draft, {url: ok(url, src)},
+              model_call=lambda prompt: json.dumps(
+                  {"verdict": "supported", "evidence": "invented "
+                   "quote not in source", "why": "trust me"}))
+    claim = out["claims"][0] if out["claims"] else {}
+    check("stage2: supported WITHOUT verifiable quote degrades "
+          "to unclear", claim.get("stage2") == "unclear",
+          f"{claim.get('stage2')}")
+    out = run(HOP_DRAFT, {HOP_URL: ok(HOP_URL, HOP_HOME)},
+              model_call=lambda prompt: json.dumps(
+                  {"verdict": "unclear", "evidence": "",
+                   "why": "fragmentary"}))
+    check("stage2: unclear does NOT rescue a stage-1 finding — "
+          "mechanical absence stands, fatal in block mode",
+          out["verdict"] == "fatal" and out["block"] is True,
+          f"{out['verdict']}")
+    many = "\n\n".join(
+        f"Scheme {i} paid hunters {10 + i}% of saved tokens "
+        f"(https://example.com/s{i})." for i in range(8))
+    routes = {f"https://example.com/s{i}":
+              ok(f"https://example.com/s{i}", "<html>home</html>")
+              for i in range(8)}
+    out = run(many, routes,
+              model_call=lambda prompt: json.dumps(
+                  {"verdict": "unsupported", "evidence": "",
+                   "why": "absent"}))
+    check("stage2: budget cap honoured, skips recorded",
+          out["stage2_calls"] == cnv.MAX_STAGE2_CALLS
+          and any(c["stage2"] == "skipped-budget"
+                  for c in out["claims"]),
+          f"calls={out['stage2_calls']}")
+    def boom(prompt):
+        raise RuntimeError("lane down")
+    out = run(HOP_DRAFT, {HOP_URL: ok(HOP_URL, HOP_HOME)},
+              model_call=boom)
+    check("stage2: raising lane leaves stage-1 verdict standing "
+          "and is reported", out["verdict"] == "fatal"
+          and out["error"] and "lane down" in out["error"],
+          f"{out['verdict']} err={out['error']}")
+
+
+# ------------------------------------------------------------ failure
+
+def failure_cases():
+    print("== checker failure ==")
+    fetcher = FakeFetcher({})  # canary has no route -> down
+    out = cnv.verify_content(HOP_DRAFT, fetcher=fetcher,
+                             model_call=no_model, mode="block",
+                             log_path=None)
+    check("failure: canary down -> available=False, unverified, "
+          "no block", out["available"] is False
+          and out["verdict"] == "unverified"
+          and out["block"] is False)
+
+
+# ------------------------------------------------------------ gate
+
+def gate_cases():
+    print("== gate wiring ==")
+    good = tcs.good_text()
+    os.environ.pop(cnv.CONTENT_ARM_ENV, None)
+    result = serve_gate.gate_answer(good)
+    check("gate: unarmed -> content stage NOT performed, sendable",
+          result["sendable"] is True
+          and result["gate"]["content_verify"]["performed"]
+          is False, f"sendable={result['sendable']}")
+
+    def fake_block(text):
+        return {"performed": True, "mode": "block",
+                "verdict": "fatal", "block": True,
+                "findings": [{"claim": "x"}], "unverified": [],
+                "counts": {"unsupported": 1}, "stage2_calls": 1,
+                "error": None}
+
+    result = serve_gate.gate_answer(good, content_check=fake_block)
+    check("gate: blocking content verdict WITHHOLDS the fixture",
+          result["sendable"] is False
+          and any("verifikasi isi" in r
+                  for r in result["gate"]["reasons"]),
+          f"sendable={result['sendable']} "
+          f"reasons={result['gate']['reasons']}")
+
+    def fake_clean(text):
+        return {"performed": True, "mode": "block",
+                "verdict": "clean", "block": False, "findings": [],
+                "unverified": [], "counts": {}, "stage2_calls": 0,
+                "error": None}
+
+    result = serve_gate.gate_answer(good, content_check=fake_clean)
+    check("gate: clean content verdict keeps the fixture sendable",
+          result["sendable"] is True
+          and result["gate"]["content_verify"]["verdict"]
+          == "clean")
+
+    def fake_crash(text):
+        raise RuntimeError("entailment exploded")
+
+    result = serve_gate.gate_answer(good, content_check=fake_crash)
+    check("gate: crashing content callable never withholds",
+          result["sendable"] is True
+          and result["gate"]["content_verify"]["performed"] is False
+          and result["gate"]["content_verify"]["mode"]
+          == "injected-check-error")
+
+    check("arming: unarmed helper returns None",
+          serve_gate.armed_content_check() is None)
+    os.environ[cnv.CONTENT_ARM_ENV] = "1"
+    try:
+        check("arming: DIALECTICA_CONTENT_CHECK=1 yields a callable",
+              callable(serve_gate.armed_content_check()))
+    finally:
+        os.environ.pop(cnv.CONTENT_ARM_ENV, None)
+
+    os.environ.pop(cnv.CONTENT_MODE_ENV, None)
+    check("mode: layer default is block (not shadow)",
+          cnv.content_mode() == "block")
+    os.environ[cnv.CONTENT_MODE_ENV] = "shadow"
+    try:
+        check("mode: explicit shadow honoured",
+              cnv.content_mode() == "shadow")
+    finally:
+        os.environ.pop(cnv.CONTENT_MODE_ENV, None)
+
+
+if __name__ == "__main__":
+    token_cases()
+    presence_cases()
+    claim_cases()
+    stage1_cases()
+    stage2_cases()
+    failure_cases()
+    gate_cases()
+    print(f"\n{'ALL PASS' if not FAILURES else 'FAILURES: ' + str(FAILURES)}"
+          f" ({CHECKS[0] - len(FAILURES)}/{CHECKS[0]})")
+    sys.exit(1 if FAILURES else 0)

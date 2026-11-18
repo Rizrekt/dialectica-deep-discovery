@@ -1,0 +1,89 @@
+#!/usr/bin/env python3
+"""Shared machinery for the GATED Vyce serve lane (built 2026-11-15,
+GERBANG-SERVE lab preparation — see serve_gate.py for why).
+
+Until now the Vyce serve ran with no prepare hook and no wrapper:
+`trued serve` claimed first and the raw provider output was
+submitted verbatim (the f0bb3586 failure mode, MEKANISME §82). The
+gated wiring mirrors the §39 Cloudflare architecture on the client's
+own seams:
+
+- vyce_serve_prepare.py (DIALECTICA_PREPARE_CMD) runs BEFORE any
+  claim: liveness gate -> generation through vyce_provider.py (the
+  exact claim generation machinery, steering included) -> the shared
+  serve gate (serve_gate.gate_answer). Only a sendable draft is
+  cached; anything else is a pass-over at zero cost — no job exists.
+- vyce_serve_ready.py (DIALECTICA_READY_CMD) vetoes any bid we hold
+  no prepared answer for. It is the §39 ready hook itself: both
+  lanes share the one on-disk serve cache (they never run at the
+  same time — the §39 pension rule swaps one for the other).
+- vyce_serve_provider.py (DIALECTICA_PROVIDER_CMD at job time)
+  prints the prepared cache; only schema corrections and unprepared
+  arrivals fall back to a live, gated pipeline.
+
+No generation cap is added here: the 10/day cap is a §39 Cloudflare
+construct enforced by its supervisor; the Vyce serve's protection is
+the gate, and any cap decision is the lab's (locked territory).
+"""
+import os
+import subprocess
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+import cloudflare_serve_common as csc  # noqa: E402  (shared serve cache)
+import serve_gate  # noqa: E402
+
+VYCE_PROVIDER = os.path.join(HERE, "vyce_provider.py")
+# One Vyce generation can take minutes (two candidate models, router
+# backoffs); the client allows a preparation up to an hour. Cap the
+# subprocess well inside that so a hung generation becomes a
+# pass-over, not a stuck hook.
+GEN_TIMEOUT_S = 1200
+
+
+class VyceGenerationError(Exception):
+    """The Vyce provider subprocess produced no usable answer."""
+
+
+def generate_vyce(prompt, isr_id=None):
+    """One generation through the claim lane's own provider
+    (vyce_provider.py as a subprocess: prompt on stdin, answer on
+    stdout, VYCE_API_KEY inherited from the serve process env).
+    DIALECTICA_ISR_ID is set for the subprocess so the provider's
+    staged steering applies exactly as it does for a claim."""
+    env = dict(os.environ)
+    if isr_id:
+        env["DIALECTICA_ISR_ID"] = isr_id
+    try:
+        proc = subprocess.run(
+            [sys.executable, VYCE_PROVIDER], input=prompt,
+            capture_output=True, text=True, timeout=GEN_TIMEOUT_S,
+            env=env)
+    except subprocess.TimeoutExpired:
+        raise VyceGenerationError(
+            f"vyce_provider timeout sesudah {GEN_TIMEOUT_S} dtk")
+    if proc.stderr:
+        sys.stderr.write(proc.stderr)
+    if proc.returncode != 0 or not proc.stdout.strip():
+        raise VyceGenerationError(
+            f"vyce_provider rc={proc.returncode}, stdout "
+            f"{len(proc.stdout)} karakter")
+    return proc.stdout.strip()
+
+
+def vyce_pipeline(prompt, isr_id=None, generate_fn=None):
+    """Generate + gate for the Vyce serve. Mirrors the claim lanes'
+    pipelines: the wrapper may regenerate ONCE for length, through
+    the same provider, and the result carries the shared gate's
+    sendable verdict. `generate_fn` is the test seam."""
+    gen = generate_fn or generate_vyce
+    first = gen(prompt, isr_id)
+
+    def regen(instruction):
+        return gen(prompt + instruction, isr_id)
+
+    return serve_gate.gate_answer(
+        first, regen_fn=regen,
+        needs_json=serve_gate.needs_json_from_prompt(prompt))

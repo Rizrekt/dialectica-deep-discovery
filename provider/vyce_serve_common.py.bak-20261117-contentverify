@@ -1,0 +1,288 @@
+#!/usr/bin/env python3
+"""Shared machinery for the GATED Vyce serve lane (built 2026-11-15,
+GERBANG-SERVE lab preparation — see serve_gate.py for why).
+
+Until now the Vyce serve ran with no prepare hook and no wrapper:
+`trued serve` claimed first and the raw provider output was
+submitted verbatim (the f0bb3586 failure mode, MEKANISME §82). The
+gated wiring mirrors the §39 Cloudflare architecture on the client's
+own seams:
+
+- vyce_serve_prepare.py (DIALECTICA_PREPARE_CMD) runs BEFORE any
+  claim: liveness gate -> generation through vyce_provider.py (the
+  exact claim generation machinery, steering included) -> the shared
+  serve gate (serve_gate.gate_answer). Only a sendable draft is
+  cached; anything else is a pass-over at zero cost — no job exists.
+- vyce_serve_ready.py (DIALECTICA_READY_CMD) vetoes any bid we hold
+  no prepared answer for. It is the §39 ready hook itself: both
+  lanes share the one on-disk serve cache (they never run at the
+  same time — the §39 pension rule swaps one for the other).
+- vyce_serve_provider.py (DIALECTICA_PROVIDER_CMD at job time)
+  prints the prepared cache; only schema corrections and unprepared
+  arrivals fall back to a live, gated pipeline.
+
+Generation cap (added 2026-11-16, audit S4): the pilot package caps
+Vyce serve at 10 generations/day-UTC; that cap is now enforced in
+code below (counted from lane-labelled token-usage records, refused
+before burning), mirroring the §39 Cloudflare construction.
+
+Writer fallback (added 2026-11-17, R1): GLM collapses stochastically
+(empty content after reasoning overflow) and the old same-provider
+fallback model (deepseek-v4.1) is dead on Vyce (HTTP 403, lite
+tier), so a GLM collapse used to kill the generation outright. The
+pipeline's writer is now a CHAIN across providers: Vyce/GLM ->
+gpt-oss-120b via Vyce (PROMO $0 in the Vyce catalog, probed live +
+gate-proven 2026-11-17, R1) -> gpt-oss-120b via Cloudflare (the
+§39-proven writer). A total failure of one lane hands the SAME
+prompt to the next; the surviving draft flows through the identical
+serve gate. Every switch is logged to stderr as
+"fallback: <lane> gagal -> <lane>". Disable with
+DIALECTICA_WRITER_FALLBACK=0 (the pipeline then behaves exactly as
+before: a Vyce failure propagates and the target is passed over).
+"""
+import os
+import subprocess
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+import cloudflare_provider as cp  # noqa: E402  (writer fallback lane)
+import cloudflare_serve_common as csc  # noqa: E402  (shared serve cache)
+import serve_gate  # noqa: E402
+
+VYCE_PROVIDER = os.path.join(HERE, "vyce_provider.py")
+# One Vyce generation can take minutes (two candidate models, router
+# backoffs); the client allows a preparation up to an hour. Cap the
+# subprocess well inside that so a hung generation becomes a
+# pass-over, not a stuck hook.
+GEN_TIMEOUT_S = 1200
+
+
+# ------------------------------------------------ serve format contract
+# The contract text lives in serve_gate (the module both serve lanes
+# share) so the Vyce and Cloudflare serve lanes can never drift to
+# different instruction standards (audit S7, 2026-11-16). Re-exported
+# here for the call sites and tests that read it from this module.
+SERVE_FORMAT_CONTRACT = serve_gate.SERVE_FORMAT_CONTRACT
+_CONTRACT_MARKER = serve_gate.CONTRACT_MARKER
+
+# ------------------------------------------------ serve generation cap
+# Audit S4 (2026-11-16): the pilot package (PAKET-RESTART-SERVE §5)
+# caps Vyce serve at 10 generations/day-UTC, but the cap existed only
+# as cron/session discipline — no code enforced it, and Vyce usage
+# records carried no lane field to count from. Now enforced here,
+# mirroring the Cloudflare lane's construction: generations are
+# counted from token-usage.jsonl records labelled lane="vyce-serve"
+# (vyce_provider stamps the lane from the DIALECTICA_LANE env this
+# module sets on the generation subprocess), and generate_vyce
+# refuses BEFORE burning a generation when the cap is reached.
+# PIPELINE_MAX_GENERATIONS mirrors the wrapper's shape: one pipeline
+# can burn 1 generation + at most 1 regeneration.
+SERVE_GEN_CAP = int(os.environ.get("DIALECTICA_SERVE_GEN_CAP", "10"))
+PIPELINE_MAX_GENERATIONS = 2
+SERVE_LANE = "vyce-serve"
+_USAGE_LOG = os.path.join(HERE, "token-usage.jsonl")
+
+
+def serve_generations_today(path=None):
+    """Vyce serve generations recorded today (UTC) in token-usage."""
+    import datetime
+    import json as _json
+    today = datetime.datetime.now(datetime.timezone.utc).strftime(
+        "%Y-%m-%d")
+    count = 0
+    try:
+        with open(path or _USAGE_LOG, encoding="utf-8") as fh:
+            for line in fh:
+                try:
+                    rec = _json.loads(line)
+                except ValueError:
+                    continue
+                if rec.get("lane") == SERVE_LANE and str(
+                        rec.get("ts", "")).startswith(today):
+                    count += 1
+    except OSError:
+        return 0
+    return count
+
+
+class VyceGenerationError(Exception):
+    """The Vyce provider subprocess produced no usable answer."""
+
+
+def generate_vyce(prompt, isr_id=None, model_chain=None):
+    """One generation through the claim lane's own provider
+    (vyce_provider.py as a subprocess: prompt on stdin, answer on
+    stdout, VYCE_API_KEY inherited from the serve process env).
+    DIALECTICA_ISR_ID is set for the subprocess so the provider's
+    staged steering applies exactly as it does for a claim. The
+    SERVE_FORMAT_CONTRACT is appended once (marker-guarded, so the
+    wrapper's regeneration path does not stack copies).
+    `model_chain` pins the subprocess's exact Vyce model chain
+    (VYCE_MODEL_CHAIN) — the writer fallback uses it to force its
+    fallback model; None keeps the default chain."""
+    if _CONTRACT_MARKER not in prompt:
+        prompt = prompt + SERVE_FORMAT_CONTRACT
+    used = serve_generations_today()
+    if used >= SERVE_GEN_CAP:
+        raise VyceGenerationError(
+            f"cap serve tercapai: {used}/{SERVE_GEN_CAP} generasi "
+            f"serve Vyce hari ini (UTC) — generasi ditolak SEBELUM "
+            f"bakar (audit S4)")
+    env = dict(os.environ)
+    env["DIALECTICA_LANE"] = SERVE_LANE
+    if model_chain:
+        env["VYCE_MODEL_CHAIN"] = model_chain
+    if isr_id:
+        env["DIALECTICA_ISR_ID"] = isr_id
+    try:
+        proc = subprocess.run(
+            [sys.executable, VYCE_PROVIDER], input=prompt,
+            capture_output=True, text=True, timeout=GEN_TIMEOUT_S,
+            env=env)
+    except subprocess.TimeoutExpired:
+        raise VyceGenerationError(
+            f"vyce_provider timeout sesudah {GEN_TIMEOUT_S} dtk")
+    if proc.stderr:
+        sys.stderr.write(proc.stderr)
+    if proc.returncode != 0 or not proc.stdout.strip():
+        raise VyceGenerationError(
+            f"vyce_provider rc={proc.returncode}, stdout "
+            f"{len(proc.stdout)} karakter")
+    return proc.stdout.strip()
+
+
+# ------------------------------------------------ writer fallback (R1)
+# The chain is stateful within one pipeline run: generation starts
+# at the last lane that succeeded (initially the primary), and a
+# TOTAL failure (empty/error after the provider's own retries)
+# walks down to the next lane for the SAME prompt. Regeneration
+# therefore stays on the surviving lane instead of re-burning the
+# dead primary's failure latency. A fallback generation is a real
+# serve generation and is accounted like one: Vyce lanes record
+# under lane="vyce-serve" (counted by the serve cap above);
+# the Cloudflare lane records under csc.SERVE_LANE with the §39
+# budget lanes (account-wide neuron budget enforced pre-spend by
+# cloudflare_provider.generate itself).
+WRITER_FALLBACK_ENV = "DIALECTICA_WRITER_FALLBACK"
+VYCE_GPTOSS_CHAIN = "gpt-oss-120b"
+
+
+def writer_fallback_enabled():
+    """Default ON for the serve path; =0 restores the pre-R1
+    behaviour (a Vyce failure propagates, target passed over)."""
+    return os.environ.get(WRITER_FALLBACK_ENV, "1").strip() != "0"
+
+
+def _generate_vyce_gptoss(prompt, isr_id=None):
+    """Fallback rung 1: gpt-oss-120b through the SAME Vyce provider
+    machinery (steering, citation patch, format gate all apply —
+    only the model chain is pinned). Probed live + gate-proven
+    2026-11-17 (R1)."""
+    return generate_vyce(prompt, isr_id, model_chain=VYCE_GPTOSS_CHAIN)
+
+
+def _generate_cloudflare_gptoss(prompt, isr_id=None):
+    """Fallback rung 2: gpt-oss-120b via Cloudflare (the §39-proven
+    writer). Prompt parity with the Vyce path is assembled here:
+    the serve format contract (marker-guarded, as in generate_vyce)
+    + the staged steering for this ISR. The draft then faces the
+    identical serve gate downstream — the same standard the §39
+    lane's drafts face."""
+    if _CONTRACT_MARKER not in prompt:
+        prompt = prompt + SERVE_FORMAT_CONTRACT
+    prompt = cp.apply_steering(prompt, isr_id)
+    out = cp.generate(prompt, isr_id, lane=csc.SERVE_LANE,
+                      budget_lanes=csc.BUDGET_LANES)
+    return out["text"]
+
+
+def default_writer_fallbacks():
+    """[(label, generate_fn)] in fall order. Both rungs were proven
+    before being installed (R1 aturan putus): Vyce gpt-oss by the
+    2026-11-17 probe + gated dry draft; Cloudflare gpt-oss by the
+    §39 lane and PERBAIKAN-PENGHAMBAT langkah 2."""
+    return [("vyce gpt-oss-120b", _generate_vyce_gptoss),
+            ("cloudflare gpt-oss", _generate_cloudflare_gptoss)]
+
+
+class WriterFallback:
+    """Stateful cross-provider writer chain (see block comment)."""
+
+    def __init__(self, primary, fallbacks):
+        self._chain = [("vyce", primary)] + list(fallbacks)
+        self._pos = 0
+
+    def __call__(self, prompt, isr_id=None):
+        last = None
+        for i in range(self._pos, len(self._chain)):
+            label, fn = self._chain[i]
+            try:
+                text = fn(prompt, isr_id)
+            except Exception as ex:  # noqa: BLE001 - walk the chain
+                last = ex
+                if i + 1 < len(self._chain):
+                    print(f"fallback: {label} gagal → "
+                          f"{self._chain[i + 1][0]} "
+                          f"({type(ex).__name__}: {str(ex)[:160]})",
+                          file=sys.stderr)
+                continue
+            self._pos = i
+            return text
+        raise last if last is not None else VyceGenerationError(
+            "rantai penulis kosong")
+
+
+def vyce_pipeline(prompt, isr_id=None, generate_fn=None,
+                  fallback_fns=None, target_class=None):
+    """Generate + gate for the Vyce serve. Mirrors the claim lanes'
+    pipelines: the wrapper may regenerate ONCE for length, through
+    the same provider, and the result carries the shared gate's
+    sendable verdict. `generate_fn` is the test seam.
+
+    R1 (2026-11-17): in production (no injected generator) — and
+    whenever `fallback_fns` is given — the writer is wrapped in the
+    cross-provider WriterFallback chain unless
+    DIALECTICA_WRITER_FALLBACK=0. An injected `generate_fn` WITHOUT
+    `fallback_fns` is used bare, exactly as before, so existing
+    tests keep their semantics.
+
+    C5 (2026-11-17): the gate also receives the semantic self-VFP
+    stage whenever the launcher armed it (serve_gate
+    .armed_semantic_check — DIALECTICA_SEMANTIC_CHECK=1, set by
+    run_serve for this lane). Unarmed it is None and the gate
+    reports the check as not performed, exactly as before. The
+    stage's own mode (shadow default / block) comes from
+    DIALECTICA_SEMANTIC_MODE inside serve_gate.
+
+    CITATION VERIFY (2026-11-17): the gate likewise receives the
+    mechanical citation stage whenever armed (serve_gate
+    .armed_citation_check — DIALECTICA_CITATION_CHECK=1, set by
+    run_serve for this lane). It resolves the draft's citation
+    pointers against live registries/hosts; its mode
+    (DIALECTICA_CITATION_MODE, default "block" for this layer)
+    lives inside citation_verify.
+
+    `target_class` ((c)-PK1, 2026-11-17) is the picker's class for
+    this target (PIONEER / MARATHON / INNOVATOR) when the caller has
+    one; it selects the gate's per-class length floor. None keeps
+    the operative default floor exactly as before."""
+    gen = generate_fn or generate_vyce
+    if writer_fallback_enabled() and (generate_fn is None
+                                       or fallback_fns is not None):
+        gen = WriterFallback(
+            gen, fallback_fns if fallback_fns is not None
+            else default_writer_fallbacks())
+    first = gen(prompt, isr_id)
+
+    def regen(instruction):
+        return gen(prompt + instruction, isr_id)
+
+    return serve_gate.gate_answer(
+        first, regen_fn=regen,
+        needs_json=serve_gate.needs_json_from_prompt(prompt),
+        target_class=target_class,
+        semantic_check=serve_gate.armed_semantic_check(
+            question=prompt, isr_id=isr_id),
+        citation_check=serve_gate.armed_citation_check())

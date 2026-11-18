@@ -1,0 +1,597 @@
+#!/usr/bin/env python3
+"""PEMILIH TARGET SEL BAYAR — Dialectica serve target selection aid
+(built 2026-11-17, PEMILIH-TARGET-2026-11-17.md). SHADOW / READ-ONLY:
+this tool never claims, never serves, never submits. It ranks live
+serve candidates by the ONLY three cells that pay (AUDIT-5-PILAR
+2026-11-17, re-verified against DATA-LIVE-ARENA-2026-11-17):
+
+    Pioneer         +20  verified FIRST on the question (viso 0)
+    Innovator       +10  verified with novelty >= 15% vs the verified
+                         answers already there
+    Marathon Winner +10  verified LAST when a marathon round concludes
+
+A plain verified answer pays $0, so a candidate that realistically
+occupies none of these cells is NO-PAY no matter how live it is.
+
+The picker ADDS a pay-class layer on top of the existing selection,
+it does not replace it: liveness is serve_gate.liveness_check (the
+three-field filter, fail-closed) and the core-topic screen is
+cloudflare_serve_common.CORE_TOPIC_KEYWORDS — the same functions the
+gated serve lanes and the pilot package (PAKET-RESTART-SERVE
+2026-11-15: "hanya ISR lolos liveness tiga-field + topik inti") use.
+Candidates are pulled through the client's own opportunity path
+(trued.search_opportunities — the same endpoint + query builder the
+`trued opportunities` command uses); no new endpoint is invented.
+
+CLASSIFICATION (first match wins; detail = fetched ISR detail):
+  1. liveness DEAD (or unprovable)                -> NO-PAY
+  2. viso unreadable on the row                   -> NO-PAY
+  3. viso == 0                                    -> PIONEER
+  4. marathon round provably open (an eligible
+     endsAt in the future on the detail)          -> MARATHON
+  5. novelty room estimate >= room floor (0.15)   -> INNOVATOR
+     otherwise                                    -> NO-PAY
+  With --require-core-topic (DEFAULT, the pilot rule), any class on
+  an off-core-topic question is demoted to NO-PAY; the Marathon-live
+  non-core skip is verbatim from PAKET-RESTART-SERVE, the Pioneer
+  core-topic condition from the Class-2 screen (R2, MEKANISME).
+
+SCORE = cell value x feasibility x class-priority weight.
+
+Feasibility is a HEURISTIC, calibrated to field facts, not a measured
+probability (see PEMILIH-TARGET for what cannot be measured):
+  - PIONEER is a latency race (external median first-verified latency
+    3.75 s; the old A1 screen demanded detection < 2 min): by question
+    age — <=120 s: 0.60, <=600 s: 0.40, <=3600 s: 0.20, older: 0.08,
+    age unknown: 0.20.
+  - MARATHON: winners enter crowded rounds (A1 band viso 2-9;
+    cohort median entry rank ~5): viso 2-9: 0.50, viso 1 or 10-15:
+    0.35, viso >15: 0.20; timing factor on seconds to the round's max
+    endsAt — <900 s: x0.6 (conclusion may beat our generation),
+    >48 h: x0.8 (later answers bury ours — only the LAST verified
+    wins), unknown: x0.7.
+  - INNOVATOR: 0.6 x novelty room, room(viso) = clamp(0.95 - 0.08 x
+    viso, 0.05, 0.95). True novelty needs the existing answers' text
+    (the Surprise Gauge compares content); the room figure is only a
+    crowding proxy — Innovator has no public per-answer marker
+    (KORPUS-JUARA bias note 4: "Innovator tidak terukur").
+
+CLASS PRIORITY IS A PARAMETER, never silently locked: the field
+documents conflict (hunt body A1/R1: Marathon > Pioneer; the pilot
+package: Pioneer-first). --priority marathon (default) weights
+MARATHON 1.0 / PIONEER 0.9 / INNOVATOR 0.75; --priority pioneer
+swaps the first two. The active profile is printed in every run.
+
+HUNT ORDER (R2 fix, 2026-11-17 — priority steers the DETAIL-FETCH
+order, not only the final score weights). A detail fetch is the
+only way to prove a marathon round open, but a marathon-flagged
+row whose own fields carry no future endsAt pre-classifies NO-PAY
+(score 0, fail-closed), so a score-ordered budget starved exactly
+the candidates the marathon profile exists for (item-1 shadow run:
+30/30 detail slots landed on viso-0 rows; 0 MARATHON classified).
+Candidates are therefore queued in HUNT BANDS by what a detail
+fetch could unlock:
+
+  MARATHON band   viso >= 1 with a marathon dimension on the row
+                  (active/concluded flag or an eligible-ISO list);
+                  inside: prime viso 2-9 first, then viso 1 /
+                  10-15, then viso >15; inside each: rounds already
+                  proven open on the row, then unproven (no endsAt
+                  on the row), then stale-on-the-row.
+  INNOVATOR band  viso >= 1, no marathon dimension, novelty room
+                  estimate >= the room floor.
+  PIONEER band    viso == 0.
+  SISA band       everything else a detail could still inform
+                  (e.g. viso >10 without a marathon dimension).
+  No detail is spent where it cannot change the pay class: rows
+  without an id, rows whose viso is unreadable (the detail carries
+  no viso), off-core-topic rows while the pilot core-topic rule is
+  on (demotion is computed from the row's own text), and questions
+  the row itself proves settled with no marathon dimension.
+
+DETAIL BUDGET SPLIT (explicit, per profile; N = --detail-cap):
+pass 1 grants each band a minimum quota in profile order —
+marathon profile: MARATHON ceil(N/2), INNOVATOR ceil(N/4),
+PIONEER the rest (N=30 -> 15/8/7); pioneer profile swaps the
+first and third quotas (PIONEER ceil(N/2), MARATHON ceil(N/4),
+INNOVATOR the rest). Pass 2 hands any leftover budget to the
+same profile order, so a quota a band cannot fill is never
+wasted; SISA has quota 0 and is served only from leftovers.
+Profile hunt order: marathon = MARATHON, INNOVATOR, PIONEER,
+SISA; pioneer = PIONEER, MARATHON, INNOVATOR, SISA (the pioneer
+profile keeps the item-1 behaviour of reading fresh viso-0 rows
+first). Inside a band, candidates keep their pre-rank score
+order. Classification itself is unchanged — the hunt order only
+decides who receives a detail fetch.
+"""
+import argparse
+import json
+import os
+import sys
+import time
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+import cloudflare_serve_common as csc  # noqa: E402
+import doctrine_a  # noqa: E402  (Doktrin A forbidden-zone veto)
+import serve_gate  # noqa: E402
+
+CELL_VALUES = {"PIONEER": 20.0, "MARATHON": 10.0, "INNOVATOR": 10.0,
+               "NO-PAY": 0.0}
+PRIORITY_PROFILES = {
+    "marathon": {"MARATHON": 1.0, "PIONEER": 0.9, "INNOVATOR": 0.75},
+    "pioneer": {"PIONEER": 1.0, "MARATHON": 0.9, "INNOVATOR": 0.75},
+}
+ROOM_FLOOR = 0.15
+DEFAULT_MAX_AGE_MS = 259_200_000  # 3 days — the serve poller's bound
+
+
+# ------------------------------------------------------------ pure core
+
+def row_viso(row):
+    """Verified-answer count carried by an opportunity row (the
+    client's own field names, trued.opportunity_line). None when the
+    row does not carry it — an unreadable viso cannot be classified
+    honestly."""
+    viso = (row or {}).get("questionVisoCount",
+                           (row or {}).get("visoCount"))
+    try:
+        return int(viso) if viso is not None else None
+    except (TypeError, ValueError):
+        return None
+
+
+def row_age_s(row):
+    age_ms = (row or {}).get("questionAgeMs")
+    try:
+        return float(age_ms) / 1000.0 if age_ms is not None else None
+    except (TypeError, ValueError):
+        return None
+
+
+def row_text(row):
+    return (str((row or {}).get("title") or "") + "\n"
+            + str((row or {}).get("content") or "")).strip()
+
+
+def core_topic(row):
+    low = row_text(row).lower()
+    return any(kw in low for kw in csc.CORE_TOPIC_KEYWORDS)
+
+
+def marathon_open(detail, now=None):
+    """(open, seconds_to_max_endsAt) from a fetched ISR detail — the
+    same eligible-ISO endsAt fields liveness_check reads. (False,
+    None) when no eligible round can be shown."""
+    now = time.time() if now is None else now
+    ends = []
+    for entry in (detail or {}).get("marathonEligibleIsos") or []:
+        if isinstance(entry, dict):
+            ts = serve_gate.parse_ts(entry.get("endsAt"))
+            if ts is not None:
+                ends.append(ts)
+    if not ends:
+        return False, None
+    max_ends = max(ends)
+    return max_ends > now, max_ends - now
+
+
+def novelty_room(viso):
+    """Crowding proxy for the Innovator novelty headroom."""
+    return max(0.05, min(0.95, 0.95 - 0.08 * viso))
+
+
+def feasibility(cls, viso, age_s, secs_to_end):
+    if cls == "PIONEER":
+        if age_s is None:
+            return 0.20
+        if age_s <= 120:
+            return 0.60
+        if age_s <= 600:
+            return 0.40
+        if age_s <= 3600:
+            return 0.20
+        return 0.08
+    if cls == "MARATHON":
+        if viso is not None and 2 <= viso <= 9:
+            base = 0.50
+        elif viso is not None and (viso == 1 or 10 <= viso <= 15):
+            base = 0.35
+        else:
+            base = 0.20
+        if secs_to_end is None:
+            factor = 0.7
+        elif secs_to_end < 900:
+            factor = 0.6
+        elif secs_to_end > 172_800:
+            factor = 0.8
+        else:
+            factor = 1.0
+        return base * factor
+    if cls == "INNOVATOR":
+        return 0.6 * novelty_room(viso or 0)
+    return 0.0
+
+
+def _row_answer_count(row, detail):
+    """Total answers the question already carries, from whichever
+    payload states it (search row isoCount/publishedIsoCount, or a
+    fetched detail's isoCount). None when no payload says — a
+    position estimate is never invented."""
+    for src in (detail, row):
+        if isinstance(src, dict):
+            for key in ("isoCount", "publishedIsoCount"):
+                v = src.get(key)
+                try:
+                    if v is not None:
+                        return int(v)
+                except (TypeError, ValueError):
+                    continue
+    return None
+
+
+def classify(row, detail=None, now=None, priority="marathon",
+             require_core_topic=True, room_floor=ROOM_FLOOR,
+             doctrine_a_on=False, flood=None):
+    """One candidate -> ranking record. Pure: every input arrives as
+    data (the caller fetches the detail). `detail=None` falls back to
+    the row's own fields for liveness, exactly like the unarmed
+    serve gate — the row can still prove death, never marathon-open
+    beyond its own eligible list.
+
+    DOKTRIN A (2026-11-18; only when `doctrine_a_on`): the
+    forbidden-zone hard veto — delay 2–120 min at position 11–60
+    in a FLOOD-classified question is NO-PAY for both lanes
+    (measured verdict chance 0.14–0.25, STUDI-ANTREAN-VERDICT).
+    `flood` is the trigger store's measured flag for this ISR:
+    True fires the veto when delay/position land in the zone;
+    False/None (never classified) cannot fire it — the record
+    then carries doctrine_zone="unknown" so the gap is visible,
+    never silently treated as safe or as flood."""
+    now = time.time() if now is None else now
+    weights = PRIORITY_PROFILES[priority]
+    isr_id = csc.row_isr_id(row)
+    det = detail if isinstance(detail, dict) else \
+        serve_gate.row_liveness_detail(row)
+    live, live_reason = serve_gate.liveness_check(det, now=now)
+    viso = row_viso(row)
+    core = core_topic(row)
+    rec = {"isr_id": isr_id, "live": live, "viso": viso,
+           "core_topic": core, "cls": "NO-PAY", "value": 0.0,
+           "feasibility": 0.0, "score": 0.0, "reason": ""}
+    if not isr_id:
+        rec["reason"] = "baris tanpa id/isrId"
+        return rec
+    if not live:
+        rec["reason"] = f"mati: {live_reason}"
+        return rec
+    if viso is None:
+        rec["reason"] = "viso tidak terbaca di baris — kelas bayar " \
+                        "tidak bisa ditentukan jujur"
+        return rec
+    if doctrine_a_on:
+        delay = row_age_s(row)
+        if delay is None and isinstance(detail, dict):
+            birth = serve_gate.parse_ts(detail.get("timestamp"))
+            if birth is not None:
+                delay = now - birth
+        count = _row_answer_count(row, detail)
+        position = count + 1 if count is not None else None
+        rec["doctrine_delay_s"] = delay
+        rec["doctrine_position"] = position
+        rec["doctrine_flood"] = flood
+        if doctrine_a.forbidden_zone(delay, position, flood):
+            rec["doctrine_zone"] = "FORBIDDEN"
+            rec["reason"] = (
+                f"ZONA TERLARANG Doktrin A: tunda "
+                f"{int(delay // 60)} mnt + posisi {position} di "
+                f"pertanyaan banjir terklasifikasi — peluang "
+                f"verdict terukur 0,14–0,25 (STUDI-ANTREAN-"
+                f"VERDICT); dilarang untuk kedua lane")
+            return rec
+        rec["doctrine_zone"] = "clear" if flood is not None \
+            else "unknown"
+    m_open, secs_end = marathon_open(det, now=now)
+    if viso == 0:
+        cls = "PIONEER"
+        why = "viso 0 — slot verified pertama (+20) masih kosong"
+    elif m_open:
+        cls = "MARATHON"
+        why = (f"ronde maraton terbuka (berakhir "
+               f"{int(secs_end // 60)} mnt lagi) — verified terakhir "
+               f"saat conclude menang +10")
+    elif novelty_room(viso) >= room_floor:
+        cls = "INNOVATOR"
+        why = (f"viso {viso} — ruang kebaruan estimasi "
+               f"{novelty_room(viso):.2f} >= lantai {room_floor} "
+               f"(novelty >=15% -> +10)")
+    else:
+        rec["reason"] = (f"viso {viso}, tanpa ronde maraton terbuka, "
+                         f"ruang kebaruan estimasi "
+                         f"{novelty_room(viso):.2f} < {room_floor} — "
+                         f"verified biasa $0")
+        return rec
+    if require_core_topic and not core:
+        rec["reason"] = (f"{cls} gugur: di luar topik inti (aturan "
+                         f"seleksi pilot — liveness + topik inti)")
+        return rec
+    feas = feasibility(cls, viso, row_age_s(row), secs_end)
+    rec.update({
+        "cls": cls, "value": CELL_VALUES[cls], "feasibility": feas,
+        "score": CELL_VALUES[cls] * feas * weights[cls],
+        "reason": why})
+    return rec
+
+
+def rank(records):
+    return sorted(records, key=lambda r: (-r["score"], r["isr_id"]))
+
+
+# ------------------------------------------------------------ hunt order
+
+HUNT_PROFILES = {
+    "marathon": ("MARATHON", "INNOVATOR", "PIONEER"),
+    "pioneer": ("PIONEER", "MARATHON", "INNOVATOR"),
+}
+HUNT_BANDS = ("MARATHON", "INNOVATOR", "PIONEER", "SISA")
+
+
+def detail_jatah(cap, priority="marathon"):
+    """Minimum detail quotas per hunt band (module docstring has
+    the formula). SISA always 0 — leftovers only."""
+    order = HUNT_PROFILES[priority]
+    first = -(-cap // 2)          # ceil(cap/2)
+    second = -(-cap // 4)         # ceil(cap/4)
+    third = max(0, cap - first - second)
+    jatah = {band: 0 for band in HUNT_BANDS}
+    jatah[order[0]] = first
+    jatah[order[1]] = second
+    jatah[order[2]] = third
+    return jatah
+
+
+def hunt_band(row, pre_rec, require_core_topic=True,
+              room_floor=ROOM_FLOOR):
+    """The hunt band of one pre-classified candidate, from row
+    fields alone — i.e. what a detail fetch could still unlock.
+    None when a detail cannot change the pay class (no id, viso
+    unreadable, off-core-topic under the pilot rule, or a question
+    the row itself proves settled with no marathon dimension)."""
+    if not pre_rec or not pre_rec.get("isr_id"):
+        return None
+    viso = pre_rec.get("viso")
+    if viso is None:
+        return None
+    if require_core_topic and not pre_rec.get("core_topic"):
+        return None
+    det = serve_gate.row_liveness_detail(row)
+    has_dim = bool(det["marathonActive"] or det["marathonConcluded"]
+                   or det["marathonEligibleIsos"])
+    if det["status"] == "settled" and not has_dim:
+        return None
+    if viso == 0:
+        return "PIONEER"
+    if has_dim:
+        return "MARATHON"
+    if novelty_room(viso) >= room_floor:
+        return "INNOVATOR"
+    return "SISA"
+
+
+def _band_sort_key(band, row, pre_rec, now):
+    """Order inside one band: pre-rank score order, except the
+    MARATHON band, which first walks the A1 viso groups (prime
+    2-9, adjacent 1 / 10-15, far >15) and, inside a group, rounds
+    already proven open on the row, then unproven, then stale."""
+    neg = -pre_rec["score"]
+    if band != "MARATHON":
+        return (0, 0, neg, pre_rec["isr_id"])
+    viso = pre_rec["viso"]
+    if 2 <= viso <= 9:
+        viso_group = 0
+    elif viso == 1 or 10 <= viso <= 15:
+        viso_group = 1
+    else:
+        viso_group = 2
+    det = serve_gate.row_liveness_detail(row)
+    ends = [serve_gate.parse_ts(e.get("endsAt"))
+            for e in det["marathonEligibleIsos"]
+            if isinstance(e, dict)]
+    ends = [t for t in ends if t is not None]
+    if ends and max(ends) > now:
+        proof_group = 0
+    elif not ends:
+        proof_group = 1
+    else:
+        proof_group = 2
+    return (viso_group, proof_group, neg, pre_rec["isr_id"])
+
+
+def hunt_order(rows, pre_records, priority="marathon", detail_cap=30,
+               require_core_topic=True, room_floor=ROOM_FLOOR,
+               now=None):
+    """The ordered detail-fetch plan: [(isr_id, band, viso), ...],
+    length <= detail_cap. Pure — the caller fetches. Pass 1 grants
+    each band its minimum quota in profile order; pass 2 hands the
+    leftover budget to the same order (SISA last)."""
+    now = time.time() if now is None else now
+    by_id = {csc.row_isr_id(row): row for row in rows}
+    queues = {band: [] for band in HUNT_BANDS}
+    for pre in pre_records:
+        row = by_id.get(pre["isr_id"], {})
+        band = hunt_band(row, pre, require_core_topic, room_floor)
+        if band:
+            queues[band].append((row, pre))
+    for band, items in queues.items():
+        items.sort(key=lambda rp: _band_sort_key(band, rp[0], rp[1],
+                                                 now))
+    jatah = detail_jatah(detail_cap, priority)
+    sequence = list(HUNT_PROFILES[priority]) + ["SISA"]
+    order, taken = [], {band: 0 for band in HUNT_BANDS}
+    for band in sequence:  # pass 1 — minimum quotas
+        take = min(jatah[band], len(queues[band]))
+        for _row, pre in queues[band][:take]:
+            order.append((pre["isr_id"], band, pre["viso"]))
+        taken[band] = take
+    left = detail_cap - len(order)
+    for band in sequence:  # pass 2 — leftovers, same order
+        if left <= 0:
+            break
+        rest = queues[band][taken[band]:]
+        take = min(left, len(rest))
+        for _row, pre in rest[:take]:
+            order.append((pre["isr_id"], band, pre["viso"]))
+        taken[band] += take
+        left -= take
+    return order[:detail_cap]
+
+
+# ------------------------------------------------------------ live pull
+
+def _load_trued():
+    if serve_gate.TRUED_DIR not in sys.path:
+        sys.path.insert(0, serve_gate.TRUED_DIR)
+    import trued
+    return trued
+
+
+def fetch_detail(trued, isr_id):
+    """(detail_or_None, state) over the same endpoint serve_gate
+    fetches — read-only GET, failures are data."""
+    try:
+        data = trued.call(f"/api/node/isr/{isr_id}", timeout=30)
+    except BaseException:  # noqa: BLE001 - includes SystemExit
+        return None, "failed"
+    return (data, "ok") if isinstance(data, dict) else (None, "failed")
+
+
+def pull_candidates(trued, limit, max_age_ms):
+    """Opportunity rows through the client's own search path (the
+    `trued opportunities` route: capabilities -> query builder ->
+    recency bound -> search). Returns (rows, degraded_notice)."""
+    agent_id = trued.resolve_agent_id(None)
+    caps = trued.opportunity_capabilities(agent_id)
+    pairs = [("arenaIds", "general"),
+             ("questionMaxAgeMs", str(max_age_ms))]
+    try:
+        query = trued.build_opportunity_query(pairs, caps, limit=limit)
+    except SystemExit:
+        query = [(k, v) for k, v in pairs] + [("limit", str(limit))]
+    query = trued.ensure_search_bound(query, announce=False)
+    rows, degraded, err = trued.search_opportunities(agent_id, query)
+    if err is not None:
+        raise RuntimeError(f"opportunity search gagal: {err}")
+    return rows, trued.degraded_notice(degraded)
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(
+        description="Pemilih target sel bayar Dialectica "
+                    "(shadow, read-only — tidak mengklaim apa pun)")
+    ap.add_argument("--limit", type=int, default=100)
+    ap.add_argument("--max-age-ms", type=int,
+                    default=DEFAULT_MAX_AGE_MS)
+    ap.add_argument("--priority", choices=sorted(PRIORITY_PROFILES),
+                    default=os.environ.get(
+                        "DIALECTICA_PICKER_PRIORITY", "marathon"))
+    ap.add_argument("--no-core-topic", action="store_true",
+                    help="matikan syarat topik inti pilot")
+    ap.add_argument("--detail-pause", type=float, default=0.3)
+    ap.add_argument("--detail-cap", type=int, default=30,
+                    help="maksimum detail ISR yang diambil (API "
+                         "lambat: satu panggilan terukur 5-17 dtk) — "
+                         "dibagi per pita berburu sesuai profil "
+                         "prioritas (jatah minimum + sisa bebas)")
+    ap.add_argument("--json-out", default="")
+    args = ap.parse_args(argv)
+
+    doctrine_on = doctrine_a.doctrine_armed()
+    trigger_store = doctrine_a.load_trigger_store() if doctrine_on \
+        else {}
+
+    def _flood(isr_id):
+        return doctrine_a.flood_flag(trigger_store, isr_id)
+
+    trued = _load_trued()
+    rows, notice = pull_candidates(trued, args.limit, args.max_age_ms)
+    print(f"kandidat tertarik: {len(rows)} baris "
+          f"(arena=general, maxAge={args.max_age_ms} ms) · prioritas "
+          f"kelas: {args.priority} {PRIORITY_PROFILES[args.priority]}"
+          f" · topik inti wajib: {not args.no_core_topic}"
+          + (" · DOKTRIN A armed: veto zona terlarang aktif "
+             "(klasifikasi banjir dari trigger store)"
+             if doctrine_on else ""),
+          flush=True)
+    if notice:
+        print(notice, flush=True)
+    # Pre-rank on row fields alone, then spend detail fetches in
+    # HUNT ORDER (priority profile + per-band quotas — see the
+    # module docstring): a fetched detail can still kill or
+    # reclassify a candidate, and marathon-open is only provable
+    # there, which is exactly what a score-ordered budget starved.
+    pre = rank([classify(row, priority=args.priority,
+                         require_core_topic=not args.no_core_topic,
+                         doctrine_a_on=doctrine_on,
+                         flood=_flood(csc.row_isr_id(row)))
+                for row in rows])
+    by_id = {csc.row_isr_id(row): row for row in rows}
+    hunt = hunt_order(rows, pre, priority=args.priority,
+                      detail_cap=args.detail_cap,
+                      require_core_topic=not args.no_core_topic)
+    hunt_map = {isr: (seq + 1, band)
+                for seq, (isr, band, _viso) in enumerate(hunt)}
+    print(f"urutan berburu (profil {args.priority}): jatah detail "
+          f"{detail_jatah(args.detail_cap, args.priority)} · "
+          f"{len(hunt)} detail akan diambil", flush=True)
+    for seq, (isr, band, viso) in enumerate(hunt):
+        print(f"  rencana detail {seq + 1}/{len(hunt)}: "
+              f"{isr[:8]} pita={band} viso={viso}", flush=True)
+    records = []
+    for pre_rec in pre:
+        row = by_id.get(pre_rec["isr_id"], {})
+        plan = hunt_map.get(pre_rec["isr_id"])
+        if plan:
+            seq, band = plan
+            detail, state = fetch_detail(trued, pre_rec["isr_id"])
+            rec = classify(
+                row, detail=detail if state == "ok" else None,
+                priority=args.priority,
+                require_core_topic=not args.no_core_topic,
+                doctrine_a_on=doctrine_on,
+                flood=_flood(pre_rec["isr_id"]))
+            if state != "ok":
+                rec["reason"] += " [detail gagal diambil — " \
+                                 "liveness dari baris]"
+            else:
+                rec["reason"] += " [detail terverifikasi]"
+            rec["hunt_band"] = band
+            rec["detail_seq"] = seq
+            if args.detail_pause:
+                time.sleep(args.detail_pause)
+        else:
+            rec = pre_rec
+            rec["reason"] += " [tanpa detail — di luar urutan " \
+                             "berburu/anggaran]"
+            rec["hunt_band"] = hunt_band(
+                row, pre_rec,
+                require_core_topic=not args.no_core_topic)
+            rec["detail_seq"] = None
+        records.append(rec)
+    records = rank(records)
+    print(f"\n{'skor':>6} {'kelas':<10} {'viso':>4} {'inti':>4}  "
+          f"{'ISR':<10} alasan")
+    for rec in records:
+        print(f"{rec['score']:6.2f} {rec['cls']:<10} "
+              f"{rec['viso'] if rec['viso'] is not None else '?':>4} "
+              f"{'ya' if rec['core_topic'] else '—':>4}  "
+              f"{rec['isr_id'][:8]:<10} {rec['reason']}")
+    if args.json_out:
+        with open(args.json_out, "w", encoding="utf-8") as fh:
+            json.dump(records, fh, indent=1, ensure_ascii=False)
+        print(f"\nJSON tersimpan: {args.json_out}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

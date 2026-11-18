@@ -1,0 +1,68 @@
+{
+ "_note": "Seeded 2026-11-18 from live reads (isOwnAgent rows, jobs endpoint) + the reconciled ask ledger (MEKANISME-DAN-LAPANGAN.md). The runner refreshes iso_ids/isr_ids from the jobs endpoint at startup; this file is the offline floor, not the ceiling.",
+ "user_ids": [
+  "5fb160401bc13c5720b9c9fd879b414e54190b5f"
+ ],
+ "usernames": [
+  "rizrekt"
+ ],
+ "iso_ids": [
+  "8300bcbe-c1ba-444d-acbd-a2374cfbf455"
+ ],
+ "isr_ids_asked": [
+  "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+  "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+  "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+  "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+  "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+  "64bd68ac-e937-40dc-8d33-dc9c0453d18a"
+ ],
+ "isr_ids": [
+  "c3730bab-24a1-41fe-9cb9-d5547588b7be",
+  "3f3c4628-d20d-41a2-bcb5-1ff3e30952b2",
+  "d397e561-f05d-4405-af5b-40fbbeb9f95e",
+  "8c9c01f2-3b2d-4392-ab12-eb31a0467686",
+  "d9909cbc-c8df-490c-bc8d-c14b7f50dba9",
+  "64bd68ac-e937-40dc-8d33-dc9c0453d18a",
+  "026fa1a2-9fb8-4bbc-a45f-57b69ea25741",
+  "087ce951-c31c-44e7-a83d-7c1fcb27e878",
+  "0dbd4532-dea4-4ea1-a0e8-d218cb210f53",
+  "1287c2ae-cda4-4867-863f-23ff50e60ff7",
+  "1f58031d-e973-4ed1-ba0c-888ab358a6d9",
+  "2133a697-0b20-408f-8bec-71e2c501746f",
+  "25909ab2-d4ba-4aa6-92f6-754894ce1e39",
+  "2777178d-2294-4303-9b94-e877fdac95d0",
+  "2c7efc3e-f25a-440c-aedd-61a2bbb7dac8",
+  "30608eca-090d-4304-9798-9c40d0b0a025",
+  "30fe9eea-603a-4f63-9015-1c908f794815",
+  "3883f4d9-eae2-4913-805f-8dc47e78e709",
+  "3884b6c3-1549-42f0-960b-474855d7e84a",
+  "472b29a0-8933-41af-ac17-e75bc1a27f32",
+  "530e95ec-b975-4d94-8dd6-18bae3cbd5b6",
+  "5e905bef-7e0a-4b31-839c-d59a6688c70d",
+  "60fa9935-4352-4a4c-9aa7-384de037196c",
+  "635a010d-fa76-42a3-8ddf-c592e5189637",
+  "71f472d6-d3d3-4786-9929-d3fe635eeb52",
+  "7401386a-ca55-470a-b857-f41da2dc741c",
+  "77f1e68b-fe8f-4715-b31a-93623e26aabb",
+  "79f751ce-c5cb-4b79-ba78-69a475c65126",
+  "8f4b9221-ccf0-4fb5-a476-5e1717dfd4de",
+  "970d09db-fc94-460a-aaae-8701c617772f",
+  "a1770c04-214b-4c5e-b13f-181715465b8d",
+  "a361a16b-6a87-4863-ac23-893847762290",
+  "a5f24a48-a318-4eaa-8830-f6081f350ba2",
+  "a9408129-b0fd-4411-be8b-a42b9de2caff",
+  "c1ef7bd8-173b-4752-9a73-ec227f680f7c",
+  "c4f6284d-1b93-4389-bece-65e2d7c46848",
+  "c5791eb8-df09-403f-a1fd-97c193a111a2",
+  "c5927d00-94a6-4219-9f71-ed5c77069acb",
+  "c6b0eadc-62d9-4596-85da-25bee878ed17",
+  "c7cc33a2-3a39-4464-aa4b-376f69f7255c",
+  "cc856ac0-0a25-430b-9cde-1e2a8e86c7e5",
+  "d21135d5-5d4e-4a54-9da1-c54b4fc466f8",
+  "d854b19a-e6a3-4d79-b811-2db5557deed1",
+  "d94d7e34-01e1-44ef-9666-b0616980bc93",
+  "e20d251f-b761-43c6-85e8-6936988a9ba2",
+  "ee9673aa-936c-4ea0-bc28-e609b9252890"
+ ]
+}

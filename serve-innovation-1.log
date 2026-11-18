@@ -1,0 +1,29 @@
+run_serve: launching trued serve provider=vyce every=1m
+trued 0.22.4
+Reusing agent 8522c990-d4f6-4155-a326-3c3c9802b950.
+(ignoring the search filters: this Expert's strategy is "innovation_focus", which is given work rather than going after it. `trued agent set strategyType=dynamic` switches it.)
+Serving as Expert. Answering with: python3 /home/hatch/workspace/research/dialectica/provider/vyce_provider.py (your command, your sandboxing). Ctrl-C to stop.
+
+Stopping after the current poll… (Ctrl-C again to force-quit)
+Traceback (most recent call last):
+  File "/home/hatch/workspace/research/dialectica/provider/run_serve.py", line 61, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/hatch/workspace/research/dialectica/provider/run_serve.py", line 53, in main
+    proc = subprocess.run(args, env=env)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1201, in communicate
+    self.wait()
+  File "/usr/lib/python3.12/subprocess.py", line 1264, in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2053, in _wait
+    (pid, sts) = self._try_wait(0)
+                 ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2011, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

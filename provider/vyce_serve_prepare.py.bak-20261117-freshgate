@@ -1,0 +1,82 @@
+#!/usr/bin/env python3
+"""DIALECTICA_PREPARE_CMD for the gated Vyce serve lane (2026-11-15).
+
+trued runs this BEFORE claiming, with the search row as JSON on
+stdin; no job exists yet. Exit 0 = we hold a prepared, gate-sendable
+answer for this Question (cached for the provider) and trued may
+claim it. Exit nonzero = pass the Question over at zero cost.
+
+Gate order (all BEFORE any claim; generation only after liveness):
+1. Row sanity: an id and question text must be present.
+2. LIVENESS (serve_gate.liveness_gate_for_row): the three-field
+   filter over the fetched ISR detail — a target whose marathon
+   round already ended is passed over here, never answered (the
+   §82 trap: 11/11 sampled serve answers were post-round). Armed
+   by run_serve (DIALECTICA_SERVE_GATE_FETCH=1); a failed fetch is
+   fail-closed — passing over costs nothing.
+3. Generation through vyce_provider.py (claim machinery, steering
+   included) + the shared serve gate. A withheld draft (thinking
+   trace, §45 floor, audit findings, format) = pass-over.
+
+Unlike the §39 lane there is NO Class-2 Pioneer screen here: the
+Vyce serve's coverage is the keyword poller's (marathon included) —
+narrowing it would change serve coverage, a lab decision. The
+liveness gate is what keeps that coverage from answering dead
+rounds.
+"""
+import json
+import sys
+
+import cloudflare_serve_common as csc
+import serve_gate
+import vyce_serve_common as vsc
+from openrouter_wrapper import format_withhold_breakdown
+
+
+def prepare_row(row, detail_fetcher=None, generate_fn=None):
+    """(exit_code, final_line). Split from main() for tests; the
+    fetcher/generator default to the real, launcher-armed ones."""
+    isr_id = csc.row_isr_id(row)
+    if not isr_id:
+        return 1, "baris tanpa id/isrId"
+    text = (str((row or {}).get("title") or "") + "\n"
+            + str((row or {}).get("content") or "")).strip()
+    if not text:
+        return 1, "baris tanpa judul/konten pertanyaan"
+    ok, reason = serve_gate.liveness_gate_for_row(
+        row, detail_fetcher=detail_fetcher, isr_id=isr_id)
+    if not ok:
+        return 1, f"gerbang liveness: {reason}"
+    prompt = csc.prompt_from_row(row)
+    try:
+        result = vsc.vyce_pipeline(prompt, isr_id,
+                                   generate_fn=generate_fn)
+    except Exception as ex:  # noqa: BLE001 - a failed prepare is a pass
+        return 1, f"generasi Vyce gagal ({type(ex).__name__}: {ex})"
+    if not result["sendable"]:
+        return 1, (f"draf ditahan gerbang serve "
+                   f"(status={result['status']}, "
+                   f"{format_withhold_breakdown(result['report'])}; "
+                   f"alasan: "
+                   f"{'; '.join(result['gate']['reasons'][:3])}) — "
+                   f"pertanyaan dilewati, bukan diklaim")
+    csc.write_cache(isr_id, result["text"])
+    return 0, (f"jawaban siap untuk {isr_id} "
+               f"({result['report']['chars_final']} karakter, "
+               f"gerbang serve lolos)")
+
+
+def main():
+    raw = sys.stdin.read()
+    try:
+        row = json.loads(raw) if raw.strip() else {}
+    except ValueError:
+        print("payload prepare bukan JSON — pertanyaan dilewati")
+        return 1
+    rc, line = prepare_row(row)
+    print(line)
+    return rc
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,145 @@
+#!/usr/bin/env python3
+"""Shared machinery for the GATED Vyce serve lane (built 2026-11-15,
+GERBANG-SERVE lab preparation — see serve_gate.py for why).
+
+Until now the Vyce serve ran with no prepare hook and no wrapper:
+`trued serve` claimed first and the raw provider output was
+submitted verbatim (the f0bb3586 failure mode, MEKANISME §82). The
+gated wiring mirrors the §39 Cloudflare architecture on the client's
+own seams:
+
+- vyce_serve_prepare.py (DIALECTICA_PREPARE_CMD) runs BEFORE any
+  claim: liveness gate -> generation through vyce_provider.py (the
+  exact claim generation machinery, steering included) -> the shared
+  serve gate (serve_gate.gate_answer). Only a sendable draft is
+  cached; anything else is a pass-over at zero cost — no job exists.
+- vyce_serve_ready.py (DIALECTICA_READY_CMD) vetoes any bid we hold
+  no prepared answer for. It is the §39 ready hook itself: both
+  lanes share the one on-disk serve cache (they never run at the
+  same time — the §39 pension rule swaps one for the other).
+- vyce_serve_provider.py (DIALECTICA_PROVIDER_CMD at job time)
+  prints the prepared cache; only schema corrections and unprepared
+  arrivals fall back to a live, gated pipeline.
+
+No generation cap is added here: the 10/day cap is a §39 Cloudflare
+construct enforced by its supervisor; the Vyce serve's protection is
+the gate, and any cap decision is the lab's (locked territory).
+"""
+import os
+import subprocess
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+import cloudflare_serve_common as csc  # noqa: E402  (shared serve cache)
+import serve_gate  # noqa: E402
+
+VYCE_PROVIDER = os.path.join(HERE, "vyce_provider.py")
+# One Vyce generation can take minutes (two candidate models, router
+# backoffs); the client allows a preparation up to an hour. Cap the
+# subprocess well inside that so a hung generation becomes a
+# pass-over, not a stuck hook.
+GEN_TIMEOUT_S = 1200
+
+
+# ------------------------------------------------ serve format contract
+# Added 2026-11-16 (IMPROVE pass after the lab): historically the serve
+# lane passed the server prompt to the model with NO format instruction
+# at all (steering files exist for only a handful of staged ISRs), and
+# the model answered with 31k-45k-char reasoning monologues — 25/26
+# detected as thinking traces, 0 URLs, every one withheld or, before
+# the gate existed, falsified. The claim lane never had this problem
+# because every claim draft is built under operator steering written
+# to the QUALITY rubric. This contract gives EVERY serve generation
+# the same floor of instruction, appended after the server prompt
+# (and after any staged steering the provider itself appends). It
+# encodes only rules already binding elsewhere: QUALITY rubric
+# (a)-(g), the §45/T12 citation floor, E1-p (never cite other answers),
+# E3 (never close with a source-evasion note), and the clean-sheet
+# doctrine (fewest possible unsupported specific claims).
+SERVE_FORMAT_CONTRACT = """
+
+---
+OPERATOR ANSWER CONTRACT (priority instruction — follow it over any
+default style):
+1. Output ONLY the finished answer. Never output reasoning, a thinking
+   monologue, or a plan: no "Let me think", no first-person uncertainty
+   monologue, no closing that says what you will write. The first line
+   is the answer's opening thesis (1-3 sentences, no generic opener).
+2. Structure: numbered ## sections covering every sub-question in the
+   prompt, then a Sources section naming the actual sources used,
+   then — as the LAST block — a 2-3 sentence closing synthesis that
+   names what is new in this answer (Indonesian: open it with
+   "Baru dalam jawaban ini:"; English: "New in this answer:").
+   The last block is the synthesis, never a reference list and never
+   a note about sources.
+3. Length: aim for 6,000-9,000 characters (up to 12,000 only when the
+   prompt demands exhaustive depth). Never pad; a shorter, fully
+   supported answer beats a long speculative one.
+4. Citations: every specific number, date, threshold or named rule
+   must sit next to the named source that carries it, with a real URL
+   wherever one exists — include at least two URLs to canonical
+   sources you are highly confident are real and stable (official
+   documentation, standards/specification pages, primary papers).
+   Never invent a DOI, journal, volume, page range, URL or study.
+   If a specific figure cannot be tied to a named source, DROP the
+   figure and state the mechanism qualitatively instead.
+5. Never cite the other answers shown in the prompt ("Answer N") as
+   sources for any figure or claim, and never close with a statement
+   that sources cannot be named or pinpoint references are avoided —
+   name the sources or drop the claim.
+6. Answer in the language of the question.
+"""
+
+_CONTRACT_MARKER = "OPERATOR ANSWER CONTRACT"
+
+
+class VyceGenerationError(Exception):
+    """The Vyce provider subprocess produced no usable answer."""
+
+
+def generate_vyce(prompt, isr_id=None):
+    """One generation through the claim lane's own provider
+    (vyce_provider.py as a subprocess: prompt on stdin, answer on
+    stdout, VYCE_API_KEY inherited from the serve process env).
+    DIALECTICA_ISR_ID is set for the subprocess so the provider's
+    staged steering applies exactly as it does for a claim. The
+    SERVE_FORMAT_CONTRACT is appended once (marker-guarded, so the
+    wrapper's regeneration path does not stack copies)."""
+    if _CONTRACT_MARKER not in prompt:
+        prompt = prompt + SERVE_FORMAT_CONTRACT
+    env = dict(os.environ)
+    if isr_id:
+        env["DIALECTICA_ISR_ID"] = isr_id
+    try:
+        proc = subprocess.run(
+            [sys.executable, VYCE_PROVIDER], input=prompt,
+            capture_output=True, text=True, timeout=GEN_TIMEOUT_S,
+            env=env)
+    except subprocess.TimeoutExpired:
+        raise VyceGenerationError(
+            f"vyce_provider timeout sesudah {GEN_TIMEOUT_S} dtk")
+    if proc.stderr:
+        sys.stderr.write(proc.stderr)
+    if proc.returncode != 0 or not proc.stdout.strip():
+        raise VyceGenerationError(
+            f"vyce_provider rc={proc.returncode}, stdout "
+            f"{len(proc.stdout)} karakter")
+    return proc.stdout.strip()
+
+
+def vyce_pipeline(prompt, isr_id=None, generate_fn=None):
+    """Generate + gate for the Vyce serve. Mirrors the claim lanes'
+    pipelines: the wrapper may regenerate ONCE for length, through
+    the same provider, and the result carries the shared gate's
+    sendable verdict. `generate_fn` is the test seam."""
+    gen = generate_fn or generate_vyce
+    first = gen(prompt, isr_id)
+
+    def regen(instruction):
+        return gen(prompt + instruction, isr_id)
+
+    return serve_gate.gate_answer(
+        first, regen_fn=regen,
+        needs_json=serve_gate.needs_json_from_prompt(prompt))

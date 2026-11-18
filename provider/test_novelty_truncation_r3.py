@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+"""Tests for the R3 mitigation (MITIGASI-KONTEKS-TERPOTONG-
+2026-11-17): the novelty block must never be eaten by the 12k
+question cap in build_semantic_prompt, and every truncation /
+compaction event must be LOGGED by semantic_check.
+
+Proves, WITHOUT network or a real model (callers are mocks):
+- question > cap + block attached -> the block reaches the
+  prompt WHOLE (its tail sentinel present), the question text is
+  capped, and the block sits as its own section;
+- no block -> the prompt is BYTE-IDENTICAL to the pre-R3 shape
+  (zero regression), for short, long and empty questions;
+- semantic_check's log record carries question_truncated /
+  novelty_chars / novelty_compacted / prompt_chars truthfully;
+- a compacted block (novelty_context staged compaction) is
+  recognised in the log and still arrives whole;
+- the segmented path carries the whole block in EVERY segment
+  prompt;
+- compaction first stage: the per-excerpt cap shrinks BEFORE
+  either signal loses a member (the full sacrifice order —
+  cap, excerpt drop, covered trim to COVER_FLOOR, hard floor —
+  is pinned by test_novelty_compaction_dual_signal.py;
+  PEMADATAN-DUA-SINYAL-2026-11-17 superseded the R3 order,
+  which trimmed the covered list first).
+
+Run: python3 test_novelty_truncation_r3.py (exit 0 = all pass).
+"""
+import json
+import os
+import sys
+import tempfile
+from unittest import mock
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+import novelty_context as nc  # noqa: E402
+import serve_gate  # noqa: E402
+
+CHECKS = [0]
+FAILURES = []
+
+
+def check(name, cond, detail=""):
+    CHECKS[0] += 1
+    if not cond:
+        FAILURES.append(name)
+        print(f"FAIL: {name} {detail}")
+
+
+def iso(id_, supported=0, text=None, ts=0):
+    sd = {}
+    if text is not None:
+        sd["answer"] = text
+    return {"id": id_, "status": "verified",
+            "supportedCount": supported, "refutationCount": 0,
+            "isOwnAgent": False, "timestamp": ts,
+            "reveal": {"data": {"structured_data": sd}}}
+
+
+FAKE_BLOCK = (nc.BLOCK_HEADER + "\n" + "isi blok ".join(["x"] * 60)
+              + " BLOCK-TAIL-SENTINEL")
+
+
+def prompt_cases():
+    long_q = "QHEAD-SENTINEL " + "x" * 15000 + " QTAIL-SENTINEL"
+    merged = nc.attach(long_q, FAKE_BLOCK)
+    check("gabungan memang melewati cap (regim uji sah)",
+          len(merged) > serve_gate._SEMANTIC_QUESTION_CAP)
+    prompt = serve_gate.build_semantic_prompt("draf", merged)
+    check("ekor blok sampai UTUH ke prompt",
+          "BLOCK-TAIL-SENTINEL" in prompt)
+    check("header blok ada di prompt", nc.BLOCK_HEADER in prompt)
+    check("kepala pertanyaan ada", "QHEAD-SENTINEL" in prompt)
+    check("ekor pertanyaan terpotong oleh cap",
+          "QTAIL-SENTINEL" not in prompt)
+    qpart = prompt.split("QUESTION CONTEXT:\n", 1)[1].split(
+        "\n\n" + nc.BLOCK_HEADER, 1)[0]
+    check("porsi pertanyaan <= cap",
+          len(qpart) <= serve_gate._SEMANTIC_QUESTION_CAP,
+          str(len(qpart)))
+
+
+def legacy_prompt(draft, question):
+    q = (question or "").strip()[:serve_gate._SEMANTIC_QUESTION_CAP]
+    d = (draft or "")[:serve_gate._SEMANTIC_DRAFT_CAP]
+    return (serve_gate._SEMANTIC_INSTRUCTIONS
+            + "\nQUESTION CONTEXT:\n" + (q or "(not provided)")
+            + "\n\nDRAFT ANSWER UNDER REVIEW:\n" + d + "\n")
+
+
+def regression_cases():
+    for label, q in (("pendek", "pertanyaan singkat?"),
+                     ("panjang", "y" * 20000),
+                     ("kosong", "")):
+        check(f"tanpa blok: prompt identik pre-R3 ({label})",
+              serve_gate.build_semantic_prompt("draf uji", q)
+              == legacy_prompt("draf uji", q))
+
+
+def _clean_caller(captured):
+    def caller(prompt):
+        captured.setdefault("prompts", []).append(prompt)
+        return '{"verdict": "clean", "findings": []}'
+    return caller
+
+
+def log_cases():
+    long_q = "QHEAD " + "x" * 15000 + " QTAIL"
+    merged = nc.attach(long_q, FAKE_BLOCK)
+    captured = {}
+    with tempfile.TemporaryDirectory() as td:
+        log = os.path.join(td, "log.jsonl")
+        res = serve_gate.semantic_check(
+            "draf pendek", question=merged, isr_id="isr-r3",
+            model_call=_clean_caller(captured), log_path=log)
+        rec = json.loads(open(log).read().strip().splitlines()[-1])
+    check("cek berjalan", res["performed"] and res["available"])
+    check("log: question_truncated=true tercatat",
+          rec.get("question_truncated") is True)
+    check("log: novelty_chars = panjang blok",
+          rec.get("novelty_chars") == len(FAKE_BLOCK),
+          str(rec.get("novelty_chars")))
+    check("log: novelty_compacted=false (blok tak dipadatkan)",
+          rec.get("novelty_compacted") is False)
+    check("log: prompt_chars = panjang prompt terkirim",
+          rec.get("prompt_chars") == len(captured["prompts"][0]),
+          f"{rec.get('prompt_chars')} vs "
+          f"{len(captured['prompts'][0])}")
+    check("prompt terkirim memuat ekor blok",
+          "BLOCK-TAIL-SENTINEL" in captured["prompts"][0])
+
+
+def compacted_log_cases():
+    many = [iso(f"{i:08x}", supported=100 - i,
+                text=f"## Head {i}\n\nbody {i} " + "y" * 2000)
+            for i in range(9)]
+    block, meta = nc.build_block(many)
+    check("prasyarat: blok raksasa terpadatkan",
+          meta["compacted"] is True and len(block) <= nc.BLOCK_CAP)
+    merged = nc.attach("pertanyaan pendek?", block)
+    captured = {}
+    with tempfile.TemporaryDirectory() as td:
+        log = os.path.join(td, "log.jsonl")
+        serve_gate.semantic_check(
+            "draf pendek", question=merged, isr_id="isr-r3b",
+            model_call=_clean_caller(captured), log_path=log)
+        rec = json.loads(open(log).read().strip().splitlines()[-1])
+    prompt = captured["prompts"][0]
+    tail = block.splitlines()[-1][-40:]
+    check("log: novelty_compacted=true tercatat",
+          rec.get("novelty_compacted") is True)
+    check("log: question_truncated=false (pertanyaan pendek)",
+          rec.get("question_truncated") is False)
+    check("blok terpadatkan sampai utuh (ekornya ada)",
+          tail in prompt and nc.COMPACTED_MARK in prompt)
+
+
+def segment_cases():
+    draft = ("para satu " * 900) + "\n\n" + ("para dua " * 900)
+    merged = nc.attach("pertanyaan?", FAKE_BLOCK)
+    captured = {}
+    with tempfile.TemporaryDirectory() as td:
+        log = os.path.join(td, "log.jsonl")
+        res = serve_gate.semantic_check(
+            draft, question=merged, isr_id="isr-r3c",
+            model_call=_clean_caller(captured), log_path=log)
+    prompts = captured["prompts"]
+    check("draf panjang tersegmentasi", len(prompts) == 2
+          and res.get("segments") == 2, str(len(prompts)))
+    check("blok utuh di SETIAP prompt segmen",
+          all("BLOCK-TAIL-SENTINEL" in p for p in prompts))
+
+
+def compaction_order_cases():
+    def rich_answer(i):
+        heads = []
+        for j in range(4):
+            heads.append("## Head" + f"{i}{j} " + "w" * 95)
+        return "\n\n".join(heads) + "\n\nbody " + "z" * 200
+
+    isos = [iso(f"{i:08x}", supported=50 - i, text=rich_answer(i))
+            for i in range(5)]
+    with mock.patch.object(nc, "BLOCK_CAP", 10 ** 9):
+        _full_block, full_meta = nc.build_block(isos)
+    block, meta = nc.build_block(isos)
+    check("prasyarat: versi penuh memuat 20 poin covered",
+          full_meta["covered_points"] == 20,
+          str(full_meta["covered_points"]))
+    check("pemadatan terjadi", meta["compacted"] is True)
+    # Kontrak PEMADATAN-DUA-SINYAL (menggantikan urutan R3 yang
+    # memangkas covered dulu): tahap pertama pemadatan adalah
+    # cap per-kutipan menyusut — blok ini kelebihan muatan
+    # tipis, jadi ia harus muat TANPA satu pun sinyal kehilangan
+    # anggota (covered utuh 20, kutipan utuh 5).
+    check("cap menyusut DULU (kedua sinyal utuh)",
+          meta["excerpted"] == full_meta["excerpted"] == 5
+          and meta["covered_points"]
+          == full_meta["covered_points"] == 20
+          and len(block) <= nc.BLOCK_CAP,
+          f"excerpted={meta['excerpted']} "
+          f"covered={meta['covered_points']} len={len(block)}")
+
+
+if __name__ == "__main__":
+    prompt_cases()
+    regression_cases()
+    log_cases()
+    compacted_log_cases()
+    segment_cases()
+    compaction_order_cases()
+    print(f"\n{'ALL PASS' if not FAILURES else 'FAILURES: ' + str(FAILURES)}"
+          f" ({CHECKS[0] - len(FAILURES)}/{CHECKS[0]})")
+    sys.exit(1 if FAILURES else 0)

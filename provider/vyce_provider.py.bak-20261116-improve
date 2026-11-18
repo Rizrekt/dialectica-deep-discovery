@@ -1,0 +1,260 @@
+#!/usr/bin/env python3
+"""Vyce AI provider for Dialectica's trued.py (DIALECTICA_PROVIDER_CMD).
+
+Contract (from the audited trued.py): read the prompt on stdin, write ONLY
+the answer on stdout. All diagnostics go to stderr.
+
+Vyce is an OpenAI-compatible router: POST {VYCE_BASE_URL}/chat/completions
+with Authorization: Bearer <key>. The key is injected at runtime through
+the VYCE_API_KEY environment variable by the launcher, which fetches the
+vault surrogate for the custom.vyce credential; the real key is swapped in
+on egress to the Vyce host and never stored in this file or on disk.
+
+Default model: deepseek-v4.1 (DeepSeek V4.1 Flash — listed free for
+Lite/Pro on Vyce). Override with VYCE_MODEL. The wrapper has no file or
+shell access and talks only to the Vyce API host.
+"""
+import json
+import os
+import sys
+import time
+import urllib.error
+import urllib.request
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib"))
+
+BASE_URL = os.environ.get("VYCE_BASE_URL", "https://vyceai.com/v1").rstrip("/")
+# The arena's A_CITATION rule wants real, identifiable sources (APA + URL)
+# for reportage claims. A chat model cannot browse, so its "citations" are
+# partly fabricated — and A_CITATION is the #1 failed rule platform-wide.
+# For knowledge-synthesis prompts the citation cleaner strips fabrications;
+# for world/current-data prompts we ground with Gemini instead (grounding
+# is real retrieval), falling back to the cleaner if Gemini is unavailable.
+WORLD_MARKERS = ("will ", "before 20", "by 20", "forecast", "predict",
+                 "current price", "stock", "election", "odds", "champion",
+                 "tournament", "season", "match", "score", "weather",
+                 "release", "launch", "market cap", "trading volume")
+USER_AGENT = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+              "(KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36")
+BACKOFF_S = [15, 30, 60]
+TIMEOUT_S = 240
+
+
+def candidate_models():
+    primary = os.environ.get("VYCE_MODEL", "").strip()
+    models = [primary] if primary else []
+    # Verified live on the user's Free plan (2026-11-08): glm-5.3-flash is
+    # the fast promo-pool workhorse (~12s); deepseek-v4.1 also answers but
+    # is slow (~87s) and once returned an empty body at max_tokens=3000.
+    for m in ("glm-5.3-flash", "deepseek-v4.1"):
+        if m not in models:
+            models.append(m)
+    return models
+
+
+USAGE_LOG = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "token-usage.jsonl")
+
+
+def _log_usage(model, usage, isr_id, answer_chars):
+    """Append one JSON line per completed Vyce call so token usage per
+    answer is on record (added 2026-11-10, MEKANISME §25.8.5/§26.7.4).
+    usage is the router-reported object when the stream carried one;
+    otherwise null + answer_chars so the call is still accounted."""
+    rec = {
+        "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "model": model,
+        "isr": isr_id or None,
+        "usage": usage,
+        "answer_chars": answer_chars,
+    }
+    try:
+        with open(USAGE_LOG, "a", encoding="utf-8") as fh:
+            fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    except OSError as ex:
+        print(f"vyce_provider: usage log write failed: {ex}", file=sys.stderr)
+    if usage:
+        print(f"vyce_provider: usage model={model} "
+              f"prompt_tokens={usage.get('prompt_tokens')} "
+              f"completion_tokens={usage.get('completion_tokens')} "
+              f"total_tokens={usage.get('total_tokens')}",
+              file=sys.stderr)
+    else:
+        print(f"vyce_provider: usage not reported by router "
+              f"(model={model}, answer_chars={answer_chars})",
+              file=sys.stderr)
+
+
+def call_vyce(model, prompt, api_key, include_usage=True):
+    body = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 8000,
+        "stream": True,
+    }
+    if include_usage:
+        # Ask the router for a usage object on the final stream chunk.
+        # Callers retry without this if the router rejects the field.
+        body["stream_options"] = {"include_usage": True}
+    req = urllib.request.Request(
+        f"{BASE_URL}/chat/completions",
+        data=json.dumps(body).encode("utf-8"),
+        method="POST",
+    )
+    req.add_header("Content-Type", "application/json")
+    req.add_header("Authorization", f"Bearer {api_key}")
+    req.add_header("User-Agent", USER_AGENT)
+    content_parts, reasoning_parts = [], []
+    usage = None
+    with urllib.request.urlopen(req, timeout=TIMEOUT_S) as resp:
+        for raw in resp:
+            line = raw.decode("utf-8", "replace").strip()
+            if not line.startswith("data:"):
+                continue
+            data = line[5:].strip()
+            if data == "[DONE]":
+                break
+            try:
+                chunk = json.loads(data)
+            except json.JSONDecodeError:
+                continue
+            if chunk.get("usage"):
+                usage = chunk["usage"]
+            for ch in chunk.get("choices") or []:
+                delta = ch.get("delta") or {}
+                if delta.get("content"):
+                    content_parts.append(delta["content"])
+                if delta.get("reasoning_content"):
+                    reasoning_parts.append(delta["reasoning_content"])
+    text = "".join(content_parts).strip()
+    if not text:
+        text = "".join(reasoning_parts).strip()
+    if not text:
+        raise RuntimeError("empty answer text from model (stream ended)")
+    return text, usage
+
+
+def main():
+    prompt = sys.stdin.read()
+    if not prompt.strip():
+        print("vyce_provider: empty prompt on stdin", file=sys.stderr)
+        return 2
+    # STEERING (added 2026-11-08): the server prompt includes earlier answers,
+    # so it cannot carry our angle. When the operator staged a steering file
+    # for THIS job (matched by DIALECTICA_ISR_ID), append it so the model
+    # takes the operator-chosen novel position instead of re-deriving the
+    # consensus already present in the prompt.
+    isr_id = os.environ.get("DIALECTICA_ISR_ID", "").strip()
+    if isr_id:
+        steer_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                  "steering", isr_id + ".txt")
+        try:
+            with open(steer_path, encoding="utf-8") as fh:
+                steer = fh.read().strip()
+            if steer:
+                prompt = prompt + "\n\n---\nOPERATOR STEERING (priority instruction):\n" + steer
+                print(f"vyce_provider: steering applied for {isr_id}", file=sys.stderr)
+        except OSError:
+            pass
+    api_key = os.environ.get("VYCE_API_KEY", "").strip()
+    if not api_key:
+        print("vyce_provider: VYCE_API_KEY not set", file=sys.stderr)
+        return 2
+    import re as _re
+    def _format_gate(text):
+        """If the prompt demands a JSON output object, return ONLY that
+        object. GLM wraps JSON in prose/fences, which trips the server's
+        schema-correction loop (observed live 2026-11-08: 3 resubmits per
+        job). Extract the outermost object; validate required keys when
+        the prompt names them."""
+        if "json" not in text.lower():
+            return None
+        i, j = text.find("{"), text.rfind("}")
+        if i < 0 or j <= i:
+            return None
+        cand = text[i:j + 1]
+        try:
+            obj = json.loads(cand)
+        except Exception:
+            return None
+        if not isinstance(obj, dict):
+            return None
+        inner = obj.get("structured_data")
+        if isinstance(inner, dict):
+            obj = inner
+        conf = obj.get("confidence")
+        if isinstance(conf, (int, float)) and 0 < conf <= 1:
+            obj["confidence"] = round(conf * 100, 1)
+        return json.dumps(obj, ensure_ascii=False)
+    low = prompt.lower()
+    # Grounding Gemini DIMATIKAN 2026-11-14 (vonis sesi utama, MEKANISME §81
+    # addendum): §29.4 mencabut klaim/serve via Gemini (peringatan user
+    # 2026-11-10 14:43 + risiko REL-005); jalur grounding internal ini
+    # menjalankan gemini_provider.py sebagai subprocess untuk hampir semua
+    # prompt serve (WORLD_MARKERS sangat luas) — membakar kuota Gemini
+    # (1 grounded ≈ 20 polos, kuota tak terbaca) + latensi s/d 300 dtk/job
+    # (terbukti 375/345 dtk di jendela 07:00). Aktifkan lagi HANYA dengan
+    # env DIALECTICA_GEMINI_GROUNDING=1, atas keputusan sesi utama.
+    if os.environ.get("DIALECTICA_GEMINI_GROUNDING") == "1" and any(m in low for m in WORLD_MARKERS):
+        try:
+            import subprocess
+            here = os.path.dirname(os.path.abspath(__file__))
+            gem = os.path.join(here, "gemini_provider.py")
+            p = subprocess.run([sys.executable, gem], input=prompt,
+                               capture_output=True, text=True, timeout=300)
+            if p.returncode == 0 and p.stdout.strip():
+                print("vyce_provider: world-prompt grounded via Gemini", file=sys.stderr)
+                sys.stdout.write(p.stdout)
+                return 0
+            print(f"vyce_provider: Gemini grounding failed rc={p.returncode}; falling back", file=sys.stderr)
+        except Exception as ex:
+            print(f"vyce_provider: Gemini grounding error {ex}; falling back", file=sys.stderr)
+    last_error = None
+    for model in candidate_models():
+        for attempt in range(len(BACKOFF_S) + 1):
+            try:
+                try:
+                    answer, usage = call_vyce(model, prompt, api_key,
+                                              include_usage=True)
+                except urllib.error.HTTPError as e:
+                    if e.code != 400:
+                        raise
+                    # Router rejected stream_options — retry bare.
+                    print("vyce_provider: stream_options rejected (400); "
+                          "retrying without usage request", file=sys.stderr)
+                    answer, usage = call_vyce(model, prompt, api_key,
+                                              include_usage=False)
+                _log_usage(model, usage, isr_id, len(answer))
+                needs_json = ("json" in low and ("schema" in low or "output" in low or "format" in low or "field" in low)) or ("structured_data" in low) or ("outcometype" in low) or ("credibleinterval" in low)
+                gated = _format_gate(answer) if needs_json else None
+                if gated is not None:
+                    print("vyce_provider: format gate applied (JSON object only)", file=sys.stderr)
+                    sys.stdout.write(gated + "\n")
+                    return 0
+                from citation_patch import clean as _clean
+                answer, _hits = _clean(answer)
+                if _hits:
+                    print(f"vyce_provider: stripped {len(_hits)} fake citation(s)", file=sys.stderr)
+                print(f"vyce_provider: answered with {model}", file=sys.stderr)
+                sys.stdout.write(answer + "\n")
+                return 0
+            except urllib.error.HTTPError as e:
+                detail = e.read().decode("utf-8", "replace")[:300]
+                print(f"vyce_provider: {model} HTTP {e.code}: {detail}",
+                      file=sys.stderr)
+                last_error = e
+                if e.code in (429, 503) and attempt < len(BACKOFF_S):
+                    time.sleep(BACKOFF_S[attempt])
+                    continue
+                break
+            except Exception as e:  # network, parse, empty-answer errors
+                print(f"vyce_provider: {model} error: {e}", file=sys.stderr)
+                last_error = e
+                break
+    print(f"vyce_provider: all models failed (last: {last_error})",
+          file=sys.stderr)
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
