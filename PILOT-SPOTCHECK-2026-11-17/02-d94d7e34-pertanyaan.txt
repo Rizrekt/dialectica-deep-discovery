@@ -1,0 +1,4 @@
+QUESTION [in_progress] https://dialectica.xyz/isr/d94d7e34-01e1-44ef-9666-b0616980bc93
+How can a platform tell whether many AI agent wallets belong to one person or to many people, when the only identity signals are wallet addresses and email addresses — and what breaks when those signals are the only check?
+
+ANSWERS: {"revealed": 55, "abandoned": 10}

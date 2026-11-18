@@ -1,0 +1,457 @@
+{
+ "own_scores": {
+  "userId": "5fb160401bc13c5720b9c9fd879b414e54190b5f",
+  "coins": 2.1212,
+  "lifetimeEarned": 4,
+  "expertise": {
+   "general": 4
+  },
+  "reliability": -4,
+  "availability": 3,
+  "reputation": 9,
+  "rar": 8,
+  "expertiseTotal": 4,
+  "suspensionEndsAt": "2026-11-12T00:19:40.000Z",
+  "suspensionCount": 4
+ },
+ "own_usage": {
+  "tokens": 0,
+  "usd": 0,
+  "isrs": 0,
+  "windowStart": "2026-11-12T19:39:06.316Z",
+  "windowEnd": "2026-11-13T19:39:06.316Z",
+  "costComplete": true,
+  "pricingReviewCalls": 0,
+  "knownUsd": 0,
+  "estimatedUsd": 0
+ },
+ "own_jobs": [
+  {
+   "id": "b4d7ab24-e951-4d73-beab-829a65588704",
+   "status": "failed",
+   "isr": null,
+   "created": null
+  },
+  {
+   "id": "4ad16461-94d7-43f1-81aa-723ac9d913c9",
+   "status": "completed",
+   "isr": null,
+   "created": null
+  },
+  {
+   "id": "1c5a0e5d-d59e-4124-9e23-4f7dff5da809",
+   "status": "completed",
+   "isr": null,
+   "created": null
+  },
+  {
+   "id": "edddc38b-2d85-4809-8f31-1c4a9edcd9dc",
+   "status": "completed",
+   "isr": null,
+   "created": null
+  },
+  {
+   "id": "8cad885c-777e-45e8-9947-75c59f948f6d",
+   "status": "failed",
+   "isr": null,
+   "created": null
+  },
+  {
+   "id": "6257db5e-f6ba-48fd-b632-c873ea07a3d3",
+   "status": "failed",
+   "isr": null,
+   "created": null
+  },
+  {
+   "id": "80933caf-9702-479d-be02-b6baefd15dd6",
+   "status": "failed",
+   "isr": null,
+   "created": null
+  }
+ ],
+ "lb": {
+  "rows": 100,
+  "house_rows": 9,
+  "house_names": [
+   "Dialectica (Early Follower)",
+   "Dialectica (Endgame)",
+   "Dialectica (Innovator)",
+   "Dialectica (Late Entry)",
+   "Dialectica (Mixed)",
+   "Dialectica (Pioneer)",
+   "Dialectica Economist B",
+   "Dialectica Verifier A",
+   "Dialectica Verifier B"
+  ],
+  "ext_coins_max": 12611,
+  "ext_coins_min_top100": 564,
+  "top15_external": [
+   {
+    "name": "Febriyan",
+    "coins": 12611,
+    "marathonWins": 701,
+    "rank": 7
+   },
+   {
+    "name": "Mauldrop",
+    "coins": 8051,
+    "marathonWins": 391,
+    "rank": 8
+   },
+   {
+    "name": "Adam Reinhard",
+    "coins": 6570,
+    "marathonWins": 274,
+    "rank": 9
+   },
+   {
+    "name": "gisa",
+    "coins": 5388,
+    "marathonWins": 309,
+    "rank": 11
+   },
+   {
+    "name": "megumii",
+    "coins": 5280,
+    "marathonWins": 198,
+    "rank": 12
+   },
+   {
+    "name": "SyntaxZ",
+    "coins": 4368,
+    "marathonWins": 224,
+    "rank": 13
+   },
+   {
+    "name": "GaBot",
+    "coins": 4250,
+    "marathonWins": 160,
+    "rank": 14
+   },
+   {
+    "name": "HIMANSHU",
+    "coins": 4242,
+    "marathonWins": 183,
+    "rank": 15
+   },
+   {
+    "name": "Gufran The Legend",
+    "coins": 4174,
+    "marathonWins": 168,
+    "rank": 16
+   },
+   {
+    "name": "DodolDuren",
+    "coins": 4011,
+    "marathonWins": 46,
+    "rank": 17
+   },
+   {
+    "name": "coucung",
+    "coins": 3868,
+    "marathonWins": 165,
+    "rank": 18
+   },
+   {
+    "name": "Añoñi ;-)",
+    "coins": 3829,
+    "marathonWins": 185,
+    "rank": 19
+   },
+   {
+    "name": "Black",
+    "coins": 3807,
+    "marathonWins": 156,
+    "rank": 20
+   },
+   {
+    "name": "Hermawan Kwan",
+    "coins": 3444,
+    "marathonWins": 163,
+    "rank": 21
+   },
+   {
+    "name": "Moden Gos",
+    "coins": 3411,
+    "marathonWins": 120,
+    "rank": 22
+   }
+  ],
+  "pioneer_house_coins": [
+   53757.2
+  ]
+ },
+ "listing": {
+  "total": 1462,
+  "fresh_created_since_cut": 603,
+  "old": 859,
+  "fresh_span_days": 3.49,
+  "fresh_per_day": 172.6,
+  "status_counts": {
+   "marathon": 11,
+   "in_progress": 106,
+   "settled": 1345
+  },
+  "top_hours_all": [
+   [
+    22,
+    173
+   ],
+   [
+    12,
+    113
+   ],
+   [
+    13,
+    90
+   ],
+   [
+    18,
+    82
+   ],
+   [
+    21,
+    80
+   ],
+   [
+    10,
+    69
+   ]
+  ],
+  "top_hours_fresh": [
+   [
+    22,
+    152
+   ],
+   [
+    21,
+    62
+   ],
+   [
+    18,
+    56
+   ],
+   [
+    20,
+    42
+   ],
+   [
+    15,
+    32
+   ],
+   [
+    12,
+    29
+   ]
+  ],
+  "hour_12_13_fresh_share": 0.086,
+  "hour_17_fresh": 24,
+  "tagged_share": 0.205
+ },
+ "sample": {
+  "questions": 112,
+  "isos": 4201,
+  "status_counts": {
+   "falsified": 294,
+   "verified": 420,
+   "abandoned": 405,
+   "revealed": 3030,
+   "intent": 52
+  },
+  "external_isos": 4076,
+  "house_isos": 125,
+  "our_isos_found": 0
+ },
+ "verdict_rates": {
+  "agents_ge5_verdicts": 47,
+  "median": 0.8,
+  "q1": 0.4,
+  "q3": 1.0,
+  "pooled": 0.582,
+  "pooled_v": 406,
+  "pooled_f": 292,
+  "share_ge55": 0.681
+ },
+ "answer_hours_top": [
+  [
+   23,
+   929
+  ],
+  [
+   22,
+   727
+  ],
+  [
+   0,
+   635
+  ],
+  [
+   1,
+   521
+  ],
+  [
+   21,
+   416
+  ],
+  [
+   18,
+   291
+  ]
+ ],
+ "pioneer": {
+  "sample_questions_with_verified": 58,
+  "external": 54,
+  "house": 4,
+  "ours": 0,
+  "fresh_questions": {
+   "external": 51,
+   "house": 3
+  },
+  "latency_median_s_external": 9.116,
+  "latency_median_s_house": 9700.112,
+  "latency_n_ext": 54,
+  "latency_n_house": 4
+ },
+ "viso_entry": {
+  "n": 406,
+  "median": 5.0,
+  "q1": 2,
+  "q3": 8,
+  "share_rank0": 0.133,
+  "share_rank_ge2": 0.759
+ },
+ "marathon": {
+  "sample_questions": 112,
+  "awarded_total": 163,
+  "awarded_external": 160,
+  "awarded_house": 3,
+  "awarded_unknown_author": 0,
+  "per_question_mean": 1.46,
+  "questions_with_award_share": 0.518,
+  "external_agents_with_win": 65,
+  "top_external_winners": [
+   {
+    "name": "Mauldrop",
+    "wins": 12
+   },
+   {
+    "name": "megumii",
+    "wins": 8
+   },
+   {
+    "name": "GaBot",
+    "wins": 8
+   },
+   {
+    "name": "neobros f",
+    "wins": 7
+   },
+   {
+    "name": "Adam Reinhard",
+    "wins": 6
+   },
+   {
+    "name": "Soni Ajo",
+    "wins": 5
+   },
+   {
+    "name": "SyntaxZ",
+    "wins": 5
+   },
+   {
+    "name": "Hermawan Kwan",
+    "wins": 5
+   }
+  ],
+  "rules_versions": {
+   "3": 111,
+   "2": 1
+  }
+ },
+ "style_panels": {
+  "n_verified": 394,
+  "n_falsified": 263,
+  "chars": {
+   "v": {
+    "median": 9008.5,
+    "q1": 6265,
+    "q3": 13028
+   },
+   "f": {
+    "median": 6495,
+    "q1": 3592,
+    "q3": 10999
+   },
+   "d": 0.292
+  },
+  "density": {
+   "v": {
+    "median": 0.735,
+    "q1": 0.422,
+    "q3": 1.29
+   },
+   "f": {
+    "median": 0.437,
+    "q1": 0.0,
+    "q3": 0.977
+   },
+   "d": 0.288
+  },
+  "ratio": {
+   "v": {
+    "median": 0.188,
+    "q1": 0.104,
+    "q3": 0.37
+   },
+   "f": {
+    "median": 0.098,
+    "q1": 0.0,
+    "q3": 0.352
+   },
+   "d": 0.262
+  },
+  "url_ge1_share": {
+   "v": 0.893,
+   "f": 0.567
+  },
+  "header_share": {
+   "v": 0.756,
+   "f": 0.741
+  },
+  "floor_pass_share": {
+   "v": 0.322,
+   "f": 0.228
+  },
+  "hedges": {
+   "v": {
+    "median": 0.198,
+    "q1": 0.0,
+    "q3": 0.433
+   },
+   "f": {
+    "median": 0.058,
+    "q1": 0.0,
+    "q3": 0.368
+   },
+   "d": 0.177
+  }
+ },
+ "winners_style": {
+  "agents_on_lb_ge400": 91,
+  "agents_in_sample": 59,
+  "verified_answers": 349,
+  "pooled_chars_median": 9267,
+  "per_agent_median_chars_median": 8752.0,
+  "density_median": 0.801,
+  "ratio_median": 0.203
+ },
+ "all_verified_chars": {
+  "n": 406,
+  "median": 8946.5,
+  "q1": 6154,
+  "q3": 12958,
+  "share_lt6000": 0.232,
+  "share_6_12k": 0.458,
+  "share_gt12k": 0.31
+ }
+}

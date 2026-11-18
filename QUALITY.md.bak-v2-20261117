@@ -1,0 +1,151 @@
+# RUBRIK KUALITAS JAWABAN — Dialectica (QUALITY.md)
+
+**Versi 2 — 2026-11-11** (bump bernomor per EVALUASI-STOP-2026-11-11 §4.3 + §7.1 butir 2; resep persis di entri CHANGELOG v2 di bawah. Versi 1 dipasang 2026-11-10 per perintah user 15:09; ringkasan pemasangan di MEKANISME §32.)
+
+Dokumen ini adalah daftar periksa skor untuk jawaban kelas klaim yang bisa diterapkan MEKANIS sebelum kirim. Dipakai di dua tempat:
+- **Gerbang kualitas** (butir 4A badan `dialectica-slot-hunt`): setiap draf jawaban/steering dinilai lawan rubrik ini sebelum klaim apa pun, dan untuk steering yang disiapkan di jendela scan.
+- **Lab kualitas** (butir 10 badan `dialectica-weekly-revision`): semua jawaban settle kita dinilai ulang lawan rubrik ini; kegagalan dibedah sampai akar; rubrik berevolusi dari verdict.
+
+**Aturan skor (v2):** tiap butir (a)–(i) dinilai LOLOS/GAGAL. Gagal di butir **(d)**, **(g)**, atau **(h)** = jawaban TIDAK dikirim (perbaiki sampai lolos, atau lewati target) — (h) dinilai atas **teks terkirim** (reveal), jadi kegagalannya memblokir klaim BERIKUTNYA sampai steering diperbaiki (EVALUASI §7.1 butir 3). Gagal di butir **(i)** pada teks terkirim juga memblokir klaim berikutnya dengan cara yang sama. Gagal di butir lain = perbaiki bila waktu jendela memungkinkan; bila tidak, catat sebagai utang kualitas di catatan jendela. Skor per butir dicatat — catatan itu bahan mentah lab mingguan. Alat penilai teks terkirim: `provider/audit_sent_draft.py` (offline, read-only).
+
+**Kenapa rubrik ini ada (data):** verified rate adalah tuas koin Dialectica — median verdict rate per-agen kohort eksternal hanya **32%** (n=182 agen dengan ≥5 verdict) vs sub-kohort pemenang **55%** dan top-15 **64%** (§30). Kegagalan aturan platform didominasi satu sebab: **A_CITATION = 91,1% dari semua kegagalan arena_rules**; penolakan terbesar platform adalah surprise_gauge **59,2%** (§26, analitik General: surprise_gauge 59,2% + arena_rules 38,4% dari penolakan). Template panjang lama 6–12 rb karakter GUGUR di kohort (hanya 29% verified berada di pita itu, n=4.440) — yang terbukti adalah struktur + sitasi nyata (header 79%, URL 77% dari 4.440 jawaban verified eksternal, 165 agen).
+
+---
+
+## (a) Pembuka = tesis/distingsi atau koreksi premis (≤3 kalimat)
+
+- **Aturan:** paragraf pertama menyatakan posisi yang bisa salah — sebuah distingsi tajam atau koreksi atas premis pertanyaan. Bukan parafrase pertanyaan, bukan pembuka generik ("this is an important question").
+- **Cara cek:** baca 3 kalimat pertama. Ada klaim posisi yang spesifik dan bisa dibantah? Jumlah kalimat paragraf pembuka ≤3?
+- **LOLOS (data §26, teks juara terbaca penuh):** "removing an owner is not the same as removing minting capability" — distingsi yang membedakan dua hal yang pertanyaan campuradukkan. "Segara Anak is inside the caldera, not on the highest summit" — koreksi premis faktual di kalimat pertama.
+- **GAGAL:** pembuka mengulang pertanyaan dengan kata lain, atau mulai dengan latar umum tanpa posisi ("Smart contract proxies are widely used in…").
+
+## (b) Struktur ##/### bernomor mencakup SEMUA sub-pertanyaan — v2: cakupan di atas lead-in
+
+- **Aturan (v2, dilonggarkan):** yang dinilai adalah **CAKUPAN** — setiap sub-pertanyaan (eksplisit maupun tersirat) punya seksinya sendiri di badan berheader ##/### bernomor. Lead-in tebal per seksi kini **ANJURAN, bukan syarat lolos** — ketiadaannya tidak menggagalkan (b) selama cakupan penuh.
+- **Cara cek:** daftarkan sub-pertanyaan dari detail ISR satu per satu, petakan ke header. Sub-pertanyaan tanpa header = GAGAL. Lead-in dicatat sebagai catatan saja. (Kohort: header ada di 79% jawaban verified eksternal, n=4.440 — struktur adalah ciri yang bertahan di semua sub-kohort, §30.)
+- **Bukti pelonggaran (EVALUASI §4.2):** celah (b) muncul **×3** di DRILL-LOG (17:00 + 21:00 10 Nov, 07:00 11 Nov) — jawaban verified berulang lolos TANPA lead-in tebal / tanpa seksi bernomor sendiri; di drill 07:00-11-11 kedua jawaban (satu verified 4-support) gagal (b) v1. (b) v1 lebih ketat dari selera verifier.
+- **LOLOS:** 6 sub-pertanyaan → 6 seksi bernomor (lead-in tebal dianjurkan, tidak wajib).
+- **GAGAL:** satu sub-pertanyaan dijawab menyelinap di dalam seksi lain tanpa header; atau struktur esai bebas tanpa header sama sekali.
+
+## (c) Panjang — v2: lantai 4.500 TETAP, plafon jadi ANJURAN (bukan pintu gagal)
+
+- **Aturan (v2, dilonggarkan):** **<4.500 karakter = GAGAL** (lantai tetap pintu). Pita baku 4.500–8.000 dan pita marathon ramai (viso ≥5) 10.000–12.000 kini **ANJURAN kalibrasi, bukan syarat lolos** — melampaui plafon (termasuk >12.000) dicatat sebagai catatan, **BUKAN GAGAL**.
+- **Cara cek:** hitung karakter draf final sebelum kirim (bukan perkiraan). Catat angkanya di catatan jendela bersama skor rubrik; bila di atas plafon anjuran, catat "di atas plafon anjuran v2" tanpa menggagalkan.
+- **Bukti pelonggaran (EVALUASI §4.2):** celah (c) muncul **×4** di DRILL-LOG (koreksi v2 09:26; 17:00; 21:00; 07:00) — di drill 07:00-11-11 kedua jawaban >12 rb karakter dan satu di antaranya VERIFIED: plafon 12 rb tidak mengikat verifier bahkan untuk jawaban terpanjang. Yang mengikat adalah pita bawah (terlalu pendek = tidak ada isi).
+- **Dasar (R3/§30, n=4.440 jawaban verified, 165 agen):** median pooled 6.200 (q1 4.052, q3 11.165); pita <6.000 = 48%, 6–12 rb = 29%, >12 rb = 23%; median per-agen sub-kohort pemenang (50 agen) 4.709. Panjang BUKAN syarat — ia kalibrasi: terlalu pendek = kurang substansi untuk verified, terlalu panjang tanpa keramaian = biaya waktu tanpa bayaran tambahan.
+- **GAGAL khas:** memaksakan 11 rb karakter untuk pertanyaan viso 2 (kelebihan panjang tanpa slot marathon yang memadai), atau 2.800 karakter untuk pertanyaan 6 sub-bagian (di bawah lantai kohort).
+
+## (d) Sitasi: angka/aturan spesifik WAJIB bernama + versi persis — NOL karangan — v2: ditimbang sentralitas angka + sub-cek E1 (DIADOPSI)
+
+- **Aturan (PINTU MATI — gagal = tidak dikirim):** setiap angka, ambang, atau aturan spesifik di draf harus ditempel sitasi **nama dokumen + versi/edisi + URL persis** yang benar-benar bisa disebutkan. Klaim yang tidak bisa disitasi persis ditulis ulang sebagai **sintesis Tier-0 tanpa angka spesifik** (posisi/penalaran, bukan angka). Dilarang mengarang sitasi, URL, DOI, nomor versi, atau nama dokumen. Pagar `citation_patch` di provider tetap jalan sebagai jaring hilir — rubrik ini mencegah dari HULU, sebelum draf jadi.
+- **v2 — TIMBANG SENTRALITAS ANGKA (EVALUASI §4.3):** bedakan dua kelas angka. **Angka POROS** (yang menopang tesis/kesimpulan) wajib **entailment penuh**: sitasi harus MENYATAKAN angka spesifik itu (lihat sub-cek E1). **Angka PERIFERAL** (orde-besaran, estimasi, ilustrasi yang tidak menopang tesis) BOLEH lolos tanpa entailment dokumen, **SYARAT** dibingkai eksplisit sebagai estimasi + hedge di titik klaim ("orde ±…", "kira-kira", "estimasi kasar"). Angka periferal yang disajikan sebagai fakta presisi tanpa bingkai = diperlakukan sebagai angka poros = GAGAL bila tak ter-entail.
+  - **Bukti penimbangan (EVALUASI §4.2):** (d) biner v1 **×1** gagal atas jawaban VERIFIED — 0006fe08 (drill 07:00-11-11, support **4 / refutasi 0**) GAGAL (d) ketat karena angka periferal tanpa sitasi (~$765K Meebits; 10⁴–10⁵ sign/dtk/core tanpa dokumen): (d) biner memblokir jawaban verified-grade. Itulah false positive yang dihapus penimbangan ini — TANPA melonggarkan angka poros.
+- **v2 — SUB-CEK E1 (DIADOPSI — lihat ANTRIAN EKSPERIMEN):** sitasi harus **mendukung angka spesifiknya**, diuji dengan **BUKA-DAN-BACA**: buka dokumen yang dikutip dan tunjuk kalimat/angka di dalamnya yang menyatakan angka di draf. Sitasi yang hanya ADA di dekat angka (kalimat/paragraf sama) TIDAK menaungi angka itu. Angka yang sitasinya tidak menyatakan angka tersebut = GAGAL (d), sebesar apa pun sitasi lain di teks.
+  - **Bukti adopsi E1:** ambang adopsi E1 (≥2 kasus falsified/gagal-aturan berakar "angka tanpa sitasi pendukung langsung") **TERPENUHI ×3** — kasus **d9f49e11**, **96c384fd**, **66f46c3e** (EVALUASI §4.2; di §52 tercatat terpenuhi ×4 termasuk penguatan drill lanjutan). Pernyataan adopsi ini adalah bagian dari bump v2, bukan catatan diam-diam.
+- **Cara cek:** garis-bawahi SEMUA angka/aturan spesifik di draf satu per satu; klasifikasikan poros vs periferal; untuk angka poros, buka-dan-baca sitasinya dan tunjuk dukungannya; untuk periferal, cek bingkai estimasi + hedge di titik klaim. Ada angka poros tanpa entailment, periferal presisi tanpa bingkai, atau sitasi yang tidak bisa diverifikasi ejaannya (nama/versi/URL diragukan) = GAGAL.
+- **Dasar:** A_CITATION adalah kegagalan aturan #1 platform = **91,1%** dari kegagalan arena_rules (§26). Kontramodel juara: sitasi yang bisa diverifikasi pembaca — mis. OpenZeppelin `Ownable.sol` **v5.0.2** → github.com; data gunung dari volcano.si.edu (§26 §4). Sitasi juara adalah bukti, bukan hiasan.
+- **LOLOS:** "…sesuai EIP-1167 (ERC-1167: Minimal Proxy Contract, 2018)…" dengan angka yang memang tertulis di dokumen itu.
+- **GAGAL:** angka presisi tanpa sumber ("overhead-nya ±700 gas per call" tanpa dokumen), DOI/URL yang "kira-kira begitu", atau versi yang ditebak ("v5.x"); angka poros yang "didukung" sitasi tetangga yang tidak memuatnya (pola E1).
+
+## (e) Kebaruan eksplisit: penutup sintesis MENYEBUT apa yang BARU — v2: kebaruan harus BENAR, bukan sekadar dinamai
+
+- **Aturan:** penutup 2–3 kalimat secara eksplisit menyatakan apa yang baru dari jawaban ini dibanding jawaban verified yang sudah ada (sudut, mekanisme, angka, atau koreksi yang belum ada di sana) — ini bahan mentah Surprise Gauge dan syarat slot Innovator/Marathon (novelty ≥15%).
+- **v2 — KEBARUAN HARUS BENAR (EVALUASI §4.3):** klaim kebaruan dinilai lawan (d) atas angka/dasarnya sendiri. Penutup yang menamai "kebaruan" yang bertumpu pada angka salah, sudut yang ternyata SUDAH ada di jawaban verified, atau mekanisme yang tidak terbukti = **GAGAL (e)** — menamai ≠ benar. Cek: untuk tiap sudut yang diklaim baru, (i) sudahkah dicari di jawaban verified yang ada dan benar-benar absen? (ii) apakah angka/Dasar sudut itu lolos (d) termasuk sub-cek E1?
+  - **Bukti (EVALUASI §4.2):** celah (e) **×1** — 66f46c3e FALSIFIED padahal (e) v1 LOLOS: §8-nya menamai **6 "kontribusi"**, semuanya bertumpu angka salah (vanity 28 vs 32 byte; grinding 1 μs; 21 validator/3 dtk basi). Penamaan tanpa kebenaran tidak membedakan verified dari falsified.
+- **Cara cek:** baca penutup. Apakah ia MENAMAI kebaruannya ("yang belum dibahas jawaban lain: …") DAN kebaruan itu lolos dua cek v2 di atas? Penutup yang hanya merangkum isi sendiri = GAGAL; penutup yang menamai kebaruan palsu = GAGAL.
+- **Dasar:** surprise_gauge menolak **59,2%** pengajuan platform (§26) — penolakan terbesar; jawaban juara lolos karena membingkai ulang + menambah mekanisme/angka baru (§26 irisan juara butir 5).
+- **GAGAL:** "In conclusion, proxies are efficient and widely used." — ringkasan, nol kebaruan yang dinamai. Atau: penutup menamai 6 kontribusi baru yang angkanya salah (pola 66f46c3e).
+
+## (f) Larangan parafrase jawaban verified yang sudah ada
+
+- **Aturan:** draf tidak boleh menulis ulang jawaban verified yang sudah ada di pertanyaan itu dengan kata lain — sudut dan isi harus berbeda material (≥15% konten baru, sejajar syarat Kelas 1 di badan hunt).
+- **Cara cek:** baca jawaban verified yang ada (`trued question <id>`) SEBELUM menulis; sesudah draf jadi, bandingkan struktur kesimpulan per sub-pertanyaan. Kesimpulan sama + urutan sama + bukti sama = parafrase = GAGAL.
+- **Dasar:** paraphrasing adalah kategori penolakan platform sendiri (parameter strategi maxParaphrasing; <15% konten baru = paraphrasing = gugur, §25/§26).
+- **GAGAL:** mengambil kerangka jawaban verified teratas lalu mengganti sinonim dan contoh kecil.
+
+## (g) Kepatuhan format skema klien (JSON ketat bila diminta)
+
+- **Aturan (PINTU MATI — gagal = tidak dikirim):** keluaran mengikuti skema yang diminta klien/prompt PERSIS — bila skema menuntut objek JSON ketat, kirim hanya JSON valid sesuai skema (tanpa prosa pembungkus, tanpa code fence kecuali skema memintanya, tanpa field tambahan).
+- **Cara cek:** validasi draf lawan skema sebelum kirim (parse JSON bila skema JSON; cek field wajib + tipe). Satu deviasi = GAGAL.
+- **Dasar (sejarah kita sendiri, §31):** 2 dari 3 job lama era 8 Nov berakhir failed dengan pesan server persis: **"Reply did not meet the contract after 3 attempts: reply was not JSON"** — format adalah mode gagal yang sudah pernah membakar job kita, bukan risiko teoretis.
+- **GAGAL:** jawaban benar secara isi tapi dibungkus kalimat pengantar sehingga parse JSON gagal.
+
+## (h) BARU v2 — Cakupan sub-pertanyaan (PINTU MATI, dinilai atas teks TERKIRIM)
+
+- **Aturan (PINTU MATI):** daftarkan sub-pertanyaan eksplisit soal satu per satu; jawaban WAJIB memuat jawaban untuk **masing-masing** sub-pertanyaan itu. Satu sub-pertanyaan tanpa jawaban = GAGAL (h). Penilaian mengikat dilakukan atas **teks TERKIRIM** (teks reveal ISO) dalam verdict watch — bukan atas draf probe (EVALUASI §7.1 butir 3); kegagalan (h) pada teks terkirim memblokir klaim berikutnya sampai steering diperbaiki.
+- **Kenapa gerbang ini ada (spesies C):** klaim #3 rezim (71f472d6, falsified 0 support / 1 refutasi, ±135 dtk) lolos SEMUA lantai §45 + 4A + self-VFP tetapi **tidak menamai satu pun aplikasi AI** yang diminta sub-pertanyaan (a) soalnya — nol. Keempat jawaban verified di ISR itu semuanya menamai aplikasi. Tidak ada gerbang v1 yang memeriksa "apakah jawaban menjawab pertanyaannya".
+- **Cara cek:** mekanis via `provider/audit_sent_draft.py <file-teks-terkirim> --subquestions <file>` (satu frasa/kata-kunci sub-pertanyaan per baris, ditulis dalam bahasa jawaban; cakupan = ≥60% kata signifikan hadir dan muncul di dalam seksi ## bernomor). Tanpa daftar sub-pertanyaan, skor (h) = N-A dan cek manual WAJIB — N-A tidak pernah dianggap lolos.
+
+## (i) BARU v2 — Standar bukti empiris
+
+- **Aturan:** draf WAJIB memuat **≥1 fakta/angka dunia** yang terikat sumber yang MENYATAKANNYA (ikatan ±150 kar per definisi K-2, dan untuk angka poros berlaku entailment sub-cek E1 di (d)). **Definisi konsep saja TIDAK cukup** — jawaban yang seluruh "buktinya" definisi (pola klaim #3: Goodhart/Campbell/MAPE/HACCP tanpa satu pun data dunia) = GAGAL (i). Kegagalan (i) pada teks terkirim memblokir klaim berikutnya (EVALUASI §7.1 butir 3).
+- **Cara cek:** mekanis via `provider/audit_sent_draft.py` — proksi (i) = cacah angka terikat sitasi dari lantai §45 (≥1 = lolos proksi); entailment-nya tetap diverifikasi manual buka-dan-baca per (d)/E1. Proksi lolos ≠ bukti kuat — ia hanya membuktikan jawaban tidak KOSONG bukti.
+
+---
+
+## Lembar skor (salin ke catatan jendela per klaim/steering)
+
+```
+RUBRIK v2 — <isrId> — <model> — <kelas>
+(a) pembuka tesis/koreksi ≤3 kalimat : LOLOS/GAGAL
+(b) struktur ##/### mencakup semua sub-pertanyaan (cakupan di atas lead-in): LOLOS/GAGAL
+(c) panjang: <angka> karakter (lantai 4.500; plafon 8.000/12 rb = anjuran v2): LOLOS/GAGAL
+(d) sitasi persis + entailment angka poros (E1) / periferal berbingkai estimasi: LOLOS/GAGAL  ← pintu mati
+(e) penutup menamai kebaruan yang BENAR (lolos (d) atas dasarnya): LOLOS/GAGAL
+(f) bukan parafrase verified yang ada: LOLOS/GAGAL
+(g) format skema klien persis: LOLOS/GAGAL  ← pintu mati
+(h) cakupan sub-pertanyaan atas TEKS TERKIRIM: LOLOS/GAGAL/N-A(manual wajib)  ← pintu mati
+(i) bukti empiris ≥1 fakta/angka dunia terikat sumbernya: LOLOS/GAGAL
+VONIS: KIRIM / PERBAIKI / LEWATI TARGET
+```
+
+## Evolusi rubrik
+
+Rubrik ini BEREVOLUSI dari verdict, bukan dari selera: revisi hanya lewat LAB KUALITAS di revisi mingguan (§32) — skor jawaban settle kita + bedah akar tiap falsified/gagal-aturan + sampel jawaban verified kohort segar (banyak sumber) — dan hanya diadopsi bila menang di **rate verified terukur** (per model, per versi template). Tiap revisi naik nomor versi (v2, v3, …) dan dicatat di MEKANISME, agar rate antar-versi bisa dibandingkan. Versi yang dipakai untuk menilai sebuah jawaban selalu versi yang berlaku saat jawaban itu dikirim.
+
+Catatan versi hidup di bagian **CHANGELOG** di bawah. Hipotesis perbaikan yang menunggu bukti (dari celah DRILL — lihat DRILL-LOG.md — dan bedah falsified) hidup di bagian **ANTRIAN EKSPERIMEN** di bawah; antrian adalah satu-satunya jalan masuk usul revisi selain bedah akar lab.
+
+---
+
+## CHANGELOG versi
+
+Format tiap entri: **versi — tanggal — perubahan — bukti angka yang memicu (dengan n) — dicatat oleh (lab/jendela)**.
+
+**ATURAN PENUTUP LAB (mengikat):** setiap LAB KUALITAS mingguan WAJIB ditutup dengan SALAH SATU dari dua hal, yang ditulis sebagai entri di changelog ini: (i) **bump versi beralasan angka**, atau (ii) pernyataan eksplisit **"tanpa perubahan" + alasannya**. Lab yang berakhir diam tanpa salah satu dari keduanya = **pelanggaran pola** — dan pelanggaran itu sendiri wajib dinyatakan sebagai temuan di entri revisi mingguan itu (bukan disembunyikan).
+
+- **v1 — 2026-11-10** — Rubrik perdana dipasang (butir (a)–(g) + dua pintu mati (d)/(g) + lembar skor). Bukti pemicu: verdict rate median per-agen kohort eksternal 32% (n=182) vs pemenang 55% (§30); A_CITATION = 91,1% kegagalan arena_rules + surprise_gauge menolak 59,2% (§26); kegagalan format kita sendiri "reply was not JSON" 2 dari 3 job lama (§31). Dicatat oleh: pemasangan §32 (perintah user 15:09).
+- **v2 — 2026-11-11** — Adopsi resep EVALUASI-STOP-2026-11-11 §4.3 (syarat §7.1 butir 2; persiapan pasca-keputusan user LANJUT BERSYARAT 2026-11-11 12:50 — BUKAN lab mingguan; lab 2026-11-16 tetap wajib meninjau v2 lawan verdict uji). Perubahan per butir + bukti angka pemicu:
+  - **(b) dilonggarkan** — cakupan sub-pertanyaan di atas lead-in; lead-in tebal jadi anjuran. Pemicu: celah (b) **×3** di DRILL-LOG (17:00 + 21:00 10 Nov; 07:00 11 Nov) — verified berulang lolos tanpa lead-in; drill 07:00: kedua jawaban (satu verified 4-support) gagal (b) v1.
+  - **(c) dilonggarkan** — plafon 12 rb jadi anjuran, lantai 4.500 tetap pintu. Pemicu: celah (c) **×4** (koreksi v2 09:26; 17:00; 21:00; 07:00) — kedua jawaban drill 07:00 >12 rb kar, satu VERIFIED (0006fe08, 15.519 kar, support 4/refutasi 0).
+  - **(d) ditimbang sentralitas angka** — angka poros wajib entailment; angka periferal boleh berbingkai estimasi + hedge di titik klaim. Pemicu: (d) biner **×1** gagal atas jawaban VERIFIED 4-support (0006fe08: ~$765K Meebits + 10⁴–10⁵ sign/dtk/core tanpa dokumen — angka periferal).
+  - **(d) sub-cek E1 DIADOPSI** — "sitasi harus mendukung angka spesifiknya (uji buka-dan-baca)" masuk sebagai bagian (d) v2. Pemicu: ambang adopsi E1 (≥2 kasus falsified berakar ini) **TERPENUHI ×3** — **d9f49e11, 96c384fd, 66f46c3e** (EVALUASI §4.2; §52 mencatat penguatan ke-×4). Status eksperimen E1 di ANTRIAN EKSPERIMEN diperbarui menjadi DIADOPSI pada entri ini.
+  - **(e) diperketat arah kebenaran** — kebaruan harus BENAR (lolos (d) atas dasarnya + benar-benar absen dari verified yang ada), bukan sekadar dinamai. Pemicu: celah (e) **×1** — 66f46c3e FALSIFIED dengan (e) v1 LOLOS (6 "kontribusi" bertumpu angka salah: vanity 28 vs 32 byte; grinding 1 μs; 21 validator/3 dtk basi).
+  - **(h) BARU — gerbang cakupan sub-pertanyaan (PINTU MATI)**, dinilai atas teks TERKIRIM. Pemicu: klaim #3 rezim (71f472d6) falsified 0/1 panel 2 verifier ±135 dtk dengan scope miss total (0 aplikasi AI dinamai dari sub-pertanyaan eksplisit) padahal lolos semua lantai + 4A + self-VFP.
+  - **(i) BARU — standar bukti empiris** (≥1 fakta/angka dunia terikat sumber yang menyatakannya; definisi konsep saja tidak cukup). Pemicu: klaim #3 yang sama — 4 sitasi definisi (Goodhart/Campbell/MAPE/HACCP), 0 fakta/angka dunia terikat.
+  - Alat pendamping v2 (bukan perubahan rubrik): skor mekanis `openrouter_wrapper.score_rubric` diselaraskan ((b) lead-in anjuran; (c) lantai-saja); penilai teks terkirim `provider/audit_sent_draft.py` dibangun untuk (h)/(i) + penilaian ulang (a)–(g) atas teks reveal. Dicatat oleh: lini persiapan §7.1 (pekerja rubrik+tooling), 2026-11-11.
+- _(entri berikutnya ditulis lab mingguan pertama, Senin 2026-11-16 — wajib bump beralasan angka atau "tanpa perubahan" + alasan, per aturan penutup di atas; entri v2 di atas TIDAK menggantikan kewajiban lab itu.)_
+
+---
+
+## ANTRIAN EKSPERIMEN
+
+Hipotesis perbaikan template/rubrik yang MENUNGGU BUKTI. Aturan main: (1) tiap hipotesis punya **cara uji** + **ambang adopsi** yang ditulis SEBELUM data dilihat; (2) adopsi hanya lewat gerbang angka — rate verified terukur kita, atau bukti lapangan kohort/drill dengan n yang memenuhi ambang — **bukan selera**; (3) hipotesis yang buktinya berbalik arah dinyatakan DITOLAK dengan alasan di sini, bukan dihapus diam-diam; (4) lab mingguan meninjau antrian ini bersama DRILL-LOG (celah yang muncul ≥2 kali wajib naik jadi usul revisi bernomor atau ditolak beralasan — butir 10(e) badan weekly-revision).
+
+### E1 — Sitasi harus mengikat ANGKA-nya, bukan sekadar ada di dekatnya (celah rubrik (d)) — **STATUS: DIADOPSI di v2 (2026-11-11)**
+- **Adopsi:** sub-cek E1 masuk sebagai bagian (d) v2 ("sitasi harus mendukung angka spesifiknya — uji buka-dan-baca") per EVALUASI §4.3/§7.1 butir 2. Bukti pemicu adopsi: ambang di bawah **TERPENUHI ×3** — kasus falsified **d9f49e11, 96c384fd, 66f46c3e** (EVALUASI §4.2; penguatan ×4 tercatat di §52). Entri ini dipertahankan sebagai riwayat hipotesis + cara ujinya; penegakan hidup kini di butir (d) v2.
+- **Celah asal:** probe Gemini §29.2 — jawaban memuat angka gas konkret (200 gas/byte, overhead ±700–750, contoh 2.000.000 gas) TANPA rujukan pin-point, sementara sitasi lain yang sah ada di teks yang sama. Rubrik (d) versi v1 memeriksa "tiap angka punya sitasi di teks" — sitasi tetangga bisa mencuci angka yang tidak didukungnya.
+- **Hipotesis:** menambah sub-cek eksplisit ke (d) — sitasi harus mendukung angka/aturan SPESIFIK itu (dokumen yang sama menyebut angka itu); sitasi di kalimat/paragraf yang sama TIDAK otomatis menaungi angka lain — akan menurunkan kegagalan arena_rules berbasis sitasi tanpa menurunkan rate verified.
+- **Cara uji:** DRILL BEDAH (butir 3A badan slot-hunt) + sampel lab mingguan — untuk tiap jawaban yang dinilai, hitung angka spesifik yang sitasinya tidak mendukung langsung; pisahkan jawaban verified vs falsified/gagal-aturan.
+- **Ambang adopsi:** ≥2 kasus falsified/gagal-aturan dengan akar "angka tanpa sitasi pendukung langsung", ATAU pola itu muncul di ≥30% jawaban GAGAL verdict pada sampel drill+lab gabungan. Bila pola justru dominan di jawaban VERIFIED (platform tidak menghukumnya), hipotesis DIPERLEMAH/ditolak dengan catatan.
+
+### E2 — Gerbang LANE mendahului gerbang jawaban: konten 0 karakter = gugur, HTTP 200 bukan lolos (celah hulu rubrik)
+- **Celah asal:** §31 — model `z-ai/glm-5.3-flash-abliterated` via lane Sonogami: **3/3** percobaan kelas-klaim mengembalikan **0 karakter konten** dengan reasoning 29.117–32.709 karakter, finish_reason `length`, latensi 132–324 detik. Rubrik v1 menilai TEKS jawaban; jawaban kosong memang gugur di (c), tapi TIDAK ADA gerbang kualitas di level lane/model sebelum model dipercaya membawa klaim — probe awal sempat membaca "HTTP 200" sebagai lane hidup.
+- **Hipotesis:** tambahkan gerbang lane ke lingkaran kualitas (calon butir (h) atau daftar periksa provider terpisah di file ini): model/lane kandidat wajib lolos probe kelas-klaim — konten >0 karakter, struktur minimal terbaca, latensi di dalam jendela generate platform (<<15 menit; patokan kerja <120 detik) — SEBELUM boleh membawa satu pun klaim nyata; hasil probe dicatat seperti skor rubrik.
+- **Cara uji:** probe model kandidat lain di lane yang sama/baru (mengikuti otorisasi benchmark sesi utama — mis. varian grok/deepseek Sonogami) dengan kriteria identik; catat lolos/gagal per model dengan n.
+- **Ambang adopsi:** ≥1 model lolos penuh kriteria → kriteria menjadi gerbang lane tetap, ditulis ke file ini sebagai versi baru. Bila SEMUA model kandidat gagal → kesimpulan yang diadopsi adalah "lane cadangan belum ada" (bukan melonggarkan kriteria).
+
+### E3 — Penutup evasif sumber = gagal (e) + bendera (d) (celah rubrik (e))
+- **Celah asal:** probe Gemini §29.2 — penutup jawaban berbentuk "note on sources" yang MENGHINDARI penyebutan sumber persis, alih-alih menamai kebaruan. Rubrik (e) v1 memeriksa penutup menamai kebaruan, tapi tidak punya cek negatif untuk bahasa penghindaran sumber; penutup semacam itu bisa lolos (e) secara harfiah sambil melanggar semangat (d).
+- **Hipotesis:** (e) ditambah cek negatif eksplisit — penutup yang berisi penghindaran sumber (mengaku tidak bisa menyebut sumber persis, menunda sitasi ke "catatan", dsb.) = GAGAL (e) dan memicu pemeriksaan ulang (d) atas seluruh angka di badan.
+- **Cara uji:** DRILL BEDAH + sampel lab — tandai kemunculan pola penutup evasif pada jawaban publik ber-verdict; pisahkan verified vs gagal.
+- **Ambang adopsi:** ≥2 kemunculan pada jawaban GAGAL verdict, atau 1 kemunculan pada jawaban KITA yang falsified/gagal-aturan. Kemunculan yang ternyata lolos verified berulang → hipotesis ditolak beralasan.

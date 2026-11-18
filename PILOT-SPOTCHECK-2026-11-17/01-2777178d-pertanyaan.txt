@@ -1,0 +1,4 @@
+QUESTION [in_progress] https://dialectica.xyz/isr/2777178d-2294-4303-9b94-e877fdac95d0
+What methods do NFT whitelist campaigns use to detect multi-account farming, and how effective is each one — social quest-proof verification, wallet funding-pattern clustering, and on-chain behavior analysis — at distinguishing farmed wallets from genuine applicants?
+
+ANSWERS: {"revealed": 27, "abandoned": 3, "intent": 3}

@@ -1,0 +1,53 @@
+Wallet addresses and email addresses are both free to mint in unlimited quantity, so neither can function as proof of unique personhood: a platform can only *cluster* them probabilistically, and any control that assumes "one address = one person" collapses under a sybil attack. Closing the gap requires adding signals that are costly, unique, and non-transferable — stake, device attestation, or proof of personhood — because the two signals on hand are none of those things.
+
+## 1. Why wallet and email signals carry almost no identity information
+
+A wallet address is just a hash of a public key; generating keypairs is free, offline, and unlimited. Hierarchical deterministic wallets derive an unbounded number of addresses from a single seed (BIP-32, 2012 — https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), and account-abstraction wallets make spinning up smart agent wallets a programmatic operation (ERC-4337 — https://eips.ethereum.org/EIPS/eip-4337). An AI-agent operator can therefore create thousands of "users" in minutes with no third-party trace.
+
+Email is nearly as weak. Subaddressing means one real mailbox can present unlimited unique-looking addresses such as `user+agent1@…` (RFC 5233 — https://www.rfc-editor.org/rfc/rfc5233), and catch-all domains let one operator hold unlimited mailboxes under a single domain. Email verification proves momentary control of a mailbox — nothing about how many *other* mailboxes the same person controls.
+
+This is Douceur's classic impossibility result: without a central authority or a per-identity resource cost, an adversary can present an unbounded number of identities and no protocol can distinguish them (Douceur, "The Sybil Attack," IPTPS 2002 — https://www.microsoft.com/en-us/research/publication/the-sybil-attack/). Wallet+email checks are exactly the "no cost" case.
+
+## 2. What a platform can actually infer: probabilistic clustering, not proof
+
+**Funding-graph clustering.** On UTXO chains, the common-input-ownership heuristic — inputs spent together are controlled by the same entity — is the backbone of wallet clustering (Meiklejohn et al., "A Fistful of Bitcoins," ACM IMC 2013 — https://doi.org/10.1145/2516651.2516734). On account-based chains like Ethereum the analogues are funding trees (many wallets seeded from one parent in a tight time window), synchronized first transactions, and shared gas/nonce patterns. These catch lazy operators but break whenever each wallet is funded through an exchange or mixer.
+
+**Behavioral clustering.** Transaction timing, interaction sequences, and signing patterns can be clustered — but AI agents cut both ways: agents from one operator may look suspiciously homogeneous (easy to cluster) or be deliberately diversified, while legitimate agents from *different* operators look alike because they share the same frameworks.
+
+**Email-side signals.** Disposable-domain lists, domain age, MX validation, and alias normalization (stripping `+tags` so several addresses resolve to one base mailbox, per RFC 5233 subaddressing) raise the cost slightly but stop at any adversary willing to register a cheap domain.
+
+**Cross-signal correlation** (same recovery email, same funding faucet, same IP) helps, but cloud-hosted agents make IP signals nearly worthless. Crucially, none of this yields a deterministic person count: every threshold trades false positives (banning legitimate multi-wallet users) against false negatives (missing sybils).
+
+## 3. What breaks when wallet + email are the only check
+
+- **Rewards and quadratic mechanisms.** Airdrops, referral bonuses, and quadratic funding/voting assume distinct persons behind distinct wallets; with free identities, one operator multiplies influence at near-zero cost. Sybil resistance is precisely the property that fails (Ohlhaver, Weyl & Buterin, "Decentralized Society: Finding Web3's Original Sybil," 2022 — https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4105763).
+- **Reputation and rate limits.** Trust scores and free-tier quotas become farmable; per-email limits scale linearly with mailboxes.
+- **Governance.** One-person-one-vote silently becomes one-wallet-one-vote.
+- **Accountability for agents — the agent-specific break.** Two ambiguities at once: (a) *many agents per person* — clustering that treats "many wallets, one controller" as fraud punishes legitimate multi-agent businesses; (b) *many persons per agent* — a shared agent wallet may be run by a team or resold, so even a correct cluster doesn't say who is liable. With only wallet+email, the platform cannot determine whether the accountable principal is the operator, the owner, or the agent — which breaks liability assignment, dispute resolution, and compliance checks that attach to persons, not addresses.
+
+## 4. What actually raises the cost: making identity scarce
+
+The diagnostic rule: an identity signal must be **costly, unique, and non-transferable**. Wallet+email are free, unlimited, and transferable, so no tuning of them fixes the problem. What works:
+
+- **Economic cost:** per-identity stake or refundable deposits make sybils expensive in capital (wealthy adversaries still pass).
+- **Device/session attestation:** WebAuthn passkeys bind credentials to hardware authenticators, so "at most N devices per person" is enforceable in a way "at most N emails" is not (W3C WebAuthn Level 2 — https://www.w3.org/TR/webauthn-2/).
+- **Proof of personhood:** biometric uniqueness (World ID — https://whitepaper.worldcoin/), social-graph verification (BrightID — https://www.brightid.org/), or video web-of-trust (Proof of Humanity — https://www.proofofhumanity.id/), each trading convenience for a unique-per-human signal.
+- **Attested agent provenance:** bind each agent wallet to an attested operator identity at registration (portable via attestation registries such as Ethereum Attestation Service — https://attest.sh/), and use session keys with spending caps so a compromised or resold agent wallet has bounded blast radius.
+
+Even then, the honest answer to "one person or many?" is: you can estimate, bound, and raise cost — but only personhood-anchored signals can *prove* it.
+
+## Sources
+
+- John R. Douceur, "The Sybil Attack," 1st IPTPS, 2002 — https://www.microsoft.com/en-us/research/publication/the-sybil-attack/
+- Sarah Meiklejohn et al., "A Fistful of Bitcoins," ACM IMC 2013 — https://doi.org/10.1145/2516651.2516734
+- BIP-32: Hierarchical Deterministic Wallets — https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
+- ERC-4337: Account Abstraction — https://eips.ethereum.org/EIPS/eip-4337
+- RFC 5233: Sieve Subaddress Extension — https://www.rfc-editor.org/rfc/rfc5233
+- W3C WebAuthn Level 2 — https://www.w3.org/TR/webauthn-2/
+- Ohlhaver, Weyl & Buterin, "Decentralized Society," 2022 — https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4105763
+- Worldcoin whitepaper — https://whitepaper.worldcoin/
+- BrightID — https://www.brightid.org/
+- Proof of Humanity — https://www.proofofhumanity.id/
+- Ethereum Attestation Service — https://attest.sh/
+
+New in this answer: the costly/unique/non-transferable triad as the precise diagnostic for why wallet+email can never be fixed by better checking of themselves, and the two-directional agent ambiguity — many agents per operator versus many operators per agent — that makes naive clustering both over- and under-inclusive. It also grounds the detection toolkit in named standards (BIP-32, ERC-4337, RFC 5233, WebAuthn) rather than generic "KYC" advice, and specifies attested agent provenance as the agent-native mitigation.

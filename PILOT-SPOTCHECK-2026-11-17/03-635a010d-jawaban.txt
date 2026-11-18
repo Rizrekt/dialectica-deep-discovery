@@ -1,0 +1,62 @@
+Access across restarts is preserved because an MPC wallet's durable credential is the locally stored key share plus a device identity — not the pairing code. The pairing code is a one-time provisioning artifact for enrolling a *new* device into the signing quorum; once the agent's machine holds its share, a reboot should never require a new pairing. The engineering task is therefore (a) provision once with human or orchestrator help, (b) make the share and session credentials survive reboot in OS-bound storage, and (c) reserve pairing for rare break-glass events.
+
+## 1. Treat pairing as one-time provisioning, not recurring login
+
+In threshold-signature/MPC wallet designs, the key never exists in full on any device; each party holds a share and participates in distributed signing [Lindell, "Secure Multiparty Computation (MPC)," IACR eprint 2020/940 — https://eprint.iacr.org/2020/940]. Providers mirror this in their device models: Web3Auth MPC wallets keep a device share on the machine and reconcile shares at login, while Fireblocks distinguishes interactively paired devices (QR code with a short validity window) from API users that authenticate with long-lived RSA key pairs [https://docs.web3auth.com/; https://developers.fireblocks.com/]. The minutes-long expiry of a pairing code is a phishing defense that only matters at enrollment. An expired code is simply worthless — never try to persist it; persist the share instead.
+
+## 2. Persist the device share in OS-bound secure storage
+
+Store the share (and any provider session/refresh tokens) in storage that decrypts automatically at boot for the service account:
+
+- **Windows:** DPAPI protects blobs bound to the user/machine context via CryptProtectData/CryptUnprotectData, so the secret is unreadable off that machine but re-usable after every restart [https://learn.microsoft.com/en-us/windows/win32/seccng/cng-dpapi].
+- **macOS:** Keychain Services keep secrets encrypted at rest and unlock with the login keychain at session start [https://developer.apple.com/documentation/security/keychain_services].
+- **Hardening:** seal the share to the TPM so unsealing only succeeds on the same hardware, blunting disk-image exfiltration [https://learn.microsoft.com/en-us/windows/security/information-protection/tpm/trusted-platform-module-overview].
+
+Run the agent as an auto-restarting system service. The boot path is: unseal share → re-attach to the provider's device session → refresh the access token → resume signing. No pairing code involved.
+
+## 3. Use provider-native long-lived credentials for re-authentication
+
+Prefer a machine identity the provider explicitly supports over simulating a human device:
+
+- **Fireblocks API users** sign requests with an RSA private key registered to the workspace — no device pairing in the loop at all [https://developers.fireblocks.com/].
+- **Coinbase WaaS** registers device keys and uses them for authenticated API calls without re-pairing [https://docs.cdp.coinbase.com/].
+- **Web3Auth MPC** reconciles the returning device's share against the user's existing auth factor; configure a non-interactive auth factor (dedicated service account) so login is headless [https://docs.web3auth.com/].
+- **Lit Protocol PKPs** let you delegate signing to an agent via persistent auth methods while session signatures remain ephemeral [https://developer.litprotocol.com/].
+
+Boot-time fallback chain: refresh token → stored share/device key → break-glass escalation.
+
+## 4. Disaster recovery: an encrypted backup share, not "the key"
+
+Restarts are easy; a dead disk is not. Where the provider supports backing up or exporting a *share* (never the full key), encrypt it under a KMS-held key — AWS KMS envelope encryption or HashiCorp Vault transit — and store it separately from the machine [https://docs.aws.amazon.com/kms/latest/developerguide/overview.html; https://developer.hashicorp.com/vault/docs]. On replacement hardware, the agent imports the backup share and re-enrolls through an approved pairing flow. One share alone is cryptographically useless, so this shortens recovery time without creating an exportable key or weakening the threshold.
+
+## 5. Automating the rare pairing window itself
+
+When a genuinely new device must join (first provisioning, hardware replacement), the minutes-long expiry is manageable if the flow is automated end-to-end:
+
+1. The agent initiates pairing and receives the code/QR itself.
+2. It pushes the code to an approval channel (operator dashboard, webhook, mobile push) where a human — or an already-authorized orchestrator device — approves within the window.
+3. On approval, the share is delivered and immediately sealed into secure storage per §2.
+
+Keep human approval on this path deliberately: whoever approves a pairing grants a new signing device.
+
+## 6. Guardrails for a machine-held share
+
+- Enable provider-side transaction policies and quotas (e.g., Fireblocks Transaction Authorization Policy) so a compromised share cannot silently move funds [https://developers.fireblocks.com/].
+- Rotate refresh tokens, revoke device sessions on anomaly, and alert on any new-device pairing event.
+- Never co-locate the KMS key that decrypts the backup share on the same host as the live share.
+- Log every signing request and use the provider's audit trail for forensics.
+
+## Sources
+
+- Lindell, "Secure Multiparty Computation (MPC)," IACR eprint 2020/940 — https://eprint.iacr.org/2020/940
+- Fireblocks developer documentation (API users, device pairing model, transaction authorization policy) — https://developers.fireblocks.com/
+- Web3Auth MPC documentation (device shares, share reconciliation) — https://docs.web3auth.com/
+- Coinbase Developer Platform / WaaS documentation (device keys, API authentication) — https://docs.cdp.coinbase.com/
+- Lit Protocol developer documentation (PKPs, session signatures) — https://developer.litprotocol.com/
+- Microsoft CNG DPAPI — https://learn.microsoft.com/en-us/windows/win32/seccng/cng-dpapi
+- Apple Keychain Services — https://developer.apple.com/documentation/security/keychain_services
+- Microsoft TPM overview — https://learn.microsoft.com/en-us/windows/security/information-protection/tpm/trusted-platform-module-overview
+- AWS KMS developer guide — https://docs.aws.amazon.com/kms/latest/developerguide/overview.html
+- HashiCorp Vault documentation — https://developer.hashicorp.com/vault/docs
+
+New in this answer: the core reframe that an expiring pairing code is a one-time enrollment artifact, so persistence should target the device key share plus a provider-native machine identity (API keys, refresh tokens) sealed in DPAPI/Keychain/TPM-bound storage that auto-unlocks at boot. It adds a concrete boot-time fallback chain (refresh token → stored share → break-glass), a KMS-encrypted backup-share recovery path that never creates an exportable key, and an automated end-to-end design for the rare pairing window with human approval as the break-glass step.

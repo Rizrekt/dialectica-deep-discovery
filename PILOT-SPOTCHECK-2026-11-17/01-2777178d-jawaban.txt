@@ -1,0 +1,36 @@
+NFT whitelist campaigns treat sybil farming as an identity-cost problem and stack three detection layers — social/quest verification, wallet funding-graph clustering, and on-chain behavioral scoring — and none is individually decisive: each reliably filters the lazy tier of farmers while professional operations adapt, so real campaigns use them together as a cost-raising funnel rather than as binary tests.
+
+## 1. Social quest-proof verification
+
+**How it works.** Quest platforms — Galxe (formerly Project Galaxy), Zealy (formerly Crew3), Layer3 — gate whitelist spots on tasks verified through OAuth connections (X/Twitter follows, Discord joins), CAPTCHAs, account-age and follower minimums, and cryptographic signature prompts that bind each social account to the applicant wallet (Galxe, galxe.com; Zealy, zealy.io; Layer3, layer3.xyz). Stricter campaigns add KYC through vendors such as Fractal ID (fractal.id) or Galxe's Passport identity product, or proof-of-personhood systems: Gitcoin Passport aggregates "stamps" (BrightID, Proof of Humanity, POAP, ENS, Discord/Google verifications) into a score that grant rounds can gate on a configurable minimum (docs.passport.gitcoin.co); BrightID verifies uniqueness through a social graph (brightid.org); Proof of Humanity uses video enrollment plus deposit and challenge (proofofhumanity.site); World ID uses orb-based iris verification (worldcoin.org).
+
+**Effectiveness.** This tier is cheap and stops scripted bots and disposable accounts, which is why it is near-universal. Its failure modes are well understood: bulk-purchased social accounts, emulator and anti-detect-browser farms, hired click farms, AI-generated selfies, and identity rental against KYC. Social-graph systems are harder to fake but suffer low coverage and their own collusion attacks. Douceur's foundational result — that open systems without a verified identity layer cannot in principle distinguish sybils ("The Sybil Attack," IPTPS 2002, https://link.springer.com/chapter/10.1007/3-540-45748-8_24) — still frames the field: these checks raise the marginal cost per fake identity rather than eliminate fakes.
+
+## 2. Wallet funding-pattern clustering
+
+**How it works.** Analysts reconstruct each applicant wallet's funding tree: withdrawals from a common exchange account, identical transfer amounts and timestamps, "peeling chains" that split funds hop by hop, shared gas payers, and common bridge routes. This is the same clustering logic used in Chainalysis-style tracing (chainalysis.com), surfaced to non-experts by Nansen wallet labels (nansen.ai) and Bubblemaps, which visualizes linked holder clusters (bubblemaps.io).
+
+**Effectiveness.** It is the highest-precision method against centrally funded farms — the dominant commercial operations — because one funding parent can expose hundreds of wallets at once. The clearest public precedent is Hop Protocol's 2022 airdrop: Hop built a sybil list largely from funding-graph analysis and let identified sybils self-report to keep 50% of their would-be allocation, while bounty hunters earned 10% of the value of sybils they reported (Hop Protocol, docs.hop.exchange). Its weaknesses: farms disperse funding through DEX swaps, bridges, P2P purchases, and mixers — Tornado Cash was sanctioned by the US Treasury on August 8, 2022 partly for this laundering role (https://home.treasury.gov/news/press-releases/jy0916) — and can rent aged wallets with clean funding histories. False positives occur when many genuine applicants fund from the same exchange or household account, so clustering alone cannot justify exclusion without review.
+
+## 3. On-chain behavior analysis
+
+**How it works.** Campaigns score wallets on age at snapshot, transaction count, number of distinct contracts and counterparties, gas spent, NFT purchase history versus mint-only patterns, bridge and testnet activity, ENS or identity linkage, timing regularity (bot-like synchronized mints), and graph similarity to previously identified sybil clusters, often via ML models over this feature set.
+
+**Effectiveness.** This is probabilistic — good for ranking risk and prioritizing manual review, not for binary verdicts. False positives fall hardest on genuine newcomers, whose wallets look exactly like fresh farms (low age, thin history); false negatives come from "farming-as-a-service" operators who age wallets and simulate organic history. Some projects require prior NFT holdings, POAPs (poap.xyz), or a minimum on-chain history as soft proof; this raises the bar but excludes legitimate newcomers and can be satisfied by buying history outright.
+
+## 4. Comparative effectiveness in practice
+
+No single method reliably distinguishes farmed wallets from genuine ones; campaigns layer them as a funnel: cheap social gates filter volume, clustering catches bulk farms with high precision, behavioral scoring plus manual review handles edge cases, and economic levers — deposits, KYC for large allocations, post-mint sybil sweeps and clawbacks on the Hop model — handle the rest. The correct yardstick is not detection accuracy but the marginal cost imposed per fake identity versus the whitelist reward: every layer that raises that cost shrinks the profitable farm size, and sophisticated operators re-tune their pipelines against each new defense, making detection a continuous adversarial process rather than a one-time filter.
+
+## Sources
+
+- John Douceur, "The Sybil Attack," IPTPS 2002 — https://link.springer.com/chapter/10.1007/3-540-45748-8_24
+- Gitcoin Passport documentation (stamps, scoring) — https://docs.passport.gitcoin.co
+- BrightID — https://www.brightid.org; Proof of Humanity — https://www.proofofhumanity.site; Worldcoin/World ID — https://worldcoin.org
+- Galxe — https://galxe.com; Zealy — https://zealy.io; Layer3 — https://layer3.xyz; Fractal ID — https://fractal.id
+- Hop Protocol airdrop and sybil-list documentation — https://docs.hop.exchange (also hop.exchange)
+- Chainalysis — https://www.chainalysis.com; Nansen — https://nansen.ai; Bubblemaps — https://bubblemaps.io
+- US Treasury, Tornado Cash sanction press release, August 8, 2022 — https://home.treasury.gov/news/press-releases/jy0916
+- POAP — https://poap.xyz
+
+New in this answer: it reframes "effectiveness" as cost-per-fake-identity economics grounded in Douceur's impossibility result rather than as raw detection accuracy, and it anchors each layer's real-world calibration to concrete precedents — Hop Protocol's 50%/10% self-report and bounty scheme as the reference case for funding-cluster detection, and the OFAC Tornado Cash action as the canonical example of the funding-dispersal evasion that clustering must fight.

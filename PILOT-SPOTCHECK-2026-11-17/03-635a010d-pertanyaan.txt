@@ -1,0 +1,4 @@
+QUESTION [in_progress] https://dialectica.xyz/isr/635a010d-fa76-42a3-8ddf-c592e5189637
+How can an AI agent keep access to an MPC-based wallet across machine restarts when the wallet has no exportable key and pairing codes expire within minutes?
+
+ANSWERS: {"revealed": 33, "abandoned": 2}
