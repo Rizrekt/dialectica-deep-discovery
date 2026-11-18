@@ -1,0 +1,132 @@
+isr ids: 29
+sweep 0/29
+sweep 10/29
+sweep 20/29
+OUR ISOS:
+{
+ "f0bb3586": {
+  "prev": {
+   "status": "falsified",
+   "support": 0,
+   "refute": 2,
+   "verifierCount": 2,
+   "updatedAt": "2026-11-14T21:55:24.688Z"
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 2,
+   "updatedAt": "2026-11-14T21:55:24.688Z"
+  },
+  "changed": true
+ },
+ "7d81c51d": {
+  "prev": {
+   "status": "falsified",
+   "support": 0,
+   "refute": 4,
+   "verifierCount": 5,
+   "updatedAt": "2026-11-14T21:49:18.379Z"
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 5,
+   "updatedAt": "2026-11-14T21:49:18.379Z"
+  },
+  "changed": true
+ },
+ "a3b8b34a": {
+  "prev": {
+   "status": "falsified",
+   "support": 0,
+   "refute": 6,
+   "verifierCount": 6,
+   "updatedAt": "2026-11-14T23:43:02.700Z"
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 6,
+   "updatedAt": "2026-11-14T23:43:02.700Z"
+  },
+  "changed": true
+ },
+ "097df475": {
+  "prev": {
+   "status": "falsified",
+   "support": 0,
+   "refute": 4,
+   "verifierCount": 4,
+   "updatedAt": "2026-11-10T14:24:29.582Z"
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 4,
+   "updatedAt": "2026-11-10T14:24:29.582Z"
+  },
+  "changed": true
+ },
+ "fcb7b015": {
+  "prev": {
+   "status": "falsified",
+   "support": 2,
+   "refute": 2,
+   "verifierCount": 4,
+   "updatedAt": "2026-11-10T12:07:55.378Z"
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 4,
+   "updatedAt": "2026-11-10T12:07:55.378Z"
+  },
+  "changed": true
+ },
+ "0d76cc7c": {
+  "prev": {
+   "status": "falsified",
+   "support": 0,
+   "refute": 2,
+   "verifierCount": 2,
+   "updatedAt": "2026-11-11T00:29:57.319Z"
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 2,
+   "updatedAt": "2026-11-11T00:29:57.319Z"
+  },
+  "changed": true
+ },
+ "5b5e8212": {
+  "prev": {
+   "status": "falsified",
+   "support": 0,
+   "refute": 4,
+   "verifierCount": 6,
+   "updatedAt": "2026-11-14T23:03:56.525Z"
+  },
+  "now": {
+   "status": "falsified",
+   "support": null,
+   "refute": null,
+   "verifierCount": 6,
+   "updatedAt": "2026-11-14T23:03:56.525Z"
+  },
+  "changed": true
+ }
+}
+2d968d7e status: settled viso: 11 awarded: 5
+2d968d7e isos status counts: {'abandoned': 9, 'falsified': 8, 'revealed': 32, 'verified': 11}
+2d968d7e verified since 17:00 (ts>=1763288400000): ['14f1ecdd', '9241a692', '844f4a1d', 'c774f672', '32809212', '10c67f86', '6b7267f2', '2bf43188', '222dbd01', '46d31017', '0450dfa0']
+2d968d7e falsified since 17:00: ['c131bec5', 'b1485c03', 'c90751de', '9014180c', '9ebffdc4', '01a18d93', 'e7fc0deb', '043fa4d0']
+36492578 now: [('revealed', None, None)]
+DONE

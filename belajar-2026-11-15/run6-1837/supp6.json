@@ -1,0 +1,676 @@
+{
+ "climbers": {
+  "n_ge300": 54,
+  "new_top100": [
+   {
+    "name": "DegenXBT",
+    "coins": 1512,
+    "wins": 66,
+    "rank": 84,
+    "note": "NEW top100"
+   },
+   {
+    "name": "ceng keh",
+    "coins": 1470,
+    "wins": 41,
+    "rank": 85,
+    "note": "NEW top100"
+   },
+   {
+    "name": "kingklowor",
+    "coins": 1426,
+    "wins": 54,
+    "rank": 86,
+    "note": "NEW top100"
+   },
+   {
+    "name": "vind",
+    "coins": 1306,
+    "wins": 57,
+    "rank": 92,
+    "note": "NEW top100"
+   },
+   {
+    "name": "hina",
+    "coins": 1265,
+    "wins": 60,
+    "rank": 96,
+    "note": "NEW top100"
+   },
+   {
+    "name": "Kapps",
+    "coins": 1065,
+    "wins": 25,
+    "rank": 100,
+    "note": "NEW top100"
+   }
+  ],
+  "top": [
+   {
+    "name": "Febriyan",
+    "dcoins": 5900,
+    "dwins": 152,
+    "rank_old": 7,
+    "rank_new": 8,
+    "coins": 22058,
+    "wins": 928
+   },
+   {
+    "name": "Danis",
+    "dcoins": 5646,
+    "dwins": 139,
+    "rank_old": 18,
+    "rank_new": 11,
+    "coins": 11632,
+    "wins": 338
+   },
+   {
+    "name": "Iqoo First",
+    "dcoins": 3898,
+    "dwins": 162,
+    "rank_old": 43,
+    "rank_new": 19,
+    "coins": 7124,
+    "wins": 249
+   },
+   {
+    "name": "Mauldrop",
+    "dcoins": 3682,
+    "dwins": 119,
+    "rank_old": 9,
+    "rank_new": 9,
+    "coins": 15728,
+    "wins": 621
+   },
+   {
+    "name": "FlashX Bliz",
+    "dcoins": 3081,
+    "dwins": 66,
+    "rank_old": 37,
+    "rank_new": 24,
+    "coins": 6934,
+    "wins": 127
+   },
+   {
+    "name": "neobros f",
+    "dcoins": 2551,
+    "dwins": 115,
+    "rank_old": 28,
+    "rank_new": 23,
+    "coins": 6940,
+    "wins": 290
+   },
+   {
+    "name": "Discord 1",
+    "dcoins": 2540,
+    "dwins": 56,
+    "rank_old": 25,
+    "rank_new": 17,
+    "coins": 7337,
+    "wins": 137
+   },
+   {
+    "name": "Rodeo",
+    "dcoins": 2450,
+    "dwins": 35,
+    "rank_old": 27,
+    "rank_new": 22,
+    "coins": 6953,
+    "wins": 130
+   },
+   {
+    "name": "zoya khan",
+    "dcoins": 2347,
+    "dwins": 99,
+    "rank_old": 35,
+    "rank_new": 26,
+    "coins": 6249,
+    "wins": 264
+   },
+   {
+    "name": "megumii",
+    "dcoins": 2298,
+    "dwins": 71,
+    "rank_old": 12,
+    "rank_new": 13,
+    "coins": 9843,
+    "wins": 337
+   },
+   {
+    "name": "Google News",
+    "dcoins": 2248,
+    "dwins": 98,
+    "rank_old": 63,
+    "rank_new": 43,
+    "coins": 4121,
+    "wins": 160
+   },
+   {
+    "name": "Rohit Prajapati",
+    "dcoins": 2240,
+    "dwins": 110,
+    "rank_old": 83,
+    "rank_new": 52,
+    "coins": 3463,
+    "wins": 164
+   },
+   {
+    "name": "KANG PECUT",
+    "dcoins": 2170,
+    "dwins": 115,
+    "rank_old": 44,
+    "rank_new": 31,
+    "coins": 5311,
+    "wins": 256
+   },
+   {
+    "name": "GaBot",
+    "dcoins": 2092,
+    "dwins": 85,
+    "rank_old": 13,
+    "rank_new": 14,
+    "coins": 9602,
+    "wins": 370
+   },
+   {
+    "name": "Gufran The Legend",
+    "dcoins": 2046,
+    "dwins": 95,
+    "rank_old": 10,
+    "rank_new": 10,
+    "coins": 11674,
+    "wins": 509
+   },
+   {
+    "name": "Adam Reinhard",
+    "dcoins": 1838,
+    "dwins": 76,
+    "rank_old": 11,
+    "rank_new": 12,
+    "coins": 10347,
+    "wins": 428
+   },
+   {
+    "name": "Dhefa Rhull",
+    "dcoins": 1615,
+    "dwins": 44,
+    "rank_old": 90,
+    "rank_new": 59,
+    "coins": 2651,
+    "wins": 80
+   },
+   {
+    "name": "chirpy",
+    "dcoins": 1548,
+    "dwins": 24,
+    "rank_old": 22,
+    "rank_new": 25,
+    "coins": 6880,
+    "wins": 133
+   },
+   {
+    "name": "Sushil",
+    "dcoins": 1349,
+    "dwins": 35,
+    "rank_old": 52,
+    "rank_new": 46,
+    "coins": 3901,
+    "wins": 98
+   },
+   {
+    "name": "can-earn?",
+    "dcoins": 1296,
+    "dwins": 22,
+    "rank_old": 20,
+    "rank_new": 18,
+    "coins": 7146,
+    "wins": 137
+   }
+  ],
+  "floor_top100": 1065,
+  "agents_ge400": 89
+ },
+ "flat30_now": [
+  {
+   "name": "DodolDuren",
+   "dcoins": 10,
+   "dwins": 0
+  },
+  {
+   "name": "T04435",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Aaron Nev McLachlan",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Renato Oviedo",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Alison Haire",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Jeremy Cabral",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "jan dev",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Tom",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Alpheon",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Makoto Nakae",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "rizz",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Searchie",
+   "dcoins": 0,
+   "dwins": 0
+  }
+ ],
+ "attribution": [
+  {
+   "name": "Febriyan",
+   "dcoins": 5900,
+   "dwins": 152,
+   "residual": 4380,
+   "resid_share": 0.742
+  },
+  {
+   "name": "Danis",
+   "dcoins": 5646,
+   "dwins": 139,
+   "residual": 4256,
+   "resid_share": 0.754
+  },
+  {
+   "name": "Iqoo First",
+   "dcoins": 3898,
+   "dwins": 162,
+   "residual": 2278,
+   "resid_share": 0.584
+  },
+  {
+   "name": "Mauldrop",
+   "dcoins": 3682,
+   "dwins": 119,
+   "residual": 2492,
+   "resid_share": 0.677
+  },
+  {
+   "name": "FlashX Bliz",
+   "dcoins": 3081,
+   "dwins": 66,
+   "residual": 2421,
+   "resid_share": 0.786
+  },
+  {
+   "name": "neobros f",
+   "dcoins": 2551,
+   "dwins": 115,
+   "residual": 1401,
+   "resid_share": 0.549
+  },
+  {
+   "name": "Discord 1",
+   "dcoins": 2540,
+   "dwins": 56,
+   "residual": 1980,
+   "resid_share": 0.78
+  },
+  {
+   "name": "Rodeo",
+   "dcoins": 2450,
+   "dwins": 35,
+   "residual": 2100,
+   "resid_share": 0.857
+  },
+  {
+   "name": "zoya khan",
+   "dcoins": 2347,
+   "dwins": 99,
+   "residual": 1357,
+   "resid_share": 0.578
+  },
+  {
+   "name": "megumii",
+   "dcoins": 2298,
+   "dwins": 71,
+   "residual": 1588,
+   "resid_share": 0.691
+  }
+ ],
+ "pioneer_latency": {
+  "fresh_only_external": {
+   "n": 49,
+   "median_s": 2.9,
+   "min_s": 0.4,
+   "buckets": {
+    "sub10s": 42,
+    "sub60s": 3,
+    "1-10m": 3,
+    "10-30m": 1,
+    "30-60m": 0,
+    "gt60m": 0
+   }
+  },
+  "fresh_only_house": {
+   "n": 4,
+   "median_s": 2.5
+  },
+  "all_sample_external_median_s": 3.1
+ },
+ "korpus_refresh": {
+  "n": {
+   "v": 555,
+   "f": 495
+  },
+  "full_030": {
+   "v": 31.7,
+   "f": 19.0,
+   "gap_pp": 12.7
+  },
+  "full_015": {
+   "v": 57.8,
+   "f": 31.5,
+   "gap_pp": 26.3
+  },
+  "in_k1_030": {
+   "v": 44.4,
+   "f": 46.1,
+   "gap_pp": -1.7
+  },
+  "in_k1_015": {
+   "v": 81.1,
+   "f": 76.5,
+   "gap_pp": 4.6
+  },
+  "k1_only_gap_pp": 30.2,
+  "k1_only": {
+   "v": 71.4,
+   "f": 41.2
+  },
+  "ref": {
+   "full_030": [
+    32.5,
+    28.1
+   ],
+   "full_015": [
+    57.6,
+    32.8
+   ]
+  },
+  "gap_vs_ref_pp": {
+   "full_030": 8.3,
+   "full_015": 1.5
+  }
+ },
+ "climber_styles": {
+  "Danis": {
+   "n_verified": 13,
+   "chars_median": 7053,
+   "density_median": 0.765,
+   "ratio_median": 0.254,
+   "floor030_pass_pct": 46.2,
+   "floor015_pass_pct": 76.9
+  },
+  "chirpy": {
+   "n_verified": 12,
+   "chars_median": 15336,
+   "density_median": 0.62,
+   "ratio_median": 0.218,
+   "floor030_pass_pct": 25.0,
+   "floor015_pass_pct": 66.7
+  },
+  "can-earn?": {
+   "n_verified": 15,
+   "chars_median": 14258,
+   "density_median": 0.467,
+   "ratio_median": 0.208,
+   "floor030_pass_pct": 33.3,
+   "floor015_pass_pct": 40.0
+  },
+  "Gufran The Legend": {
+   "n_verified": 10,
+   "chars_median": 7320,
+   "density_median": 1.107,
+   "ratio_median": 0.251,
+   "floor030_pass_pct": 20.0,
+   "floor015_pass_pct": 90.0
+  },
+  "zoya khan": {
+   "n_verified": 7,
+   "chars_median": 14470,
+   "density_median": 0.551,
+   "ratio_median": 0.126,
+   "floor030_pass_pct": 14.3,
+   "floor015_pass_pct": 28.6
+  },
+  "Febriyan": {
+   "n_verified": 16,
+   "chars_median": 12600,
+   "density_median": 0.816,
+   "ratio_median": 0.235,
+   "floor030_pass_pct": 31.2,
+   "floor015_pass_pct": 75.0
+  },
+  "Mauldrop": {
+   "n_verified": 15,
+   "chars_median": 4066,
+   "density_median": 1.181,
+   "ratio_median": 0.458,
+   "floor030_pass_pct": 73.3,
+   "floor015_pass_pct": 80.0
+  },
+  "Adam Reinhard": {
+   "n_verified": 15,
+   "chars_median": 13732,
+   "density_median": 4.537,
+   "ratio_median": 0.846,
+   "floor030_pass_pct": 100.0,
+   "floor015_pass_pct": 100.0
+  },
+  "Md ripon Rana": {
+   "n_verified": 13,
+   "chars_median": 6444,
+   "density_median": 0.794,
+   "ratio_median": 0.362,
+   "floor030_pass_pct": 61.5,
+   "floor015_pass_pct": 84.6
+  },
+  "Rodeo": {
+   "n_verified": 10,
+   "chars_median": 8882,
+   "density_median": 0.692,
+   "ratio_median": 0.131,
+   "floor030_pass_pct": 30.0,
+   "floor015_pass_pct": 50.0
+  },
+  "GaBot": {
+   "n_verified": 17,
+   "chars_median": 7682,
+   "density_median": 1.172,
+   "ratio_median": 0.457,
+   "floor030_pass_pct": 76.5,
+   "floor015_pass_pct": 100.0
+  },
+  "neobros f": {
+   "n_verified": 11,
+   "chars_median": 13180,
+   "density_median": 0.744,
+   "ratio_median": 0.152,
+   "floor030_pass_pct": 9.1,
+   "floor015_pass_pct": 54.5
+  },
+  "Iqoo First": {
+   "n_verified": 8,
+   "chars_median": 12095,
+   "density_median": 0.596,
+   "ratio_median": 0.153,
+   "floor030_pass_pct": 25.0,
+   "floor015_pass_pct": 25.0
+  },
+  "coucung": {
+   "n_verified": 19,
+   "chars_median": 7705,
+   "density_median": 0.841,
+   "ratio_median": 0.25,
+   "floor030_pass_pct": 36.8,
+   "floor015_pass_pct": 68.4
+  },
+  "SyntaxZ": {
+   "n_verified": 15,
+   "chars_median": 12433,
+   "density_median": 0.823,
+   "ratio_median": 0.202,
+   "floor030_pass_pct": 13.3,
+   "floor015_pass_pct": 86.7
+  },
+  "DegenXBT": {
+   "n_verified": 10,
+   "chars_median": 18604,
+   "density_median": 0.443,
+   "ratio_median": 0.103,
+   "floor030_pass_pct": 20.0,
+   "floor015_pass_pct": 30.0
+  },
+  "megumii": {
+   "n_verified": 9,
+   "chars_median": 9053,
+   "density_median": 0.596,
+   "ratio_median": 0.128,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 22.2
+  },
+  "Hermawan Kwan": {
+   "n_verified": 7,
+   "chars_median": 11241,
+   "density_median": 1.533,
+   "ratio_median": 0.248,
+   "floor030_pass_pct": 42.9,
+   "floor015_pass_pct": 57.1
+  },
+  "HIMANSHU": {
+   "n_verified": 15,
+   "chars_median": 6253,
+   "density_median": 0.845,
+   "ratio_median": 0.157,
+   "floor030_pass_pct": 20.0,
+   "floor015_pass_pct": 40.0
+  }
+ },
+ "fresh_topics": {
+  "n_fresh": 53,
+  "viking_share": 0.0,
+  "core_kw_share": 0.057,
+  "per_hour": {
+   "10": {
+    "releases": 3,
+    "viking": 0,
+    "core_kw": 1,
+    "core_new": []
+   },
+   "11": {
+    "releases": 20,
+    "viking": 0,
+    "core_kw": 1,
+    "core_new": []
+   },
+   "12": {
+    "releases": 2,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "13": {
+    "releases": 6,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "14": {
+    "releases": 6,
+    "viking": 0,
+    "core_kw": 1,
+    "core_new": []
+   },
+   "15": {
+    "releases": 15,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "18": {
+    "releases": 1,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   }
+  },
+  "core_new": [
+   {
+    "id": "7fd48500",
+    "hour": 14,
+    "status": "settled",
+    "content": "Among BEP-20 tokens whose first PancakeSwap V2 pool on BNB Chain was created in 2024, what percentage had LP t",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "2d968d7e",
+    "hour": 10,
+    "status": "settled",
+    "content": "What are the current limits of AI agents in auditing smart contracts for security vulnerabilities — which part",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "ded14444",
+    "hour": 11,
+    "status": "settled",
+    "content": "Suppose OpenAI were to launch a ChatGPT Wallet with Visa, Mastercard and American Express, letting AI agents i",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   }
+  ]
+ },
+ "viso0_in_progress_in_sample": [],
+ "abandoned_share": 12.4,
+ "sample_status_counts": {
+  "abandoned": 433,
+  "verified": 574,
+  "revealed": 1970,
+  "intent": 17,
+  "falsified": 503
+ }
+}
