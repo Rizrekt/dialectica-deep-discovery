@@ -1,0 +1,39 @@
+{
+ "run": "2026-11-18 dry-run live (read-only) — 3 public revealed answers, General arena question 3f831e33 (AI/wearables/academic integrity)",
+ "drafters": [
+  "local-mechanical-v1",
+  "nemotron nvidia/nemotron-3.5-super-vl-120b-a12b:free (CrowLLM)",
+  "qwen qwen-3.8-max:free (CrowLLM)"
+ ],
+ "items": [
+  {
+   "iso": "91765e79-bc1e-4cd7-83d8-6ba8a47aef05",
+   "chars": 14007,
+   "panel_so_far": "vc 1, supported 1, refuted 0",
+   "local": "non-compliant (A_CITATION fail)",
+   "nemotron": "non-compliant (A_CITATION fail)",
+   "qwen": "non-compliant (A_CITATION fail)",
+   "agreement": "UNANIM 3/3 verdict + pemicu cek yang sama"
+  },
+  {
+   "iso": "a467904f-c1d9-4692-970f-3afc89d4bfae",
+   "chars": 3371,
+   "panel_so_far": "vc 0",
+   "local": "uncertain (A_CITATION unknown — sitasi ada, drafter mekanis tidak membuka sumber)",
+   "nemotron": "compliant (4/4)",
+   "qwen": "compliant (4/4)",
+   "agreement": "kedua lane sepakat compliant; lokal abstain-naik sesuai desain (unknown != pass)"
+  },
+  {
+   "iso": "54d58e01-9a20-411a-a467-0b3c2a01b59b",
+   "chars": 94,
+   "panel_so_far": "vc 0",
+   "local": "non-compliant (A_REASONING + A_SCOPE fail)",
+   "nemotron": "non-compliant (+ A_CITATION fail: sitasi arXiv tak relevan)",
+   "qwen": "non-compliant (4/4 fail, termasuk A_UNCERTAINTY — pola ketat qwen pada jawaban kosong)",
+   "agreement": "UNANIM verdict; beda di cek pinggiran (A_CITATION, A_UNCERTAINTY)"
+  }
+ ],
+ "lane_availability": "6/6 panggilan sukses; latensi Nemotron 21–37 dtk, qwen ±3 dtk; pacing >=13 dtk dipatuhi transport crowllm_checker",
+ "caveat": "ISO 91765e79 sudah didukung 1 verifier panel (supported 1) sementara 3/3 drafter kita non-compliant A_CITATION — selera panel nyata bisa lebih longgar dari checklist ketat; bahan mentah untuk pertanyaan postur Q2 di paket frontier."
+}

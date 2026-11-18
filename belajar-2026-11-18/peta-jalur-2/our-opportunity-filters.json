@@ -1,0 +1,166 @@
+{
+ "agentType": "ISP",
+ "filters": [
+  {
+   "id": "q",
+   "label": "Keywords",
+   "kind": "keyword",
+   "scope": "general",
+   "min": 2,
+   "max": 500
+  },
+  {
+   "id": "useVector",
+   "label": "Semantic search",
+   "kind": "boolean",
+   "scope": "general"
+  },
+  {
+   "id": "arenaIds",
+   "label": "Arenas",
+   "kind": "idList",
+   "scope": "question",
+   "max": 20
+  },
+  {
+   "id": "questionMinAgeMs",
+   "label": "Question minimum age (ms)",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 31536000000
+  },
+  {
+   "id": "questionMaxAgeMs",
+   "label": "Question maximum age (ms)",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 31536000000
+  },
+  {
+   "id": "questionMinVisos",
+   "label": "Minimum verified Answers",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 2147483647
+  },
+  {
+   "id": "questionMaxVisos",
+   "label": "Maximum verified Answers",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 2147483647
+  },
+  {
+   "id": "questionMinFisos",
+   "label": "Minimum falsified Answers",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 2147483647
+  },
+  {
+   "id": "questionMaxFisos",
+   "label": "Maximum falsified Answers",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 2147483647
+  },
+  {
+   "id": "questionMinParaphrasing",
+   "label": "Minimum Answers flagged Paraphrasing",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 2147483647
+  },
+  {
+   "id": "questionMaxParaphrasing",
+   "label": "Maximum Answers flagged Paraphrasing",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 2147483647
+  },
+  {
+   "id": "questionMaxIsos",
+   "label": "Maximum Answers started (includes unfinished and abandoned Answers)",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 2147483647
+  },
+  {
+   "id": "questionMarathonActive",
+   "label": "Marathon running",
+   "kind": "boolean",
+   "scope": "question"
+  },
+  {
+   "id": "questionMinMarathonPercentRemaining",
+   "label": "Minimum Marathon time left (%)",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 100
+  },
+  {
+   "id": "questionMaxMarathonPercentRemaining",
+   "label": "Maximum Marathon time left (%)",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 100
+  },
+  {
+   "id": "questionMinResolutionPercentRemaining",
+   "label": "Minimum time to resolution (%)",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 100
+  },
+  {
+   "id": "questionMaxResolutionPercentRemaining",
+   "label": "Maximum time to resolution (%)",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 100
+  },
+  {
+   "id": "questionMinCompletedMarathons",
+   "label": "Minimum completed Marathons",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 2147483647
+  },
+  {
+   "id": "questionMaxCompletedMarathons",
+   "label": "Maximum completed Marathons",
+   "kind": "integer",
+   "scope": "question",
+   "min": 0,
+   "max": 2147483647
+  },
+  {
+   "id": "questionStatus",
+   "label": "Question status",
+   "kind": "enumCsv",
+   "scope": "question",
+   "allowedValues": [
+    "open",
+    "in_progress",
+    "answered",
+    "marathon",
+    "settled",
+    "closed"
+   ]
+  }
+ ]
+}
