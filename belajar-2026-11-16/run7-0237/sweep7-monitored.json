@@ -1,0 +1,1141 @@
+{
+ "2d968d7e": {
+  "short": "2d968d7e",
+  "status": "settled",
+  "viso": 35,
+  "awarded": 11,
+  "isos_status_counts": {
+   "abandoned": 9,
+   "falsified": 10,
+   "verified": 35,
+   "revealed": 9
+  },
+  "n_isos_now": 63,
+  "n_isos_2300": 62,
+  "status_changes_vs_2300": [
+   {
+    "id": "d78816dd",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T07:08:54.046Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T16:14:25.308Z"
+    ]
+   },
+   {
+    "id": "36492578",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T08:44:18.964Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T16:35:47.683Z"
+    ]
+   },
+   {
+    "id": "9604601e",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T11:47:53.965Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:13:48.697Z"
+    ]
+   },
+   {
+    "id": "8f8567be",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:04:08.958Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:25:22.456Z"
+    ]
+   }
+  ],
+  "new_isos_vs_2300": [
+   {
+    "id": "f557911e",
+    "status": "verified",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794764864906,
+    "updatedAt_wib": "2026-11-16 00:59 WIB"
+   }
+  ],
+  "verdicts_updated_since_cut": [
+   {
+    "id": "698aeb0f",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "516b620d",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "3753e35c",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "b1485c03",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "bc8afb36",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "98418e25",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "bbfb077c",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "28ed13a3",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "c90751de",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "2bb9ff98",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "65b1ff5d",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "5791026e",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "62985b40",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:16 WIB"
+   },
+   {
+    "id": "d709e88f",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:17 WIB"
+   },
+   {
+    "id": "b926f58f",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:17 WIB"
+   },
+   {
+    "id": "3348b7c6",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:18 WIB"
+   },
+   {
+    "id": "bdc29bcb",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:19 WIB"
+   },
+   {
+    "id": "5f3faa33",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:22 WIB"
+   },
+   {
+    "id": "2b7ddff9",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:25 WIB"
+   },
+   {
+    "id": "481f3366",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:28 WIB"
+   },
+   {
+    "id": "a4f5400f",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 22:29 WIB"
+   },
+   {
+    "id": "c3b6bf1a",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:29 WIB"
+   },
+   {
+    "id": "cfdb8d9f",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:42 WIB"
+   },
+   {
+    "id": "01a18d93",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 22:34 WIB"
+   },
+   {
+    "id": "e7fc0deb",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 23:00 WIB"
+   },
+   {
+    "id": "d78816dd",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 23:14 WIB"
+   },
+   {
+    "id": "36492578",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 23:35 WIB"
+   },
+   {
+    "id": "9604601e",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:13 WIB"
+   },
+   {
+    "id": "8f8567be",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:25 WIB"
+   },
+   {
+    "id": "f557911e",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:59 WIB"
+   }
+  ]
+ },
+ "df9cb696": {
+  "short": "df9cb696",
+  "status": "settled",
+  "viso": 33,
+  "awarded": 9,
+  "isos_status_counts": {
+   "falsified": 13,
+   "verified": 33,
+   "abandoned": 8,
+   "revealed": 18
+  },
+  "n_isos_now": 72,
+  "n_isos_2300": 63,
+  "status_changes_vs_2300": [
+   {
+    "id": "411601df",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:33:36.034Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:42:21.038Z"
+    ]
+   },
+   {
+    "id": "97d81496",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:33:26.189Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:42:26.034Z"
+    ]
+   },
+   {
+    "id": "77498660",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:35:51.027Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:42:37.024Z"
+    ]
+   },
+   {
+    "id": "c57ab24b",
+    "old": [
+     "falsified",
+     null,
+     null,
+     1,
+     "2026-11-15T13:32:06.050Z"
+    ],
+    "new": [
+     "falsified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:42:36.421Z"
+    ]
+   },
+   {
+    "id": "51746074",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:33:26.095Z"
+    ],
+    "new": [
+     "revealed",
+     null,
+     null,
+     2,
+     "2026-11-15T17:42:41.037Z"
+    ]
+   },
+   {
+    "id": "c93ce09e",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:58:51.555Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:42:41.149Z"
+    ]
+   },
+   {
+    "id": "17ee2b5c",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:33:21.030Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:42:41.653Z"
+    ]
+   },
+   {
+    "id": "2797192f",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:36:06.028Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:42:41.360Z"
+    ]
+   },
+   {
+    "id": "86c3eceb",
+    "old": [
+     "falsified",
+     null,
+     null,
+     1,
+     "2026-11-15T13:33:16.030Z"
+    ],
+    "new": [
+     "falsified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:43:06.065Z"
+    ]
+   },
+   {
+    "id": "f57a83aa",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:33:26.028Z"
+    ],
+    "new": [
+     "revealed",
+     null,
+     null,
+     2,
+     "2026-11-15T17:43:16.030Z"
+    ]
+   },
+   {
+    "id": "00d9335b",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:32:46.041Z"
+    ],
+    "new": [
+     "revealed",
+     null,
+     null,
+     2,
+     "2026-11-15T17:43:16.231Z"
+    ]
+   },
+   {
+    "id": "2da3036b",
+    "old": [
+     "falsified",
+     null,
+     null,
+     1,
+     "2026-11-15T13:32:36.048Z"
+    ],
+    "new": [
+     "falsified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:43:16.126Z"
+    ]
+   },
+   {
+    "id": "1a833948",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:33:01.111Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:43:21.032Z"
+    ]
+   },
+   {
+    "id": "1f49df82",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:33:06.033Z"
+    ],
+    "new": [
+     "revealed",
+     null,
+     null,
+     2,
+     "2026-11-15T17:43:26.029Z"
+    ]
+   },
+   {
+    "id": "f64e09bc",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:33:51.095Z"
+    ],
+    "new": [
+     "revealed",
+     null,
+     null,
+     2,
+     "2026-11-15T17:43:51.031Z"
+    ]
+   },
+   {
+    "id": "a87dd1f4",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:42:26.754Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:44:01.036Z"
+    ]
+   },
+   {
+    "id": "31249292",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:33:41.149Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:44:16.188Z"
+    ]
+   },
+   {
+    "id": "385df6c4",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:35:21.034Z"
+    ],
+    "new": [
+     "revealed",
+     null,
+     null,
+     2,
+     "2026-11-15T17:46:26.034Z"
+    ]
+   },
+   {
+    "id": "fdcc6aff",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:57:26.039Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:46:31.259Z"
+    ]
+   },
+   {
+    "id": "4b55d8bb",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:33:46.026Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:46:31.138Z"
+    ]
+   },
+   {
+    "id": "c202875b",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:35:31.035Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:47:01.054Z"
+    ]
+   },
+   {
+    "id": "bbe94a09",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:36:51.030Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:46:11.031Z"
+    ]
+   },
+   {
+    "id": "4a113d4e",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:37:56.043Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:48:36.038Z"
+    ]
+   },
+   {
+    "id": "d88f7a7e",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:43:56.030Z"
+    ],
+    "new": [
+     "revealed",
+     null,
+     null,
+     2,
+     "2026-11-15T17:51:21.035Z"
+    ]
+   },
+   {
+    "id": "3bf5c320",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:49:36.036Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:53:32.348Z"
+    ]
+   },
+   {
+    "id": "7fbefad5",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:48:41.028Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:55:16.033Z"
+    ]
+   },
+   {
+    "id": "69a652ef",
+    "old": [
+     "falsified",
+     null,
+     null,
+     1,
+     "2026-11-15T13:49:16.027Z"
+    ],
+    "new": [
+     "falsified",
+     null,
+     null,
+     2,
+     "2026-11-15T17:55:41.033Z"
+    ]
+   },
+   {
+    "id": "6c5e3b72",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T13:54:36.026Z"
+    ],
+    "new": [
+     "revealed",
+     null,
+     null,
+     2,
+     "2026-11-15T17:56:31.031Z"
+    ]
+   },
+   {
+    "id": "b8e10588",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T14:11:41.032Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T18:06:04.138Z"
+    ]
+   },
+   {
+    "id": "6a53eed3",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T15:08:21.204Z"
+    ],
+    "new": [
+     "verified",
+     null,
+     null,
+     2,
+     "2026-11-15T18:25:26.042Z"
+    ]
+   },
+   {
+    "id": "983a20dc",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T15:18:11.032Z"
+    ],
+    "new": [
+     "revealed",
+     null,
+     null,
+     2,
+     "2026-11-15T18:18:31.039Z"
+    ]
+   },
+   {
+    "id": "7ef943eb",
+    "old": [
+     "falsified",
+     null,
+     null,
+     1,
+     "2026-11-15T15:21:26.044Z"
+    ],
+    "new": [
+     "falsified",
+     null,
+     null,
+     2,
+     "2026-11-15T18:18:41.031Z"
+    ]
+   },
+   {
+    "id": "b8878876",
+    "old": [
+     "revealed",
+     null,
+     null,
+     1,
+     "2026-11-15T15:30:36.031Z"
+    ],
+    "new": [
+     "revealed",
+     null,
+     null,
+     2,
+     "2026-11-15T18:19:41.031Z"
+    ]
+   }
+  ],
+  "new_isos_vs_2300": [
+   {
+    "id": "133b27b9",
+    "status": "revealed",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794758706318,
+    "updatedAt_wib": "2026-11-15 23:05 WIB"
+   },
+   {
+    "id": "43fc4569",
+    "status": "abandoned",
+    "support": null,
+    "refute": null,
+    "verifierCount": 0,
+    "timestamp_wib": 1794760447161,
+    "updatedAt_wib": "2026-11-16 01:34 WIB"
+   },
+   {
+    "id": "ad085943",
+    "status": "verified",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794760556729,
+    "updatedAt_wib": "2026-11-16 01:27 WIB"
+   },
+   {
+    "id": "eede4497",
+    "status": "revealed",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794761341717,
+    "updatedAt_wib": "2026-11-15 23:55 WIB"
+   },
+   {
+    "id": "01d43336",
+    "status": "verified",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794762218409,
+    "updatedAt_wib": "2026-11-16 01:32 WIB"
+   },
+   {
+    "id": "93373ed2",
+    "status": "verified",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794762549309,
+    "updatedAt_wib": "2026-11-16 00:20 WIB"
+   },
+   {
+    "id": "33787163",
+    "status": "verified",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794762644121,
+    "updatedAt_wib": "2026-11-16 01:41 WIB"
+   },
+   {
+    "id": "404405c7",
+    "status": "falsified",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794766847769,
+    "updatedAt_wib": "2026-11-16 01:48 WIB"
+   },
+   {
+    "id": "e448f6b9",
+    "status": "verified",
+    "support": null,
+    "refute": null,
+    "verifierCount": 2,
+    "timestamp_wib": 1794767623188,
+    "updatedAt_wib": "2026-11-16 01:58 WIB"
+   }
+  ],
+  "verdicts_updated_since_cut": [
+   {
+    "id": "371ac401",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 20:39 WIB"
+   },
+   {
+    "id": "411601df",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:42 WIB"
+   },
+   {
+    "id": "97d81496",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:42 WIB"
+   },
+   {
+    "id": "77498660",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:42 WIB"
+   },
+   {
+    "id": "c9ed1015",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 20:37 WIB"
+   },
+   {
+    "id": "bdbea207",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 20:35 WIB"
+   },
+   {
+    "id": "c57ab24b",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-16 00:42 WIB"
+   },
+   {
+    "id": "c93ce09e",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:42 WIB"
+   },
+   {
+    "id": "17ee2b5c",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:42 WIB"
+   },
+   {
+    "id": "2797192f",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:42 WIB"
+   },
+   {
+    "id": "f4524d59",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 20:33 WIB"
+   },
+   {
+    "id": "e9c4c200",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 20:33 WIB"
+   },
+   {
+    "id": "61a590e4",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 20:32 WIB"
+   },
+   {
+    "id": "c2e7a6dc",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 20:36 WIB"
+   },
+   {
+    "id": "86c3eceb",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-16 00:43 WIB"
+   },
+   {
+    "id": "2da3036b",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-16 00:43 WIB"
+   },
+   {
+    "id": "1a833948",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:43 WIB"
+   },
+   {
+    "id": "ae754fbf",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 20:33 WIB"
+   },
+   {
+    "id": "a87dd1f4",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:44 WIB"
+   },
+   {
+    "id": "c9a42966",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 20:33 WIB"
+   },
+   {
+    "id": "31249292",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:44 WIB"
+   },
+   {
+    "id": "bfd1ca7a",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 20:50 WIB"
+   },
+   {
+    "id": "fdcc6aff",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:46 WIB"
+   },
+   {
+    "id": "4b55d8bb",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:46 WIB"
+   },
+   {
+    "id": "c202875b",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:47 WIB"
+   },
+   {
+    "id": "bbe94a09",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:46 WIB"
+   },
+   {
+    "id": "8835f7f4",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 20:35 WIB"
+   },
+   {
+    "id": "4a113d4e",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:48 WIB"
+   },
+   {
+    "id": "585d3cd4",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 20:40 WIB"
+   },
+   {
+    "id": "3bf5c320",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:53 WIB"
+   },
+   {
+    "id": "7fbefad5",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:55 WIB"
+   },
+   {
+    "id": "69a652ef",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-16 00:55 WIB"
+   },
+   {
+    "id": "82920439",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 21:00 WIB"
+   },
+   {
+    "id": "b8e10588",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 01:06 WIB"
+   },
+   {
+    "id": "881c937b",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 21:14 WIB"
+   },
+   {
+    "id": "ccc9c84b",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:07 WIB"
+   },
+   {
+    "id": "dc11e7fc",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-15 22:07 WIB"
+   },
+   {
+    "id": "6a53eed3",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 01:25 WIB"
+   },
+   {
+    "id": "7a013da0",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-15 22:22 WIB"
+   },
+   {
+    "id": "7ef943eb",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-16 01:18 WIB"
+   },
+   {
+    "id": "ad085943",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 01:27 WIB"
+   },
+   {
+    "id": "01d43336",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 01:32 WIB"
+   },
+   {
+    "id": "93373ed2",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 00:20 WIB"
+   },
+   {
+    "id": "33787163",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 01:41 WIB"
+   },
+   {
+    "id": "404405c7",
+    "status": "falsified",
+    "updatedAt_wib": "2026-11-16 01:48 WIB"
+   },
+   {
+    "id": "e448f6b9",
+    "status": "verified",
+    "updatedAt_wib": "2026-11-16 01:58 WIB"
+   }
+  ]
+ }
+}

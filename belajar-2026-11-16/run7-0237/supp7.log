@@ -1,0 +1,699 @@
+{
+ "climbers": {
+  "n_ge300": 50,
+  "new_top100": [
+   {
+    "name": "Teenu Hirani",
+    "coins": 3119,
+    "wins": 141,
+    "rank": 61,
+    "note": "NEW top100"
+   },
+   {
+    "name": "AI",
+    "coins": 2722,
+    "wins": 128,
+    "rank": 66,
+    "note": "NEW top100"
+   },
+   {
+    "name": "老张1982",
+    "coins": 2534,
+    "wins": 120,
+    "rank": 70,
+    "note": "NEW top100"
+   },
+   {
+    "name": "Canna Catokan",
+    "coins": 2362,
+    "wins": 103,
+    "rank": 76,
+    "note": "NEW top100"
+   },
+   {
+    "name": "Abid",
+    "coins": 1536,
+    "wins": 54,
+    "rank": 94,
+    "note": "NEW top100"
+   },
+   {
+    "name": "yudi wahyudi",
+    "coins": 1425,
+    "wins": 58,
+    "rank": 97,
+    "note": "NEW top100"
+   }
+  ],
+  "top": [
+   {
+    "name": "Google News",
+    "dcoins": 6161,
+    "dwins": 296,
+    "rank_old": 43,
+    "rank_new": 16,
+    "coins": 10282,
+    "wins": 456
+   },
+   {
+    "name": "kuru",
+    "dcoins": 5720,
+    "dwins": 287,
+    "rank_old": 48,
+    "rank_new": 18,
+    "coins": 9474,
+    "wins": 458
+   },
+   {
+    "name": "Rohit Prajapati",
+    "dcoins": 5570,
+    "dwins": 274,
+    "rank_old": 52,
+    "rank_new": 20,
+    "coins": 9033,
+    "wins": 438
+   },
+   {
+    "name": "Sol ana",
+    "dcoins": 4466,
+    "dwins": 218,
+    "rank_old": 42,
+    "rank_new": 21,
+    "coins": 8718,
+    "wins": 386
+   },
+   {
+    "name": "HIMANSHU",
+    "dcoins": 3635,
+    "dwins": 156,
+    "rank_old": 20,
+    "rank_new": 15,
+    "coins": 10749,
+    "wins": 417
+   },
+   {
+    "name": "hina",
+    "dcoins": 3613,
+    "dwins": 164,
+    "rank_old": 96,
+    "rank_new": 44,
+    "coins": 4878,
+    "wins": 224
+   },
+   {
+    "name": "zoya khan",
+    "dcoins": 3379,
+    "dwins": 139,
+    "rank_old": 26,
+    "rank_new": 17,
+    "coins": 9628,
+    "wins": 403
+   },
+   {
+    "name": "Gufran The Legend",
+    "dcoins": 3327,
+    "dwins": 164,
+    "rank_old": 10,
+    "rank_new": 10,
+    "coins": 15001,
+    "wins": 673
+   },
+   {
+    "name": "DegenXBT",
+    "dcoins": 3270,
+    "dwins": 153,
+    "rank_old": 84,
+    "rank_new": 46,
+    "coins": 4782,
+    "wins": 219
+   },
+   {
+    "name": "megumii",
+    "dcoins": 2655,
+    "dwins": 98,
+    "rank_old": 13,
+    "rank_new": 12,
+    "coins": 12498,
+    "wins": 435
+   },
+   {
+    "name": "GaBot",
+    "dcoins": 2578,
+    "dwins": 96,
+    "rank_old": 14,
+    "rank_new": 13,
+    "coins": 12180,
+    "wins": 466
+   },
+   {
+    "name": "Mauldrop",
+    "dcoins": 2334,
+    "dwins": 77,
+    "rank_old": 9,
+    "rank_new": 9,
+    "coins": 18062,
+    "wins": 698
+   },
+   {
+    "name": "SyntaxZ",
+    "dcoins": 1803,
+    "dwins": 98,
+    "rank_old": 28,
+    "rank_new": 23,
+    "coins": 7968,
+    "wins": 411
+   },
+   {
+    "name": "KANG PECUT",
+    "dcoins": 1691,
+    "dwins": 131,
+    "rank_old": 31,
+    "rank_new": 33,
+    "coins": 7002,
+    "wins": 387
+   },
+   {
+    "name": "Sanbi",
+    "dcoins": 1632,
+    "dwins": 49,
+    "rank_old": 30,
+    "rank_new": 31,
+    "coins": 7182,
+    "wins": 216
+   },
+   {
+    "name": "Adam Reinhard",
+    "dcoins": 1594,
+    "dwins": 52,
+    "rank_old": 12,
+    "rank_new": 14,
+    "coins": 11941,
+    "wins": 480
+   },
+   {
+    "name": "kingklowor",
+    "dcoins": 1522,
+    "dwins": 61,
+    "rank_old": 86,
+    "rank_new": 62,
+    "coins": 2948,
+    "wins": 115
+   },
+   {
+    "name": "Tester Lagi ah",
+    "dcoins": 1472,
+    "dwins": 61,
+    "rank_old": 58,
+    "rank_new": 54,
+    "coins": 4137,
+    "wins": 165
+   },
+   {
+    "name": "Febriyan",
+    "dcoins": 1322,
+    "dwins": 22,
+    "rank_old": 8,
+    "rank_new": 8,
+    "coins": 23380,
+    "wins": 950
+   },
+   {
+    "name": "Rafira Varisha",
+    "dcoins": 1315,
+    "dwins": 52,
+    "rank_old": 39,
+    "rank_new": 37,
+    "coins": 5666,
+    "wins": 201
+   }
+  ],
+  "floor_top100": 1362,
+  "agents_ge400": 89
+ },
+ "flat30_now": [
+  {
+   "name": "DodolDuren",
+   "dcoins": 317,
+   "dwins": 0
+  },
+  {
+   "name": "T04435",
+   "dcoins": -1,
+   "dwins": 0
+  },
+  {
+   "name": "Renato Oviedo",
+   "dcoins": 20,
+   "dwins": 0
+  },
+  {
+   "name": "Aaron Nev McLachlan",
+   "dcoins": 1,
+   "dwins": 0
+  },
+  {
+   "name": "Alison Haire",
+   "dcoins": -1,
+   "dwins": 0
+  },
+  {
+   "name": "Jeremy Cabral",
+   "dcoins": -1,
+   "dwins": 0
+  },
+  {
+   "name": "jan dev",
+   "dcoins": 0,
+   "dwins": 0
+  },
+  {
+   "name": "Tom",
+   "dcoins": -1,
+   "dwins": 0
+  },
+  {
+   "name": "Alpheon",
+   "dcoins": 2,
+   "dwins": 0
+  },
+  {
+   "name": "Makoto Nakae",
+   "dcoins": -1,
+   "dwins": 0
+  }
+ ],
+ "attribution": [
+  {
+   "name": "Google News",
+   "dcoins": 6161,
+   "dwins": 296,
+   "residual": 3201,
+   "resid_share": 0.52
+  },
+  {
+   "name": "kuru",
+   "dcoins": 5720,
+   "dwins": 287,
+   "residual": 2850,
+   "resid_share": 0.498
+  },
+  {
+   "name": "Rohit Prajapati",
+   "dcoins": 5570,
+   "dwins": 274,
+   "residual": 2830,
+   "resid_share": 0.508
+  },
+  {
+   "name": "Sol ana",
+   "dcoins": 4466,
+   "dwins": 218,
+   "residual": 2286,
+   "resid_share": 0.512
+  },
+  {
+   "name": "HIMANSHU",
+   "dcoins": 3635,
+   "dwins": 156,
+   "residual": 2075,
+   "resid_share": 0.571
+  },
+  {
+   "name": "hina",
+   "dcoins": 3613,
+   "dwins": 164,
+   "residual": 1973,
+   "resid_share": 0.546
+  },
+  {
+   "name": "zoya khan",
+   "dcoins": 3379,
+   "dwins": 139,
+   "residual": 1989,
+   "resid_share": 0.589
+  },
+  {
+   "name": "Gufran The Legend",
+   "dcoins": 3327,
+   "dwins": 164,
+   "residual": 1687,
+   "resid_share": 0.507
+  },
+  {
+   "name": "DegenXBT",
+   "dcoins": 3270,
+   "dwins": 153,
+   "residual": 1740,
+   "resid_share": 0.532
+  },
+  {
+   "name": "megumii",
+   "dcoins": 2655,
+   "dwins": 98,
+   "residual": 1675,
+   "resid_share": 0.631
+  }
+ ],
+ "pioneer_latency": {
+  "fresh_only_external": {
+   "n": 40,
+   "median_s": 1.1,
+   "min_s": 0.3,
+   "buckets": {
+    "sub10s": 40,
+    "sub60s": 0,
+    "1-10m": 0,
+    "10-30m": 0,
+    "30-60m": 0,
+    "gt60m": 0
+   }
+  },
+  "fresh_only_house": {
+   "n": 0,
+   "median_s": null
+  },
+  "all_sample_external_median_s": 1.8
+ },
+ "korpus_refresh": {
+  "n": {
+   "v": 2016,
+   "f": 917
+  },
+  "full_030": {
+   "v": 29.1,
+   "f": 19.0,
+   "gap_pp": 10.1
+  },
+  "full_015": {
+   "v": 54.0,
+   "f": 32.0,
+   "gap_pp": 22.0
+  },
+  "in_k1_030": {
+   "v": 41.6,
+   "f": 42.5,
+   "gap_pp": -0.9
+  },
+  "in_k1_015": {
+   "v": 77.2,
+   "f": 71.6,
+   "gap_pp": 5.6
+  },
+  "k1_only_gap_pp": 25.3,
+  "k1_only": {
+   "v": 69.9,
+   "f": 44.6
+  },
+  "ref": {
+   "full_030": [
+    32.5,
+    28.1
+   ],
+   "full_015": [
+    57.6,
+    32.8
+   ]
+  },
+  "gap_vs_ref_pp": {
+   "full_030": 5.7,
+   "full_015": -2.8
+  }
+ },
+ "climber_styles": {
+  "Danis": {
+   "n_verified": 42,
+   "chars_median": 7750,
+   "density_median": 0.569,
+   "ratio_median": 0.266,
+   "floor030_pass_pct": 38.1,
+   "floor015_pass_pct": 54.8
+  },
+  "chirpy": {
+   "n_verified": 21,
+   "chars_median": 14822,
+   "density_median": 0.492,
+   "ratio_median": 0.164,
+   "floor030_pass_pct": 14.3,
+   "floor015_pass_pct": 33.3
+  },
+  "can-earn?": {
+   "n_verified": 24,
+   "chars_median": 13608,
+   "density_median": 0.563,
+   "ratio_median": 0.259,
+   "floor030_pass_pct": 29.2,
+   "floor015_pass_pct": 66.7
+  },
+  "Gufran The Legend": {
+   "n_verified": 37,
+   "chars_median": 7933,
+   "density_median": 1.0,
+   "ratio_median": 0.192,
+   "floor030_pass_pct": 10.8,
+   "floor015_pass_pct": 64.9
+  },
+  "zoya khan": {
+   "n_verified": 9,
+   "chars_median": 15033,
+   "density_median": 0.934,
+   "ratio_median": 0.185,
+   "floor030_pass_pct": 33.3,
+   "floor015_pass_pct": 44.4
+  },
+  "Febriyan": {
+   "n_verified": 35,
+   "chars_median": 11500,
+   "density_median": 0.796,
+   "ratio_median": 0.203,
+   "floor030_pass_pct": 25.7,
+   "floor015_pass_pct": 60.0
+  },
+  "Mauldrop": {
+   "n_verified": 49,
+   "chars_median": 5242,
+   "density_median": 1.36,
+   "ratio_median": 0.453,
+   "floor030_pass_pct": 63.3,
+   "floor015_pass_pct": 93.9
+  },
+  "Adam Reinhard": {
+   "n_verified": 39,
+   "chars_median": 13746,
+   "density_median": 4.528,
+   "ratio_median": 0.741,
+   "floor030_pass_pct": 100.0,
+   "floor015_pass_pct": 100.0
+  },
+  "Discord 1": {
+   "n_verified": 6,
+   "chars_median": 9766,
+   "density_median": 0.626,
+   "ratio_median": 0.138,
+   "floor030_pass_pct": 0.0,
+   "floor015_pass_pct": 33.3
+  },
+  "Md ripon Rana": {
+   "n_verified": 9,
+   "chars_median": 9165,
+   "density_median": 0.682,
+   "ratio_median": 0.25,
+   "floor030_pass_pct": 22.2,
+   "floor015_pass_pct": 77.8
+  },
+  "Rodeo": {
+   "n_verified": 34,
+   "chars_median": 10902,
+   "density_median": 0.923,
+   "ratio_median": 0.231,
+   "floor030_pass_pct": 38.2,
+   "floor015_pass_pct": 64.7
+  },
+  "GaBot": {
+   "n_verified": 39,
+   "chars_median": 8414,
+   "density_median": 1.464,
+   "ratio_median": 0.457,
+   "floor030_pass_pct": 74.4,
+   "floor015_pass_pct": 94.9
+  },
+  "neobros f": {
+   "n_verified": 44,
+   "chars_median": 13038,
+   "density_median": 0.922,
+   "ratio_median": 0.159,
+   "floor030_pass_pct": 18.2,
+   "floor015_pass_pct": 54.5
+  },
+  "Iqoo First": {
+   "n_verified": 32,
+   "chars_median": 12330,
+   "density_median": 0.649,
+   "ratio_median": 0.138,
+   "floor030_pass_pct": 15.6,
+   "floor015_pass_pct": 43.8
+  },
+  "coucung": {
+   "n_verified": 26,
+   "chars_median": 8731,
+   "density_median": 0.815,
+   "ratio_median": 0.252,
+   "floor030_pass_pct": 34.6,
+   "floor015_pass_pct": 80.8
+  },
+  "SyntaxZ": {
+   "n_verified": 16,
+   "chars_median": 12418,
+   "density_median": 0.699,
+   "ratio_median": 0.183,
+   "floor030_pass_pct": 18.8,
+   "floor015_pass_pct": 43.8
+  },
+  "DegenXBT": {
+   "n_verified": 16,
+   "chars_median": 24154,
+   "density_median": 0.651,
+   "ratio_median": 0.147,
+   "floor030_pass_pct": 12.5,
+   "floor015_pass_pct": 43.8
+  },
+  "megumii": {
+   "n_verified": 51,
+   "chars_median": 9844,
+   "density_median": 0.833,
+   "ratio_median": 0.159,
+   "floor030_pass_pct": 21.6,
+   "floor015_pass_pct": 47.1
+  },
+  "Hermawan Kwan": {
+   "n_verified": 27,
+   "chars_median": 9370,
+   "density_median": 0.718,
+   "ratio_median": 0.157,
+   "floor030_pass_pct": 18.5,
+   "floor015_pass_pct": 48.1
+  },
+  "HIMANSHU": {
+   "n_verified": 37,
+   "chars_median": 8665,
+   "density_median": 0.646,
+   "ratio_median": 0.143,
+   "floor030_pass_pct": 16.2,
+   "floor015_pass_pct": 35.1
+  },
+  "FlashX Bliz": {
+   "n_verified": 13,
+   "chars_median": 12889,
+   "density_median": 0.694,
+   "ratio_median": 0.111,
+   "floor030_pass_pct": 7.7,
+   "floor015_pass_pct": 30.8
+  }
+ },
+ "fresh_topics": {
+  "n_fresh": 40,
+  "viking_share": 0.0,
+  "core_kw_share": 0.1,
+  "per_hour": {
+   "0": {
+    "releases": 12,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "1": {
+    "releases": 2,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "2": {
+    "releases": 7,
+    "viking": 0,
+    "core_kw": 1,
+    "core_new": []
+   },
+   "18": {
+    "releases": 1,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "19": {
+    "releases": 2,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "20": {
+    "releases": 12,
+    "viking": 0,
+    "core_kw": 3,
+    "core_new": []
+   },
+   "21": {
+    "releases": 3,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   },
+   "22": {
+    "releases": 1,
+    "viking": 0,
+    "core_kw": 0,
+    "core_new": []
+   }
+  },
+  "core_new": [
+   {
+    "id": "b2a7aa64",
+    "hour": 2,
+    "status": "settled",
+    "content": "Since Ethereum's Dencun upgrade (March 13, 2024) introduced blob transactions, why have the fees Layer-2 rollu",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "df9cb696",
+    "hour": 20,
+    "status": "settled",
+    "content": "Which technological and economic factors will determine the long-term success of Ethereum Layer 2 scaling solu",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "78b5bdcc",
+    "hour": 20,
+    "status": "settled",
+    "content": "What characteristics distinguish sustainable tokenomics from short-term speculative token distribution models ",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   },
+   {
+    "id": "10a145b4",
+    "hour": 20,
+    "status": "settled",
+    "content": "What are the most significant technical and economic barriers preventing autonomous AI agents from becoming re",
+    "viso": null,
+    "detail_status": "settled",
+    "marathonActive": true,
+    "marathonConcluded": true
+   }
+  ]
+ },
+ "viso0_in_progress_in_sample": [],
+ "abandoned_share": 16.2,
+ "sample_status_counts": {
+  "intent": 78,
+  "revealed": 1469,
+  "verified": 2043,
+  "abandoned": 875,
+  "committed": 1,
+  "falsified": 929
+ }
+}
